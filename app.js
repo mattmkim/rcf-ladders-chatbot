@@ -1,10 +1,21 @@
 var express = require("express");
 var request = require("request");
 var bodyParser = require("body-parser");
+var cookieSession = require('cookie-session');
+
+var mongoose = require("mongoose");
+
+var db = mongoose.connect(process.env.MONGODB_URI);
+var User = require("./models/users");
 
 var app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(
+    cookieSession({
+        messageType: 0
+    })
+);
 app.listen((process.env.PORT || 5000));
 
 // Server index page
