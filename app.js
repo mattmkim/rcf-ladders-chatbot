@@ -66,7 +66,8 @@ app.post("/webhook", function (req, res) {
           name = bodyObj.first_name;
           greeting = "Hi " + name + ". ";
         }
-        var message = greeting + "My name is SP Movie Bot. I can tell you various details regarding movies. What movie would you like to know about?";
+        var message = greeting + "Thanks for joining RCF Meets! To begin, let's build your profile! What's something you like to do in your free time?" + 
+        "No need to write an essay - a couple interests should do.";
         sendMessage(senderId, {text: message});
       });
     }
