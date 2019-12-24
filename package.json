@@ -1,0 +1,15 @@
+{
+  "name": "rcfladders",
+  "version": "1.0.0",
+  "description": "fb messenger chatbot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "rcf-ladders-chatbot"
+  },
+  "author": "Matthew Kim",
+  "license": "ISC"
+}
