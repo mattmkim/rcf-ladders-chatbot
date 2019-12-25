@@ -177,6 +177,8 @@ function sendAttachment(recipientId, url) {
     }, function(error, response, body) {
         if (error) {
             console.log("Error sending message: " + response.error);
+        } else {
+            console.log(response);
         }
     });
 }
