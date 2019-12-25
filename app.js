@@ -63,15 +63,15 @@ function processPostback(event) {
         url: "https://graph.facebook.com/v2.6/" + senderId,
         qs: {
             access_token: process.env.PAGE_ACCESS_TOKEN,
-            fields: "first_name"
+            fields: ["first_name", "last_name", "profile_pic"]
         },
         method: "GET"
         }, function(error, response, body) {
             var greeting = "";
+            var bodyObj = JSON.parse(body);
             if (error) {
                 console.log("Error getting user's name: " +  error);
             } else {
-                var bodyObj = JSON.parse(body);
                 name = bodyObj.first_name;
                 greeting = "Hi " + name + "! ";
             }
@@ -80,11 +80,28 @@ function processPostback(event) {
             var secondMessage = "To begin, let's build your profile! What's something you like to do in your free time?" + 
             " No need to write an essay - a couple interests should do."
             //sendAttachment(senderId, url);
+            var newUser = new User({
+                user_id: senderId,
+                interests: null,
+                fun_fact: null,
+                firstName: bodyObj.first_name,
+                lastName: bodyObj.last_name,
+                profileUrl: bodyObj.profile_pic
+            });
+
+            newUser.save(function (err, response) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(response);
+                }
+            });
+
             User.find({user_id: senderId}, function(err, response) {
                 if (err) {
                     console.log(err);
                 } else {
-                    if (response.length == 0) {
+                    if (response[0].fun_fact == null) {
                         sendMessage(senderId, {text: firstMessage});
                         sendMessage(senderId, {text: secondMessage});
                         console.log(senderId + " does not exist.");
@@ -96,10 +113,7 @@ function processPostback(event) {
                         sendMessage(senderId, {text: viewMembersMessage});
                     }
                 }
-            })
-
-
-            
+            })  
         });
     }
 }
@@ -117,19 +131,17 @@ function processMessage(event) {
             // preemptively check if message is looking to see all members in the group
             if (message.text.localeCompare("View Members") == 0 || message.text.localeCompare("view members") == 0 || message.text.localeCompare("View members") == 0) {
                 // code to allow users to see all members
+
+
+
             } else {
                 User.find({user_id: senderId}, function(err, response) {
                     if (err) {
                         console.log(err);
                     } else {
-                        if (response.length == 0) {
-                            console.log(senderId + " does not exist. Adding " + senderId);
-                            var newUser = new User({
-                                user_id: senderId,
-                                interests: message.text,
-                                fun_fact: null
-                            });
-                            newUser.save(function (err, response) {
+                        if (response[0].interests == null) {
+                            console.log(senderId + " has no interests yet";
+                            User.update({user_id: senderId}, {interests: message.text}, function (err, response) {
                                 if (err) {
                                     console.log(err);
                                 } else {
