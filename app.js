@@ -150,7 +150,7 @@ function sendMessage(recipientId, message) {
         }
     }, function(error, response, body) {
         if (error) {
-        console.log("Error sending message: " + response.error);
+            console.log("Error sending message: " + response.error);
         }
     });
 }
@@ -165,20 +165,18 @@ function sendAttachment(recipientId, message, url) {
             recipient: {id: recipientId},
             message: {
                 text: message, 
-                attachment:{
+                attachment: {
                     type: "image", 
                     payload:{
                         url: url, 
                         is_reusable:true
                     }
-                  }
                 }
-            }
+            } 
         }
     }, function(error, response, body) {
         if (error) {
         console.log("Error sending message: " + response.error);
         }
     });
-}
 }
