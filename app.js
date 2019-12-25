@@ -164,7 +164,7 @@ function sendAttachment(recipientId, message, url) {
         json: {
             recipient: {id: recipientId},
             message: {
-                text: message, 
+                // text: message, 
                 attachment: {
                     type: "image", 
                     payload: {
@@ -172,7 +172,7 @@ function sendAttachment(recipientId, message, url) {
                         is_reusable: true
                     }
                 }
-            }, 
+            }
         }
     }, function(error, response, body) {
         if (error) {
