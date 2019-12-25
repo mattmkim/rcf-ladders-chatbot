@@ -90,8 +90,10 @@ function processPostback(event) {
                         console.log(senderId + " does not exist.");
                     } else {
                         sendMessage(senderId, {text: firstMessage});
-                        secondMessage = "Looks like you're already logged in! Stay tuned for more updates."
+                        secondMessage = "Looks like you're already logged in! Keep on the lookout for weekly messages from us on Mondays!"
                         sendMessage(senderId, {text: secondMessage});
+                        var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + "if you would like to get a preview of who else is in RCF Meets!";
+                        sendMessage(senderId, {text: viewMembersMessage});
                     }
                 }
             })
@@ -112,43 +114,52 @@ function processMessage(event) {
 
         // You may get a text or attachment but not both
         if (message.text) {
-            User.find({user_id: senderId}, function(err, response) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    if (response.length == 0) {
-                        console.log(senderId + " does not exist. Adding " + senderId);
-                        var newUser = new User({
-                            user_id: senderId,
-                            interests: message.text,
-                            fun_fact: null
-                        });
-                        newUser.save(function (err, response) {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                console.log(response);
-                            }
-                        });
-                        // need to send message prompting a users fun fact
-                        var newMessage = "What is a fun fact about you?";
-                        sendMessage(senderId, {text: newMessage});
+            // preemptively check if message is looking to see all members in the group
+            if (message.text.localeCompare("View Members") == 0 || message.text.localeCompare("view members") == 0 || message.text.localeCompare("View members") == 0) {
+                // code to allow users to see all members
+            } else {
+                User.find({user_id: senderId}, function(err, response) {
+                    if (err) {
+                        console.log(err);
                     } else {
-                        // user already exists in the database, message received is for fun fact
-                        console.log(senderId + "exits. Adding fun fact");
-                        User.update({user_id: senderId}, {fun_fact: message.text}, function (err, response) {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                console.log(response);
-                            }
-                        });
-                        
-                        var newMessage = "Great, you're all signed up!";
-                        sendMessage(senderId, {text: newMessage});
+                        if (response.length == 0) {
+                            console.log(senderId + " does not exist. Adding " + senderId);
+                            var newUser = new User({
+                                user_id: senderId,
+                                interests: message.text,
+                                fun_fact: null
+                            });
+                            newUser.save(function (err, response) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.log(response);
+                                }
+                            });
+                            // need to send message prompting a users fun fact
+                            var newMessage = "What is a fun fact about you?";
+                            sendMessage(senderId, {text: newMessage});
+                        } else {
+                            // user already exists in the database, message received is for fun fact
+                            console.log(senderId + "exits. Adding fun fact");
+                            User.update({user_id: senderId}, {fun_fact: message.text}, function (err, response) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.log(response);
+                                }
+                            });
+                            
+                            var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Mondays!";
+                            var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + "if you would like to get a preview of who else is in RCF Meets!";
+                            sendMessage(senderId, {text: newMessage});
+                            sendMessage(senderId, {text: viewMembersMessage});
+    
+                        }
                     }
-                }
-            });
+                });
+            }
+            
         } else if (message.attachments) {
             sendMessage(senderId, {text: "Sorry, I don't understand your request."});
         }
