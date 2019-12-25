@@ -77,7 +77,7 @@ function processPostback(event) {
             } else {
                 var bodyObj = JSON.parse(body);
                 name = bodyObj.first_name;
-                greeting = "Hi " + name + ". ";
+                greeting = "Hi " + name + "! ";
             }
             var message = greeting + "Thanks for joining RCF Meets! To begin, let's build your profile! What's something you like to do in your free time?" + 
             "No need to write an essay - a couple interests should do.";
@@ -96,24 +96,37 @@ function processMessage(event) {
 
         // You may get a text or attachment but not both
         if (message.text) {
-            var formattedMsg = message.text.toLowerCase().trim();
-
-            // If we receive a text message, check to see if it matches any special
-            // keywords and send back the corresponding movie detail.
-            // Otherwise, search for new movie.
-            switch (formattedMsg) {
-                case "plot":
-                case "date":
-                case "runtime":
-                case "director":
-                case "cast":
-                case "rating":
-                getMovieDetail(senderId, formattedMsg);
-                break;
-
-                default:
-                findMovie(senderId, formattedMsg);
-            }
+            User.find({user_id: senderId}, function(err, response) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    if (response.length == 0) {
+                        console.log(senderId + "does not exist. Adding " + senderId);
+                        var newUser = new User({
+                            user_id: senderId,
+                            interests: message,
+                            fun_fact: null
+                        });
+                        newUser.save(function (err, response) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                console.log(response);
+                            }
+                        });
+                        // need to send message prompting a users fun fact
+                        var newMessage = "What is a fun fact about you?";
+                        sendMessage(senderId, {text: newMessage});
+                    } else {
+                        // user already exists in the database, message received is for fun fact
+                        console.log(senderId + "exits. Adding fun fact");
+                        const res = await User.update({user_id: senderId}, {fun_fact: message});
+                        console.log(res.n);
+                        var newMessage = "Great, you're all signed up!";
+                        sendMessage(senderId, {text: newMessage});
+                    }
+                }
+            });
         } else if (message.attachments) {
             sendMessage(senderId, {text: "Sorry, I don't understand your request."});
         }
