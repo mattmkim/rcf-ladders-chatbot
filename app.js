@@ -79,7 +79,7 @@ function processPostback(event) {
             var url = "https:\/\/www.facebook.com\/pennrcf\/photos\/a.318849449044296\/422291922033381\/"
             var secondMessage = "To begin, let's build your profile! What's something you like to do in your free time?" + 
             " No need to write an essay - a couple interests should do."
-            sendMessage(senderId, firstMessage, url);
+            sendAttachment(senderId, firstMessage, url);
             sendMessage(senderId, {test: secondMessage});
         });
     }
