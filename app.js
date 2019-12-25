@@ -80,15 +80,16 @@ function processPostback(event) {
             var secondMessage = "To begin, let's build your profile! What's something you like to do in your free time?" + 
             " No need to write an essay - a couple interests should do."
             //sendAttachment(senderId, url);
-            sendMessage(senderId, {text: firstMessage});
             User.find({user_id: senderId}, function(err, response) {
                 if (err) {
                     console.log(err);
                 } else {
                     if (response.length == 0) {
+                        sendMessage(senderId, {text: firstMessage});
                         sendMessage(senderId, {text: secondMessage});
                         console.log(senderId + " does not exist.");
                     } else {
+                        sendMessage(senderId, {text: firstMessage});
                         secondMessage = "Looks like you're already logged in! Stay tuned for more updates."
                         sendMessage(senderId, {text: secondMessage});
                     }
