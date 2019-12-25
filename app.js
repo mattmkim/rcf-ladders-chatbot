@@ -116,7 +116,7 @@ function processMessage(event) {
                     } else {
                         // user already exists in the database, message received is for fun fact
                         console.log(senderId + "exits. Adding fun fact");
-                        User.update({user_id: senderId}, {fun_fact: message}, function (err, response) {
+                        User.update({user_id: senderId}, {fun_fact: message.text}, function (err, response) {
                             if (err) {
                                 console.log(err);
                             } else {
