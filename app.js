@@ -75,9 +75,12 @@ function processPostback(event) {
                 name = bodyObj.first_name;
                 greeting = "Hi " + name + "! ";
             }
-            var message = greeting + "Thanks for joining RCF Meets! To begin, let's build your profile! What's something you like to do in your free time?" + 
-            " No need to write an essay - a couple interests should do.";
-            sendMessage(senderId, {text: message});
+            var firstMessage = greeting + "Thanks for joining RCF Meets!";
+            var url = "https:\/\/www.facebook.com\/pennrcf\/photos\/a.318849449044296\/422291922033381\/"
+            var secondMessage = "To begin, let's build your profile! What's something you like to do in your free time?" + 
+            " No need to write an essay - a couple interests should do."
+            sendMessage(senderId, firstMessage, url);
+            sendMessage(senderId, {test: secondMessage});
         });
     }
 }
@@ -150,4 +153,32 @@ function sendMessage(recipientId, message) {
         console.log("Error sending message: " + response.error);
         }
     });
+}
+
+// sends message with attachement
+function sendAttachment(recipientId, message, url) {
+    request({
+        url: "https://graph.facebook.com/v2.6/me/messages",
+        qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
+        method: "POST",
+        json: {
+            recipient: {id: recipientId},
+            message: {
+                text: message, 
+                attachment:{
+                    type: "image", 
+                    payload:{
+                        url: url, 
+                        is_reusable:true
+                    }
+                  }
+                }
+            }
+        }
+    }, function(error, response, body) {
+        if (error) {
+        console.log("Error sending message: " + response.error);
+        }
+    });
+}
 }
