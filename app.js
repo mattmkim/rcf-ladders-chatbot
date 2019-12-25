@@ -3,6 +3,7 @@ var request = require("request");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 
+console.log(process.env.MONGODB_URI);
 var db = mongoose.connect(process.env.MONGODB_URI);
 var User = require("./models/users");
 
