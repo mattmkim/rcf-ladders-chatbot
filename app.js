@@ -79,8 +79,8 @@ function processPostback(event) {
             var url = "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/75127993_422291925366714_1670400768114425856_o.jpg?_nc_cat=109&_nc_ohc=qzo0m1xnBOYAQkEkl5MEkBwSkTC2eqPXz8nV6L-8FBb6t0A9AZVk38bLg&_nc_ht=scontent-lga3-1.xx&oh=7222ceccfb871c715cac3c32d7ebd30d&oe=5E6B246D"
             var secondMessage = "To begin, let's build your profile! What's something you like to do in your free time?" + 
             " No need to write an essay - a couple interests should do."
-            //sendMessage(senderId, {text: firstMessage});
             sendAttachment(senderId, firstMessage, url);
+            sendMessage(senderId, {text: firstMessage});
             sendMessage(senderId, {text: secondMessage});
         });
     }
@@ -157,7 +157,7 @@ function sendMessage(recipientId, message) {
 }
 
 //sends message with attachement
-function sendAttachment(recipientId, message, url) {
+function sendAttachment(recipientId, url) {
     request({
         url: "https://graph.facebook.com/v2.6/me/messages",
         qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
@@ -165,7 +165,6 @@ function sendAttachment(recipientId, message, url) {
         json: {
             recipient: {id: recipientId},
             message: {
-                text: message,
                 attachment: {
                     type: "image", 
                     payload: {
