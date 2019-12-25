@@ -76,12 +76,27 @@ function processPostback(event) {
                 greeting = "Hi " + name + "! ";
             }
             var firstMessage = greeting + "Thanks for joining RCF Meets!";
-            var url = "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/75127993_422291925366714_1670400768114425856_o.jpg?_nc_cat=109&_nc_ohc=qzo0m1xnBOYAQkEkl5MEkBwSkTC2eqPXz8nV6L-8FBb6t0A9AZVk38bLg&_nc_ht=scontent-lga3-1.xx&oh=7222ceccfb871c715cac3c32d7ebd30d&oe=5E6B246D"
+            //var url = "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/75127993_422291925366714_1670400768114425856_o.jpg?_nc_cat=109&_nc_ohc=qzo0m1xnBOYAQkEkl5MEkBwSkTC2eqPXz8nV6L-8FBb6t0A9AZVk38bLg&_nc_ht=scontent-lga3-1.xx&oh=7222ceccfb871c715cac3c32d7ebd30d&oe=5E6B246D"
             var secondMessage = "To begin, let's build your profile! What's something you like to do in your free time?" + 
             " No need to write an essay - a couple interests should do."
-            sendAttachment(senderId, url);
+            //sendAttachment(senderId, url);
             sendMessage(senderId, {text: firstMessage});
-            sendMessage(senderId, {text: secondMessage});
+            User.find({user_id: senderId}, function(err, response) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    if (response.length == 0) {
+                        sendMessage(senderId, {text: secondMessage});
+                        console.log(senderId + " does not exist.");
+                    } else {
+                        secondMessage = "Looks like you're already logged in! Stay tuned for more updates."
+                        sendMessage(senderId, {text: secondMessage});
+                    }
+                }
+            })
+
+
+            
         });
     }
 }
