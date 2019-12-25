@@ -140,7 +140,7 @@ function processMessage(event) {
                         console.log(err);
                     } else {
                         if (response[0].interests == null) {
-                            console.log(senderId + " has no interests yet";
+                            console.log(senderId + " has no interests yet");
                             User.update({user_id: senderId}, {interests: message.text}, function (err, response) {
                                 if (err) {
                                     console.log(err);
