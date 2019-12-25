@@ -97,10 +97,10 @@ function processMessage(event) {
                     console.log(err);
                 } else {
                     if (response.length == 0) {
-                        console.log(senderId + "does not exist. Adding " + senderId);
+                        console.log(senderId + " does not exist. Adding " + senderId);
                         var newUser = new User({
                             user_id: senderId,
-                            interests: message,
+                            interests: message.text,
                             fun_fact: null
                         });
                         newUser.save(function (err, response) {
