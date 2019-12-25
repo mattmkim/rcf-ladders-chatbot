@@ -145,8 +145,8 @@ function sendMessage(recipientId, message) {
         qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
         method: "POST",
         json: {
-        recipient: {id: recipientId},
-        message: message,
+            recipient: {id: recipientId},
+            message: message,
         }
     }, function(error, response, body) {
         if (error) {
@@ -167,16 +167,16 @@ function sendAttachment(recipientId, message, url) {
                 text: message, 
                 attachment: {
                     type: "image", 
-                    payload:{
+                    payload: {
                         url: url, 
-                        is_reusable:true
+                        is_reusable: true
                     }
                 }
-            } 
+            }, 
         }
     }, function(error, response, body) {
         if (error) {
-        console.log("Error sending message: " + response.error);
+            console.log("Error sending message: " + response.error);
         }
     });
 }
