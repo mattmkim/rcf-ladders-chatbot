@@ -131,6 +131,7 @@ function processMessage(event) {
             // preemptively check if message is looking to see all members in the group
             if (message.text.localeCompare("View Members") == 0 || message.text.localeCompare("view members") == 0 || message.text.localeCompare("View members") == 0) {
                 // code to allow users to see all members
+                ;
 
 
 
