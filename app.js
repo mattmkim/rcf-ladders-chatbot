@@ -95,14 +95,21 @@ function processPostback(event) {
                 } else {
                     console.log(response);
                     if (response.length === 0) {
-                        sendMessage(senderId, {text: secondMessage});
                         sendMessage(senderId, {text: firstMessage});
+                        setTimout(sendMessage(senderId, {text: secondMessage}), 100);
                         console.log(senderId + " does not exist.");
-                    } else {
+                    } else if (response[0].interests == null) {
+                        sendMessage(senderId, {text: firstMessage});
+                        sendMessage(senderId, {text: secondMessage});
+                        console.log(senderId + " does not exist.");
+                    } else if (response[0].fun_fact == null) {
+                        var firstMessage = firstMessage + " Looks like your profile is almost complete! What's a fun fact about yourself?";
+                        sendMessage(senderId, {text: firstMessage});
+                    } else  {
                         secondMessage = "Looks like you're already logged in! Keep on the lookout for weekly messages from us on Mondays!"
                         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + "if you would like to get a preview of who else is in RCF Meets!";
                         sendMessage(senderId, {text: firstMessage});
-                        sendMessage(senderId, {text: secondMessage});
+                        setTimeout(sendMessage(senderId, {text: secondMessage}), 100);
                         sendMessage(senderId, {text: viewMembersMessage});
                     }
                 }
