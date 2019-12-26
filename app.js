@@ -103,7 +103,7 @@ function processPostback(event) {
                 } else {
                     var result = response[0];
                     //result = result._id.toString();
-                    console.log(typeof result);
+                    console.log(result.firstName);
                     if (JSON.parse(response[0]).interests) {
                         sendMessage(senderId, {text: firstMessage});
                         sendMessage(senderId, {text: secondMessage});
