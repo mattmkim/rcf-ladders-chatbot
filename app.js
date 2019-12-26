@@ -102,7 +102,7 @@ function processPostback(event) {
                     console.log(err);
                 } else {
                     console.log(response);
-                    if (response === 'undefined') {
+                    if (response.length === 0) {
                         sendMessage(senderId, {text: firstMessage});
                         sendMessage(senderId, {text: secondMessage});
                         console.log(senderId + " does not exist.");
