@@ -101,7 +101,7 @@ function processPostback(event) {
                 if (err) {
                     console.log(err);
                 } else {
-                    if (response[0].interests == null) {
+                    if (typeof response === 'undefined') {
                         sendMessage(senderId, {text: firstMessage});
                         sendMessage(senderId, {text: secondMessage});
                         console.log(senderId + " does not exist.");
