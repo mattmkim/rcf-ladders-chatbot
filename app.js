@@ -89,14 +89,6 @@ function processPostback(event) {
                 profileUrl: bodyObj.profile_pic
             });
 
-            newUser.save(function (err, response) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log(response);
-                }
-            });
-
             User.find({user_id: senderId}, function(err, response) {
                 if (err) {
                     console.log(err);
@@ -114,7 +106,15 @@ function processPostback(event) {
                         sendMessage(senderId, {text: viewMembersMessage});
                     }
                 }
-            })  
+            })
+            
+            newUser.save(function (err, response) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(response);
+                }
+            });
         });
     }
 }
