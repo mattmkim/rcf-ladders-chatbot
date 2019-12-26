@@ -101,6 +101,7 @@ function processPostback(event) {
                 if (err) {
                     console.log(err);
                 } else {
+                    console.log(response);
                     if (response === 'undefined') {
                         sendMessage(senderId, {text: firstMessage});
                         sendMessage(senderId, {text: secondMessage});
