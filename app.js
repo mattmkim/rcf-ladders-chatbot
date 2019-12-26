@@ -133,8 +133,6 @@ function processMessage(event) {
                 // code to allow users to see all members
                 ;
 
-
-
             } else {
                 User.find({user_id: senderId}, function(err, response) {
                     if (err) {
@@ -162,10 +160,10 @@ function processMessage(event) {
                                     console.log(response);
                                 }
                             });
-                            
+
+                            sendMessage(senderId, {text: newMessage});
                             var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Mondays!";
                             var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
-                            sendMessage(senderId, {text: newMessage});
                             sendMessage(senderId, {text: viewMembersMessage});
     
                         }
