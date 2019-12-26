@@ -101,7 +101,7 @@ function processPostback(event) {
                 if (err) {
                     console.log(err);
                 } else {
-                    var result = response;
+                    var result = response[0];
                     result = result._id.toString();
                     console.log(JSON.parse(result));
                     if (JSON.parse(response[0]).interests) {
