@@ -101,15 +101,16 @@ function processPostback(event) {
                 if (err) {
                     console.log(err);
                 } else {
-                    if (typeof response === 'undefined') {
+                    console.log(response);
+                    if (response === 'undefined') {
                         sendMessage(senderId, {text: firstMessage});
                         sendMessage(senderId, {text: secondMessage});
                         console.log(senderId + " does not exist.");
                     } else {
-                        sendMessage(senderId, {text: firstMessage});
                         secondMessage = "Looks like you're already logged in! Keep on the lookout for weekly messages from us on Mondays!"
-                        sendMessage(senderId, {text: secondMessage});
                         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + "if you would like to get a preview of who else is in RCF Meets!";
+                        sendMessage(senderId, {text: firstMessage});
+                        sendMessage(senderId, {text: secondMessage});
                         sendMessage(senderId, {text: viewMembersMessage});
                     }
                 }
