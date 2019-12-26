@@ -68,7 +68,7 @@ function processPostback(event) {
         url: "https://graph.facebook.com/v2.6/" + senderId,
         qs: {
             access_token: process.env.PAGE_ACCESS_TOKEN,
-            fields: fieldsObject
+            fields: "first_name"
         },
         method: "GET"
         }, function(error, response, body) {
