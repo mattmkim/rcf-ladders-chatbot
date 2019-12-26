@@ -162,9 +162,10 @@ function processMessage(event) {
                                 }
                             });
 
-                            sendMessage(senderId, {text: newMessage});
+                            
                             var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Mondays!";
                             var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
+                            sendMessage(senderId, {text: newMessage});
                             sendMessage(senderId, {text: viewMembersMessage});
     
                         }
