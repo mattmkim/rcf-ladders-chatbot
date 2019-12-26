@@ -101,8 +101,8 @@ function processPostback(event) {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log(response);
-                    if (response === 'undefined') {
+                    console.log(response[0]);
+                    if (JSON.parse(response[0]).interests) {
                         sendMessage(senderId, {text: firstMessage});
                         sendMessage(senderId, {text: secondMessage});
                         console.log(senderId + " does not exist.");
