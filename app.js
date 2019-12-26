@@ -59,11 +59,6 @@ function processPostback(event) {
     if (payload === "Greeting") {
         // Get user's first name from the User Profile API
         // and include it in the greeting
-        var fieldsObject = {
-            "first_name": null,
-            "last_name": null,
-            "profile_pic": null
-        };
         request({
         url: "https://graph.facebook.com/v2.6/" + senderId,
         qs: {
@@ -73,7 +68,6 @@ function processPostback(event) {
         method: "GET"
         }, function(error, response, body) {
             var greeting = "";
-            console.log(body);
             var bodyObj = JSON.parse(body);
             if (error) {
                 console.log("Error getting user's name: " +  error);
@@ -107,7 +101,7 @@ function processPostback(event) {
                 if (err) {
                     console.log(err);
                 } else {
-                    if (response == null) {
+                    if (response[0].interests == null) {
                         sendMessage(senderId, {text: firstMessage});
                         sendMessage(senderId, {text: secondMessage});
                         console.log(senderId + " does not exist.");
