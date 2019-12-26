@@ -101,10 +101,7 @@ function processPostback(event) {
                 if (err) {
                     console.log(err);
                 } else {
-                    var result = response[0];
-                    //result = result._id.toString();
-                    console.log(result.interests);
-                    if (response[0].interests) {
+                    if (response[0].interests == null) {
                         sendMessage(senderId, {text: firstMessage});
                         sendMessage(senderId, {text: secondMessage});
                         console.log(senderId + " does not exist.");
