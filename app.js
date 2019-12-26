@@ -96,7 +96,7 @@ function processPostback(event) {
                     console.log(response);
                     if (response.length === 0) {
                         sendMessage(senderId, {text: firstMessage});
-                        setTimout(sendMessage(senderId, {text: secondMessage}), 100);
+                        setTimeout(sendMessage(senderId, {text: secondMessage}), 100);
                         console.log(senderId + " does not exist.");
                     } else if (response[0].interests == null) {
                         sendMessage(senderId, {text: firstMessage});
