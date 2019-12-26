@@ -89,14 +89,26 @@ function processPostback(event) {
                 profileUrl: bodyObj.profile_pic
             });
 
+            async function sendMessages(message1, message2){
+                sendMessage(senderId, {text: message1});
+                await sleep(200);
+                sendMessage(senderId, {text: message2});
+             }
+             function sleep(ms){
+                 return new Promise(resolve=>{
+                     setTimeout(resolve, ms)
+                 })
+             }
+
             User.find({user_id: senderId}, function(err, response) {
                 if (err) {
                     console.log(err);
                 } else {
                     console.log(response);
                     if (response.length === 0) {
-                        sendMessage(senderId, {text: firstMessage});
-                        setTimeout(sendMessage(senderId, {text: secondMessage}), 100);
+                        // sendMessage(senderId, {text: firstMessage});
+                        // sendMessage(senderId, {text: secondMessage});
+                        sendMessages(firstMessage, secondMessage);
                         console.log(senderId + " does not exist.");
                     } else if (response[0].interests == null) {
                         sendMessage(senderId, {text: firstMessage});
@@ -109,7 +121,7 @@ function processPostback(event) {
                         secondMessage = "Looks like you're already logged in! Keep on the lookout for weekly messages from us on Mondays!"
                         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + "if you would like to get a preview of who else is in RCF Meets!";
                         sendMessage(senderId, {text: firstMessage});
-                        setTimeout(sendMessage(senderId, {text: secondMessage}), 100);
+                        sendMessage(senderId, {text: secondMessage});
                         sendMessage(senderId, {text: viewMembersMessage});
                     }
                 }
