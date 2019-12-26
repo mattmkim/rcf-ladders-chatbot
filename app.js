@@ -59,11 +59,16 @@ function processPostback(event) {
     if (payload === "Greeting") {
         // Get user's first name from the User Profile API
         // and include it in the greeting
+        var fieldsObject = {
+            "first_name": null,
+            "last_name": null,
+            "profile_pic": null
+        };
         request({
         url: "https://graph.facebook.com/v2.6/" + senderId,
         qs: {
             access_token: process.env.PAGE_ACCESS_TOKEN,
-            fields: ["first_name", "last_name", "profile_pic"]
+            fields: fieldsObject
         },
         method: "GET"
         }, function(error, response, body) {
