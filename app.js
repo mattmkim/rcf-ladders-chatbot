@@ -95,8 +95,8 @@ function processPostback(event) {
                 } else {
                     console.log(response);
                     if (response.length === 0) {
-                        sendMessage(senderId, {text: firstMessage});
                         sendMessage(senderId, {text: secondMessage});
+                        sendMessage(senderId, {text: firstMessage});
                         console.log(senderId + " does not exist.");
                     } else {
                         secondMessage = "Looks like you're already logged in! Keep on the lookout for weekly messages from us on Mondays!"
