@@ -101,7 +101,7 @@ function processPostback(event) {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log(response[0].first_name);
+                    console.log(response.first_name);
                     if (JSON.parse(response[0]).interests) {
                         sendMessage(senderId, {text: firstMessage});
                         sendMessage(senderId, {text: secondMessage});
