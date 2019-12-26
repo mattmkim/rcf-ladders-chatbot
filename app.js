@@ -113,6 +113,13 @@ function processPostback(event) {
                         // sendMessage(senderId, {text: secondMessage});
                         sendMessages(firstMessage, secondMessage);
                         console.log(senderId + " does not exist.");
+                        newUser.save(function (err, response) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                console.log(response);
+                            }
+                        });
                     } else if (response[0].interests == null) {
                         sendMessage(senderId, {text: firstMessage});
                         sendMessage(senderId, {text: secondMessage});
@@ -130,13 +137,6 @@ function processPostback(event) {
                 }
             })
             
-            newUser.save(function (err, response) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log(response);
-                }
-            });
         });
     }
 }
