@@ -153,9 +153,16 @@ function processMessage(event) {
         if (message.text) {
             // preemptively check if message is looking to see all members in the group
             if (message.text.localeCompare("View Members") == 0 || message.text.localeCompare("view members") == 0 || message.text.localeCompare("View members") == 0) {
-                // code to allow users to see all members
-                ;
-
+                // view 10 members who have signed up
+                // potentially add functionality so users can specify which users they want to see??
+                User.find({}).limit(10).exec(function(err, response) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log(response);
+                        viewMembers(senderId, response);
+                    }
+                })
             } else {
                 User.find({user_id: senderId}, function(err, response) {
                     if (err) {
@@ -182,9 +189,7 @@ function processMessage(event) {
                                 } else {
                                     console.log(response);
                                 }
-                            });
-
-                            
+                            });  
                             var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Mondays!";
                             var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
                             sendMessage(senderId, {text: newMessage});
@@ -244,3 +249,38 @@ function sendAttachment(recipientId, url) {
         }
     });
 }
+
+function viewMembers(senderId, members) {
+    console.log(members);
+    const memberObjs = [];
+    for (let i = 0; i < members.length; i++) { 
+       let obj = {
+              "title": members[i].firstName + ' ' + members[i].lastName,
+              "image_url": members[i].profileUrl,
+              "subtitle": 'Interests: ' + members[i].interests + "\n" + 'Fun Fact: ' + members[i].fun_fact,
+             }
+             memberObjs.push(obj);
+          }
+          let messageData = {
+          "attachment": {
+          "type": "template",
+          "payload": {
+                "template_type": "generic",
+                "elements": memberObjs
+             }
+          }
+       }
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+        method: 'POST',
+        json: {
+          recipient: {id: senderId},
+          message: messageData,
+       }
+     }, function(error, response, body){
+          if (error) {
+            console.log("Error sending message: " + response.error)
+           }
+      })
+   }
