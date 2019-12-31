@@ -18,9 +18,9 @@ app.get("/", function (req, res) {
     res.send("Deployed!");
 });
 
-// send availability postback every Monday morning
-// real time string: '0 6 * * Monday'
-cron.schedule('0 6 * * Monday', () => {
+// send availability postback every Sunday morning
+// real time string: '0 6 * * Sunday'
+cron.schedule('0 6 * * Sunday', () => {
     sendAvailabilityPB();
 }, {
     scheduled: true,
@@ -97,7 +97,8 @@ function processPostback(event) {
                 fun_fact: null,
                 firstName: bodyObj.first_name,
                 lastName: bodyObj.last_name,
-                profileUrl: bodyObj.profile_pic
+                profileUrl: bodyObj.profile_pic,
+                available: false
             });
 
             async function sendMessages(message1, message2){
@@ -147,10 +148,20 @@ function processPostback(event) {
             })
             
         });
+
     } else if (payload == "YES") {
-
+        User.update({user_id: senderId}, {available: true}, function(err, response) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(response);
+            }
+        })
+        var message = "Got it. I'll get back to you by Monday morning!"
+        sendMessage(senderId, {text: message});
     } else if (payload == "NO") {
-
+        var message = "Got it. Have a good day!";
+        sendMessage(senderId, {text: message});
     }
 }
 

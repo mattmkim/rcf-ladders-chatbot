@@ -7,7 +7,8 @@ var UserSchema = new Schema({
   fun_fact: {type: String},
   firstName: {type: String},
   lastName: {type: String},
-  profileUrl: {type: String}
+  profileUrl: {type: String},
+  available: {type: Boolean}
 });
 
 module.exports = mongoose.model("User", UserSchema);
