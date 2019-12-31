@@ -1,5 +1,6 @@
 var express = require("express");
 var request = require("request");
+var cron = require('node-cron');
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 
@@ -15,6 +16,16 @@ app.listen((process.env.PORT || 5000));
 // Server index page
 app.get("/", function (req, res) {
     res.send("Deployed!");
+});
+
+// send availability postback every Monday morning
+
+// real time string: '0 6 * * Monday'
+cron.schedule('0 6 * * Monday', () => {
+    sendAvailabilityPB();
+}, {
+    scheduled: true,
+    timezone: "America/New_York"
 });
 
 // Facebook Webhook
@@ -108,7 +119,6 @@ function processPostback(event) {
                 } else {
                     console.log(response);
                     if (response.length === 0) {
-                        
                         // sendMessage(senderId, {text: firstMessage});
                         // sendMessage(senderId, {text: secondMessage});
                         sendMessages(firstMessage, secondMessage);
@@ -152,7 +162,8 @@ function processMessage(event) {
         // You may get a text or attachment but not both
         if (message.text) {
             // preemptively check if message is looking to see all members in the group
-            if (message.text.localeCompare("View Members") == 0 || message.text.localeCompare("view members") == 0 || message.text.localeCompare("View members") == 0) {
+            var text = message.text;
+            if (text.localeCompare("View Members") == 0 || text.localeCompare("view members") == 0 || text.localeCompare("View members") == 0) {
                 // view 10 members who have signed up
                 // potentially add functionality so users can specify which users they want to see??
                 User.find({}).limit(10).exec(function(err, response) {
@@ -163,7 +174,15 @@ function processMessage(event) {
                         viewMembers(senderId, response);
                     }
                 })
-            } else {
+            } else if (text.localeCompare("View Commands") == 0 || text.localeCompare("View commands") == 0 || text.localeCompare("view commands") == 0) {
+                var message = "All valid commands: \n\n View Members: Get a preview of members who are also in RCF Meets! \n\n" 
+                + "Unsubscribe: If you want to unsubscribe and no longer receive messages."; 
+
+            } else if (text.localeCompare("Unsubscribe") == 0 || text.localeCompare("unsubscribe") == 0) {
+                // code for user to update profile
+                deleteProfile(senderId);
+            }
+            else {
                 User.find({user_id: senderId}, function(err, response) {
                     if (err) {
                         console.log(err);
@@ -180,7 +199,7 @@ function processMessage(event) {
                             // need to send message prompting a users fun fact
                             var newMessage = "What is a fun fact about you?";
                             sendMessage(senderId, {text: newMessage});
-                        } else {
+                        } else if (response[0].fun_fact == null) {
                             // user already exists in the database, message received is for fun fact
                             console.log(senderId + "exits. Adding fun fact");
                             User.update({user_id: senderId}, {fun_fact: message.text}, function (err, response) {
@@ -194,7 +213,10 @@ function processMessage(event) {
                             var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
                             sendMessage(senderId, {text: newMessage});
                             sendMessage(senderId, {text: viewMembersMessage});
-    
+                        } else {
+                            // user filled out interests and fun fact - send message stating unknown request
+                            var newMessage = "Sorry, I did not understand your request. Type " + '"' + "View Commands" + '" ' + "to see all possible commands.";
+                            sendMessage(senderId, {text: newMessage});
                         }
                     }
                 });
@@ -205,6 +227,8 @@ function processMessage(event) {
         }
     }
 }
+
+
   
 // sends message to user
 function sendMessage(recipientId, message) {
@@ -223,64 +247,149 @@ function sendMessage(recipientId, message) {
     });
 }
 
-//sends message with attachement
-function sendAttachment(recipientId, url) {
+// sends message to user
+function sendSubscriptionMessage(recipientId, message) {
     request({
         url: "https://graph.facebook.com/v2.6/me/messages",
         qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
         method: "POST",
         json: {
             recipient: {id: recipientId},
-            message: {
-                attachment: {
-                    type: "image", 
-                    payload: {
-                        url: url, 
-                        is_reusable: true
-                    }
-                }
-            }
+            message: message,
+            tag: "NON_PROMOTIONAL_SUBSCRIPTION"
         }
     }, function(error, response, body) {
         if (error) {
             console.log("Error sending message: " + response.error);
-        } else {
-            console.log(response);
         }
     });
 }
 
-function viewMembers(senderId, members) {
-    console.log(members);
-    const memberObjs = [];
-    for (let i = 0; i < members.length; i++) { 
-       let obj = {
-              "title": members[i].firstName + ' ' + members[i].lastName,
-              "image_url": members[i].profileUrl,
-              "subtitle": 'Interests: ' + members[i].interests + "\n" + 'Fun Fact: ' + members[i].fun_fact,
-             }
-             memberObjs.push(obj);
-          }
-          let messageData = {
-          "attachment": {
-          "type": "template",
-          "payload": {
-                "template_type": "generic",
-                "elements": memberObjs
-             }
-          }
-       }
+//sends message with attachement
+// function sendAttachment(recipientId, url) {
+//     request({
+//         url: "https://graph.facebook.com/v2.6/me/messages",
+//         qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
+//         method: "POST",
+//         json: {
+//             recipient: {id: recipientId},
+//             message: {
+//                 attachment: {
+//                     type: "image", 
+//                     payload: {
+//                         url: url, 
+//                         is_reusable: true
+//                     }
+//                 }
+//             }
+//         }
+//     }, function(error, response, body) {
+//         if (error) {
+//             console.log("Error sending message: " + response.error);
+//         } else {
+//             console.log(response);
+//         }
+//     });
+// }
+
+// function to iterate through all users and send availability postback
+function sendAvailabilityPB() {
+    User.find({}, function(err, response) {
+        if (err) {
+            console.log(err);
+        } else {
+            for (var i = 0; i < response.length; i++) {
+                availabilityPB(response[i].user_id, response[i].firstName);
+            }
+        }
+    })
+}
+
+// function to send postback asking if users are free for the week
+function availabilityPB(senderId, name) {
+    let messageData = {
+        "attachment":{
+            "type":"template",
+            "payload":{
+                "template_type":"button",
+                "text": "Hi " + name + ", are you free to meet with someone this week?",
+                "buttons":[
+                    {
+                        "type":"postback",
+                        "title":"Yes",
+                        "payload":"YES"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"No",
+                        "payload":"NO"
+                    }
+                ]
+            }
+        }
+    }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
         method: 'POST',
         json: {
-          recipient: {id: senderId},
-          message: messageData,
-       }
-     }, function(error, response, body){
-          if (error) {
-            console.log("Error sending message: " + response.error)
-           }
-      })
-   }
+            recipient: {id: senderId},
+            message: messageData,
+            tag: "NON_PROMOTIONAL_SUBSCRIPTION"
+        }
+    }, function(error, response, body){
+            if (error) {
+                console.log("Error sending message: " + response.error)
+            }
+    })
+}
+
+// function to view members
+function viewMembers(senderId, members) {
+    console.log(members);
+    const memberObjs = [];
+    for (let i = 0; i < members.length; i++) { 
+       let obj = {
+            "title": members[i].firstName + ' ' + members[i].lastName,
+            "image_url": members[i].profileUrl,
+            "subtitle": 'Interests: ' + members[i].interests + "\n" + 'Fun Fact: ' + members[i].fun_fact,
+        }
+        memberObjs.push(obj);
+    }
+    let messageData = {
+    "attachment": {
+        "type": "template",
+        "payload": {
+            "template_type": "generic",
+            "elements": memberObjs
+            }
+        }
+    }
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+        method: 'POST',
+        json: {
+            recipient: {id: senderId},
+            message: messageData,
+        }
+    }, function(error, response, body){
+            if (error) {
+                console.log("Error sending message: " + response.error)
+            }
+    })
+}
+
+// function to delete profile, and unsubscribe
+function deleteProfile(senderId) {
+    var message = "You are now unsubscribed. If you want resubscribe, delete this chat and create a new profile!";
+    User.deleteOne({user_id: senderId}, function(err, response) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(response);
+            console.log("Deleted user " + senderId);
+        }
+    })
+    sendMessage(senderId, {text: message});
+}
