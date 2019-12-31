@@ -19,7 +19,6 @@ app.get("/", function (req, res) {
 });
 
 // send availability postback every Monday morning
-
 // real time string: '0 6 * * Monday'
 cron.schedule('0 6 * * Monday', () => {
     sendAvailabilityPB();
@@ -148,6 +147,10 @@ function processPostback(event) {
             })
             
         });
+    } else if (payload == "YES") {
+
+    } else if (payload == "NO") {
+
     }
 }
 
@@ -177,6 +180,7 @@ function processMessage(event) {
             } else if (text.localeCompare("View Commands") == 0 || text.localeCompare("View commands") == 0 || text.localeCompare("view commands") == 0) {
                 var message = "All valid commands: \n\n View Members: Get a preview of members who are also in RCF Meets! \n\n" 
                 + "Unsubscribe: If you want to unsubscribe and no longer receive messages."; 
+                sendMessage(senderId, {text: message});
 
             } else if (text.localeCompare("Unsubscribe") == 0 || text.localeCompare("unsubscribe") == 0) {
                 // code for user to update profile
@@ -229,7 +233,6 @@ function processMessage(event) {
 }
 
 
-  
 // sends message to user
 function sendMessage(recipientId, message) {
     request({
