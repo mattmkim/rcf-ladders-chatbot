@@ -36,6 +36,30 @@ cron.schedule('6 21 * * Wednesday', () => {
     timezone: "America/New_York"
 })
 
+
+function sleep(ms){
+    return new Promise(resolve=>{
+        setTimeout(resolve, ms)
+    })
+}
+// for sending two consecutive messages
+async function sendTwoMessages(senderId, message1, message2){
+    sendMessage(senderId, {text: message1});
+    await sleep(200);
+    sendMessage(senderId, {text: message2});
+}
+
+// for sending three consecutive messages
+async function sendTwoMessages(senderId, message1, message2, message3){
+    sendMessage(senderId, {text: message1});
+    await sleep(200);
+    sendMessage(senderId, {text: message2});
+    await sleep(200);
+    sendMessage(senderId, {text: message3});
+
+}
+
+
 // Facebook Webhook
 // Used for verification
 app.get("/webhook", function (req, res) {
@@ -76,99 +100,27 @@ function processPostback(event) {
     console.log(senderId);
 
     if (payload === "Greeting") {
-        // Get user's first name from the User Profile API
-        // and include it in the greeting
-        request({
-        url: "https://graph.facebook.com/v2.6/" + senderId,
-        qs: {
-            access_token: process.env.PAGE_ACCESS_TOKEN,
-            fields: "first_name,last_name,profile_pic"
-        },
-        method: "GET"
-        }, function(error, response, body) {
-            var greeting = "";
-            var bodyObj = JSON.parse(body);
-            if (error) {
-                console.log("Error getting user's name: " +  error);
-            } else {
-                name = bodyObj.first_name;
-                greeting = "Hi " + name + "! ";
-            }
-            
-            var firstMessage = greeting + "Thanks for joining RCF Meets!";
-            //var url = "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/75127993_422291925366714_1670400768114425856_o.jpg?_nc_cat=109&_nc_ohc=qzo0m1xnBOYAQkEkl5MEkBwSkTC2eqPXz8nV6L-8FBb6t0A9AZVk38bLg&_nc_ht=scontent-lga3-1.xx&oh=7222ceccfb871c715cac3c32d7ebd30d&oe=5E6B246D"
-            var secondMessage = "To begin, let's build your profile! What's something you like to do in your free time?" + 
-            " No need to write an essay - a couple interests should do.";
-            //sendAttachment(senderId, url);
-            var newUser = new User({
-                user_id: senderId,
-                interests: null,
-                fun_fact: null,
-                firstName: bodyObj.first_name,
-                lastName: bodyObj.last_name,
-                profileUrl: bodyObj.profile_pic,
-                available: false
-            });
-
-            async function sendMessages(message1, message2){
-                sendMessage(senderId, {text: message1});
-                await sleep(200);
-                sendMessage(senderId, {text: message2});
-             }
-             function sleep(ms){
-                 return new Promise(resolve=>{
-                     setTimeout(resolve, ms)
-                 })
-             }
-
-            
-            User.find({user_id: senderId}, function(err, response) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log(response);
-                    if (response.length === 0) {
-                        // sendMessage(senderId, {text: firstMessage});
-                        // sendMessage(senderId, {text: secondMessage});
-                        sendMessages(firstMessage, secondMessage);
-                        console.log(senderId + " does not exist.");
-                        newUser.save(function (err, response) {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                console.log(response);
-                            }
-                        });
-                    } else if (response[0].interests == null) {
-                        sendMessage(senderId, {text: firstMessage});
-                        sendMessage(senderId, {text: secondMessage});
-                        console.log(senderId + " does not exist.");
-                    } else if (response[0].fun_fact == null) {
-                        firstMessage = firstMessage + " Looks like your profile is almost complete! What's a fun fact about yourself?";
-                        sendMessage(senderId, {text: firstMessage});
-                    } else {
-                        secondMessage = "Looks like you're already logged in! Keep on the lookout for weekly messages from us on Mondays!"
-                        var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + "if you would like to get a preview of who else is in RCF Meets!";
-                        sendMessage(senderId, {text: firstMessage});
-                        sendMessage(senderId, {text: secondMessage});
-                        sendMessage(senderId, {text: viewMembersMessage});
-                    }
-                }
-            })
-            
-        });
-
+        newUser(senderId);
     } else if (payload == "YES") {
         User.update({user_id: senderId}, {available: true}, function(err, response) {
             if (err) {
                 console.log(err);
             } else {
                 console.log(response);
+                console.log("Updated " + senderId + " to true.");
             }
         })
         var message = "Got it. I'll get back to you by Monday morning!"
         sendMessage(senderId, {text: message});
     } else if (payload == "NO") {
+        User.update({user_id: senderId}, {available: false}, function(err, response) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(response);
+                console.log("Updated " + senderId + " to false.");
+            }
+        })
         var message = "Got it. Have a good day!";
         sendMessage(senderId, {text: message});
     }
@@ -198,15 +150,25 @@ function processMessage(event) {
                     }
                 })
             } else if (text.localeCompare("View Commands") == 0 || text.localeCompare("View commands") == 0 || text.localeCompare("view commands") == 0) {
-                var message = "All valid commands: \n\nView Members: Type " + '"' + "View Members" + '"' + " to get a preview of members who are also in RCF Meets! \n\n" 
-                + "Unsubscribe: Type " + '"' + "Unsubscribe" + '"' + "if you want to unsubscribe and no longer want to receive messages."; 
+                var message = "All valid commands: \n\nView Members: Send " + '"' + "View Members" + '"' + " to get a preview of members who are also in RCF Meets! \n\n" 
+                + "Unsubscribe: Send " + '"' + "Unsubscribe" + '"' + "if you want to unsubscribe and no longer want to receive messages. \n\n" + 
+                "Update Availability: Send " + '"' + "Update Availability" + '"' + "if you want to update your availabilility. \n\n" +
+                "Get Started: Send " + '"' + "Get Started" + '"' + "if you want to remake your profile, or if you have recently unsubscribed and would like to subscribe again."; 
                 sendMessage(senderId, {text: message});
-
             } else if (text.localeCompare("Unsubscribe") == 0 || text.localeCompare("unsubscribe") == 0) {
-                // code for user to update profile
                 deleteProfile(senderId);
-            }
-            else {
+            } else if (text.localeCompare("Update Availability") == 0 || text.localeCompare("update availability") == 0 || text.localeCompare("Update availability") == 0) {
+                User.find({user_id: senderId}, function(err, response) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log(response);
+                        availabilityPB(senderId, response[0].firstName);
+                    }
+                })
+            } else if (text.localeCompare("Get Started") == 0 || text.localeCompare("Get started") == 0 || text.localeCompare("get started") == 0) {
+                getStarted(senderId);
+            } else {
                 User.find({user_id: senderId}, function(err, response) {
                     if (err) {
                         console.log(err);
@@ -235,8 +197,7 @@ function processMessage(event) {
                             });  
                             var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Mondays!";
                             var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
-                            sendMessage(senderId, {text: newMessage});
-                            sendMessage(senderId, {text: viewMembersMessage});
+                            sendTwoMessages(senderId, newMessage, viewMembersMessage);
                         } else {
                             // user filled out interests and fun fact - send message stating unknown request
                             var newMessage = "Sorry, we did not understand your request. Type " + '"' + "View Commands" + '"' + "to see all possible commands.";
@@ -245,7 +206,6 @@ function processMessage(event) {
                     }
                 });
             }
-            
         } else if (message.attachments) {
             sendMessage(senderId, {text: "Sorry, we don't understand your request."});
         }
@@ -288,32 +248,95 @@ function sendSubscriptionMessage(recipientId, message) {
     });
 }
 
-//sends message with attachement
-// function sendAttachment(recipientId, url) {
-//     request({
-//         url: "https://graph.facebook.com/v2.6/me/messages",
-//         qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
-//         method: "POST",
-//         json: {
-//             recipient: {id: recipientId},
-//             message: {
-//                 attachment: {
-//                     type: "image", 
-//                     payload: {
-//                         url: url, 
-//                         is_reusable: true
-//                     }
-//                 }
-//             }
-//         }
-//     }, function(error, response, body) {
-//         if (error) {
-//             console.log("Error sending message: " + response.error);
-//         } else {
-//             console.log(response);
-//         }
-//     });
-// }
+// function for new user
+function newUser(senderId) {
+    // Get user's first name from the User Profile API
+    // and include it in the greeting
+    request({
+        url: "https://graph.facebook.com/v2.6/" + senderId,
+        qs: {
+            access_token: process.env.PAGE_ACCESS_TOKEN,
+            fields: "first_name,last_name,profile_pic"
+        },
+        method: "GET"
+        }, function(error, response, body) {
+            var greeting = "";
+            var bodyObj = JSON.parse(body);
+            if (error) {
+                console.log("Error getting user's name: " +  error);
+            } else {
+                name = bodyObj.first_name;
+                greeting = "Hi " + name + "! ";
+            }
+            
+            var firstMessage = greeting + "Thanks for joining RCF Meets!";
+            //var url = "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/75127993_422291925366714_1670400768114425856_o.jpg?_nc_cat=109&_nc_ohc=qzo0m1xnBOYAQkEkl5MEkBwSkTC2eqPXz8nV6L-8FBb6t0A9AZVk38bLg&_nc_ht=scontent-lga3-1.xx&oh=7222ceccfb871c715cac3c32d7ebd30d&oe=5E6B246D"
+            var secondMessage = "To begin, let's build your profile! What's something you like to do in your free time?" + 
+            " No need to write an essay - a couple interests should do.";
+            //sendAttachment(senderId, url);
+            var newUser = new User({
+                user_id: senderId,
+                interests: null,
+                fun_fact: null,
+                firstName: bodyObj.first_name,
+                lastName: bodyObj.last_name,
+                profileUrl: bodyObj.profile_pic,
+                available: false
+            });
+            
+            User.find({user_id: senderId}, function(err, response) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(response);
+                    if (response.length === 0) {
+                        sendTwoMessages(senderId, firstMessage, secondMessage);
+                        console.log(senderId + " does not exist.");
+                        newUser.save(function (err, response) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                console.log(response);
+                            }
+                        });
+                    } else if (response[0].interests == null) {
+                        sendTwoMessages(senderId, firstMessage, secondMessage);
+                        console.log(senderId + " does not exist.");
+                    } else if (response[0].fun_fact == null) {
+                        firstMessage = firstMessage + " Looks like your profile is almost complete! What's a fun fact about yourself?";
+                        sendMessage(senderId, {text: firstMessage});
+                    } else {
+                        secondMessage = "Looks like you're already logged in! Keep on the lookout for weekly messages from us on Mondays!"
+                        var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + "if you would like to get a preview of who else is in RCF Meets!";
+                        sendThreeMessages(senderId, firstMessage, secondMessage, viewMembersMessage);
+                    }
+                }
+            })
+            
+        });
+    
+}
+
+// function to handle Get Started command
+function getStarted(senderId) {
+    User.find({user_id: senderId}, function(err, response) {
+        if (err) {
+            console.log(err);
+        } else if (response.length === 0) {
+            newUser(senderId);
+        } else {
+            User.deleteOne({user_id: senderId}, function(err, response) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(response);
+                    console.log("Deleted user " + senderId);
+                    newUser(senderId);
+                }
+            })
+        }
+    })
+}
 
 // function to iterate through all users and send availability postback
 function sendAvailabilityPB() {
@@ -386,10 +409,34 @@ function sendLadders() {
                     response.splice(f, 1);
                     var s = response[Math.floor(Math.random() * response.length)];
                     response.splice(s, 1);
+                    User.update({user_id: f.user_id}, {available: false}, function(err, response) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            console.log(response);
+                            console.log("Matched " + f.fisrtName + " with someone.");
+                        }
+                    })
+                    User.update({user_id: s.user_id}, {available: false}, function(err, response) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            console.log(response);
+                            console.log("Matched " + s.fisrtName + " with someone.");
+                        }
+                    })
                     // if odd number of people, need to make a group of three?
                     if (response.length == 1) {
                         var t = response[0];
                         response.splice(t, 1);
+                        User.update({user_id: t.user_id}, {available: false}, function(err, response) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                console.log(response);
+                                console.log("Matched " + t.fisrtName + " with someone.");
+                            }
+                        })
                         var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + " and " + t.firstName + "! You all said you were to meet this week. Message " + s.firstName + "and " + t.fisrtName + " to schedule a time to meet.";
                         var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + " and " + t.firstName + "! You all said you were to meet this week. Message " + f.firstName + "and " + t.fisrtName + " to schedule a time to meet.";
                         var messageToT = "Hi " + t.firstName + ", meet " + s.firstName + " and " + f.firstName + "! You all said you were to meet this week. Message " + f.firstName + "and " + s.fisrtName + " to schedule a time to meet.";
@@ -425,7 +472,7 @@ function laddersPB(senderId, firstName, lastName, imageUrl, interests, funfact) 
             "payload": {
                 "template_type": "generic",
                 "elements": [{
-                    "title": firstName + lastName,
+                    "title": firstName + " " + lastName,
                     "image_url": imageUrl,
                     "subtitle": 'Interests: ' + interests + "\n" + 'Fun Fact: ' + funfact,
                     // "buttons": [{
