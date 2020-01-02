@@ -383,9 +383,9 @@ function sendLadders() {
             } else {
                 while (response.length > 0) {
                     var f = response[Math.floor(Math.random() * response.length)];
-                    response.splice(first, 1);
+                    response.splice(f, 1);
                     var s = response[Math.floor(Math.random() * response.length)];
-                    response.splice(second, 1);
+                    response.splice(s, 1);
                     // if odd number of people, need to make a group of three?
                     if (response.length == 1) {
                         var t = response[0];
@@ -402,7 +402,6 @@ function sendLadders() {
                         laddersPB(s.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
                         laddersPB(t.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
                         laddersPB(t.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
-
                     } else {
                         var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + "! You both said you were to meet this week. Message " + s.firstName + " to schedule a time to meet.";
                         var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + "! You both said you were to meet this week. Message " + f.firstName + " to schedule a time to meet.";
