@@ -20,12 +20,21 @@ app.get("/", function (req, res) {
 
 // send availability postback every Sunday morning
 // real time string: '0 6 * * Sunday'
-cron.schedule('5 16 * * Tuesday', () => {
+cron.schedule('55 20 * * Wednesday', () => {
     sendAvailabilityPB();
 }, {
     scheduled: true,
     timezone: "America/New_York"
 });
+
+// send ladders partners Monday mornings
+// real time string: '0 5 * * Monday'
+cron.schedule('0 5 * * Monday', () => {
+    sendLadders();
+}, {
+    scheduled: true,
+    timezone: "America/New_York"
+})
 
 // Facebook Webhook
 // Used for verification
@@ -137,7 +146,7 @@ function processPostback(event) {
                     } else if (response[0].fun_fact == null) {
                         firstMessage = firstMessage + " Looks like your profile is almost complete! What's a fun fact about yourself?";
                         sendMessage(senderId, {text: firstMessage});
-                    } else  {
+                    } else {
                         secondMessage = "Looks like you're already logged in! Keep on the lookout for weekly messages from us on Mondays!"
                         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + "if you would like to get a preview of who else is in RCF Meets!";
                         sendMessage(senderId, {text: firstMessage});
@@ -189,8 +198,8 @@ function processMessage(event) {
                     }
                 })
             } else if (text.localeCompare("View Commands") == 0 || text.localeCompare("View commands") == 0 || text.localeCompare("view commands") == 0) {
-                var message = "All valid commands: \n\n View Members: Get a preview of members who are also in RCF Meets! \n\n" 
-                + "Unsubscribe: If you want to unsubscribe and no longer receive messages."; 
+                var message = "All valid commands: \n\nView Members: Type " + '"' + "View Members" + '"' + " to get a preview of members who are also in RCF Meets! \n\n" 
+                + "Unsubscribe: Type " + '"' + "Unsubscribe" + '"' + "if you want to unsubscribe and no longer want to receive messages."; 
                 sendMessage(senderId, {text: message});
 
             } else if (text.localeCompare("Unsubscribe") == 0 || text.localeCompare("unsubscribe") == 0) {
@@ -230,7 +239,7 @@ function processMessage(event) {
                             sendMessage(senderId, {text: viewMembersMessage});
                         } else {
                             // user filled out interests and fun fact - send message stating unknown request
-                            var newMessage = "Sorry, I did not understand your request. Type " + '"' + "View Commands" + '" ' + "to see all possible commands.";
+                            var newMessage = "Sorry, we did not understand your request. Type " + '"' + "View Commands" + '"' + "to see all possible commands.";
                             sendMessage(senderId, {text: newMessage});
                         }
                     }
@@ -238,7 +247,7 @@ function processMessage(event) {
             }
             
         } else if (message.attachments) {
-            sendMessage(senderId, {text: "Sorry, I don't understand your request."});
+            sendMessage(senderId, {text: "Sorry, we don't understand your request."});
         }
     }
 }
@@ -339,6 +348,92 @@ function availabilityPB(senderId, name) {
                         "payload":"NO"
                     }
                 ]
+            }
+        }
+    }
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+        method: 'POST',
+        json: {
+            recipient: {id: senderId},
+            message: messageData,
+            tag: "NON_PROMOTIONAL_SUBSCRIPTION"
+        }
+    }, function(error, response, body){
+            if (error) {
+                console.log("Error sending message: " + response.error)
+            }
+    })
+}
+
+// function to generate ladders pairs
+function sendLadders() {
+    var message = "";
+    User.find({available: true}, function(err, response) {
+        if (err) {
+            console.log(err);
+        } else {
+            if (response.length == 0) {
+                console.log("No one is free :(");
+            } else if (response.length == 1) {
+                message = "Looks like no one else is free this week :(. We'll get back to you if someone changes their mind!";
+                sendMessage(response[0].user_id, {text: message});
+            } else {
+                while (response.length > 0) {
+                    var f = response[Math.floor(Math.random() * response.length)];
+                    response.splice(first, 1);
+                    var s = response[Math.floor(Math.random() * response.length)];
+                    response.splice(second, 1);
+                    // if odd number of people, need to make a group of three?
+                    if (response.length == 1) {
+                        var t = response[0];
+                        response.splice(t, 1);
+                        var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + " and " + t.firstName + "! You all said you were to meet this week. Message " + s.firstName + "and " + t.fisrtName + " to schedule a time to meet.";
+                        var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + " and " + t.firstName + "! You all said you were to meet this week. Message " + f.firstName + "and " + t.fisrtName + " to schedule a time to meet.";
+                        var messageToT = "Hi " + t.firstName + ", meet " + s.firstName + " and " + f.firstName + "! You all said you were to meet this week. Message " + f.firstName + "and " + s.fisrtName + " to schedule a time to meet.";
+                        sendSubscriptionMessage(f.user_id, {text: messageToF});
+                        sendSubscriptionMessage(s.user_id, {text: messageToS});
+                        sendSubscriptionMessage(t.user_id, {text: messageToT});
+                        laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
+                        laddersPB(f.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
+                        laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+                        laddersPB(s.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
+                        laddersPB(t.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
+                        laddersPB(t.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+
+                    } else {
+                        var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + "! You both said you were to meet this week. Message " + s.firstName + " to schedule a time to meet.";
+                        var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + "! You both said you were to meet this week. Message " + f.firstName + " to schedule a time to meet.";
+                        sendSubscriptionMessage(f.user_id, {text: messageToF});
+                        sendSubscriptionMessage(s.user_id, {text: messageToS});
+                        laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
+                        laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+                    }
+                }
+                console.log('Done iterating through list.');
+            }
+        }
+    })
+}
+
+// function to send postback allowing user to message ladders partner
+function laddersPB(senderId, firstName, lastName, imageUrl, interests, funfact) {
+    let messageData = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [{
+                    "title": firstName + lastName,
+                    "image_url": imageUrl,
+                    "subtitle": 'Interests: ' + interests + "\n" + 'Fun Fact: ' + funfact,
+                    // "buttons": [{
+                    //     "type":"postback",
+                    //     "title":"Yes",
+                    //     "payload":"YES"
+                    // }]
+                }]
             }
         }
     }
