@@ -374,6 +374,7 @@ function sendLadders() {
         if (err) {
             console.log(err);
         } else {
+            console.log(response);
             if (response.length == 0) {
                 console.log("No one is free :(");
             } else if (response.length == 1) {
