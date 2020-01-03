@@ -29,7 +29,7 @@ cron.schedule('55 20 * * Wednesday', () => {
 
 // send ladders partners Monday mornings
 // real time string: '0 5 * * Monday'
-cron.schedule('6 21 * * Wednesday', () => {
+cron.schedule('54 21 * * Thursday', () => {
     sendLadders();
 }, {
     scheduled: true,
@@ -152,8 +152,8 @@ function processMessage(event) {
             } else if (text.localeCompare("View Commands") == 0 || text.localeCompare("View commands") == 0 || text.localeCompare("view commands") == 0) {
                 var message = "All valid commands: \n\nView Members: Send " + '"' + "View Members" + '"' + " to get a preview of members who are also in RCF Meets! \n\n" 
                 + "Unsubscribe: Send " + '"' + "Unsubscribe" + '"' + "if you want to unsubscribe and no longer want to receive messages. \n\n" + 
-                "Update Availability: Send " + '"' + "Update Availability" + '"' + "if you want to update your availabilility. \n\n" +
-                "Get Started: Send " + '"' + "Get Started" + '"' + "if you want to remake your profile, or if you have recently unsubscribed and would like to subscribe again."; 
+                "Update Availability: Send " + '"' + "Update Availability" + '"' + " if you want to update your availabilility. \n\n" +
+                "Get Started: Send " + '"' + "Get Started" + '"' + " if you want to remake your profile, or if you have recently unsubscribed and would like to subscribe again."; 
                 sendMessage(senderId, {text: message});
             } else if (text.localeCompare("Unsubscribe") == 0 || text.localeCompare("unsubscribe") == 0) {
                 deleteProfile(senderId);
@@ -200,7 +200,7 @@ function processMessage(event) {
                             sendTwoMessages(senderId, newMessage, viewMembersMessage);
                         } else {
                             // user filled out interests and fun fact - send message stating unknown request
-                            var newMessage = "Sorry, we did not understand your request. Type " + '"' + "View Commands" + '"' + "to see all possible commands.";
+                            var newMessage = "Sorry, we did not understand your request. Type " + '"' + "View Commands" + '"' + " to see all possible commands.";
                             sendMessage(senderId, {text: newMessage});
                         }
                     }
@@ -307,7 +307,7 @@ function newUser(senderId) {
                         sendMessage(senderId, {text: firstMessage});
                     } else {
                         secondMessage = "Looks like you're already logged in! Keep on the lookout for weekly messages from us on Mondays!"
-                        var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + "if you would like to get a preview of who else is in RCF Meets!";
+                        var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
                         sendThreeMessages(senderId, firstMessage, secondMessage, viewMembersMessage);
                     }
                 }
