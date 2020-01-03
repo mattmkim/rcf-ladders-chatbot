@@ -29,7 +29,7 @@ cron.schedule('55 20 * * Wednesday', () => {
 
 // send ladders partners Monday mornings
 // real time string: '0 5 * * Monday'
-cron.schedule('25 23 * * Thursday', () => {
+cron.schedule('28 23 * * Thursday', () => {
     sendLadders();
 }, {
     scheduled: true,
@@ -417,16 +417,14 @@ function sendLadders() {
                         if (err) {
                             console.log(err);
                         } else {
-                            //console.log(response);
-                            console.log("Matched " + response.firstName + " with someone.");
+                            console.log(response);
                         }
                     })
                     User.updateOne({user_id: s.user_id}, {available: false}, function(err, response) {
                         if (err) {
                             console.log(err);
                         } else {
-                            //console.log(response);
-                            console.log("Matched " + response.firstName + " with someone.");
+                            console.log(response);
                         }
                     })
                     // if odd number of people, need to make a group of three?
@@ -439,8 +437,7 @@ function sendLadders() {
                             if (err) {
                                 console.log(err);
                             } else {
-                                //console.log(response);
-                                console.log("Matched " + response.firstName + " with someone.");
+                                console.log(response);
                             }
                         })
                         var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + " and " + t.firstName + "! You all said you were able to meet this week. Message " + s.firstName + " and " + t.firstName + " to schedule a time to meet.";
