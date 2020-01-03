@@ -420,7 +420,7 @@ function sendLadders() {
                             console.log(err);
                         } else {
                             console.log(response);
-                            console.log("Matched " + f.fisrtName + " with someone.");
+                            console.log("Matched " + f.firstName + " with someone.");
                         }
                     })
                     User.update({user_id: s.user_id}, {available: false}, function(err, response) {
@@ -428,7 +428,7 @@ function sendLadders() {
                             console.log(err);
                         } else {
                             console.log(response);
-                            console.log("Matched " + s.fisrtName + " with someone.");
+                            console.log("Matched " + s.firstName + " with someone.");
                         }
                     })
                     // if odd number of people, need to make a group of three?
@@ -442,12 +442,12 @@ function sendLadders() {
                                 console.log(err);
                             } else {
                                 console.log(response);
-                                console.log("Matched " + t.fisrtName + " with someone.");
+                                console.log("Matched " + t.firstName + " with someone.");
                             }
                         })
-                        var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + " and " + t.firstName + "! You all said you were to meet this week. Message " + s.firstName + " and " + t.fisrtName + " to schedule a time to meet.";
-                        var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + " and " + t.firstName + "! You all said you were to meet this week. Message " + f.firstName + " and " + t.fisrtName + " to schedule a time to meet.";
-                        var messageToT = "Hi " + t.firstName + ", meet " + s.firstName + " and " + f.firstName + "! You all said you were to meet this week. Message " + f.firstName + " and " + s.fisrtName + " to schedule a time to meet.";
+                        var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + " and " + t.firstName + "! You all said you were able to meet this week. Message " + s.firstName + " and " + t.firstName + " to schedule a time to meet.";
+                        var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + " and " + t.firstName + "! You all said you were able to meet this week. Message " + f.firstName + " and " + t.firstName + " to schedule a time to meet.";
+                        var messageToT = "Hi " + t.firstName + ", meet " + s.firstName + " and " + f.firstName + "! You all said you were able to meet this week. Message " + f.firstName + " and " + s.firstName + " to schedule a time to meet.";
                         sendSubscriptionMessage(f.user_id, {text: messageToF});
                         sendSubscriptionMessage(s.user_id, {text: messageToS});
                         sendSubscriptionMessage(t.user_id, {text: messageToT});
@@ -458,8 +458,8 @@ function sendLadders() {
                         laddersPB(t.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
                         laddersPB(t.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
                     } else {
-                        var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + "! You both said you were to meet this week. Message " + s.firstName + " to schedule a time to meet.";
-                        var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + "! You both said you were to meet this week. Message " + f.firstName + " to schedule a time to meet.";
+                        var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + "! You both said you were able to meet this week. Message " + s.firstName + " to schedule a time to meet.";
+                        var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + "! You both said you were able to meet this week. Message " + f.firstName + " to schedule a time to meet.";
                         sendSubscriptionMessage(f.user_id, {text: messageToF});
                         sendSubscriptionMessage(s.user_id, {text: messageToS});
                         laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
