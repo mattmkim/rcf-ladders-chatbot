@@ -29,7 +29,7 @@ cron.schedule('55 20 * * Wednesday', () => {
 
 // send ladders partners Monday mornings
 // real time string: '0 5 * * Monday'
-cron.schedule('54 22 * * Thursday', () => {
+cron.schedule('56 22 * * Thursday', () => {
     sendLadders();
 }, {
     scheduled: true,
