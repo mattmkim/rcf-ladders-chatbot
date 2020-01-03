@@ -29,7 +29,7 @@ cron.schedule('55 20 * * Wednesday', () => {
 
 // send ladders partners Monday mornings
 // real time string: '0 5 * * Monday'
-cron.schedule('54 21 * * Thursday', () => {
+cron.schedule('11 22 * * Thursday', () => {
     sendLadders();
 }, {
     scheduled: true,
@@ -437,9 +437,9 @@ function sendLadders() {
                                 console.log("Matched " + t.fisrtName + " with someone.");
                             }
                         })
-                        var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + " and " + t.firstName + "! You all said you were to meet this week. Message " + s.firstName + "and " + t.fisrtName + " to schedule a time to meet.";
-                        var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + " and " + t.firstName + "! You all said you were to meet this week. Message " + f.firstName + "and " + t.fisrtName + " to schedule a time to meet.";
-                        var messageToT = "Hi " + t.firstName + ", meet " + s.firstName + " and " + f.firstName + "! You all said you were to meet this week. Message " + f.firstName + "and " + s.fisrtName + " to schedule a time to meet.";
+                        var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + " and " + t.firstName + "! You all said you were to meet this week. Message " + s.firstName + " and " + t.fisrtName + " to schedule a time to meet.";
+                        var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + " and " + t.firstName + "! You all said you were to meet this week. Message " + f.firstName + " and " + t.fisrtName + " to schedule a time to meet.";
+                        var messageToT = "Hi " + t.firstName + ", meet " + s.firstName + " and " + f.firstName + "! You all said you were to meet this week. Message " + f.firstName + " and " + s.fisrtName + " to schedule a time to meet.";
                         sendSubscriptionMessage(f.user_id, {text: messageToF});
                         sendSubscriptionMessage(s.user_id, {text: messageToS});
                         sendSubscriptionMessage(t.user_id, {text: messageToT});
