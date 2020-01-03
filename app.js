@@ -29,7 +29,7 @@ cron.schedule('55 20 * * Wednesday', () => {
 
 // send ladders partners Monday mornings
 // real time string: '0 5 * * Monday'
-cron.schedule('56 22 * * Thursday', () => {
+cron.schedule('6 23 * * Thursday', () => {
     sendLadders();
 }, {
     scheduled: true,
@@ -406,20 +406,16 @@ function sendLadders() {
             } else {
                 while (response.length > 0) {
                     var f = response[Math.floor(Math.random() * response.length)];
-                    console.log(f);
                     var indF = response.indexOf(f);
                     response.splice(indF, 1);
-                    console.log(response.length)
                     var s = response[Math.floor(Math.random() * response.length)];
-                    console.log(s);
                     var indS = response.indexOf(s);
                     response.splice(indS, 1);
-                    console.log(response.length);
                     User.update({user_id: f.user_id}, {available: false}, function(err, response) {
                         if (err) {
                             console.log(err);
                         } else {
-                            console.log(response);
+                            //console.log(response);
                             console.log("Matched " + f.firstName + " with someone.");
                         }
                     })
@@ -427,21 +423,20 @@ function sendLadders() {
                         if (err) {
                             console.log(err);
                         } else {
-                            console.log(response);
+                            //console.log(response);
                             console.log("Matched " + s.firstName + " with someone.");
                         }
                     })
                     // if odd number of people, need to make a group of three?
                     if (response.length == 1) {
                         var t = response[0];
-                        console.log(t);
                         var indT = response.indexOf(t);
                         response.splice(indT, 1);
                         User.update({user_id: t.user_id}, {available: false}, function(err, response) {
                             if (err) {
                                 console.log(err);
                             } else {
-                                console.log(response);
+                                //console.log(response);
                                 console.log("Matched " + t.firstName + " with someone.");
                             }
                         })
