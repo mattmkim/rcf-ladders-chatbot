@@ -29,7 +29,7 @@ cron.schedule('55 20 * * Wednesday', () => {
 
 // send ladders partners Monday mornings
 // real time string: '0 5 * * Monday'
-cron.schedule('6 23 * * Thursday', () => {
+cron.schedule('9 23 * * Thursday', () => {
     sendLadders();
 }, {
     scheduled: true,
@@ -397,7 +397,7 @@ function sendLadders() {
         if (err) {
             console.log(err);
         } else {
-            console.log(response);
+            //console.log(response);
             if (response.length == 0) {
                 console.log("No one is free :(");
             } else if (response.length == 1) {
@@ -406,9 +406,11 @@ function sendLadders() {
             } else {
                 while (response.length > 0) {
                     var f = response[Math.floor(Math.random() * response.length)];
+                    console.log(f);
                     var indF = response.indexOf(f);
                     response.splice(indF, 1);
                     var s = response[Math.floor(Math.random() * response.length)];
+                    console.log(s);
                     var indS = response.indexOf(s);
                     response.splice(indS, 1);
                     User.update({user_id: f.user_id}, {available: false}, function(err, response) {
