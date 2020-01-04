@@ -266,7 +266,7 @@ function newUser(senderId) {
         url: "https://graph.facebook.com/v2.6/" + senderId,
         qs: {
             access_token: process.env.PAGE_ACCESS_TOKEN,
-            fields: "first_name,last_name,profile_pic,user_link"
+            fields: "first_name,last_name,profile_pic"
         },
         method: "GET"
         }, function(error, response, body) {
@@ -291,7 +291,7 @@ function newUser(senderId) {
                 firstName: bodyObj.first_name,
                 lastName: bodyObj.last_name,
                 profileUrl: bodyObj.profile_pic,
-                userLink: bodyObj.user_link,
+                //userLink: bodyObj.user_link,
                 available: false
             });
             
