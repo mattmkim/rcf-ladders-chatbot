@@ -3,6 +3,11 @@ var request = require("request");
 var cron = require('node-cron');
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+const http = require("http");
+
+setInterval(function() {
+    http.get("http://rcf-meets.herokuapp.com");
+}, 300000); // 5 Minutes
 
 console.log(process.env.MONGODB_URI);
 var db = mongoose.connect(process.env.MONGODB_URI);
