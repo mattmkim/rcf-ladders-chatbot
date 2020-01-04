@@ -205,7 +205,7 @@ function processMessage(event) {
                                     console.log(response);
                                 }
                             });  
-                            var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Mondays!";
+                            var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
                             var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
                             sendTwoMessages(senderId, newMessage, viewMembersMessage);
                         } else {
@@ -266,7 +266,7 @@ function newUser(senderId) {
         url: "https://graph.facebook.com/v2.6/" + senderId,
         qs: {
             access_token: process.env.PAGE_ACCESS_TOKEN,
-            fields: "first_name,last_name,profile_pic"
+            fields: "first_name,last_name,profile_pic,user_link"
         },
         method: "GET"
         }, function(error, response, body) {
@@ -291,6 +291,7 @@ function newUser(senderId) {
                 firstName: bodyObj.first_name,
                 lastName: bodyObj.last_name,
                 profileUrl: bodyObj.profile_pic,
+                userLink: bodyObj.user_link,
                 available: false
             });
             
@@ -316,7 +317,7 @@ function newUser(senderId) {
                         firstMessage = firstMessage + " Looks like your profile is almost complete! What's a fun fact about yourself?";
                         sendMessage(senderId, {text: firstMessage});
                     } else {
-                        secondMessage = "Looks like you're already logged in! Keep on the lookout for weekly messages from us on Mondays!"
+                        secondMessage = "Looks like you're already logged in! Keep on the lookout for weekly messages from us on Sundays!"
                         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
                         sendThreeMessages(senderId, firstMessage, secondMessage, viewMembersMessage);
                     }
