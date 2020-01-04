@@ -8,7 +8,6 @@ var UserSchema = new Schema({
   firstName: {type: String},
   lastName: {type: String},
   profileUrl: {type: String},
-  userLink: {type: String},
   available: {type: Boolean}
 });
 
