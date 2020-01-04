@@ -173,6 +173,11 @@ function processMessage(event) {
                 })
             } else if (text.localeCompare("Get Started") == 0 || text.localeCompare("Get started") == 0 || text.localeCompare("get started") == 0) {
                 getStarted(senderId);
+            // for APP APPROVAL ONLY    
+            } else if (text.localeCompare("Ask Availability") == 0 || text.localeCompare("Ask availability") == 0 || text.localeCompare("ask availability") == 0) {
+                sendAvailabilityPB();
+            } else if (text.localeCompare("Show Meetup") == 0 || text.localeCompare("Show meetup") == 0 || text.localeCompare("show meetup") == 0) {
+                sendLadders();
             } else {
                 User.find({user_id: senderId}, function(err, response) {
                     if (err) {
