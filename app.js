@@ -227,7 +227,7 @@ function processMessage(event) {
 function sendMessage(recipientId, message) {
     request({
         url: "https://graph.facebook.com/v5.0/me/messages",
-        qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
+        qs: {access_token: process.env.TEST_PAGE_ACCESS_TOKEN},
         method: "POST",
         json: {
             recipient: {id: recipientId},
@@ -236,6 +236,8 @@ function sendMessage(recipientId, message) {
     }, function(error, response, body) {
         if (error) {
             console.log("Error sending message: " + response.error);
+        } else {
+            console.log(body);
         }
     });
 }
