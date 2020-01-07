@@ -243,7 +243,7 @@ function sendMessage(recipientId, message) {
 // sends message to user
 function sendSubscriptionMessage(recipientId, message) {
     request({
-        url: "https://graph.facebook.com/v2.6/me/messages",
+        url: "https://graph.facebook.com/v5.0/me/messages",
         qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
         method: "POST",
         json: {
@@ -263,7 +263,7 @@ function newUser(senderId) {
     // Get user's first name from the User Profile API
     // and include it in the greeting
     request({
-        url: "https://graph.facebook.com/v2.6/" + senderId,
+        url: "https://graph.facebook.com/v5.0/" + senderId,
         qs: {
             access_token: process.env.PAGE_ACCESS_TOKEN,
             fields: "first_name,last_name,profile_pic"
@@ -386,7 +386,7 @@ function availabilityPB(senderId, name) {
         }
     }
     request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
+        url: 'https://graph.facebook.com/v5.0/me/messages',
         qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
         method: 'POST',
         json: {
@@ -499,7 +499,7 @@ function laddersPB(senderId, firstName, lastName, imageUrl, interests, funfact) 
         }
     }
     request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
+        url: 'https://graph.facebook.com/v5.0/me/messages',
         qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
         method: 'POST',
         json: {
@@ -536,7 +536,7 @@ function viewMembers(senderId, members) {
         }
     }
     request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
+        url: 'https://graph.facebook.com/v5.0/me/messages',
         qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
         method: 'POST',
         json: {
