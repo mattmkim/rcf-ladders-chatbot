@@ -226,7 +226,7 @@ function processMessage(event) {
 // sends message to user
 function sendMessage(recipientId, message) {
     request({
-        url: "https://graph.facebook.com/v2.6/me/messages",
+        url: "https://graph.facebook.com/v5.0/me/messages",
         qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
         method: "POST",
         json: {
