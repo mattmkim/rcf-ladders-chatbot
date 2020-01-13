@@ -227,7 +227,7 @@ function processMessage(event) {
 function sendMessage(recipientId, message) {
     request({
         url: "https://graph.facebook.com/v5.0/me/messages",
-        qs: {access_token: process.env.TEST_PAGE_ACCESS_TOKEN},
+        qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
         method: "POST",
         json: {
             recipient: {id: recipientId},
@@ -246,7 +246,7 @@ function sendMessage(recipientId, message) {
 function sendSubscriptionMessage(recipientId, message) {
     request({
         url: "https://graph.facebook.com/v5.0/me/messages",
-        qs: {access_token: process.env.TEST_PAGE_ACCESS_TOKEN},
+        qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
         method: "POST",
         json: {
             recipient: {id: recipientId},
@@ -267,7 +267,7 @@ function newUser(senderId) {
     request({
         url: "https://graph.facebook.com/v5.0/" + senderId,
         qs: {
-            access_token: process.env.TEST_PAGE_ACCESS_TOKEN,
+            access_token: process.env.PAGE_ACCESS_TOKEN,
             fields: "first_name,last_name,profile_pic"
         },
         method: "GET"
@@ -389,7 +389,7 @@ function availabilityPB(senderId, name) {
     }
     request({
         url: 'https://graph.facebook.com/v5.0/me/messages',
-        qs: { access_token: process.env.TEST_PAGE_ACCESS_TOKEN },
+        qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
         method: 'POST',
         json: {
             recipient: {id: senderId},
@@ -502,7 +502,7 @@ function laddersPB(senderId, firstName, lastName, imageUrl, interests, funfact) 
     }
     request({
         url: 'https://graph.facebook.com/v5.0/me/messages',
-        qs: { access_token: process.env.TEST_PAGE_ACCESS_TOKEN },
+        qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
         method: 'POST',
         json: {
             recipient: {id: senderId},
@@ -539,7 +539,7 @@ function viewMembers(senderId, members) {
     }
     request({
         url: 'https://graph.facebook.com/v5.0/me/messages',
-        qs: { access_token: process.env.TEST_PAGE_ACCESS_TOKEN },
+        qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
         method: 'POST',
         json: {
             recipient: {id: senderId},
