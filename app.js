@@ -50,7 +50,7 @@ function sleep(ms){
 // for sending two consecutive messages
 async function sendTwoMessages(senderId, message1, message2){
     sendMessage(senderId, {text: message1});
-    await sleep(200);
+    await sleep(300);
     sendMessage(senderId, {text: message2});
 }
 
@@ -134,40 +134,73 @@ function processPostback(event) {
 function processMessage(event) {
     if (!event.message.is_echo) {
         var message = event.message;
-        var senderId = event.sender.id;
-
+        var senderId = event.sender.id
         console.log("Received message from senderId: " + senderId);
         console.log("Message is: " + JSON.stringify(message));
-
         // You may get a text or attachment but not both
         if (message.text) {
             // preemptively check if message is looking to see all members in the group
             var text = message.text;
             if (text.localeCompare("View Members") == 0 || text.localeCompare("view members") == 0 || text.localeCompare("View members") == 0) {
-                // view 10 members who have signed up
-                // potentially add functionality so users can specify which users they want to see??
-                User.find({}).limit(10).exec(function(err, response) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log(response);
-                        viewMembers(senderId, response);
-                    }
-                })
-            } else if (text.localeCompare("View Commands") == 0 || text.localeCompare("View commands") == 0 || text.localeCompare("view commands") == 0) {
-                var message = "All valid commands: \n\nView Members: Send " + '"' + "View Members" + '"' + " to get a preview of members who are also in RCF Meets! \n\n" 
-                + "Unsubscribe: Send " + '"' + "Unsubscribe" + '"' + "if you want to unsubscribe and no longer want to receive messages. \n\n" + 
-                "Update Availability: Send " + '"' + "Update Availability" + '"' + " if you want to update your availabilility. \n\n" +
-                "Get Started: Send " + '"' + "Get Started" + '"' + " if you want to remake your profile, or if you have recently unsubscribed and would like to subscribe again."; 
-                sendMessage(senderId, {text: message});
-            } else if (text.localeCompare("Unsubscribe") == 0 || text.localeCompare("unsubscribe") == 0) {
-                deleteProfile(senderId);
-            } else if (text.localeCompare("Update Availability") == 0 || text.localeCompare("update availability") == 0 || text.localeCompare("Update availability") == 0) {
+                var notLoggedInMessage = "Please enter the password before sending commands.";
                 User.find({user_id: senderId}, function(err, response) {
                     if (err) {
                         console.log(err);
+                    } else if (response.length == 0 || response[0].loggedIn === false) {
+                        sendMessage(senderId, {text: notLoggedInMessage});
                     } else {
-                        console.log(response);
+                        // view 10 members who have signed up
+                        // potentially add functionality so users can specify which users they want to see??
+                        User.find({}).limit(10).exec(function(err, response) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                console.log(response);
+                                viewMembers(senderId, response);
+                            }
+                        })
+                    }
+                })
+            } else if (text.localeCompare("View Commands") == 0 || text.localeCompare("View commands") == 0 || text.localeCompare("view commands") == 0) {
+                var notLoggedInMessage = "Please enter the password before sending commands.";
+                User.find({user_id: senderId}, function(err, response) {
+                    if (err) {
+                        console.log(err);
+                    } else if (response.length == 0 || response[0].loggedIn === false) {
+                        sendMessage(senderId, {text: notLoggedInMessage});
+                    } else {
+                        var message = "All valid commands: \n\nView Members: Send " + '"' + "View Members" + '"' + " to get a preview of members who are also in RCF Meets! \n\n" 
+                        + "Unsubscribe: Send " + '"' + "Unsubscribe" + '"' + "if you want to unsubscribe and no longer want to receive messages. \n\n" + 
+                        "Update Availability: Send " + '"' + "Update Availability" + '"' + " if you want to update your availabilility. \n\n" +
+                        "Get Started: Send " + '"' + "Get Started" + '"' + " if you want to remake your profile, or if you have recently unsubscribed and would like to subscribe again."; 
+                        sendMessage(senderId, {text: message});
+                    }
+                })
+            } else if (text.localeCompare("Unsubscribe") == 0 || text.localeCompare("unsubscribe") == 0) {
+                var notLoggedInMessage = "Please enter the password before sending commands.";
+                User.find({user_id: senderId}, function(err, response) {
+                    if (err) {
+                        console.log(err);
+                    } else if (response.length == 0 || response[0].loggedIn === false) {
+                        sendMessage(senderId, {text: notLoggedInMessage});
+                    } else if (response[0].fun_fact == null) {
+                        var notFullySignedIn = "Your profile is not complete yet.";
+                        sendMessage(senderId, {text: notFullySignedIn});
+                    } else {
+                        deleteProfile(senderId);
+                    }
+                })
+            } else if (text.localeCompare("Update Availability") == 0 || text.localeCompare("update availability") == 0 || text.localeCompare("Update availability") == 0) {
+                var notLoggedInMessage = "Please enter the password before sending commands.";
+                User.find({user_id: senderId}, function(err, response) {
+                    if (err) {
+                        console.log(err);
+                    } else if (response.length == 0 || response[0].loggedIn === false) {
+                        sendMessage(senderId, {text: notLoggedInMessage});
+                    } else if (response[0].fun_fact == null) {
+                        var notFullySignedIn = "Your profile is not complete yet.";
+                        sendMessage(senderId, {text: notFullySignedIn});
+                    } else {
                         availabilityPB(senderId, response[0].firstName);
                     }
                 })
@@ -199,7 +232,7 @@ function processMessage(event) {
                                 })
                             } else {
                                 var wrongPasswordMessage = "Sorry, that is the incorrect password. Please try again.";
-                                sendMessage(senderId, {text: correctPasswordMessage});
+                                sendMessage(senderId, {text: wrongPasswordMessage});
                             }
                         } else if (response[0].interests == null) {
                             console.log(senderId + " has no interests yet");
