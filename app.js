@@ -10,7 +10,7 @@ setInterval(function() {
 }, 300000); // 5 Minutes
 
 console.log(process.env.MONGODB_URI);
-var db = mongoose.connect(process.env.MONGODB_URI);
+var db = mongoose.connect("mongodb://mattmkim:minwoo123@ds351455.mlab.com:51455/heroku_7866frlv");
 var User = require("./models/users");
 
 var app = express();
