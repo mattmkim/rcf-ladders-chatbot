@@ -8,7 +8,8 @@ var UserSchema = new Schema({
   firstName: {type: String},
   lastName: {type: String},
   profileUrl: {type: String},
-  available: {type: Boolean}
+  available: {type: Boolean},
+  loggedIn: {type: Boolean}
 });
 
 module.exports = mongoose.model("User", UserSchema);

@@ -178,12 +178,30 @@ function processMessage(event) {
                 sendAvailabilityPB();
             } else if (text.localeCompare("Show Meetup") == 0 || text.localeCompare("Show meetup") == 0 || text.localeCompare("show meetup") == 0) {
                 sendLadders();
+            // for APP APPROVAL ONLY
             } else {
                 User.find({user_id: senderId}, function(err, response) {
                     if (err) {
                         console.log(err);
                     } else {
-                        if (response[0].interests == null) {
+                        if (response[0].loggedIn === false) {
+                            if (text.localeCompare("rcfmeets2020") == 0) {
+                                var correctPasswordMessage = "To begin, let's build your profile! What's something you like to do in your free time?" + 
+                                " No need to write an essay - a couple interests should do.";
+                                sendMessage(senderId, {text: correctPasswordMessage});
+                                // update profile
+                                User.update({user_id: senderId}, {loggedIn: true}, function (err, response) {
+                                    if (err) {
+                                        console.log(err);
+                                    } else {
+                                        console.log(response);
+                                    }
+                                })
+                            } else {
+                                var wrongPasswordMessage = "Sorry, that is the incorrect password. Please try again.";
+                                sendMessage(senderId, {text: correctPasswordMessage});
+                            }
+                        } else if (response[0].interests == null) {
                             console.log(senderId + " has no interests yet");
                             User.update({user_id: senderId}, {interests: message.text}, function (err, response) {
                                 if (err) {
@@ -285,6 +303,7 @@ function newUser(senderId) {
             //var url = "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/75127993_422291925366714_1670400768114425856_o.jpg?_nc_cat=109&_nc_ohc=qzo0m1xnBOYAQkEkl5MEkBwSkTC2eqPXz8nV6L-8FBb6t0A9AZVk38bLg&_nc_ht=scontent-lga3-1.xx&oh=7222ceccfb871c715cac3c32d7ebd30d&oe=5E6B246D"
             var secondMessage = "To begin, let's build your profile! What's something you like to do in your free time?" + 
             " No need to write an essay - a couple interests should do.";
+            var passwordMessage = "Please enter the password to continue.";
             //sendAttachment(senderId, url);
             var newUser = new User({
                 user_id: senderId,
@@ -293,17 +312,16 @@ function newUser(senderId) {
                 firstName: bodyObj.first_name,
                 lastName: bodyObj.last_name,
                 profileUrl: bodyObj.profile_pic,
-                //userLink: bodyObj.user_link,
-                available: false
+                available: false,
+                loggedIn: false
             });
-            
             User.find({user_id: senderId}, function(err, response) {
                 if (err) {
                     console.log(err);
                 } else {
                     console.log(response);
                     if (response.length === 0) {
-                        sendTwoMessages(senderId, firstMessage, secondMessage);
+                        sendTwoMessages(senderId, firstMessage, passwordMessage);
                         console.log(senderId + " does not exist.");
                         newUser.save(function (err, response) {
                             if (err) {
@@ -312,6 +330,8 @@ function newUser(senderId) {
                                 console.log(response);
                             }
                         });
+                    } else if (response[0].loggedIn === false) {
+                        sendMessage(senderId, {text: passwordMessage});
                     } else if (response[0].interests == null) {
                         sendTwoMessages(senderId, firstMessage, secondMessage);
                         console.log(senderId + " does not exist.");
