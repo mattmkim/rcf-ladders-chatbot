@@ -300,7 +300,8 @@ function processMessage(event) {
                                     console.log(response);
                                 }
                             });  
-                            yearPB(senderId);
+                            underYearPB(senderId);
+                            upperYearPB(senderId);
                         } else {
                             // user filled out interests and fun fact - send message stating unknown request
                             var newMessage = "Sorry, we did not understand your request. Type " + '"' + "View Commands" + '"' + " to see all possible commands.";
@@ -415,7 +416,8 @@ function newUser(senderId) {
                         firstMessage = firstMessage + " Looks like your profile is almost complete! What's a fun fact about yourself?";
                         sendMessage(senderId, {text: firstMessage});
                     } else if (response[0].year == null) {
-                        yearPB(senderId);
+                        underYearPB(senderId);
+                        upperYearPB(senderId);
                     } else {
                         secondMessage = "Looks like you're already logged in! Keep on the lookout for weekly messages from us on Sundays!"
                         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
@@ -450,13 +452,54 @@ function getStarted(senderId) {
 }
 
 // function to ask what year a user is
-function yearPB(senderId) {
+function underYearPB(senderId) {
     let messageData = {
         "attachment":{
             "type":"template",
             "payload":{
                 "template_type":"button",
                 "text": "What year are you?",
+                "buttons":[
+                    {
+                        "type":"postback",
+                        "title":"Sophomore",
+                        "payload":"SOPHOMORE"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"Freshman",
+                        "payload":"FRESHMAN"
+                    }
+                ]
+            }
+        }
+    }
+    request({
+        url: 'https://graph.facebook.com/v5.0/me/messages',
+        qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+        method: 'POST',
+        json: {
+            recipient: {id: senderId},
+            message: messageData,
+            tag: "NON_PROMOTIONAL_SUBSCRIPTION"
+        }
+    }, function(error, response, body){
+            if (error) {
+                console.log("Error sending message: " + response.error)
+            } else {
+                console.log(response);
+            }
+    })
+}
+
+// function to ask what year a user is
+function upperYearPB(senderId) {
+    let messageData = {
+        "attachment":{
+            "type":"template",
+            "payload":{
+                "template_type":"button",
+                "text": "Or...",
                 "buttons":[
                     {
                         "type":"postback",
@@ -467,16 +510,6 @@ function yearPB(senderId) {
                         "type":"postback",
                         "title":"Junior",
                         "payload":"JUNIOR"
-                    },
-                    {
-                        "type":"postback",
-                        "title":"Sophomore",
-                        "payload":"SOPHOMORE"
-                    },
-                    {
-                        "type":"postback",
-                        "title":"Freshman",
-                        "payload":"FRESHMAN"
                     }
                 ]
             }
