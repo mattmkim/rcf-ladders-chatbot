@@ -16,6 +16,7 @@ var User = require("./models/users");
 var app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(express.static('public'));
 app.listen((process.env.PORT || 5000));
 
 // Server index page
@@ -63,6 +64,19 @@ async function sendThreeMessages(senderId, message1, message2, message3){
     sendMessage(senderId, {text: message3});
 
 }
+
+// Serve the options path and set required headers
+app.get('/options', (req, res, next) => {
+    let referer = req.get('Referer');
+    if (referer) {
+        if (referer.indexOf('www.messenger.com') >= 0) {
+            res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/');
+        } else if (referer.indexOf('www.facebook.com') >= 0) {
+            res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
+        }
+        res.sendFile('public/options.html', {root: __dirname});
+    }
+});
 
 
 // Facebook Webhook
@@ -139,6 +153,7 @@ function processPostback(event) {
         var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
         sendTwoMessages(senderId, newMessage, viewMembersMessage);
+        setPreferences(senderId);
     } else if (payload == "JUNIOR") {
         User.update({user_id: senderId}, {year: "junior"}, function(err, response) {
             if (err) {
@@ -150,6 +165,7 @@ function processPostback(event) {
         var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
         sendTwoMessages(senderId, newMessage, viewMembersMessage);
+        setPreferences(senderId);
     } else if (payload == "SOPHOMORE") {
         User.update({user_id: senderId}, {year: "sophomore"}, function(err, response) {
             if (err) {
@@ -161,6 +177,7 @@ function processPostback(event) {
         var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
         sendTwoMessages(senderId, newMessage, viewMembersMessage);
+        setPreferences(senderId);
     } else if (payload == "FRESHMAN") {
         User.update({user_id: senderId}, {year: "freshman"}, function(err, response) {
             if (err) {
@@ -172,6 +189,7 @@ function processPostback(event) {
         var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
         sendTwoMessages(senderId, newMessage, viewMembersMessage);
+        setPreferences(senderId);
     }
 }
 
@@ -746,4 +764,38 @@ function deleteProfile(senderId) {
         }
     })
     sendMessage(senderId, {text: message});
+}
+
+// function to send template to set preferences
+function setPreferences(senderId) {
+    let messageData = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "button",
+                "text": "Please select people you already know!",
+                "buttons": [{
+                    "type": "web_url",
+                    "url": SERVER_URL + "/options",
+                    "title": "Set Preferences",
+                    "webview_height_ratio": "full",
+                    "messenger_extensions": true
+                }]
+            }
+        }
+    }
+    request({
+        url: 'https://graph.facebook.com/v5.0/me/messages',
+        qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+        method: 'POST',
+        json: {
+            recipient: {id: senderId},
+            message: messageData,
+            tag: "NON_PROMOTIONAL_SUBSCRIPTION"
+        }
+    }, function(error, response, body){
+            if (error) {
+                console.log("Error sending message: " + response.error)
+            }
+    })
 }
