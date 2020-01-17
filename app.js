@@ -292,7 +292,7 @@ function processMessage(event) {
                             sendMessage(senderId, {text: newMessage});
                         } else if (response[0].fun_fact == null) {
                             // user already exists in the database, message received is for fun fact
-                            console.log(senderId + "exits. Adding fun fact");
+                            console.log(senderId + " exits. Adding fun fact");
                             User.update({user_id: senderId}, {fun_fact: message.text}, function (err, response) {
                                 if (err) {
                                     console.log(err);
@@ -494,6 +494,8 @@ function yearPB(senderId) {
     }, function(error, response, body){
             if (error) {
                 console.log("Error sending message: " + response.error)
+            } else {
+                console.log(response);
             }
     })
 }
