@@ -7,6 +7,7 @@ var UserSchema = new Schema({
   fun_fact: {type: String},
   firstName: {type: String},
   lastName: {type: String},
+  year: {type: String},
   profileUrl: {type: String},
   available: {type: Boolean},
   loggedIn: {type: Boolean}

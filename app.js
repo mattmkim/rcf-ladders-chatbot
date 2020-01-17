@@ -128,6 +128,50 @@ function processPostback(event) {
         })
         var message = "Got it. Have a good day!";
         sendMessage(senderId, {text: message});
+    } else if (payload == "SENIOR") {
+        User.update({user_id: senderId}, {year: senior}, function(err, response) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(response);
+            }
+        })
+        var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
+        var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
+        sendTwoMessages(senderId, newMessage, viewMembersMessage);
+    } else if (payload == "JUNIOR") {
+        User.update({user_id: senderId}, {year: junior}, function(err, response) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(response);
+            }
+        })
+        var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
+        var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
+        sendTwoMessages(senderId, newMessage, viewMembersMessage);
+    } else if (payload == "SOPHOMORE") {
+        User.update({user_id: senderId}, {year: sophomore}, function(err, response) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(response);
+            }
+        })
+        var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
+        var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
+        sendTwoMessages(senderId, newMessage, viewMembersMessage);
+    } else if (payload == "FRESHMAN") {
+        User.update({user_id: senderId}, {year: freshman}, function(err, response) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(response);
+            }
+        })
+        var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
+        var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
+        sendTwoMessages(senderId, newMessage, viewMembersMessage);
     }
 }
 
@@ -256,9 +300,7 @@ function processMessage(event) {
                                     console.log(response);
                                 }
                             });  
-                            var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
-                            var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
-                            sendTwoMessages(senderId, newMessage, viewMembersMessage);
+                            yearPB(senderId);
                         } else {
                             // user filled out interests and fun fact - send message stating unknown request
                             var newMessage = "Sorry, we did not understand your request. Type " + '"' + "View Commands" + '"' + " to see all possible commands.";
@@ -344,6 +386,7 @@ function newUser(senderId) {
                 fun_fact: null,
                 firstName: bodyObj.first_name,
                 lastName: bodyObj.last_name,
+                year: null,
                 profileUrl: bodyObj.profile_pic,
                 available: false,
                 loggedIn: false
@@ -371,6 +414,8 @@ function newUser(senderId) {
                     } else if (response[0].fun_fact == null) {
                         firstMessage = firstMessage + " Looks like your profile is almost complete! What's a fun fact about yourself?";
                         sendMessage(senderId, {text: firstMessage});
+                    } else if (response[0].year == null) {
+                        yearPB(senderId);
                     } else {
                         secondMessage = "Looks like you're already logged in! Keep on the lookout for weekly messages from us on Sundays!"
                         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
@@ -401,6 +446,55 @@ function getStarted(senderId) {
                 }
             })
         }
+    })
+}
+
+// function to ask what year a user is
+function yearPB(senderId) {
+    let messageData = {
+        "attachment":{
+            "type":"template",
+            "payload":{
+                "template_type":"button",
+                "text": "What year are you?",
+                "buttons":[
+                    {
+                        "type":"postback",
+                        "title":"Senior",
+                        "payload":"SENIOR"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"Junior",
+                        "payload":"JUNIOR"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"Sophomore",
+                        "payload":"SOPHOMORE"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"Freshman",
+                        "payload":"FRESHMAN"
+                    }
+                ]
+            }
+        }
+    }
+    request({
+        url: 'https://graph.facebook.com/v5.0/me/messages',
+        qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+        method: 'POST',
+        json: {
+            recipient: {id: senderId},
+            message: messageData,
+            tag: "NON_PROMOTIONAL_SUBSCRIPTION"
+        }
+    }, function(error, response, body){
+            if (error) {
+                console.log("Error sending message: " + response.error)
+            }
     })
 }
 
