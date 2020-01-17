@@ -65,6 +65,13 @@ async function sendThreeMessages(senderId, message1, message2, message3){
 
 }
 
+// for sending the year postbacks
+async function sendYearPBs(senderId){
+    underYearPB(senderId);
+    await sleep(200);
+    upperYearPB(senderId)
+}
+
 // Serve the options path and set required headers
 app.get('/options', (req, res, next) => {
     let referer = req.get('Referer');
@@ -315,8 +322,7 @@ function processMessage(event) {
                                     console.log(response);
                                 }
                             });  
-                            underYearPB(senderId);
-                            upperYearPB(senderId);
+                            sendYearPBs(senderId);
                         } else {
                             // user filled out interests and fun fact - send message stating unknown request
                             var newMessage = "Sorry, we did not understand your request. Type " + '"' + "View Commands" + '"' + " to see all possible commands.";
@@ -431,8 +437,7 @@ function newUser(senderId) {
                         firstMessage = firstMessage + " Looks like your profile is almost complete! What's a fun fact about yourself?";
                         sendMessage(senderId, {text: firstMessage});
                     } else if (response[0].year == null) {
-                        underYearPB(senderId);
-                        upperYearPB(senderId);
+                        sendYearPBs(senderId)
                     } else {
                         secondMessage = "Looks like you're already logged in! Keep on the lookout for weekly messages from us on Sundays!"
                         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
