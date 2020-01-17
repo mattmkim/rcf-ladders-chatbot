@@ -129,7 +129,7 @@ function processPostback(event) {
         var message = "Got it. Have a good day!";
         sendMessage(senderId, {text: message});
     } else if (payload == "SENIOR") {
-        User.update({user_id: senderId}, {year: senior}, function(err, response) {
+        User.update({user_id: senderId}, {year: "senior"}, function(err, response) {
             if (err) {
                 console.log(err);
             } else {
@@ -140,7 +140,7 @@ function processPostback(event) {
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
         sendTwoMessages(senderId, newMessage, viewMembersMessage);
     } else if (payload == "JUNIOR") {
-        User.update({user_id: senderId}, {year: junior}, function(err, response) {
+        User.update({user_id: senderId}, {year: "junior"}, function(err, response) {
             if (err) {
                 console.log(err);
             } else {
@@ -151,7 +151,7 @@ function processPostback(event) {
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
         sendTwoMessages(senderId, newMessage, viewMembersMessage);
     } else if (payload == "SOPHOMORE") {
-        User.update({user_id: senderId}, {year: sophomore}, function(err, response) {
+        User.update({user_id: senderId}, {year: "sophomore"}, function(err, response) {
             if (err) {
                 console.log(err);
             } else {
@@ -162,7 +162,7 @@ function processPostback(event) {
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
         sendTwoMessages(senderId, newMessage, viewMembersMessage);
     } else if (payload == "FRESHMAN") {
-        User.update({user_id: senderId}, {year: freshman}, function(err, response) {
+        User.update({user_id: senderId}, {year: "freshman"}, function(err, response) {
             if (err) {
                 console.log(err);
             } else {
@@ -462,13 +462,13 @@ function underYearPB(senderId) {
                 "buttons":[
                     {
                         "type":"postback",
-                        "title":"Sophomore",
-                        "payload":"SOPHOMORE"
+                        "title":"Freshman",
+                        "payload":"FRESHMAN"
                     },
                     {
                         "type":"postback",
-                        "title":"Freshman",
-                        "payload":"FRESHMAN"
+                        "title":"Sophomore",
+                        "payload":"SOPHOMORE"
                     }
                 ]
             }
@@ -503,13 +503,13 @@ function upperYearPB(senderId) {
                 "buttons":[
                     {
                         "type":"postback",
-                        "title":"Senior",
-                        "payload":"SENIOR"
+                        "title":"Junior",
+                        "payload":"JUNIOR"
                     },
                     {
                         "type":"postback",
-                        "title":"Junior",
-                        "payload":"JUNIOR"
+                        "title":"Senior",
+                        "payload":"SENIOR"
                     }
                 ]
             }
