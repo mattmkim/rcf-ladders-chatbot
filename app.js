@@ -175,6 +175,7 @@ function processPostback(event) {
         var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
         sendTwoMessages(senderId, newMessage, viewMembersMessage);
+        setPreferences(senderId);
     } else if (payload == "FRESHMAN") {
         User.update({user_id: senderId}, {year: "freshman"}, function(err, response) {
             if (err) {
@@ -186,7 +187,7 @@ function processPostback(event) {
         var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
         sendTwoMessages(senderId, newMessage, viewMembersMessage);
-        setPreferences(senderId);
+        
     }
 }
 
