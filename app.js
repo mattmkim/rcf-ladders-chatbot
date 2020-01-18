@@ -17,7 +17,6 @@ var app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(express.static('public'));
-app.use(express.bodyParser());
 app.listen((process.env.PORT || 5000));
 app.set('views', './views');
 app.set('view engine', 'ejs');
@@ -101,7 +100,8 @@ app.post('/preferencesspostback', (req, res) => {
     var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
     var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
 
-    console.log(body);
+    console.log(req);
+    console.log(res);
 
     // code to update status of user (list of people to not pair up with)
     // need to somehow send back user id
