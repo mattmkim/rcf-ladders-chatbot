@@ -44,21 +44,8 @@
         });
     };
 </script>
-<!-- <form action="/optionspostback" method="get">
-    <input type="hidden" name="psid" id="psid">
-    <h3>Pillows</h3>
-    <input type="radio" name="pillows" value="soft" checked>Soft<br>
-    <input type="radio" name="pillows" value="hard">Hard<br>
-    <h3>Bed</h3>
-    <input type="radio" name="bed" value="single" checked>Single<br>
-    <input type="radio" name="bed" value="double">Double<br>
-    <input type="radio" name="bed" value="twin">Twin<br>
-    <h3>View</h3>
-    <input type="radio" name="view" value="sea" checked>Sea<br>
-    <input type="radio" name="view" value="street">Street<br>
-    <input type="submit" value="Submit" id="submitButton">
-</form> -->
-<div id="form"></div>
+
+<div id="form">
     <form action="/preferencespostback" method="get">
         <input type="hidden" name="psid" id="psid">
         <h3 id="members-header"> Members </h3>
@@ -69,37 +56,13 @@
                     <label class="member-form-label" id=<%- i %>>
                         <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %> 
                     </label>
-                    <img class="member-form-image" id=<%- i %> src=<%- data[i].profileUrl %>/>
+                    <!--<img class="member-form-image" id=<%- i %> src=<%- data[i].profileUrl %>/> -->
+                    <a href=<%- data[i].profileUrl %></a>
                 </div>
             <% } %>
             <button type="submit" class="btn btn-primary" id="submitButton"> Submit </button>
         </div>
     </form>
-<script>
-    // var str1 = "hello";
-    // document.getElementById("hello").innerHTML = str1;
-
-    // var str = '<form action=' + '"' + '/preferencespostback' + '"' + ' method=' + '"' + 'get' + '"' + '>' +
-    //     '<input type=' + '"' + 'hidden' + '"' + ' name=' + '"' + 'psid' + '"' + ' id=' + '"' + 'psid' + '"' + '>' + 
-    //     '<h3 id=' + '"' + 'members-header' + '"' + '> Members </h3>' + 
-    //     '<div class=' + '"' + 'members-form' + '"' + '>';
-    // // name, profile picture
-    // for (var i = 0; i < data.length; i++) {
-    //     var name = data[i].firstName + " " + data[i].lastName;
-    //     var profUrl = data[i].profileUrl;
-    //     var div = '<div class=' + '"' + 'member-option' + '"' + '>';
-    //     var input = '<input class=' + '"' + 'member-form-input' + '"' + ' id=' + '"' + 'member' + i + '"' + '>';
-    //     var label = '<label class=' + '"' + 'member-form-label' + '"' + ' for=' + '"' + 'member' + i + '"' + '>';
-    //     var image = '<img class=' + '"' + 'member-form-image' + '"' + ' id=' + '"' + 'image' + i + '"' + ' src=' + profUrl + '/>';
-    //     str = str + div + input + label + name + image;
-    //     str = str + '</label></div>';
-    // }
-    //     // </div> for members-form
-    //     // </form> for form
-    // var submit = '<button type=' + '"' + 'submit' + '"' + 'class=' + '"' + 'btn btn-primary' + '"' + 'id=' + '"' + 'submitButton' + '"' + '>' + 'Submit </button>';
-    // str = str + submit + '</div></form>';
-    // document.getElementById("form").innerHTML = str;
-</script>
-
+</div>
 </body>
 </html>
