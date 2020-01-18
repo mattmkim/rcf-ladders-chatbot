@@ -75,7 +75,7 @@ async function sendYearPBs(senderId){
 }
 
 // Serve the options path and set required headers
-app.get('/options', (req, res, next) => {
+app.get('/preferences', (req, res, next) => {
     let referer = req.get('Referer');
     if (referer) {
         if (referer.indexOf('www.messenger.com') >= 0) {
@@ -84,7 +84,7 @@ app.get('/options', (req, res, next) => {
             res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
         }
         //res.sendFile('webview.html', {root: __dirname});
-        User.find({}, function(err, response) {
+        User.find({}).sort('year').exec(function(err, response) {
             if (err) {
                 console.log(err);
             } else {
@@ -161,7 +161,7 @@ async function processPostback(event) {
         var message = "Got it. Have a good day!";
         sendMessage(senderId, {text: message});
     } else if (payload == "SENIOR") {
-        User.update({user_id: senderId}, {year: "senior"}, function(err, response) {
+        User.update({user_id: senderId}, {year: 4}, function(err, response) {
             if (err) {
                 console.log(err);
             } else {
@@ -170,9 +170,10 @@ async function processPostback(event) {
         })
         var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
+        setPreferences(senderId);
         sendTwoMessages(senderId, newMessage, viewMembersMessage);
     } else if (payload == "JUNIOR") {
-        User.update({user_id: senderId}, {year: "junior"}, function(err, response) {
+        User.update({user_id: senderId}, {year: 3}, function(err, response) {
             if (err) {
                 console.log(err);
             } else {
@@ -181,9 +182,10 @@ async function processPostback(event) {
         })
         var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
+        setPreferences(senderId);
         sendTwoMessages(senderId, newMessage, viewMembersMessage);
     } else if (payload == "SOPHOMORE") {
-        User.update({user_id: senderId}, {year: "sophomore"}, function(err, response) {
+        User.update({user_id: senderId}, {year: 2}, function(err, response) {
             if (err) {
                 console.log(err);
             } else {
@@ -192,11 +194,11 @@ async function processPostback(event) {
         })
         var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
-        sendTwoMessages(senderId, newMessage, viewMembersMessage);
-        await sleep
         setPreferences(senderId);
+        sendTwoMessages(senderId, newMessage, viewMembersMessage);
+        
     } else if (payload == "FRESHMAN") {
-        User.update({user_id: senderId}, {year: "freshman"}, function(err, response) {
+        User.update({user_id: senderId}, {year: 1}, function(err, response) {
             if (err) {
                 console.log(err);
             } else {
@@ -205,6 +207,7 @@ async function processPostback(event) {
         })
         var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
+        setPreferences(senderId);
         sendTwoMessages(senderId, newMessage, viewMembersMessage);
         
     }
@@ -787,7 +790,7 @@ function setPreferences(senderId) {
                 "text": "Please select people you already know!",
                 "buttons": [{
                     "type": "web_url",
-                    "url":  "https://rcf-meets.herokuapp.com/options",
+                    "url":  "https://rcf-meets.herokuapp.com/preferences",
                     "title": "Set Preferences",
                     "webview_height_ratio": "full",
                     "messenger_extensions": true
