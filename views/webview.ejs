@@ -46,7 +46,7 @@
 </script>
 
 <div id="form">
-    <form action="/preferencespostback" method="get">
+    <form action="/preferencespostback" method="post">
         <input type="hidden" name="psid" id="psid">
         <h3 id="members-header"> Members </h3>
         <div class="members-form">
@@ -57,7 +57,7 @@
                         <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %> 
                     </label>
                     <!--<img class="member-form-image" id=<%- i %> src=<%- data[i].profileUrl %>/> -->
-                    <img class="member-form-image" id=<%- i %> src="http://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
+                    <img class="member-form-image" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
 
                 </div>
             <% } %>
