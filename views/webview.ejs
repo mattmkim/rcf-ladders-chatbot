@@ -58,7 +58,6 @@
     <input type="radio" name="view" value="street">Street<br>
     <input type="submit" value="Submit" id="submitButton">
 </form> -->
-<div id="hello"></div>
 <div id="form"></div>
     <form action="/preferencespostback" method="get">
         <input type="hidden" name="psid" id="psid">
@@ -67,8 +66,8 @@
             <% for (var i = 0; i < data.length; i++) { %>
                 <div class="member-option">
                     <input class="member-form-input" id=<%- i %>>
-                    <label class="member-form-label" id=<%- i %>
-                        <%= data[i].firstName %> + <%=" " %> + <%= data[i].lastName %> 
+                    <label class="member-form-label" id=<%- i %>>
+                        <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %> 
                     </label>
                     <img class="member-form-image" id=<%- i %> src=<%- data[i].profileUrl %>/>
                 </div>
@@ -77,8 +76,8 @@
         </div>
     </form>
 <script>
-    var str1 = "hello";
-    document.getElementById("hello").innerHTML = str1;
+    // var str1 = "hello";
+    // document.getElementById("hello").innerHTML = str1;
 
     // var str = '<form action=' + '"' + '/preferencespostback' + '"' + ' method=' + '"' + 'get' + '"' + '>' +
     //     '<input type=' + '"' + 'hidden' + '"' + ' name=' + '"' + 'psid' + '"' + ' id=' + '"' + 'psid' + '"' + '>' + 
