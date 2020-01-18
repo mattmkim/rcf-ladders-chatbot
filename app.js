@@ -84,7 +84,15 @@ app.get('/options', (req, res, next) => {
             res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
         }
         //res.sendFile('webview.html', {root: __dirname});
-        res.render('webview');
+        User.find({}, function(err, response) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render('webview', {data: response});
+                console.log(response);
+            }
+        })
+        
     }
 });
 
