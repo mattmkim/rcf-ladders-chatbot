@@ -57,7 +57,7 @@
                         <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %> 
                     </label>
                     <!--<img class="member-form-image" id=<%- i %> src=<%- data[i].profileUrl %>/> -->
-                    <img class="member-form-image" id=<%- i %> src="http://graph.facebook.com/<%-data[i].user_id %>/picture?type=large?access_token=<%- access %>"/>
+                    <img class="member-form-image" id=<%- i %> src="http://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
 
                 </div>
             <% } %>
