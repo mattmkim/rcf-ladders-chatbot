@@ -89,7 +89,6 @@ app.get('/preferences', (req, res, next) => {
                 console.log(err);
             } else {
                 res.render('webview', {data: response, access: process.env.PAGE_ACCESS_TOKEN});
-                console.log(response);
             }
         })
         
