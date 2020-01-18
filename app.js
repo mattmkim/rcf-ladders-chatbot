@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.listen((process.env.PORT || 5000));
-app.set('views', './rcfladders/views');
+app.set('views', '../rcfladders/views');
 app.set('view engine', 'ejs');
 
 // Server index page
