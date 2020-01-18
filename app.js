@@ -273,6 +273,8 @@ function processMessage(event) {
                 })
             } else if (text.localeCompare("Get Started") == 0 || text.localeCompare("Get started") == 0 || text.localeCompare("get started") == 0) {
                 getStarted(senderId);
+            } else if (text.localeCompare("Set Preferences") || text.localeCompare("Set preferences") == 0 || text.localeCompare("set preferences") == 0) {
+                setPreferences(senderId);
             // for APP APPROVAL ONLY    
             } else if (text.localeCompare("Ask Availability") == 0 || text.localeCompare("Ask availability") == 0 || text.localeCompare("ask availability") == 0) {
                 sendAvailabilityPB();
