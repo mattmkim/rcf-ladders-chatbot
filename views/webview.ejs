@@ -57,7 +57,7 @@
                         <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %> 
                     </label>
                     <!--<img class="member-form-image" id=<%- i %> src=<%- data[i].profileUrl %>/> -->
-                    <a href=<%- data[i].profileUrl %></a>
+                    <a href=<%- data[i].profileUrl %><img src=<%- data[i].profileUrl %>></a>
                 </div>
             <% } %>
             <button type="submit" class="btn btn-primary" id="submitButton"> Submit </button>
