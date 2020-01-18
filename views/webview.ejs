@@ -53,7 +53,7 @@
             <% for (var i = 0; i < data.length; i++) { %>
                 <div class="member-option">
                     <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>>
-                    <label class="member-form-label" id=<%- i %>>
+                    <label class="member-form-label" for=<%- i %>>
                         <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %> 
                     </label>
                     <!--<img class="member-form-image" id=<%- i %> src=<%- data[i].profileUrl %>/> -->
