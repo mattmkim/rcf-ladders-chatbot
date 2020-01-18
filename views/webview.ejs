@@ -65,14 +65,14 @@
         <div class="members-form">
             <% for (var i = 0; i < data.length; i++) { %>
                 <div class="member-option">
-                    <input class="member-form-input" type="radio" id=<%- i %>>
+                    <input class="member-form-input" type="checkbox" id=<%- i %>>
                     <label class="member-form-label" id=<%- i %>>
                         <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %> 
                     </label>
                     <img class="member-form-image" id=<%- i %> src=<%- data[i].profileUrl %>/>
                 </div>
-
             <% } %>
+            <button type="submit" class="btn btn-primary" id="submitButton"> Submit </button>
         </div>
     </form>
 <script>
