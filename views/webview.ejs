@@ -52,7 +52,7 @@
         <div class="members-form">
             <% for (var i = 0; i < data.length; i++) { %>
                 <div class="member-option">
-                    <input class="member-form-input" type="checkbox" id=<%- i %>>
+                    <input class="member-form-input" type="checkbox" name=<%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>  id=<%- i %>>
                     <label class="member-form-label" id=<%- i %>>
                         <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %> 
                     </label>
@@ -61,7 +61,7 @@
 
                 </div>
             <% } %>
-            <button type="submit" class="btn btn-primary" id="submitButton"> Submit </button>
+            <button type="submit" name="submit" class="btn btn-primary" id="submitButton"> Submit </button>
         </div>
     </form>
 </div>
