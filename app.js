@@ -130,7 +130,7 @@ app.post("/webhook", function (req, res) {
     }
 });
   
-function processPostback(event) {
+async function processPostback(event) {
     var senderId = event.sender.id;
     var payload = event.postback.payload;
 
@@ -193,6 +193,7 @@ function processPostback(event) {
         var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
         sendTwoMessages(senderId, newMessage, viewMembersMessage);
+        await sleep
         setPreferences(senderId);
     } else if (payload == "FRESHMAN") {
         User.update({user_id: senderId}, {year: "freshman"}, function(err, response) {
@@ -255,15 +256,9 @@ function processMessage(event) {
                     }
                 })
             } else if (text.localeCompare("Unsubscribe") == 0 || text.localeCompare("unsubscribe") == 0) {
-                var notLoggedInMessage = "Please enter the password before sending commands.";
                 User.find({user_id: senderId}, function(err, response) {
                     if (err) {
                         console.log(err);
-                    } else if (response.length == 0 || response[0].loggedIn === false) {
-                        sendMessage(senderId, {text: notLoggedInMessage});
-                    } else if (response[0].fun_fact == null) {
-                        var notFullySignedIn = "Your profile is not complete yet.";
-                        sendMessage(senderId, {text: notFullySignedIn});
                     } else {
                         deleteProfile(senderId);
                     }
