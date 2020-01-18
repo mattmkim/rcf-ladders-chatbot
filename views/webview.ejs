@@ -65,7 +65,7 @@
         <div class="members-form">
             <% for (var i = 0; i < data.length; i++) { %>
                 <div class="member-option">
-                    <input class="member-form-input" id=<%- i %>>
+                    <input class="member-form-input" type="radio" id=<%- i %>>
                     <label class="member-form-label" id=<%- i %>>
                         <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %> 
                     </label>
