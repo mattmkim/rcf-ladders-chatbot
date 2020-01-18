@@ -779,7 +779,7 @@ function setPreferences(senderId) {
                 "text": "Please select people you already know!",
                 "buttons": [{
                     "type": "web_url",
-                    "url": SERVER_URL + "/options",
+                    "url":  "https://rcf-meets.herokuapp.com/options",
                     "title": "Set Preferences",
                     "webview_height_ratio": "full",
                     "messenger_extensions": true
