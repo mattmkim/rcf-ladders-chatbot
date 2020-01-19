@@ -17,15 +17,14 @@ body {
     width: auto; 
     max-width: 75px; 
     max-height: 75px;
-    margin-left: 40px;
 }
 
-.member-form-input {
+/* .member-form-input {
     margin-left: 40px;
 }
 .member-form-label {
     margin-left: 40px;
-}
+} */
 
 #submitButton {
     border: 1px solid #49AAFE;
@@ -35,7 +34,7 @@ body {
     border-radius: 3px;
     display: block;
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 /* #submitButton:hover {
     background: #49AAFE;
