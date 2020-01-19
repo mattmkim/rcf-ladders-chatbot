@@ -15,11 +15,11 @@ body {
     max-height: 75px;
 }
 
+.member-form-input {
+    margin-left: 40px;
+}
 .member-form-label {
-    display: block;
-    text-align: center;
-    line-height: 150%;
-    font-size: .85em;
+    margin-left: 40px;
 }
 
 #submitButton {
