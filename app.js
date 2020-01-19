@@ -75,7 +75,7 @@ async function sendYearPBs(senderId){
 }
 
 // Serve the options path and set required headers
-app.get('/preferences', (req, res, next) => {
+app.get('/preferences/:userId', (req, res, next) => {
     let referer = req.get('Referer');
     if (referer) {
         if (referer.indexOf('www.messenger.com') >= 0) {
@@ -88,14 +88,14 @@ app.get('/preferences', (req, res, next) => {
             if (err) {
                 console.log(err);
             } else {
-                res.render('webview', {data: response, access: process.env.PAGE_ACCESS_TOKEN});
+                res.render('webview', {data: response, access: process.env.PAGE_ACCESS_TOKEN, currUser: req.params.userId});
             }
         })
         
     }
 });
 
-app.post('/preferencespostback', (req, res) => {
+app.post('/preferencespostback/:userId', (req, res) => {
     let body = req.body;
     var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
     var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
@@ -104,7 +104,7 @@ app.post('/preferencespostback', (req, res) => {
     // code to update status of user (list of people to not pair up with)
     // need to somehow send back user id
     res.status(200).send('Please close this window to return to the conversation thread.');
-    //sendTwoMessages(senderId, newMessage, viewMembersMessage);
+    sendTwoMessages(req.params.userId, newMessage, viewMembersMessage);
 });
 
 
@@ -797,7 +797,7 @@ function setPreferences(senderId) {
                 "text": "Please select people you already know!",
                 "buttons": [{
                     "type": "web_url",
-                    "url":  "https://rcf-meets.herokuapp.com/preferences",
+                    "url":  "https://rcf-meets.herokuapp.com/preferences/" + senderId,
                     "title": "Set Preferences",
                     "webview_height_ratio": "full",
                     "messenger_extensions": true
