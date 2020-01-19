@@ -15,6 +15,7 @@ body {
 .custom-control {
     margin-left: 90px;
     position: relative;
+    margin-bottom: 20px;
 }
 
 .member-image {
