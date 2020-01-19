@@ -19,14 +19,7 @@ body {
     max-height: 75px;
 }
 
-/* .member-form-input {
-    margin-left: 40px;
-}
-.member-form-label {
-    margin-left: 40px;
-} */
-
-#submitButton {
+/* #submitButton {
     border: 1px solid #49AAFE;
     color: #fff;
     background: #49AAFE;
@@ -35,7 +28,8 @@ body {
     display: block;
     margin: 0 auto;
     margin-top: 20px;
-}
-/* #submitButton:hover {
-    background: #49AAFE;
 } */
+
+#submitButton:hover {
+    background: #49AAFE;
+}
