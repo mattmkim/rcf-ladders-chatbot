@@ -61,7 +61,9 @@
                             <label class="member-form-label">
                                 <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>>
                                 <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %> 
-                                <img class="member-form-image" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
+                                <div class="member-image">
+                                    <img class="member-form-image" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
+                                </div>
                             </label>
                             
                         </div>  

@@ -13,16 +13,20 @@ body {
 }  */
 
 .custom-control {
-    margin-left: 70px;
+    margin-left: 90px;
+    position: relative;
 }
 
+.member-image {
+    position: absolute;
+    right:30px;
+}
 
 .member-form-image {
     height: auto; 
     width: auto; 
     max-width: 75px; 
     max-height: 75px;
-    margin-right: 0px;
 }
 
 #submitButton {
