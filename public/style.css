@@ -13,6 +13,10 @@ body {
 }
 
 .member-form-image {
+    margin-right: 30px;
+}
+
+.member-form-image {
     height: auto; 
     width: auto; 
     max-width: 75px; 
