@@ -562,12 +562,12 @@ function upperYearPB(senderId) {
                 "buttons":[
                     {
                         "type":"postback",
-                        "title":"   Junior   ",
+                        "title":"Junior",
                         "payload":"JUNIOR"
                     },
                     {
                         "type":"postback",
-                        "title":"   Senior   ",
+                        "title":"Senior",
                         "payload":"SENIOR"
                     }
                 ]
