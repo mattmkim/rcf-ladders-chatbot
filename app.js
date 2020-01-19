@@ -100,7 +100,6 @@ app.post('/preferencespostback', (req, res) => {
     var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
     var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
     console.log(body);
-    console.log("hello");
 
     // code to update status of user (list of people to not pair up with)
     // need to somehow send back user id
@@ -183,7 +182,6 @@ async function processPostback(event) {
         var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
         setPreferences(senderId);
-        sendTwoMessages(senderId, newMessage, viewMembersMessage);
     } else if (payload == "JUNIOR") {
         User.update({user_id: senderId}, {year: 3}, function(err, response) {
             if (err) {
@@ -195,7 +193,6 @@ async function processPostback(event) {
         var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
         setPreferences(senderId);
-        sendTwoMessages(senderId, newMessage, viewMembersMessage);
     } else if (payload == "SOPHOMORE") {
         User.update({user_id: senderId}, {year: 2}, function(err, response) {
             if (err) {
@@ -207,7 +204,6 @@ async function processPostback(event) {
         var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
         setPreferences(senderId);
-        sendTwoMessages(senderId, newMessage, viewMembersMessage);
         
     } else if (payload == "FRESHMAN") {
         User.update({user_id: senderId}, {year: 1}, function(err, response) {
@@ -220,7 +216,6 @@ async function processPostback(event) {
         var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
         setPreferences(senderId);
-        sendTwoMessages(senderId, newMessage, viewMembersMessage);
         
     }
 }
