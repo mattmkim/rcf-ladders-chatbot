@@ -21,6 +21,8 @@ body {
     background: #86C6FE;
     padding: 10px 20px;
     border-radius: 3px;
+    display: block;
+    margin: 0 auto;
 }
 #submitButton:hover {
     background: #86C6FE;
