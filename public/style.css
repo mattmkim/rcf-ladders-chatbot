@@ -8,13 +8,10 @@ body {
     text-align: center;
 }
 
-.member-form-label {
-    margin-right: 30px;
-}
 
-/* .custom-control {
-    margin-left: 50px;
-} */
+ .custom-control {
+    margin-right: 50px;
+} 
 
 
 .member-form-image {
