@@ -88,6 +88,7 @@ app.get('/preferences/:userId', (req, res, next) => {
             if (err) {
                 console.log(err);
             } else {
+                console.log(response);
                 res.render('webview', {data: response, access: process.env.PAGE_ACCESS_TOKEN, currUser: req.params.userId});
             }
         })
