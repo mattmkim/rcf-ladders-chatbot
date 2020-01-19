@@ -101,9 +101,11 @@ app.post('/preferencespostback/:userId', (req, res) => {
     var newMessage = "Great, you're all signed up! Keep on the lookout for weekly messages from us on Sundays!";
     var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
     
-    console.log(body.psid);
     console.log(body);
-    console.log(body.submit);
+
+    for (let item of body) {
+        console.log(item);
+    }
     // code to update status of user (list of people to not pair up with)
     // need to somehow send back user id
     res.status(200).send('Please close this window to return to the conversation thread.');
