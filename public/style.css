@@ -15,4 +15,15 @@ body {
     max-height: 75px;
 }
 
+#submitButton {
+    border: 1px solid #f44c0e;
+    color: #fff;
+    background: tomato;
+    padding: 10px 20px;
+    border-radius: 3px;
+}
+#submitButton:hover {
+    background: #f44c0e;
+}
+
 
