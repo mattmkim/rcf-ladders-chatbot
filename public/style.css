@@ -19,16 +19,16 @@ body {
     max-height: 75px;
 }
 
-/* #submitButton {
-    border: 1px solid #49AAFE;
+#submitButton {
+    /* border: 1px solid #49AAFE;
     color: #fff;
     background: #49AAFE;
     padding: 10px 20px;
-    border-radius: 3px;
+    border-radius: 3px; */
     display: block;
     margin: 0 auto;
     margin-top: 20px;
-} */
+}
 
 #submitButton:hover {
     background: #49AAFE;
