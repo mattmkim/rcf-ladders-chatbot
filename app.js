@@ -655,16 +655,28 @@ function sendLadders() {
             if (response.length == 0) {
                 console.log("No one is free :(");
             } else if (response.length == 1) {
-                message = "Looks like no one else is free this week :(. We'll get back to you if someone changes their mind!";
+                message = "Looks like no one else is free this week :(";
                 sendMessage(response[0].user_id, {text: message});
             } else {
                 while (response.length > 0) {
                     var f = response[Math.floor(Math.random() * response.length)];
                     console.log(f);
-                    var indF = response.indexOf(f);
-                    response.splice(indF, 1);
                     var s = response[Math.floor(Math.random() * response.length)];
                     console.log(s);
+
+                    while (f.known.includes(s.user_id) && s.known.includes(f.user_id)) {
+                        s = response[Math.floor(Math.random() * response.length)];
+                        if (f.known.length == response.length - 1) {
+                            break;
+                        } else if (s.known.length == response.length - 1) {
+                            break;
+                        } else {
+                            continue;
+                        }
+                    }
+
+                    var indF = response.indexOf(f);
+                    response.splice(indF, 1);
                     var indS = response.indexOf(s);
                     response.splice(indS, 1);
                     User.updateOne({user_id: f.user_id}, {available: false}, function(err, response) {
@@ -762,12 +774,14 @@ function viewMembers(senderId, members) {
     console.log(members);
     const memberObjs = [];
     for (let i = 0; i < members.length; i++) { 
-       let obj = {
-            "title": members[i].firstName + ' ' + members[i].lastName,
-            "image_url": members[i].profileUrl,
-            "subtitle": 'Interests: ' + members[i].interests + "\n" + 'Fun Fact: ' + members[i].fun_fact,
+        if (members[i].user_id != senderId) {
+            let obj = {
+                "title": members[i].firstName + ' ' + members[i].lastName,
+                "image_url": members[i].profileUrl,
+                "subtitle": 'Interests: ' + members[i].interests + "\n" + 'Fun Fact: ' + members[i].fun_fact,
+            }
+            memberObjs.push(obj);
         }
-        memberObjs.push(obj);
     }
     let messageData = {
     "attachment": {
