@@ -104,7 +104,7 @@ app.post('/preferencespostback/:userId', (req, res) => {
     console.log(body);
 
     let keys = Object.keys(body);
-    console.log(req.body[keys[0]]);
+    console.log(keys);
 
     // code to update status of user (list of people to not pair up with)
     // need to somehow send back user id
