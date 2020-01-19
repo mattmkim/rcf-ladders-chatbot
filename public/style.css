@@ -8,13 +8,14 @@ body {
     text-align: center;
 }
 
-.custom-control {
-    margin-left: 50px;
-}
-
 .member-form-image {
     margin-right: 30px;
 }
+
+/* .custom-control {
+    margin-left: 50px;
+} */
+
 
 .member-form-image {
     height: auto; 
