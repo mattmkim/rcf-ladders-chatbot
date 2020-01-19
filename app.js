@@ -111,7 +111,7 @@ app.post('/preferencespostback/:userId', (req, res) => {
 
     console.log(keys);
 
-    User.update({user_id: userId}, {known: keys}, function(err, response) {
+    User.update({user_id: req.params.userId}, {known: keys}, function(err, response) {
         if (err) {
             console.log(err);
         } else {
