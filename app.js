@@ -430,7 +430,8 @@ function newUser(senderId) {
                 year: null,
                 profileUrl: bodyObj.profile_pic,
                 available: false,
-                loggedIn: false
+                loggedIn: false,
+                known: []
             });
             User.find({user_id: senderId}, function(err, response) {
                 if (err) {

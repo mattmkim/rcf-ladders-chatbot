@@ -10,7 +10,8 @@ var UserSchema = new Schema({
   year: {type: Number},
   profileUrl: {type: String},
   available: {type: Boolean},
-  loggedIn: {type: Boolean}
+  loggedIn: {type: Boolean},
+  known: {type: [String]}
 });
 
 module.exports = mongoose.model("User", UserSchema);
