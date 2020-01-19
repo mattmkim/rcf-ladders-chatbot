@@ -16,14 +16,14 @@ body {
 }
 
 #submitButton {
-    border: 1px solid #f44c0e;
+    border: 1px solid #86C6FE;
     color: #fff;
-    background: tomato;
+    background: #86C6FE;
     padding: 10px 20px;
     border-radius: 3px;
 }
 #submitButton:hover {
-    background: #f44c0e;
+    background: #86C6FE;
 }
 
 
