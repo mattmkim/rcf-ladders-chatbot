@@ -16,7 +16,7 @@ var User = require("./models/users");
 var app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use(express.static('views'));
+app.use(express.static(__dirname + '/public'));
 app.listen((process.env.PORT || 5000));
 app.set('views', './views');
 app.set('view engine', 'ejs');
