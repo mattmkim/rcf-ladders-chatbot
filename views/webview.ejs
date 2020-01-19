@@ -58,7 +58,6 @@
                 <% if (data[i].user_id.localeCompare(currUser) != 0) { %>
                     <div class="member-option">
                         <div class="custom-control custom-checkbox">
-                            
                             <label class="member-form-label">
                                 <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>>
                                 <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %> 
