@@ -59,7 +59,6 @@
                         <label class="member-form-label" for=<%- i %>>
                             <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %> 
                         </label>
-                        <!--<img class="member-form-image" id=<%- i %> src=<%- data[i].profileUrl %>/> -->
                         <img class="member-form-image" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
                     </div>
                <% } %>
