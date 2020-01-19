@@ -15,14 +15,14 @@ body {
 .custom-control {
     margin-left: 90px;
     position: relative;
-    margin-bottom: 40px;
+    margin-bottom: 45px;
     margin-top: 30px;
 }
 
 .member-image {
     position: absolute;
     right: 100px;
-    bottom: -15px;
+    bottom: -17px;
 
 }
 
