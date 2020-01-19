@@ -51,8 +51,7 @@
         <h3 id="members-header"> Members </h3>
         <div class="members-form">
             <% for (var i = 0; i < data.length; i++) { %>
-                <% console.log(data) %>
-                <% if (data[i].user_id.localeCompare(currUser) == 0) { %>
+                <% if (data[i].user_id.localeCompare(currUser) != 0) { %>
                     <div class="member-option">
                         <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>>
                         <label class="member-form-label" for=<%- i %>>
