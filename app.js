@@ -558,16 +558,16 @@ function upperYearPB(senderId) {
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text": "What year are you?",
+                //"text": "What year are you?",
                 "buttons":[
                     {
                         "type":"postback",
-                        "title":"Junior",
+                        "title":"     Junior    ",
                         "payload":"JUNIOR"
                     },
                     {
                         "type":"postback",
-                        "title":"Senior",
+                        "title":"     Senior     ",
                         "payload":"SENIOR"
                     }
                 ]
