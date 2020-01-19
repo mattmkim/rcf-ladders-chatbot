@@ -103,9 +103,9 @@ app.post('/preferencespostback/:userId', (req, res) => {
     
     console.log(body);
 
-    for (let item of body) {
-        console.log(item);
-    }
+    let keys = Object.keys(body);
+    console.log(req.body[keys[0]]);
+
     // code to update status of user (list of people to not pair up with)
     // need to somehow send back user id
     res.status(200).send('Please close this window to return to the conversation thread.');
