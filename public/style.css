@@ -8,11 +8,16 @@ body {
     text-align: center;
 }
 
+.custom-control custom-checkbox {
+    margin-left: 40px;
+}
+
 .member-form-image {
     height: auto; 
     width: auto; 
     max-width: 75px; 
     max-height: 75px;
+    margin-left: 40px;
 }
 
 .member-form-input {
@@ -30,6 +35,7 @@ body {
     border-radius: 3px;
     display: block;
     margin: 0 auto;
+    margin-top: 40px;
 }
 /* #submitButton:hover {
     background: #49AAFE;
