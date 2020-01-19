@@ -102,6 +102,8 @@ app.post('/preferencespostback/:userId', (req, res) => {
     var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
     
     console.log(body.psid);
+    console.log(body);
+    console.log(body.submit);
     // code to update status of user (list of people to not pair up with)
     // need to somehow send back user id
     res.status(200).send('Please close this window to return to the conversation thread.');
