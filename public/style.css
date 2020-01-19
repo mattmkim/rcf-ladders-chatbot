@@ -8,10 +8,13 @@ body {
     text-align: center;
 }
 
-
- .custom-control {
+/* .custom-control .member-form-label .member-form-image {
     margin-right: 50px;
-} 
+}  */
+
+.custom-control {
+    margin-left: 50px;
+}
 
 
 .member-form-image {
@@ -19,6 +22,7 @@ body {
     width: auto; 
     max-width: 75px; 
     max-height: 75px;
+    margin-right: 30px
 }
 
 #submitButton {
