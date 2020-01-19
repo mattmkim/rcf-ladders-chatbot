@@ -18,8 +18,10 @@ body {
 }
 
 .member-image {
-    position: relative;
+    position: absolute;
     right: 30px;
+    top: 60px;
+
 }
 
 .member-form-image {
