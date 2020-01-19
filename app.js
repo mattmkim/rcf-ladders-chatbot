@@ -17,6 +17,7 @@ var app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(express.static('public'));
+app.use("/styles", express.static(__dirname + "/styles"));
 app.listen((process.env.PORT || 5000));
 app.set('views', './views');
 app.set('view engine', 'ejs');
