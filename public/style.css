@@ -15,17 +15,24 @@ body {
     max-height: 75px;
 }
 
+
+
+.member-form-label {
+    margin-left: 30px;
+}
+
+
 #submitButton {
-    border: 1px solid #86C6FE;
+    border: 1px solid #49AAFE;
     color: #fff;
-    background: #86C6FE;
+    background: #49AAFE;
     padding: 10px 20px;
     border-radius: 3px;
     display: block;
     margin: 0 auto;
 }
 #submitButton:hover {
-    background: #86C6FE;
+    background: #49AAFE;
 }
 
 
