@@ -14,6 +14,7 @@ body {
 
 .custom-control {
     font-size: 14px;
+    background-color: rgb(236, 177, 254);
 }
 
 .custom-control input[type=checkbox] {
