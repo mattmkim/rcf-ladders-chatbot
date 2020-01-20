@@ -16,7 +16,7 @@ body {
     display: none;
 } */
 
-input[type=checkbox]:checked + .member-form-label {
+input[type=checkbox]:checked + .color-checkbox {
     background-color: rgb(144, 204, 250);
 }
 
