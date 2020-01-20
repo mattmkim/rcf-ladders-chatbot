@@ -24,6 +24,10 @@ body {
     background-color: rgb(144, 204, 250);
 }
 
+.custom-control input[type=checkbox]:checked + .member-option {
+    background-color: rgb(144, 204, 250);
+}
+
 .two-member-container {
     display: inline-flex;
 }
