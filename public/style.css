@@ -12,9 +12,9 @@ body {
     font-size: 14px;
 }
 
-/* .custom-control input[type=checkbox] {
+.custom-control input[type=checkbox] {
     display: none;
-} */
+}
 
 input[type=checkbox]:checked + .color-checkbox {
     background-color: rgb(144, 204, 250);
