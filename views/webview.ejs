@@ -97,7 +97,10 @@
                                         <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>>
                                         <div class="color-checkbox">
                                             <img class="member-form-image" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
-                                            <%- data[i].firstName %> <%-" " %> <br> <%- data[i].lastName %>
+                                            <div class="member-name">
+                                                <%- data[i].firstName %> <%-" " %> <br> <%- data[i].lastName %>
+                                            </div>
+                                            
                                         </div>  
                                     </label>
                                 </div>  
@@ -110,7 +113,9 @@
                                     <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>>
                                     <div class="color-checkbox">
                                         <img class="member-form-image" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
-                                        <%- data[i].firstName %> <%-" " %> <br> <%- data[i].lastName %>
+                                        <div class="member-name">
+                                            <%- data[i].firstName %> <%-" " %> <br> <%- data[i].lastName %>
+                                        </div>
                                     </div>
                                         
 
