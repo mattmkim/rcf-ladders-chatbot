@@ -54,11 +54,11 @@
         <input type="hidden" name="psid" id="psid">
         <h3 id="members-header"> RCF Meets Members </h3>
         <div class="members-form">
+            <% var freshman = false; %>
+            <% var sophomore = false; %>
+            <% var junior = false; %>
+            <% var senior = false; %>
             <% for (var i = 0; i < data.length; i++) { %>
-                <% var freshman = false; %>
-                <% var sophomore = false; %>
-                <% var junior = false; %>
-                <% var senior = false; %>
                 <% if (data[i].user_id.localeCompare(currUser) != 0) { %>
                     <% if (data[i].year == 1 && freshman === false) { %>
                         <h4 class="class-header"> Freshman </h4>
