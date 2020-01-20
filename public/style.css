@@ -28,12 +28,12 @@ body {
 }
 
 .color-checkbox:hover {
-    background-color: rgb(228, 243, 255);
+    background-color: rgb(238, 247, 255);
 }
 
 
 input[type=checkbox]:checked + .color-checkbox {
-    background-color: rgb(195, 228, 255);
+    background-color:rgb(56, 154, 228);
 }
 
 .two-member-container {
