@@ -102,6 +102,9 @@
                                     </label>
                                 </div>  
                             </div>
+                        <% if (data.length == 1) { %>
+                            </div>
+                        <% } %>
                     <% } else { %>
                         <% count = count + 1; %>
                         <div class="member-option">
@@ -113,7 +116,6 @@
                                     <!-- </div> -->
                                     <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
                                 </label>
-                                
                             </div>  
                         </div>
                     </div>
