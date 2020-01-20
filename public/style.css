@@ -39,8 +39,10 @@ input[type=checkbox]:checked + .color-checkbox {
 .two-member-container {
     display: inline-flex;
     text-align: center; 
-    left: 50%;  
+    align-items: center;
+    justify-content: center;  
 }
+
 
 
 .member-form-image {
