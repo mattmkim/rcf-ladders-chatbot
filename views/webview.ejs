@@ -78,8 +78,9 @@
                         <% senior = true; %>
                         <% count = 0; %>
                     <% } %>
-                    
+
                     <% if (count % 2 == 0) { %>
+                        <% count = count + 1; %>
                         <div class="2-member-container">
                             <div class="member-option">
                                 <div class="custom-control custom-checkbox">
@@ -90,10 +91,10 @@
                                         <!-- </div> -->
                                         <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
                                     </label>
-                                    
                                 </div>  
                             </div>
                     <% } else { %>
+                        <% count = count + 1; %>
                         <div class="member-option">
                             <div class="custom-control custom-checkbox">
                                 <label class="member-form-label">
