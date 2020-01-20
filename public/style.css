@@ -19,18 +19,15 @@ body {
     margin-top: 30px;
 }
 
-/* .member-image {
-    position: absolute;
-    right: 100px;
-    bottom: -17px;
-
-} */
-
 .member-form-image {
     height: auto; 
     width: auto; 
     max-width: 75px; 
     max-height: 75px;
+}
+
+.class_header {
+    text-align: center;
 }
 
 #submitButton {

@@ -55,7 +55,20 @@
         <h3 id="members-header"> Members </h3>
         <div class="members-form">
             <% for (var i = 0; i < data.length; i++) { %>
+                <% var freshman = false; %>
+                <% var sophomore = false; %>
+                <% var junior = false; %>
+                <% var senior = false; %>
                 <% if (data[i].user_id.localeCompare(currUser) != 0) { %>
+                    <% if (data[i].year == 1 && freshman === false) { %>
+                        <h4 class="class-header"> Freshman </h4>
+                    <% } else if (data[i].year == 2 && sophomore === false) { %>
+                        <h4 class="class-header"> Sophomores </h4>
+                    <% } else if (data[i].year == 3 && junior === false) { %>
+                        <h4 class="class-header"> Juniors </h4>
+                    <% } else if (data[i].year == 4 && senior === false) { %>
+                        <h4 class="class-header"> Seniors </h4>
+                    <% } 
                     <div class="member-option">
                         <div class="custom-control custom-checkbox">
                             <label class="member-form-label">
@@ -69,7 +82,6 @@
                         </div>  
                     </div>
                <% } %>
-                
             <% } %>
             <button type="submit" name="submit" class="btn btn-primary" id="submitButton"> Submit </button>
         </div>
