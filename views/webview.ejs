@@ -62,12 +62,16 @@
                 <% if (data[i].user_id.localeCompare(currUser) != 0) { %>
                     <% if (data[i].year == 1 && freshman === false) { %>
                         <h4 class="class-header"> Freshman </h4>
+                        <% freshman = true; %>
                     <% } else if (data[i].year == 2 && sophomore === false) { %>
                         <h4 class="class-header"> Sophomores </h4>
+                        <% sophomore = true; %>
                     <% } else if (data[i].year == 3 && junior === false) { %>
                         <h4 class="class-header"> Juniors </h4>
+                        <% junior = true; %>
                     <% } else if (data[i].year == 4 && senior === false) { %>
                         <h4 class="class-header"> Seniors </h4>
+                        <% senior = true; %>
                     <% } %>
                     <div class="member-option">
                         <div class="custom-control custom-checkbox">
