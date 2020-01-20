@@ -16,6 +16,10 @@ body {
     font-size: 14px;
 }
 
+.custom-control input[type=checkbox] {
+    display: none;
+}
+
 .two-member-container {
     display: inline-flex;
 }
