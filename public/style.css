@@ -8,10 +8,6 @@ body {
     text-align: center;
 }
 
-/* .custom-control .member-form-label .member-form-image {
-    margin-right: 50px;
-}  */
-
 .custom-control {
     font-size: 14px;
 }
@@ -20,7 +16,7 @@ body {
     display: none;
 } */
 
-:checked + .member-form-label {
+input[type=checkbox]:checked + .member-form-label {
     background-color: rgb(144, 204, 250);
 }
 
