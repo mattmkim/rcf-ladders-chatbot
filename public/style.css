@@ -20,7 +20,7 @@ body {
     display: none;
 }
 
-.custom-control input[type=checkbox]:checked {
+.custom-control input[type=checkbox]:checked + .custom-control {
     background-color: #B1DCFE;
 }
 
