@@ -16,12 +16,12 @@ body {
     font-size: 14px;
 }
 
-.custom-control input[type=checkbox] {
+/* .custom-control input[type=checkbox] {
     display: none;
-}
+} */
 
 .custom-control input[type=checkbox]:checked + .custom-control {
-    background-color: #B1DCFE;
+    background-color: rgb(144, 204, 250);
 }
 
 .two-member-container {
