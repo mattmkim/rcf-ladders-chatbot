@@ -30,7 +30,7 @@ body {
 
 
 input[type=checkbox]:checked + .color-checkbox {
-    background-color: rgb(144, 204, 250);
+    background-color: #C3E5FF
 }
 
 .two-member-container {
