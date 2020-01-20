@@ -33,7 +33,7 @@ body {
 
 
 input[type=checkbox]:checked + .color-checkbox {
-    background-color:rgb(56, 154, 228);
+    background-color:rgb(164, 216, 255);
 }
 
 .two-member-container {
