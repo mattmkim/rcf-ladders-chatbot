@@ -12,12 +12,9 @@ body {
     margin-right: 50px;
 }  */
 
-/* .custom-control {
-    margin-left: 90px;
-    position: relative;
-    margin-bottom: 30px;
-    margin-top: 15px;
-} */
+ .custom-control {
+    font-size: 14px;
+}
 
 .two-member-container {
     display: inline-flex;
@@ -26,8 +23,8 @@ body {
 .member-form-image {
     height: auto; 
     width: auto; 
-    max-width: 75px; 
-    max-height: 75px;
+    max-width: 67px; 
+    max-height: 67px;
 }
 
 .class-header {
