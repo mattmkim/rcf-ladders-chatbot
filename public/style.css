@@ -19,6 +19,10 @@ body {
     margin-top: 15px;
 } */
 
+.two-member-container {
+    display: inline;
+}
+
 .member-form-image {
     height: auto; 
     width: auto; 
