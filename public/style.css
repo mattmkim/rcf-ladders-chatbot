@@ -20,11 +20,11 @@ body {
     display: none;
 } */
 
-.custom-control input[type=checkbox]:checked + .custom-control {
-    background-color: rgb(144, 204, 250);
+.member-form-label {
+    background-color: #49AAFE;
 }
 
-.custom-control input[type=checkbox]:checked + .member-form-label {
+.custom-control input[type=checkbox]:checked + .custom-control {
     background-color: rgb(144, 204, 250);
 }
 
