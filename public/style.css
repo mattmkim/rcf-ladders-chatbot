@@ -25,6 +25,7 @@ body {
     border-width: 0px 0px 0px 4px;
     border-style: solid;
     border-color: rgb(56, 154, 228);
+    width: 100px;
 }
 
 .color-checkbox:hover {
