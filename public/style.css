@@ -35,7 +35,7 @@ input[type=checkbox]:checked + .color-checkbox {
 
 .two-member-container {
     display: inline-flex;
-    margin-left: 25px;
+    margin-left: 15px;
 }
 
 .member-form-image {
