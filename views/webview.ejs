@@ -95,8 +95,10 @@
                                 <div class="custom-control custom-checkbox">
                                     <label class="member-form-label">
                                         <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>>
-                                        <img class="member-form-image" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
-                                        <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
+                                        <label class="color-checkbox">
+                                            <img class="member-form-image" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
+                                            <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
+                                        </label>  
                                     </label>
                                 </div>  
                             </div>
