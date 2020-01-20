@@ -38,11 +38,10 @@ input[type=checkbox]:checked + .color-checkbox {
 
 .two-member-container {
     display: inline-flex;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    text-align: center; 
+    left: 50%;  
 }
+
 
 .member-form-image {
     height: auto; 
