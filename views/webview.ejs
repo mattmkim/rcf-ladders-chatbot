@@ -58,33 +58,57 @@
             <% var sophomore = false; %>
             <% var junior = false; %>
             <% var senior = false; %>
+            <% var count = 0; %>
             <% for (var i = 0; i < data.length; i++) { %>
                 <% if (data[i].user_id.localeCompare(currUser) != 0) { %>
                     <% if (data[i].year == 1 && freshman === false) { %>
                         <h4 class="class-header"> Freshman </h4>
                         <% freshman = true; %>
+                        <% count = 0; %>
                     <% } else if (data[i].year == 2 && sophomore === false) { %>
                         <h4 class="class-header"> Sophomores </h4>
                         <% sophomore = true; %>
+                        <% count = 0; %>
                     <% } else if (data[i].year == 3 && junior === false) { %>
                         <h4 class="class-header"> Juniors </h4>
                         <% junior = true; %>
+                        <% count = 0; %>
                     <% } else if (data[i].year == 4 && senior === false) { %>
                         <h4 class="class-header"> Seniors </h4>
                         <% senior = true; %>
+                        <% count = 0; %>
                     <% } %>
-                    <div class="member-option">
-                        <div class="custom-control custom-checkbox">
-                            <label class="member-form-label">
-                                <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>>
-                                <!-- <div class="member-image"> -->
-                                    <img class="member-form-image" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
-                                <!-- </div> -->
-                                <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
-                            </label>
-                            
-                        </div>  
+                    
+                    <% if (count % 2 == 0) { %>
+                        <div class="2-member-container">
+                            <div class="member-option">
+                                <div class="custom-control custom-checkbox">
+                                    <label class="member-form-label">
+                                        <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>>
+                                        <!-- <div class="member-image"> -->
+                                            <img class="member-form-image" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
+                                        <!-- </div> -->
+                                        <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
+                                    </label>
+                                    
+                                </div>  
+                            </div>
+                    <% } else { %>
+                        <div class="member-option">
+                            <div class="custom-control custom-checkbox">
+                                <label class="member-form-label">
+                                    <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>>
+                                    <!-- <div class="member-image"> -->
+                                        <img class="member-form-image" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
+                                    <!-- </div> -->
+                                    <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
+                                </label>
+                                
+                            </div>  
+                        </div>
                     </div>
+                    <% } %>
+                    
                <% } %>
             <% } %>
             <button type="submit" name="submit" class="btn btn-primary" id="submitButton"> Submit </button>
