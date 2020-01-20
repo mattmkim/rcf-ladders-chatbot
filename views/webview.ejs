@@ -102,9 +102,6 @@
                                     </label>
                                 </div>  
                             </div>
-                        <% if (data.length == 1) { %>
-                            </div>
-                        <% } %>
                     <% } else { %>
                         <% count = count + 1; %>
                         <div class="member-option">
@@ -122,6 +119,9 @@
                     <% } %>
                     
                <% } %>
+            <% } %>
+            <% if (count % 2 != 0) { %>
+                </div>
             <% } %>
             <button type="submit" name="submit" class="btn btn-primary" id="submitButton"> Submit </button>
         </div>
