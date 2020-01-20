@@ -19,7 +19,10 @@ body {
 .color-checkbox {
     display: inline-block;
     padding: 2px;
-    border-left: 4px blue;
+    border-left: 1px;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
     border-style: solid;
 
 }
