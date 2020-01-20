@@ -16,9 +16,10 @@ body {
     display: none;
 }
 
-/* .color-checkbox {
-    displa
-} */
+.color-checkbox {
+    display: inline-block;
+    
+}
 
 input[type=checkbox]:checked + .color-checkbox {
     background-color: rgb(144, 204, 250);
@@ -26,7 +27,7 @@ input[type=checkbox]:checked + .color-checkbox {
 
 .two-member-container {
     display: inline-flex;
-    margin-left: 40px;
+    margin-left: 30px;
 }
 
 .member-form-image {
