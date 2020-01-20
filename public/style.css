@@ -14,14 +14,13 @@ body {
 
 .custom-control {
     font-size: 14px;
-    background-color: rgb(236, 177, 254);
 }
 
 .custom-control input[type=checkbox] {
     display: none;
 }
 
-.custom-control input[type=checkbox]:checked + .member-form-label {
+.custom-control input[type=checkbox]:checked {
     background-color: #B1DCFE;
 }
 
