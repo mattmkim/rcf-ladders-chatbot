@@ -12,7 +12,7 @@ body {
     margin-right: 50px;
 }  */
 
- .custom-control {
+.custom-control {
     font-size: 14px;
 }
 
@@ -20,7 +20,7 @@ body {
     display: none;
 }
 
-.custom-control input[type=checkbox]:checked + .custom-control {
+.custom-control input[type=checkbox]:checked + .member-form-label {
     background-color: #B1DCFE;
 }
 
