@@ -20,7 +20,7 @@ body {
 } */
 
 .two-member-container {
-    display: inline;
+    display: inline-flex;
 }
 
 .member-form-image {

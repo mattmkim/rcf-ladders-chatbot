@@ -66,14 +66,23 @@
                         <% freshman = true; %>
                         <% count = 0; %>
                     <% } else if (data[i].year == 2 && sophomore === false) { %>
+                        <% if (count % 2 != 0) { %>
+                            </div>
+                        <% } %>
                         <h4 class="class-header"> Sophomores </h4>
                         <% sophomore = true; %>
                         <% count = 0; %>
                     <% } else if (data[i].year == 3 && junior === false) { %>
+                        <% if (count % 2 != 0) { %>
+                            </div>
+                        <% } %>
                         <h4 class="class-header"> Juniors </h4>
                         <% junior = true; %>
                         <% count = 0; %>
                     <% } else if (data[i].year == 4 && senior === false) { %>
+                        <% if (count % 2 != 0) { %>
+                            </div>
+                        <% } %>
                         <h4 class="class-header"> Seniors </h4>
                         <% senior = true; %>
                         <% count = 0; %>
