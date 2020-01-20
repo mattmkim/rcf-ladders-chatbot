@@ -20,7 +20,7 @@ body {
     display: none;
 } */
 
-.custom-control input[type=checkbox]:checked + .member-form-label {
+:checked + .member-form-label {
     background-color: rgb(144, 204, 250);
 }
 
