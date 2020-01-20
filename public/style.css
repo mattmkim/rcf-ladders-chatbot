@@ -20,8 +20,10 @@ body {
     display: inline-block;
     padding: 2px;
     border-left: 4px blue;
+    border-style: solid;
 
 }
+
 
 input[type=checkbox]:checked + .color-checkbox {
     background-color: rgb(144, 204, 250);
