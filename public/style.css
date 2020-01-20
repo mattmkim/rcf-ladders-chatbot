@@ -16,12 +16,17 @@ body {
     display: none;
 }
 
+/* .color-checkbox {
+    displa
+} */
+
 input[type=checkbox]:checked + .color-checkbox {
     background-color: rgb(144, 204, 250);
 }
 
 .two-member-container {
-    display: inline-flex;
+    display: inline-block;
+    text-align: center;
 }
 
 .member-form-image {
