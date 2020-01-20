@@ -19,11 +19,9 @@ body {
 .color-checkbox {
     display: inline-block;
     padding: 2px;
-    border-left: 1px;
-    border-right: none;
-    border-top: none;
-    border-bottom: none;
+    border-width: 0px 0px 0px 2px;
     border-style: solid;
+    border-color: rgb(56, 154, 228);
 
 }
 
