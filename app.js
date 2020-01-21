@@ -690,21 +690,21 @@ function sendLadders() {
                     response.splice(indF, 1);
                     var indS = response.indexOf(s);
                     response.splice(indS, 1);
-                    // User.updateOne({user_id: f.user_id}, {available: false}, function(err, response) {
-                    //     if (err) {
-                    //         console.log(err);
-                    //     } else {
-                    //         console.log(response);
-                    //     }
-                    // })
-                    // User.updateOne({user_id: s.user_id}, {available: false}, function(err, response) {
-                    //     if (err) {
-                    //         console.log(err);
-                    //     } else {
-                    //         console.log(response);
-                    //     }
-                    // })
-                    // if odd number of people, need to make a group of three?
+                    User.updateOne({user_id: f.user_id}, {available: false}, function(err, response) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            console.log(response);
+                        }
+                    })
+                    User.updateOne({user_id: s.user_id}, {available: false}, function(err, response) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            console.log(response);
+                        }
+                    })
+                    //if odd number of people, need to make a group of three?
                     if (response.length == 1) {
                         var t = response[0];
                         console.log(t);
