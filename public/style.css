@@ -16,6 +16,10 @@ body {
     display: none;
 }
 
+#info {
+    text-align: center;
+}
+
 .color-checkbox {
     display: inline-block;
     padding-top: 2px;
