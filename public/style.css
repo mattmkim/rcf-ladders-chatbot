@@ -17,12 +17,12 @@ body {
 }
 
 #info {
-    display: inline-block;
     text-align: center;
+    margin: 0 auto;
     font-size: 12px;
     width: 200px;
     height: 60px;
-    border-width: 3px;
+    border-width: 0px 0px 0px 4px;
     border-style: solid;
     border-color: rgb(56, 154, 228);
 }
