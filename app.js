@@ -257,9 +257,8 @@ function processMessage(event) {
                     } else if (response.length == 0 || response[0].loggedIn === false) {
                         sendMessage(senderId, {text: notLoggedInMessage});
                     } else {
-                        // view 10 members who have signed up
-                        // potentially add functionality so users can specify which users they want to see??
-                        User.find({}).limit(10).exec(function(err, response) {
+
+                        User.findRandom({}, {}, {limit: 10}, function(err, response) {
                             if (err) {
                                 console.log(err);
                             } else {
@@ -267,6 +266,15 @@ function processMessage(event) {
                                 viewMembers(senderId, response);
                             }
                         })
+
+                        // User.find({}).limit(10).exec(function(err, response) {
+                        //     if (err) {
+                        //         console.log(err);
+                        //     } else {
+                        //         console.log(response);
+                        //         viewMembers(senderId, response);
+                        //     }
+                        // })
                     }
                 })
             } else if (text.localeCompare("View Commands") == 0 || text.localeCompare("View commands") == 0 || text.localeCompare("view commands") == 0) {
