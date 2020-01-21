@@ -18,9 +18,14 @@ body {
 
 #info {
     text-align: center;
-    font-size: 13px;
+    font-size: 12px;
     width: 200px;
     height: 60px;
+    justify-content: center;
+    align-items: center;
+    border-width: 1px;
+    border-style: groove;
+    border-color: rgb(56, 154, 228);
 }
 
 .color-checkbox {
