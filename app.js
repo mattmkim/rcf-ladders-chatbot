@@ -666,41 +666,44 @@ function sendLadders() {
                 message = "Looks like no one else is free this week :(";
                 sendMessage(response[0].user_id, {text: message});
             } else {
+                console.log(response);
                 while (response.length > 0) {
                     var f = response[Math.floor(Math.random() * response.length)];
                     console.log(f);
                     var s = response[Math.floor(Math.random() * response.length)];
                     console.log(s);
 
-                    while (f.known.includes(s.user_id) && s.known.includes(f.user_id)) {
+                    while ((f.known.includes(s.user_id) && s.known.includes(f.user_id)) || f.user_id.localeCompare(s.user_id) == 0) {
                         s = response[Math.floor(Math.random() * response.length)];
                         if (f.known.length == response.length - 1) {
-                            break;
-                        } else if (s.known.length == response.length - 1) {
-                            break;
-                        } else {
-                            continue;
-                        }
+                            if (s.known.length == response.length - 1) {
+                                // both f and s know everyone else
+                                break;
+                            } else {
+                                // f knows everyone else, find someone who doesn't know f
+                                continue;
+                            }
+                        } 
                     }
 
                     var indF = response.indexOf(f);
                     response.splice(indF, 1);
                     var indS = response.indexOf(s);
                     response.splice(indS, 1);
-                    User.updateOne({user_id: f.user_id}, {available: false}, function(err, response) {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            console.log(response);
-                        }
-                    })
-                    User.updateOne({user_id: s.user_id}, {available: false}, function(err, response) {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            console.log(response);
-                        }
-                    })
+                    // User.updateOne({user_id: f.user_id}, {available: false}, function(err, response) {
+                    //     if (err) {
+                    //         console.log(err);
+                    //     } else {
+                    //         console.log(response);
+                    //     }
+                    // })
+                    // User.updateOne({user_id: s.user_id}, {available: false}, function(err, response) {
+                    //     if (err) {
+                    //         console.log(err);
+                    //     } else {
+                    //         console.log(response);
+                    //     }
+                    // })
                     // if odd number of people, need to make a group of three?
                     if (response.length == 1) {
                         var t = response[0];
