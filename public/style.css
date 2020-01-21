@@ -19,8 +19,8 @@ body {
 #info {
     text-align: center;
     font-size: 13px;
-    width: 200px
-    height: 60px
+    width: 200px;
+    height: 60px;
 }
 
 .color-checkbox {
@@ -43,6 +43,7 @@ body {
 
 input[type=checkbox]:checked + .color-checkbox {
     background-color:rgb(164, 216, 255);
+
 
 }    
 
