@@ -698,20 +698,20 @@ function sendLadders() {
 
                     //for testing comment out below
 
-                    // User.updateOne({user_id: f.user_id}, {available: false}, function(err, response) {
-                    //     if (err) {
-                    //         console.log(err);
-                    //     } else {
-                    //         console.log(response);
-                    //     }
-                    // })
-                    // User.updateOne({user_id: s.user_id}, {available: false}, function(err, response) {
-                    //     if (err) {
-                    //         console.log(err);
-                    //     } else {
-                    //         console.log(response);
-                    //     }
-                    // })
+                    User.updateOne({user_id: f.user_id}, {available: false}, function(err, response) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            console.log(response);
+                        }
+                    })
+                    User.updateOne({user_id: s.user_id}, {available: false}, function(err, response) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            console.log(response);
+                        }
+                    })
 
 
                     //if odd number of people, need to make a group of three?
@@ -720,34 +720,34 @@ function sendLadders() {
                         //console.log(t);
                         var indT = response.indexOf(t);
                         response.splice(indT, 1);
-                        // User.updateOne({user_id: t.user_id}, {available: false}, function(err, response) {
-                        //     if (err) {
-                        //         console.log(err);
-                        //     } else {
-                        //         console.log(response);
-                        //     }
-                        // })
+                        User.updateOne({user_id: t.user_id}, {available: false}, function(err, response) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                console.log(response);
+                            }
+                        })
                         console.log(f.firstName + " matched with " + s.firstName + " and " + t.firstName);
                         var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + " and " + t.firstName + "! You all said you were able to meet this week. Message " + s.firstName + " and " + t.firstName + " to schedule a time to meet.";
                         var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + " and " + t.firstName + "! You all said you were able to meet this week. Message " + f.firstName + " and " + t.firstName + " to schedule a time to meet.";
                         var messageToT = "Hi " + t.firstName + ", meet " + s.firstName + " and " + f.firstName + "! You all said you were able to meet this week. Message " + f.firstName + " and " + s.firstName + " to schedule a time to meet.";
-                        // sendSubscriptionMessage(f.user_id, {text: messageToF});
-                        // sendSubscriptionMessage(s.user_id, {text: messageToS});
-                        // sendSubscriptionMessage(t.user_id, {text: messageToT});
-                        // laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
-                        // laddersPB(f.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
-                        // laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
-                        // laddersPB(s.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
-                        // laddersPB(t.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
-                        // laddersPB(t.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+                        sendSubscriptionMessage(f.user_id, {text: messageToF});
+                        sendSubscriptionMessage(s.user_id, {text: messageToS});
+                        sendSubscriptionMessage(t.user_id, {text: messageToT});
+                        laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
+                        laddersPB(f.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
+                        laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+                        laddersPB(s.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
+                        laddersPB(t.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
+                        laddersPB(t.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
                     } else {
                         console.log(f.firstName + " matched with " + s.firstName);
                         var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + "! You both said you were able to meet this week. Message " + s.firstName + " to schedule a time to meet.";
                         var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + "! You both said you were able to meet this week. Message " + f.firstName + " to schedule a time to meet.";
-                        // sendSubscriptionMessage(f.user_id, {text: messageToF});
-                        // sendSubscriptionMessage(s.user_id, {text: messageToS});
-                        // laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
-                        // laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+                        sendSubscriptionMessage(f.user_id, {text: messageToF});
+                        sendSubscriptionMessage(s.user_id, {text: messageToS});
+                        laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
+                        laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
                     }
                 }
                 console.log('Done iterating through list.');
