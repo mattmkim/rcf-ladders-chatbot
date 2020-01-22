@@ -20,23 +20,19 @@
     }(document, 'script', 'Messenger'));
 
     window.extAsyncInit = () => {
-        // TODO: How to parse env file from here?
         MessengerExtensions.getSupportedFeatures(function success(result) {
             let features = result.supported_features;
             if (features.includes("context")) {
                 MessengerExtensions.getContext('<APP_ID>',
                     function success(thread_context) {
-                        // success
                         document.getElementById("psid").value = thread_context.psid;
                     },
                     function error(err) {
-                        // error
                         console.log(err);
                     }
                 );
             }
         }, function error(err) {
-            // error retrieving supported features
             console.log(err);
         });
         document.getElementById('submitButton').addEventListener('click', () => {
@@ -119,14 +115,11 @@
                                             <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
                                         </div>
                                     </div>
-                                        
-
                                 </label>
                             </div>  
                         </div>
                     </div>
                     <% } %>
-                    
                <% } %>
             <% } %>
             <% if (count % 2 != 0) { %>
