@@ -63,6 +63,7 @@
                 <% if (data[i].user_id.localeCompare(currUser) != 0) { %>
                     <% if (data[i].year == null && incomplete === false) { %>
                         <h4 class="class-header"> Incomplete Profile </h4>
+                        <% console.log(data[i].firstName); %>
                         <% incomplete = true; %>
                         <% count = 0; %>
                     <% } else if (data[i].year == 1 && freshman === false) { %>
