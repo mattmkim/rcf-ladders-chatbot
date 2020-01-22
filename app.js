@@ -98,7 +98,7 @@ app.get('/preferences/:userId', (req, res, next) => {
 
 app.post('/preferencespostback/:userId', (req, res) => {
     let body = req.body;
-    var newMessage = "Great, thanks for submitting your preferences! Keep on the lookout for weekly messages from us on Sundays!";
+    var newMessage = "Great, thanks for submitting your preferences! Keep on the lookout for weekly messages from us on Saturdays!";
     var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
     
     //keys is array of all keys (psid, ....., submit)
@@ -177,7 +177,7 @@ async function processPostback(event) {
                 console.log("Updated " + senderId + " to true.");
             }
         })
-        var message = "Got it. I'll get back to you by Monday morning!"
+        var message = "Got it. I'll get back to you Sunday night!"
         sendMessage(senderId, {text: message});
     } else if (payload == "NO") {
         User.update({user_id: senderId}, {available: false}, function(err, response) {
@@ -198,7 +198,7 @@ async function processPostback(event) {
                 console.log(response);
             }
         })
-        var newMessage = "Great, thanks for submitting your preferences! Keep on the lookout for weekly messages from us on Sundays!";
+        var newMessage = "Great, thanks for submitting your preferences! Keep on the lookout for weekly messages from us on Saturdays!";
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
         setPreferences(senderId);
     } else if (payload == "JUNIOR") {
@@ -209,7 +209,7 @@ async function processPostback(event) {
                 console.log(response);
             }
         })
-        var newMessage = "Great, thanks for submitting your preferences! Keep on the lookout for weekly messages from us on Sundays!";
+        var newMessage = "Great, thanks for submitting your preferences! Keep on the lookout for weekly messages from us on Saturdays!";
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
         setPreferences(senderId);
     } else if (payload == "SOPHOMORE") {
@@ -220,7 +220,7 @@ async function processPostback(event) {
                 console.log(response);
             }
         })
-        var newMessage = "Great, thanks for submitting your preferences! Keep on the lookout for weekly messages from us on Sundays!";
+        var newMessage = "Great, thanks for submitting your preferences! Keep on the lookout for weekly messages from us on Saturdays!";
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
         setPreferences(senderId);
         
@@ -232,7 +232,7 @@ async function processPostback(event) {
                 console.log(response);
             }
         })
-        var newMessage = "Great, thanks for submitting your preferences! Keep on the lookout for weekly messages from us on Sundays!";
+        var newMessage = "Great, thanks for submitting your preferences! Keep on the lookout for weekly messages from us on Saturdays!";
         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
         setPreferences(senderId);
         
@@ -486,7 +486,7 @@ function newUser(senderId) {
                     } else if (response[0].year == null) {
                         sendYearPBs(senderId)
                     } else {
-                        secondMessage = "Looks like you're already logged in! Keep on the lookout for weekly messages from us on Sundays!"
+                        secondMessage = "Looks like you're already logged in! Keep on the lookout for weekly messages from us on Saturdays!"
                         var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
                         sendThreeMessages(senderId, firstMessage, secondMessage, viewMembersMessage);
                     }
