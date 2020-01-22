@@ -99,7 +99,7 @@ app.get('/preferences/:userId', (req, res, next) => {
 app.post('/preferencespostback/:userId', (req, res) => {
     let body = req.body;
     var newMessage = "Great, thanks for submitting your preferences! Keep on the lookout for weekly messages from us on Saturdays!";
-    var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
+    var viewMembersMessage = "In the meantime, type " + '"' + "View Commands" + '"' + " to view all valid commands.";
     
     //keys is array of all keys (psid, ....., submit)
     let keys = Object.keys(body);
@@ -199,7 +199,7 @@ async function processPostback(event) {
             }
         })
         var newMessage = "Great, thanks for submitting your preferences! Keep on the lookout for weekly messages from us on Saturdays!";
-        var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
+        var viewMembersMessage = "In the meantime, type " + '"' + "View Commands" + '"' + " to view all valid commands.";
         setPreferences(senderId);
     } else if (payload == "JUNIOR") {
         User.update({user_id: senderId}, {year: 3}, function(err, response) {
@@ -210,7 +210,7 @@ async function processPostback(event) {
             }
         })
         var newMessage = "Great, thanks for submitting your preferences! Keep on the lookout for weekly messages from us on Saturdays!";
-        var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
+        var viewMembersMessage = "In the meantime, type " + '"' + "View Commands" + '"' + " to view all valid commands.";
         setPreferences(senderId);
     } else if (payload == "SOPHOMORE") {
         User.update({user_id: senderId}, {year: 2}, function(err, response) {
@@ -221,7 +221,7 @@ async function processPostback(event) {
             }
         })
         var newMessage = "Great, thanks for submitting your preferences! Keep on the lookout for weekly messages from us on Saturdays!";
-        var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
+        var viewMembersMessage = "In the meantime, type " + '"' + "View Commands" + '"' + " to view all valid commands.";
         setPreferences(senderId);
         
     } else if (payload == "FRESHMAN") {
@@ -233,7 +233,7 @@ async function processPostback(event) {
             }
         })
         var newMessage = "Great, thanks for submitting your preferences! Keep on the lookout for weekly messages from us on Saturdays!";
-        var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
+        var viewMembersMessage = "In the meantime, type " + '"' + "View Commands" + '"' + " to view all valid commands.";
         setPreferences(senderId);
         
     }
@@ -288,7 +288,8 @@ function processMessage(event) {
                         var message = "All valid commands: \n\nView Members: Send " + '"' + "View Members" + '"' + " to get a preview of members who are also in RCF Meets! \n\n" 
                         + "Unsubscribe: Send " + '"' + "Unsubscribe" + '"' + "if you want to unsubscribe and no longer want to receive messages. \n\n" + 
                         "Update Availability: Send " + '"' + "Update Availability" + '"' + " if you want to update your availabilility. \n\n" +
-                        "Get Started: Send " + '"' + "Get Started" + '"' + " if you want to remake your profile, or if you have recently unsubscribed and would like to subscribe again."; 
+                        "Get Started: Send " + '"' + "Get Started" + '"' + " if you want to remake your profile, or if you have recently unsubscribed and would like to subscribe again. \n\n" +
+                        "Set Preferences: Send " + '"' + "Send Preferences" + '"' + " if you want to update your preferences."; 
                         sendMessage(senderId, {text: message});
                     }
                 })
@@ -487,7 +488,7 @@ function newUser(senderId) {
                         sendYearPBs(senderId)
                     } else {
                         secondMessage = "Looks like you're already logged in! Keep on the lookout for weekly messages from us on Saturdays!"
-                        var viewMembersMessage = "In the meantime, type " + '"' + "View Members" + '"' + " if you would like to get a preview of who else is in RCF Meets!";
+                        var viewMembersMessage = "In the meantime, type " + '"' + "View Commands" + '"' + " to view all valid commands.";
                         sendThreeMessages(senderId, firstMessage, secondMessage, viewMembersMessage);
                     }
                 }
