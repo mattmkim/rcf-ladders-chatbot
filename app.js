@@ -677,8 +677,12 @@ function sendLadders() {
                         s = response[Math.floor(Math.random() * response.length)];
                         if (f.known.length == response.length - 1) {
                             if (s.known.length == response.length - 1) {
-                                // both f and s know everyone else
-                                break;
+                                // both f and s know everyone else - but still check if f.user_id == s.user_id
+                                if (f.user_id.localeCompare(s.user_id) == 0) {
+                                    continue;
+                                } else {
+                                    break;
+                                }
                             } else {
                                 // f knows everyone else, find someone who doesn't know f
                                 continue;
