@@ -53,16 +53,16 @@ function sleep(ms){
 // for sending two consecutive messages
 async function sendTwoMessages(senderId, message1, message2){
     sendMessage(senderId, {text: message1});
-    await sleep(300);
+    await sleep(400);
     sendMessage(senderId, {text: message2});
 }
 
 // for sending three consecutive messages
 async function sendThreeMessages(senderId, message1, message2, message3){
     sendMessage(senderId, {text: message1});
-    await sleep(200);
+    await sleep(400);
     sendMessage(senderId, {text: message2});
-    await sleep(200);
+    await sleep(400);
     sendMessage(senderId, {text: message3});
 
 }
