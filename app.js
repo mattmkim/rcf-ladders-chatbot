@@ -26,18 +26,18 @@ app.get("/", function (req, res) {
     res.send("Deployed!");
 });
 
-// send availability postback every Sunday morning
+// send availability postback every Saturday night
 // real time string: '0 6 * * Sunday'
-cron.schedule('0 6 * * Saturday', () => {
+cron.schedule('0 18 * * Saturday', () => {
     sendAvailabilityPB();
 }, {
     scheduled: true,
     timezone: "America/New_York"
 });
 
-// send ladders partners Monday mornings
+// send ladders partners Sunday nights
 // real time string: '0 5 * * Monday'
-cron.schedule('0 5 * * Saturday', () => {
+cron.schedule('0 18 * * Sunday', () => {
     sendLadders();
 }, {
     scheduled: true,
