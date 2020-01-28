@@ -891,7 +891,7 @@ function sendProfileReminder() {
         } else {
             for (var i = 0; i < response.length; i++) {
                 if (response[i].year == null) {
-                    //sendMessage(response[i].user_id, {text: message});
+                    sendMessage("2479283145514220", {text: message});
                     console.log(response[i].firstName);
                     console.log(response[i].user_id);
                 }
