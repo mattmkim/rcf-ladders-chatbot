@@ -325,6 +325,8 @@ function processMessage(event) {
             // } else if (text.localeCompare("Show Meetup") == 0 || text.localeCompare("Show meetup") == 0 || text.localeCompare("show meetup") == 0) {
             //     sendLadders();
             // for APP APPROVAL ONLY
+            } else if (text.localCompare("send reminder profile") == 0) {
+                sendProfileReminder();
             } else {
                 User.find({user_id: senderId}, function(err, response) {
                     if (err) {
@@ -877,5 +879,21 @@ function setPreferences(senderId) {
             } else {
                 console.log(response);
             }
+    })
+}
+
+// function to remind people who have year == null to complete their profile
+function sendProfileReminder() {
+    var message = "Hi! Just a reminder to finish completing your profile!";
+    User.find({}, function(err, response) {
+        if (err) {
+            console.log(err);
+        } else {
+            for (var i = 0; i < response.length; i++) {
+                if (response[i].year == null) {
+                    console.log(response[i].firstName);
+                }
+            }
+        }
     })
 }
