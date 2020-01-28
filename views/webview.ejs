@@ -68,6 +68,9 @@
                         <% incomplete = true; %>
                         <% count = 0; %>
                     <% } else if (data[i].year == 1 && freshman === false) { %>
+                        <% if (count % 2 != 0) { %>
+                            </div>
+                        <% } %>
                         <h4 class="class-header"> Freshman </h4>
                         <% freshman = true; %>
                         <% count = 0; %>
