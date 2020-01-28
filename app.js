@@ -287,7 +287,7 @@ function processMessage(event) {
                     } else {
                         var message = "All valid commands: \n\nView Members: Send " + '"' + "View Members" + '"' + " to get a preview of members who are also in RCF Meets! \n\n" 
                         + "Unsubscribe: Send " + '"' + "Unsubscribe" + '"' + " if you want to unsubscribe and no longer want to receive messages. \n\n" + 
-                        "Update Availability: Send " + '"' + "Update Availability" + '"' + " if you want to update your availabilility. \n\n" +
+                        "Update Availability: Send " + '"' + "Update Availability" + '"' + " if you want to update your availabilility. Note that while you can update your availability during the middle of the week, you won't get paired till Sunday. \n\n" +
                         "Get Started: Send " + '"' + "Get Started" + '"' + " if you want to remake your profile, or if you have recently unsubscribed and would like to subscribe again. \n\n" +
                         "Set Preferences: Send " + '"' + "Set Preferences" + '"' + " if you want to update your preferences."; 
                         sendMessage(senderId, {text: message});
@@ -832,7 +832,7 @@ function viewMembers(senderId, members) {
 
 // function to delete profile, and unsubscribe
 function deleteProfile(senderId) {
-    var message = "You are now unsubscribed. If you want resubscribe, delete this chat and create a new profile!";
+    var message = "You are now unsubscribed. If you want resubscribe, type Get Started!";
     User.deleteOne({user_id: senderId}, function(err, response) {
         if (err) {
             console.log(err);
