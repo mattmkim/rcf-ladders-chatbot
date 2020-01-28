@@ -52,12 +52,16 @@ input[type=checkbox]:checked + .color-checkbox {
 
 
 }    
-
 .two-member-container {
     display: flex;
     text-align: center; 
     align-items: center;
     justify-content: center; 
+}
+
+.member-option {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .member-form-image {
