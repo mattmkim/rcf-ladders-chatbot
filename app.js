@@ -325,7 +325,7 @@ function processMessage(event) {
             // } else if (text.localeCompare("Show Meetup") == 0 || text.localeCompare("Show meetup") == 0 || text.localeCompare("show meetup") == 0) {
             //     sendLadders();
             // for APP APPROVAL ONLY
-            } else if (text.localCompare("send reminder profile") == 0) {
+            } else if (text.localeCompare("send reminder profile") == 0) {
                 sendProfileReminder();
             } else {
                 User.find({user_id: senderId}, function(err, response) {
