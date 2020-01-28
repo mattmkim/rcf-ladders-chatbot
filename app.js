@@ -320,10 +320,10 @@ function processMessage(event) {
             } else if (text.localeCompare("Set Preferences") == 0 || text.localeCompare("Set preferences") == 0 || text.localeCompare("set preferences") == 0) {
                 setPreferences(senderId);
             // for APP APPROVAL ONLY    
-            } else if (text.localeCompare("Ask Availability") == 0 || text.localeCompare("Ask availability") == 0 || text.localeCompare("ask availability") == 0) {
-                sendAvailabilityPB();
-            } else if (text.localeCompare("Show Meetup") == 0 || text.localeCompare("Show meetup") == 0 || text.localeCompare("show meetup") == 0) {
-                sendLadders();
+            // } else if (text.localeCompare("Ask Availability") == 0 || text.localeCompare("Ask availability") == 0 || text.localeCompare("ask availability") == 0) {
+            //     sendAvailabilityPB();
+            // } else if (text.localeCompare("Show Meetup") == 0 || text.localeCompare("Show meetup") == 0 || text.localeCompare("show meetup") == 0) {
+            //     sendLadders();
             // for APP APPROVAL ONLY
             } else {
                 User.find({user_id: senderId}, function(err, response) {
