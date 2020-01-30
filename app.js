@@ -884,14 +884,15 @@ function setPreferences(senderId) {
 
 // function to remind people who have year == null to complete their profile
 function sendProfileReminder() {
-    var message = "Hi! Just a reminder to finish completing your profile!";
+    var message = "Hi! Just a reminder to finish completing your profile when you get the chance! If you would like to start over, just send " + '"' + 
+    "Get Started" + '"' + ".";
     User.find({}, function(err, response) {
         if (err) {
             console.log(err);
         } else {
             for (var i = 0; i < response.length; i++) {
                 if (response[i].year == null) {
-                    //sendMessage(response[i].user_id, {text: message});
+                    sendMessage(response[i].user_id, {text: message});
                     console.log(response[i].firstName);
                     console.log(response[i].user_id);
                 }
