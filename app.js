@@ -28,7 +28,7 @@ app.get("/", function (req, res) {
 
 // send availability postback every Saturday night
 // real time string: '0 6 * * Sunday'
-cron.schedule('0 18 * * Saturday', () => {
+cron.schedule('0 17 * * Saturday', () => {
     sendAvailabilityPB();
 }, {
     scheduled: true,
@@ -37,7 +37,7 @@ cron.schedule('0 18 * * Saturday', () => {
 
 // send ladders partners Sunday nights
 // real time string: '0 5 * * Monday'
-cron.schedule('0 18 * * Sunday', () => {
+cron.schedule('0 17 * * Sunday', () => {
     sendLadders();
 }, {
     scheduled: true,
@@ -257,7 +257,6 @@ function processMessage(event) {
                     } else if (response.length == 0 || response[0].loggedIn === false) {
                         sendMessage(senderId, {text: notLoggedInMessage});
                     } else {
-
                         User.findRandom({}, {}, {limit: 10}, function(err, response) {
                             if (err) {
                                 console.log(err);
@@ -266,7 +265,6 @@ function processMessage(event) {
                                 viewMembers(senderId, response);
                             }
                         })
-
                         // User.find({}).limit(10).exec(function(err, response) {
                         //     if (err) {
                         //         console.log(err);
