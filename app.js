@@ -907,17 +907,15 @@ function sendProfileReminder() {
 function sendPreferenceReminder() {
     var message = "Hi! Just a reminder to update your preferences if you haven't updated them recently! You can either scroll up and click the Set Preferences button, " +
     "or send " + '"' + "Set Preferences" + '",' + " and we will send you the button again.";
-    sendMessage("2479283145514220", {text: message});
-    // User.find({}, function(err, response) {
-    //     if (err) {
-    //         console.log(err);
-    //     } else {
-            
-    //         // for (var i = 0; i < response.length; i++) {
-    //         //     sendMessage(response[i].user_id, {text: message});
-    //         //     console.log(response[i].firstName);
-    //         //     console.log(response[i].user_id);
-    //         // }
-    //     }
-    // })
+    User.find({}, function(err, response) {
+        if (err) {
+            console.log(err);
+        } else {
+            for (var i = 0; i < response.length; i++) {
+                sendMessage(response[i].user_id, {text: message});
+                console.log(response[i].firstName);
+                console.log(response[i].user_id);
+            }
+        }
+    })
 }
