@@ -287,7 +287,7 @@ function processMessage(event) {
                     } else {
                         var message = "All valid commands: \n\nView Members: Send " + '"' + "View Members" + '"' + " to get a preview of members who are also in RCF Meets! \n\n" 
                         + "Unsubscribe: Send " + '"' + "Unsubscribe" + '"' + " if you want to unsubscribe and no longer want to receive messages. \n\n" + 
-                        "Update Availability: Send " + '"' + "Update Availability" + '"' + " if you want to update your availabilility. Note that while you can update your availability during the middle of the week, you won't get paired till Sunday. \n\n" +
+                        "Update Availability: Send " + '"' + "Update Availability" + '"' + " if you want to update your availability. Note that while you can update your availability during the middle of the week, you won't get paired till Sunday. \n\n" +
                         "Get Started: Send " + '"' + "Get Started" + '"' + " if you want to remake your profile, or if you have recently unsubscribed and would like to subscribe again. \n\n" +
                         "Set Preferences: Send " + '"' + "Set Preferences" + '"' + " if you want to update your preferences."; 
                         sendMessage(senderId, {text: message});
@@ -327,6 +327,8 @@ function processMessage(event) {
             // for APP APPROVAL ONLY
             } else if (text.localeCompare("send reminder profile") == 0) {
                 sendProfileReminder();
+            } else if (text.localeCompare("send preference reminder") == 0) {
+                sendPreferenceReminder();
             } else {
                 User.find({user_id: senderId}, function(err, response) {
                     if (err) {
@@ -899,4 +901,23 @@ function sendProfileReminder() {
             }
         }
     })
+}
+
+// function to remind people to update preferences
+function sendPreferenceReminder() {
+    var message = "Hi! Just a reminder to update your preferences if you haven't updated them recently! You can either scroll up and click the Set Preferences button, " +
+    "or send " + '"' + "Set Preferences" + '",' + " and we will send you the button again.";
+    sendMessage("2479283145514220", {text: message});
+    // User.find({}, function(err, response) {
+    //     if (err) {
+    //         console.log(err);
+    //     } else {
+            
+    //         // for (var i = 0; i < response.length; i++) {
+    //         //     sendMessage(response[i].user_id, {text: message});
+    //         //     console.log(response[i].firstName);
+    //         //     console.log(response[i].user_id);
+    //         // }
+    //     }
+    // })
 }
