@@ -322,8 +322,8 @@ function processMessage(event) {
             // for APP APPROVAL ONLY    
             // } else if (text.localeCompare("Ask Availability") == 0 || text.localeCompare("Ask availability") == 0 || text.localeCompare("ask availability") == 0) {
             //     sendAvailabilityPB();
-            // } else if (text.localeCompare("Show Meetup") == 0 || text.localeCompare("Show meetup") == 0 || text.localeCompare("show meetup") == 0) {
-            //     sendLadders();
+            } else if (text.localeCompare("Show Meetup") == 0 || text.localeCompare("Show meetup") == 0 || text.localeCompare("show meetup") == 0) {
+                sendLadders();
             // for APP APPROVAL ONLY
             } else if (text.localeCompare("send reminder profile") == 0) {
                 sendProfileReminder();
@@ -733,25 +733,35 @@ function sendLadders() {
                         })
                         console.log(f.firstName + " matched with " + s.firstName + " and " + t.firstName);
                         var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + " and " + t.firstName + "! You all said you were able to meet this week. Message " + s.firstName + " and " + t.firstName + " to schedule a time to meet.";
+                        var secondMessageToF = s.firstName + "'s interests: " + s.interests + "\n" + s.firstName + "'s fun fact: " + s.fun_fact + "\n\n"
+                        t.firstName + "'s interests: " t.interests + "\n" + t.firstName + "'s fun fact: " + t.fun_fact;
                         var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + " and " + t.firstName + "! You all said you were able to meet this week. Message " + f.firstName + " and " + t.firstName + " to schedule a time to meet.";
+                        var secondMessageToS = f.firstName + "'s interests: " + f.interests + "\n" + f.firstName + "'s fun fact: " + f.fun_fact + "\n\n"
+                        t.firstName + "'s interests: " t.interests + "\n" + t.firstName + "'s fun fact: " + t.fun_fact;
                         var messageToT = "Hi " + t.firstName + ", meet " + s.firstName + " and " + f.firstName + "! You all said you were able to meet this week. Message " + f.firstName + " and " + s.firstName + " to schedule a time to meet.";
-                        sendSubscriptionMessage(f.user_id, {text: messageToF});
-                        sendSubscriptionMessage(s.user_id, {text: messageToS});
-                        sendSubscriptionMessage(t.user_id, {text: messageToT});
-                        laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
-                        laddersPB(f.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
-                        laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
-                        laddersPB(s.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
-                        laddersPB(t.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
-                        laddersPB(t.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+                        var secondMessageToT = s.firstName + "'s interests: " + s.interests + "\n" + s.firstName + "'s fun fact: " + s.fun_fact + "\n\n"
+                        f.firstName + "'s interests: " f.interests + "\n" + f.firstName + "'s fun fact: " + f.fun_fact;
+                        sendTwoMessages("2479283145514220", messageToF, secondMessageToF);
+                        // sendTwoMessages(f.user_id, messageToF, secondMessageToF);
+                        // sendTwoMessages(s.user_id, messageToS, secondMessageToS);
+                        // sendTwoMessages(t.user_id, messageToT, secondMessageToT);
+                        // laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
+                        // laddersPB(f.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
+                        // laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+                        // laddersPB(s.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
+                        // laddersPB(t.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
+                        // laddersPB(t.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
                     } else {
                         console.log(f.firstName + " matched with " + s.firstName);
                         var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + "! You both said you were able to meet this week. Message " + s.firstName + " to schedule a time to meet.";
+                        var secondMessageToF = s.firstName + "'s interests: " + s.interests + "\n" + s.firstName + "'s fun fact: " + s.fun_fact;
                         var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + "! You both said you were able to meet this week. Message " + f.firstName + " to schedule a time to meet.";
-                        sendSubscriptionMessage(f.user_id, {text: messageToF});
-                        sendSubscriptionMessage(s.user_id, {text: messageToS});
-                        laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
-                        laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+                        var secondMessageToS = f.firstName + "'s interests: " + f.interests + "\n" + f.firstName + "'s fun fact: " + f.fun_fact;
+                        sendTwoMessages("2479283145514220", messageToF, secondMessageToF);
+                        // sendTwoMessages(f.user_id, messageToF, secondMessageToF);
+                        // sendTwoMessages(s.user_id, messageToS, secondMessageToS);
+                        // laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
+                        // laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
                     }
                 }
                 console.log('Done iterating through list.');
