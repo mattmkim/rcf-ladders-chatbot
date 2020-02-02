@@ -773,7 +773,7 @@ function sendLadders() {
                         // laddersPB(t.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
                         // laddersPB(t.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
 
-                        // Previous.get({user_id: f.user_id}, function(err, response) {
+                        // Previous.find({user_id: f.user_id}, function(err, response) {
                         //     if (err) {
                         //         console.log(err)
                         //     } else {
@@ -795,7 +795,7 @@ function sendLadders() {
                         //     }
                         // })
 
-                        // Previous.get({user_id: s.user_id}, function(err, response) {
+                        // Previous.find({user_id: s.user_id}, function(err, response) {
                         //     if (err) {
                         //         console.log(err)
                         //     } else {
@@ -817,7 +817,7 @@ function sendLadders() {
                         //     }
                         // })
 
-                        // Previous.get({user_id: t.user_id}, function(err, response) {
+                        // Previous.find({user_id: t.user_id}, function(err, response) {
                         //     if (err) {
                         //         console.log(err)
                         //     } else {
@@ -851,7 +851,7 @@ function sendLadders() {
                         
                         // update previous
                         
-                        Previous.get({user_id: "2479283145514220"}, function(err, response) {
+                        Previous.find({user_id: "2479283145514220"}, function(err, response) {
                             if (err) {
                                 console.log(err)
                             } else {
@@ -871,7 +871,7 @@ function sendLadders() {
                             }
                         })
 
-                        // Previous.get({user_id: s.user_id}, function(err, response) {
+                        // Previous.find({user_id: s.user_id}, function(err, response) {
                         //     if (err) {
                         //         console.log(err)
                         //     } else {
