@@ -327,6 +327,7 @@ function processMessage(event) {
             //     sendLadders();
             // for APP APPROVAL ONLY
             } else if (text.localeCompare("create previous") == 0) {
+                console.log('hello');
                 User.find({}, function(err, response) {
                     if (err) {
                         console.log(err)
