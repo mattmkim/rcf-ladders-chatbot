@@ -12,6 +12,7 @@ setInterval(function() {
 console.log(process.env.MONGODB_URI);
 var db = mongoose.connect("mongodb://mattmkim:minwoo123@ds351455.mlab.com:51455/heroku_7866frlv");
 var User = require("./models/users");
+var Prevoius = require("./models/previous");
 
 var app = express();
 app.use(bodyParser.urlencoded({extended: false}));
@@ -325,6 +326,26 @@ function processMessage(event) {
             // } else if (text.localeCompare("Show Meetup") == 0 || text.localeCompare("Show meetup") == 0 || text.localeCompare("show meetup") == 0) {
             //     sendLadders();
             // for APP APPROVAL ONLY
+            } else if (text.localeCompare("create previous") == 0) {
+                User.find({}, function(err, response) {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        for (var i = 0; i < response.length; i++) {
+                            var newPrev = new Previous({
+                                user_id: senderId,
+                                prevMeetup: []
+                            });
+                            newPrev.save(function (err, response) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.log(response);
+                                }
+                            });
+                        }
+                    }
+                })
             } else if (text.localeCompare("send reminder profile") == 0) {
                 sendProfileReminder();
             } else if (text.localeCompare("send preference reminder") == 0) {
