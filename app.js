@@ -871,23 +871,23 @@ function sendLadders() {
                             }
                         })
 
-                        // Previous.find({user_id: s.user_id}, function(err, response) {
-                        //     if (err) {
-                        //         console.log(err)
-                        //     } else {
-                        //         var prevArr = response[0].prevMeetup;
-                        //         if (!prevArr.includes(f.user_id)) {
-                        //             prevArr.push(f.user_id);
-                        //             Previous.update({user_id: s.user_id}, {prevMeetup: prevArr}, function(err, response) {
-                        //                 if (err) {
-                        //                     console.log(err);
-                        //                 } else {
-                        //                     console.log(response);
-                        //                 }
-                        //             })
-                        //         }
-                        //     }
-                        // })
+                        Previous.find({user_id: "2479283145514220"}, function(err, response) {
+                            if (err) {
+                                console.log(err)
+                            } else {
+                                var prevArr = response[0].prevMeetup;
+                                if (!prevArr.includes(f.user_id)) {
+                                    prevArr.push(f.user_id);
+                                    Previous.update({user_id: "2479283145514220"}, {prevMeetup: prevArr}, function(err, response) {
+                                        if (err) {
+                                            console.log(err);
+                                        } else {
+                                            console.log(response);
+                                        }
+                                    })
+                                }
+                            }
+                        })
 
                         
                     }
