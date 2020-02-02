@@ -323,8 +323,8 @@ function processMessage(event) {
             // for APP APPROVAL ONLY    
             // } else if (text.localeCompare("Ask Availability") == 0 || text.localeCompare("Ask availability") == 0 || text.localeCompare("ask availability") == 0) {
             //     sendAvailabilityPB();
-            } else if (text.localeCompare("Show Meetup") == 0 || text.localeCompare("Show meetup") == 0 || text.localeCompare("show meetup") == 0) {
-                sendLadders();
+            // } else if (text.localeCompare("Show Meetup") == 0 || text.localeCompare("Show meetup") == 0 || text.localeCompare("show meetup") == 0) {
+            //     sendLadders();
             // for APP APPROVAL ONLY
             } else if (text.localeCompare("create previous") == 0) {
                 console.log('hello');
@@ -724,20 +724,20 @@ function sendLadders() {
 
                     //for testing comment out below
 
-                    // User.updateOne({user_id: f.user_id}, {available: false}, function(err, response) {
-                    //     if (err) {
-                    //         console.log(err);
-                    //     } else {
-                    //         //console.log(response);
-                    //     }
-                    // })
-                    // User.updateOne({user_id: s.user_id}, {available: false}, function(err, response) {
-                    //     if (err) {
-                    //         console.log(err);
-                    //     } else {
-                    //         //console.log(response);
-                    //     }
-                    // })
+                    User.updateOne({user_id: f.user_id}, {available: false}, function(err, response) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            //console.log(response);
+                        }
+                    })
+                    User.updateOne({user_id: s.user_id}, {available: false}, function(err, response) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            //console.log(response);
+                        }
+                    })
 
 
                     //if odd number of people, need to make a group of three?
@@ -746,13 +746,13 @@ function sendLadders() {
                         //console.log(t);
                         var indT = response.indexOf(t);
                         response.splice(indT, 1);
-                        // User.updateOne({user_id: t.user_id}, {available: false}, function(err, response) {
-                        //     if (err) {
-                        //         console.log(err);
-                        //     } else {
-                        //         //console.log(response);
-                        //     }
-                        // })
+                        User.updateOne({user_id: t.user_id}, {available: false}, function(err, response) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                //console.log(response);
+                            }
+                        })
                         console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName + " and " + t.firstName + t.lastName);
                         var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + " and " + t.firstName + "! You all said you were able to meet this week. Message " + s.firstName + " and " + t.firstName + " to schedule a time to meet.";
                         var secondMessageToF = s.firstName + "'s interests: " + s.interests + "\n" + s.firstName + "'s fun fact: " + s.fun_fact + "\n\n"
@@ -763,131 +763,131 @@ function sendLadders() {
                         var messageToT = "Hi " + t.firstName + ", meet " + s.firstName + " and " + f.firstName + "! You all said you were able to meet this week. Message " + f.firstName + " and " + s.firstName + " to schedule a time to meet.";
                         var secondMessageToT = s.firstName + "'s interests: " + s.interests + "\n" + s.firstName + "'s fun fact: " + s.fun_fact + "\n\n"
                         f.firstName + "'s interests: " + f.interests + "\n" + f.firstName + "'s fun fact: " + f.fun_fact;
-                        // sendTwoMessages(f.user_id, messageToF, secondMessageToF);
-                        // sendTwoMessages(s.user_id, messageToS, secondMessageToS);
-                        // sendTwoMessages(t.user_id, messageToT, secondMessageToT);
-                        // laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
-                        // laddersPB(f.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
-                        // laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
-                        // laddersPB(s.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
-                        // laddersPB(t.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
-                        // laddersPB(t.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+                        sendTwoMessages(f.user_id, messageToF, secondMessageToF);
+                        sendTwoMessages(s.user_id, messageToS, secondMessageToS);
+                        sendTwoMessages(t.user_id, messageToT, secondMessageToT);
+                        laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
+                        laddersPB(f.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
+                        laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+                        laddersPB(s.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
+                        laddersPB(t.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
+                        laddersPB(t.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
 
-                        // Previous.find({user_id: f.user_id}, function(err, response) {
-                        //     if (err) {
-                        //         console.log(err)
-                        //     } else {
-                        //         var prevArr = response[0].prevMeetup;
-                        //         if (!prevArr.includes(s.user_id)) {
-                        //             prevArr.push(s.user_id);
-                        //         }
-                        //         if (!prevArr.includes(t.user_id)) {
-                        //             prevArr.push(t.user_id);
-                        //         }
+                        Previous.find({user_id: f.user_id}, function(err, response) {
+                            if (err) {
+                                console.log(err)
+                            } else {
+                                var prevArr = response[0].prevMeetup;
+                                if (!prevArr.includes(s.user_id)) {
+                                    prevArr.push(s.user_id);
+                                }
+                                if (!prevArr.includes(t.user_id)) {
+                                    prevArr.push(t.user_id);
+                                }
 
-                        //         Previous.update({user_id: f.user_id}, {prevMeetup: prevArr}, function(err, response) {
-                        //             if (err) {
-                        //                 console.log(err);
-                        //             } else {
-                        //                 console.log(response);
-                        //             }
-                        //         })
-                        //     }
-                        // })
+                                Previous.update({user_id: f.user_id}, {prevMeetup: prevArr}, function(err, response) {
+                                    if (err) {
+                                        console.log(err);
+                                    } else {
+                                        console.log(response);
+                                    }
+                                })
+                            }
+                        })
 
-                        // Previous.find({user_id: s.user_id}, function(err, response) {
-                        //     if (err) {
-                        //         console.log(err)
-                        //     } else {
-                        //         var prevArr = response[0].prevMeetup;
-                        //         if (!prevArr.includes(f.user_id)) {
-                        //             prevArr.push(f.user_id);
-                        //         }
-                        //         if (!prevArr.includes(t.user_id)) {
-                        //             prevArr.push(t.user_id);
-                        //         }
+                        Previous.find({user_id: s.user_id}, function(err, response) {
+                            if (err) {
+                                console.log(err)
+                            } else {
+                                var prevArr = response[0].prevMeetup;
+                                if (!prevArr.includes(f.user_id)) {
+                                    prevArr.push(f.user_id);
+                                }
+                                if (!prevArr.includes(t.user_id)) {
+                                    prevArr.push(t.user_id);
+                                }
 
-                        //         Previous.update({user_id: s.user_id}, {prevMeetup: prevArr}, function(err, response) {
-                        //             if (err) {
-                        //                 console.log(err);
-                        //             } else {
-                        //                 console.log(response);
-                        //             }
-                        //         })
-                        //     }
-                        // })
+                                Previous.update({user_id: s.user_id}, {prevMeetup: prevArr}, function(err, response) {
+                                    if (err) {
+                                        console.log(err);
+                                    } else {
+                                        console.log(response);
+                                    }
+                                })
+                            }
+                        })
 
-                        // Previous.find({user_id: t.user_id}, function(err, response) {
-                        //     if (err) {
-                        //         console.log(err)
-                        //     } else {
-                        //         var prevArr = response[0].prevMeetup;
-                        //         if (!prevArr.includes(s.user_id)) {
-                        //             prevArr.push(s.user_id);
-                        //         }
-                        //         if (!prevArr.includes(f.user_id)) {
-                        //             prevArr.push(f.user_id);
-                        //         }
+                        Previous.find({user_id: t.user_id}, function(err, response) {
+                            if (err) {
+                                console.log(err)
+                            } else {
+                                var prevArr = response[0].prevMeetup;
+                                if (!prevArr.includes(s.user_id)) {
+                                    prevArr.push(s.user_id);
+                                }
+                                if (!prevArr.includes(f.user_id)) {
+                                    prevArr.push(f.user_id);
+                                }
 
-                        //         Previous.update({user_id: t.user_id}, {prevMeetup: prevArr}, function(err, response) {
-                        //             if (err) {
-                        //                 console.log(err);
-                        //             } else {
-                        //                 console.log(response);
-                        //             }
-                        //         })
-                        //     }
-                        // })
+                                Previous.update({user_id: t.user_id}, {prevMeetup: prevArr}, function(err, response) {
+                                    if (err) {
+                                        console.log(err);
+                                    } else {
+                                        console.log(response);
+                                    }
+                                })
+                            }
+                        })
                     } else {
                         console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName);
                         var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + "! You both said you were able to meet this week. Message " + s.firstName + " to schedule a time to meet.";
                         var secondMessageToF = s.firstName + "'s interests: " + s.interests + "\n" + s.firstName + "'s fun fact: " + s.fun_fact;
                         var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + "! You both said you were able to meet this week. Message " + f.firstName + " to schedule a time to meet.";
                         var secondMessageToS = f.firstName + "'s interests: " + f.interests + "\n" + f.firstName + "'s fun fact: " + f.fun_fact;
-                        // sendTwoMessages(f.user_id, messageToF, secondMessageToF);
-                        // sendTwoMessages(s.user_id, messageToS, secondMessageToS);
-                        // laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
-                        // laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+                        sendTwoMessages(f.user_id, messageToF, secondMessageToF);
+                        sendTwoMessages(s.user_id, messageToS, secondMessageToS);
+                        laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
+                        laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
                         
                         // update previous
                         
-                        // Previous.find({user_id: "2479283145514220"}, function(err, response) {
-                        //     if (err) {
-                        //         console.log(err)
-                        //     } else {
-                        //         var prevArr = response[0].prevMeetup;
-                        //         if (!prevArr.includes(s.user_id)) {
-                        //             prevArr.push(s.user_id);
-                        //             console.log(prevArr)
-                        //             Previous.update({user_id: "2479283145514220"}, {prevMeetup: prevArr}, function(err, response) {
-                        //                 if (err) {
-                        //                     console.log(err);
-                        //                 } else {
-                        //                     console.log("done");
-                        //                     //console.log(response);
-                        //                 }
-                        //             })
-                        //         }
-                        //     }
-                        // })
+                        Previous.find({user_id: f.user_id}, function(err, response) {
+                            if (err) {
+                                console.log(err)
+                            } else {
+                                var prevArr = response[0].prevMeetup;
+                                if (!prevArr.includes(s.user_id)) {
+                                    prevArr.push(s.user_id);
+                                    console.log(prevArr)
+                                    Previous.update({user_id: f.user_id}, {prevMeetup: prevArr}, function(err, response) {
+                                        if (err) {
+                                            console.log(err);
+                                        } else {
+                                            console.log("done");
+                                            //console.log(response);
+                                        }
+                                    })
+                                }
+                            }
+                        })
 
-                        // Previous.find({user_id: "2479283145514220"}, function(err, response) {
-                        //     if (err) {
-                        //         console.log(err)
-                        //     } else {
-                        //         var prevArr = response[0].prevMeetup;
-                        //         if (!prevArr.includes(f.user_id)) {
-                        //             prevArr.push(f.user_id);
-                        //             Previous.update({user_id: "2479283145514220"}, {prevMeetup: prevArr}, function(err, response) {
-                        //                 if (err) {
-                        //                     console.log(err);
-                        //                 } else {
-                        //                     console.log(response);
-                        //                 }
-                        //             })
-                        //         }
-                        //     }
-                        // })
+                        Previous.find({user_id: s.user_id}, function(err, response) {
+                            if (err) {
+                                console.log(err)
+                            } else {
+                                var prevArr = response[0].prevMeetup;
+                                if (!prevArr.includes(f.user_id)) {
+                                    prevArr.push(f.user_id);
+                                    Previous.update({user_id: s.user_id}, {prevMeetup: prevArr}, function(err, response) {
+                                        if (err) {
+                                            console.log(err);
+                                        } else {
+                                            console.log(response);
+                                        }
+                                    })
+                                }
+                            }
+                        })
 
                         
                     }
