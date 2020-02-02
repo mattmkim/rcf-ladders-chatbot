@@ -734,13 +734,13 @@ function sendLadders() {
                         console.log(f.firstName + " matched with " + s.firstName + " and " + t.firstName);
                         var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + " and " + t.firstName + "! You all said you were able to meet this week. Message " + s.firstName + " and " + t.firstName + " to schedule a time to meet.";
                         var secondMessageToF = s.firstName + "'s interests: " + s.interests + "\n" + s.firstName + "'s fun fact: " + s.fun_fact + "\n\n"
-                        t.firstName + "'s interests: " t.interests + "\n" + t.firstName + "'s fun fact: " + t.fun_fact;
+                        t.firstName + "'s interests: " + t.interests + "\n" + t.firstName + "'s fun fact: " + t.fun_fact;
                         var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + " and " + t.firstName + "! You all said you were able to meet this week. Message " + f.firstName + " and " + t.firstName + " to schedule a time to meet.";
                         var secondMessageToS = f.firstName + "'s interests: " + f.interests + "\n" + f.firstName + "'s fun fact: " + f.fun_fact + "\n\n"
-                        t.firstName + "'s interests: " t.interests + "\n" + t.firstName + "'s fun fact: " + t.fun_fact;
+                        t.firstName + "'s interests: " + t.interests + "\n" + t.firstName + "'s fun fact: " + t.fun_fact;
                         var messageToT = "Hi " + t.firstName + ", meet " + s.firstName + " and " + f.firstName + "! You all said you were able to meet this week. Message " + f.firstName + " and " + s.firstName + " to schedule a time to meet.";
                         var secondMessageToT = s.firstName + "'s interests: " + s.interests + "\n" + s.firstName + "'s fun fact: " + s.fun_fact + "\n\n"
-                        f.firstName + "'s interests: " f.interests + "\n" + f.firstName + "'s fun fact: " + f.fun_fact;
+                        f.firstName + "'s interests: " + f.interests + "\n" + f.firstName + "'s fun fact: " + f.fun_fact;
                         sendTwoMessages("2479283145514220", messageToF, secondMessageToF);
                         // sendTwoMessages(f.user_id, messageToF, secondMessageToF);
                         // sendTwoMessages(s.user_id, messageToS, secondMessageToS);
