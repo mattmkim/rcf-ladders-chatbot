@@ -702,20 +702,20 @@ function sendLadders() {
 
                     //for testing comment out below
 
-                    User.updateOne({user_id: f.user_id}, {available: false}, function(err, response) {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            console.log(response);
-                        }
-                    })
-                    User.updateOne({user_id: s.user_id}, {available: false}, function(err, response) {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            console.log(response);
-                        }
-                    })
+                    // User.updateOne({user_id: f.user_id}, {available: false}, function(err, response) {
+                    //     if (err) {
+                    //         console.log(err);
+                    //     } else {
+                    //         //console.log(response);
+                    //     }
+                    // })
+                    // User.updateOne({user_id: s.user_id}, {available: false}, function(err, response) {
+                    //     if (err) {
+                    //         console.log(err);
+                    //     } else {
+                    //         //console.log(response);
+                    //     }
+                    // })
 
 
                     //if odd number of people, need to make a group of three?
@@ -724,13 +724,13 @@ function sendLadders() {
                         //console.log(t);
                         var indT = response.indexOf(t);
                         response.splice(indT, 1);
-                        User.updateOne({user_id: t.user_id}, {available: false}, function(err, response) {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                console.log(response);
-                            }
-                        })
+                        // User.updateOne({user_id: t.user_id}, {available: false}, function(err, response) {
+                        //     if (err) {
+                        //         console.log(err);
+                        //     } else {
+                        //         //console.log(response);
+                        //     }
+                        // })
                         console.log(f.firstName + " matched with " + s.firstName + " and " + t.firstName);
                         var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + " and " + t.firstName + "! You all said you were able to meet this week. Message " + s.firstName + " and " + t.firstName + " to schedule a time to meet.";
                         var secondMessageToF = s.firstName + "'s interests: " + s.interests + "\n" + s.firstName + "'s fun fact: " + s.fun_fact + "\n\n"
