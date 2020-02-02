@@ -12,7 +12,7 @@ setInterval(function() {
 console.log(process.env.MONGODB_URI);
 var db = mongoose.connect("mongodb://mattmkim:minwoo123@ds351455.mlab.com:51455/heroku_7866frlv");
 var User = require("./models/users");
-var Prevoius = require("./models/previous");
+var Previous = require("./models/previous");
 
 var app = express();
 app.use(bodyParser.urlencoded({extended: false}));
