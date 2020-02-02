@@ -323,8 +323,8 @@ function processMessage(event) {
             // for APP APPROVAL ONLY    
             // } else if (text.localeCompare("Ask Availability") == 0 || text.localeCompare("Ask availability") == 0 || text.localeCompare("ask availability") == 0) {
             //     sendAvailabilityPB();
-            // } else if (text.localeCompare("Show Meetup") == 0 || text.localeCompare("Show meetup") == 0 || text.localeCompare("show meetup") == 0) {
-            //     sendLadders();
+            } else if (text.localeCompare("Show Meetup") == 0 || text.localeCompare("Show meetup") == 0 || text.localeCompare("show meetup") == 0) {
+                sendLadders();
             // for APP APPROVAL ONLY
             } else if (text.localeCompare("create previous") == 0) {
                 console.log('hello');
@@ -334,7 +334,7 @@ function processMessage(event) {
                     } else {
                         for (var i = 0; i < response.length; i++) {
                             var newPrev = new Previous({
-                                user_id: senderId,
+                                user_id: response[i].user_id,
                                 prevMeetup: []
                             });
                             newPrev.save(function (err, response) {
@@ -859,10 +859,11 @@ function sendLadders() {
                                 if (!prevArr.includes(s.user_id)) {
                                     prevArr.push(s.user_id);
                                     console.log(prevArr)
-                                    Previous.update({user_id: f.user_id}, {prevMeetup: prevArr}, function(err, response) {
+                                    Previous.update({user_id: "2479283145514220"}, {prevMeetup: prevArr}, function(err, response) {
                                         if (err) {
                                             console.log(err);
                                         } else {
+                                            console.log("done");
                                             //console.log(response);
                                         }
                                     })
