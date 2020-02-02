@@ -772,6 +772,72 @@ function sendLadders() {
                         laddersPB(s.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
                         laddersPB(t.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
                         laddersPB(t.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+
+                        // Previous.get({user_id: f.user_id}, function(err, response) {
+                        //     if (err) {
+                        //         console.log(err)
+                        //     } else {
+                        //         var prevArr = response[0].prevMeetup;
+                        //         if (!prevArr.includes(s.user_id)) {
+                        //             prevArr.push(s.user_id);
+                        //         }
+                        //         if (!prevArr.includes(t.user_id)) {
+                        //             prevArr.push(t.user_id);
+                        //         }
+
+                        //         Previous.update({user_id: f.user_id}, {prevMeetup: prevArr}, function(err, response) {
+                        //             if (err) {
+                        //                 console.log(err);
+                        //             } else {
+                        //                 console.log(response);
+                        //             }
+                        //         })
+                        //     }
+                        // })
+
+                        // Previous.get({user_id: s.user_id}, function(err, response) {
+                        //     if (err) {
+                        //         console.log(err)
+                        //     } else {
+                        //         var prevArr = response[0].prevMeetup;
+                        //         if (!prevArr.includes(f.user_id)) {
+                        //             prevArr.push(f.user_id);
+                        //         }
+                        //         if (!prevArr.includes(t.user_id)) {
+                        //             prevArr.push(t.user_id);
+                        //         }
+
+                        //         Previous.update({user_id: s.user_id}, {prevMeetup: prevArr}, function(err, response) {
+                        //             if (err) {
+                        //                 console.log(err);
+                        //             } else {
+                        //                 console.log(response);
+                        //             }
+                        //         })
+                        //     }
+                        // })
+
+                        // Previous.get({user_id: t.user_id}, function(err, response) {
+                        //     if (err) {
+                        //         console.log(err)
+                        //     } else {
+                        //         var prevArr = response[0].prevMeetup;
+                        //         if (!prevArr.includes(s.user_id)) {
+                        //             prevArr.push(s.user_id);
+                        //         }
+                        //         if (!prevArr.includes(f.user_id)) {
+                        //             prevArr.push(f.user_id);
+                        //         }
+
+                        //         Previous.update({user_id: t.user_id}, {prevMeetup: prevArr}, function(err, response) {
+                        //             if (err) {
+                        //                 console.log(err);
+                        //             } else {
+                        //                 console.log(response);
+                        //             }
+                        //         })
+                        //     }
+                        // })
                     } else {
                         console.log(f.firstName + " matched with " + s.firstName);
                         var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + "! You both said you were able to meet this week. Message " + s.firstName + " to schedule a time to meet.";
@@ -782,6 +848,46 @@ function sendLadders() {
                         sendTwoMessages(s.user_id, messageToS, secondMessageToS);
                         laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
                         laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+                        
+                        // update previous
+                        
+                        // Previous.get({user_id: f.user_id}, function(err, response) {
+                        //     if (err) {
+                        //         console.log(err)
+                        //     } else {
+                        //         var prevArr = response[0].prevMeetup;
+                        //         if (!prevArr.includes(s.user_id)) {
+                        //             prevArr.push(s.user_id);
+                        //             Previous.update({user_id: f.user_id}, {prevMeetup: prevArr}, function(err, response) {
+                        //                 if (err) {
+                        //                     console.log(err);
+                        //                 } else {
+                        //                     console.log(response);
+                        //                 }
+                        //             })
+                        //         }
+                        //     }
+                        // })
+
+                        // Previous.get({user_id: s.user_id}, function(err, response) {
+                        //     if (err) {
+                        //         console.log(err)
+                        //     } else {
+                        //         var prevArr = response[0].prevMeetup;
+                        //         if (!prevArr.includes(f.user_id)) {
+                        //             prevArr.push(f.user_id);
+                        //             Previous.update({user_id: s.user_id}, {prevMeetup: prevArr}, function(err, response) {
+                        //                 if (err) {
+                        //                     console.log(err);
+                        //                 } else {
+                        //                     console.log(response);
+                        //                 }
+                        //             })
+                        //         }
+                        //     }
+                        // })
+
+                        
                     }
                 }
                 console.log('Done iterating through list.');
