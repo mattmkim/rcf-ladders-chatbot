@@ -38,7 +38,7 @@ cron.schedule('0 16 * * Saturday', () => {
 
 // send ladders partners Sunday nights
 // real time string: '0 5 * * Monday'
-cron.schedule('0 16 * * Sunday', () => {
+cron.schedule('0 17 * * Sunday', () => {
     sendLadders();
 }, {
     scheduled: true,
