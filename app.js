@@ -326,6 +326,8 @@ function processMessage(event) {
             // } else if (text.localeCompare("Show Meetup") == 0 || text.localeCompare("Show meetup") == 0 || text.localeCompare("show meetup") == 0) {
             //     sendLadders();
             // for APP APPROVAL ONLY
+
+            // admin commands
             } else if (text.localeCompare("create previous") == 0) {
                 User.find({}, function(err, response) {
                     if (err) {
@@ -350,7 +352,11 @@ function processMessage(event) {
                 sendProfileReminder();
             } else if (text.localeCompare("send preference reminder") == 0) {
                 sendPreferenceReminder();
-            } else {
+            } else if (text.localeCompare("test prev update") == 0) {
+                testPreviousUpdate();
+            }
+            // admin commands
+            else {
                 User.find({user_id: senderId}, function(err, response) {
                     if (err) {
                         console.log(err);
@@ -849,45 +855,22 @@ function sendLadders() {
                         laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
                         
                         // update previous
-                        
-                        Previous.find({user_id: f.user_id}, function(err, response) {
+
+                        Previous.update({user_id: f.user_id}, { $push: {prevMeetup: s.user_id} }, function(err, response) {
                             if (err) {
-                                console.log(err)
+                                console.log(err);
                             } else {
-                                var prevArr = response[0].prevMeetup;
-                                if (!prevArr.includes(s.user_id)) {
-                                    prevArr.push(s.user_id);
-                                    console.log(prevArr)
-                                    Previous.update({user_id: f.user_id}, {prevMeetup: prevArr}, function(err, response) {
-                                        if (err) {
-                                            console.log(err);
-                                        } else {
-                                            console.log("done");
-                                            //console.log(response);
-                                        }
-                                    })
-                                }
+                                console.log("Updated previous for " + f.user_id);
                             }
                         })
 
-                        Previous.find({user_id: s.user_id}, function(err, response) {
+                        Previous.update({user_id: s.user_id}, { $push: {prevMeetup: f.user_id} }, function(err, response) {
                             if (err) {
-                                console.log(err)
+                                console.log(err);
                             } else {
-                                var prevArr = response[0].prevMeetup;
-                                if (!prevArr.includes(f.user_id)) {
-                                    prevArr.push(f.user_id);
-                                    Previous.update({user_id: s.user_id}, {prevMeetup: prevArr}, function(err, response) {
-                                        if (err) {
-                                            console.log(err);
-                                        } else {
-                                            console.log(response);
-                                        }
-                                    })
-                                }
+                                console.log("Updated previous for " + s.user_id);
                             }
                         })
-
                         
                     }
                 }
@@ -1053,6 +1036,17 @@ function sendPreferenceReminder() {
                 console.log(response[i].firstName);
                 console.log(response[i].user_id);
             }
+        }
+    })
+}
+
+// function to test updating previous database
+function testPreviousUpdate() {
+    Previous.update({user_id: "2479283145514220"}, { $push: {prevMeetup: "2479283145514220"} }, function(err, response) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("Updated previous for Matt Kim");
         }
     })
 }
