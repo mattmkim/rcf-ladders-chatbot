@@ -334,24 +334,13 @@ function processMessage(event) {
                         console.log(err)
                     } else {
                         for (var i = 0; i < response.length; i++) {
-                            User.update({user_id: response[i].user_id}, {$set: {prevMeetup: []}}, function(err, response) {
+                            User.update({user_id: response[i].user_id}, {$set: {prevMeetup: []}}, function(err, response2) {
                                 if (err) {
                                     console.log(err);
                                 } else {
-                                    console.log("Create prevMeetup for " + i);
+                                    console.log(response2);
                                 }
                             })
-                            // var newPrev = new Previous({
-                            //     user_id: response[i].user_id,
-                            //     prevMeetup: []
-                            // });
-                            // newPrev.save(function (err, response) {
-                            //     if (err) {
-                            //         console.log(err);
-                            //     } else {
-                            //         console.log(response);
-                            //     }
-                            // });
                         }
                     }
                 })
@@ -497,7 +486,8 @@ function newUser(senderId) {
                 profileUrl: bodyObj.profile_pic,
                 available: false,
                 loggedIn: false,
-                known: []
+                known: [],
+                prevMeetup: []
             });
             User.find({user_id: senderId}, function(err, response) {
                 if (err) {
@@ -785,7 +775,7 @@ function sendLadders() {
                         laddersPB(t.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
                         laddersPB(t.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
 
-                        Previous.update({user_id: f.user_id}, { $push: {prevMeetup: [s.user_id, t.user_id]} }, function(err, response) {
+                        User.update({user_id: f.user_id}, { $push: {prevMeetup: [s.user_id, t.user_id]} }, function(err, response) {
                             if (err) {
                                 console.log(err);
                             } else {
@@ -793,7 +783,7 @@ function sendLadders() {
                             }
                         })
 
-                        Previous.update({user_id: s.user_id}, { $push: {prevMeetup: [f.user_id, t.user_id]} }, function(err, response) {
+                        User.update({user_id: s.user_id}, { $push: {prevMeetup: [f.user_id, t.user_id]} }, function(err, response) {
                             if (err) {
                                 console.log(err);
                             } else {
@@ -801,7 +791,7 @@ function sendLadders() {
                             }
                         })
 
-                        Previous.update({user_id: t.user_id}, { $push: {prevMeetup: [s.user_id, f.user_id]} }, function(err, response) {
+                        User.update({user_id: t.user_id}, { $push: {prevMeetup: [s.user_id, f.user_id]} }, function(err, response) {
                             if (err) {
                                 console.log(err);
                             } else {
@@ -822,7 +812,7 @@ function sendLadders() {
                         
                         // update previous
 
-                        Previous.update({user_id: f.user_id}, { $push: {prevMeetup: s.user_id} }, function(err, response) {
+                        User.update({user_id: f.user_id}, { $push: {prevMeetup: s.user_id} }, function(err, response) {
                             if (err) {
                                 console.log(err);
                             } else {
@@ -830,7 +820,7 @@ function sendLadders() {
                             }
                         })
 
-                        Previous.update({user_id: s.user_id}, { $push: {prevMeetup: f.user_id} }, function(err, response) {
+                        User.update({user_id: s.user_id}, { $push: {prevMeetup: f.user_id} }, function(err, response) {
                             if (err) {
                                 console.log(err);
                             } else {
@@ -1009,7 +999,7 @@ function sendPreferenceReminder() {
 
 // function to test updating previous database
 function testPreviousUpdate() {
-    Previous.update({user_id: "2479283145514220"}, {$set : {test: "please"}}, function(err, response) {
+    User.update({user_id: "2479283145514220"}, {$set : {prevMeetup: ["2479283145514220", "2479283145514220"]}}, function(err, response) {
         if (err) {
             console.log(err);
         } else {
