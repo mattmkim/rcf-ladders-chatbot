@@ -833,6 +833,7 @@ function sendLadders() {
                         
                     }
                 }
+                
                 console.log('Done iterating through list.');
             }
         }
@@ -1001,7 +1002,7 @@ function sendPreferenceReminder() {
 
 // function to test updating previous database
 function testPreviousUpdate() {
-    Previous.update({user_id: "2479283145514220"}, { $push: {prevMeetup: ["2479283145514220", "2479283145514220"]} }, function(err, response) {
+    Previous.update({user_id: "2479283145514220"}, {$set : {test: "please"}}, function(err, response) {
         if (err) {
             console.log(err);
         } else {
