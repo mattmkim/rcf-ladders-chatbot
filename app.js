@@ -778,71 +778,30 @@ function sendLadders() {
                         laddersPB(t.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
                         laddersPB(t.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
 
-                        Previous.find({user_id: f.user_id}, function(err, response) {
+                        Previous.update({user_id: f.user_id}, { $push: {prevMeetup: [s.user_id, t.user_id]} }, function(err, response) {
                             if (err) {
-                                console.log(err)
+                                console.log(err);
                             } else {
-                                var prevArr = response[0].prevMeetup;
-                                if (!prevArr.includes(s.user_id)) {
-                                    prevArr.push(s.user_id);
-                                }
-                                if (!prevArr.includes(t.user_id)) {
-                                    prevArr.push(t.user_id);
-                                }
-
-                                Previous.update({user_id: f.user_id}, {prevMeetup: prevArr}, function(err, response) {
-                                    if (err) {
-                                        console.log(err);
-                                    } else {
-                                        console.log(response);
-                                    }
-                                })
+                                console.log("Updated previous for " + f.user_id);
                             }
                         })
 
-                        Previous.find({user_id: s.user_id}, function(err, response) {
+                        Previous.update({user_id: s.user_id}, { $push: {prevMeetup: [f.user_id, t.user_id]} }, function(err, response) {
                             if (err) {
-                                console.log(err)
+                                console.log(err);
                             } else {
-                                var prevArr = response[0].prevMeetup;
-                                if (!prevArr.includes(f.user_id)) {
-                                    prevArr.push(f.user_id);
-                                }
-                                if (!prevArr.includes(t.user_id)) {
-                                    prevArr.push(t.user_id);
-                                }
-
-                                Previous.update({user_id: s.user_id}, {prevMeetup: prevArr}, function(err, response) {
-                                    if (err) {
-                                        console.log(err);
-                                    } else {
-                                        console.log(response);
-                                    }
-                                })
+                                console.log("Updated previous for " + s.user_id);
                             }
                         })
 
-                        Previous.find({user_id: t.user_id}, function(err, response) {
+                        Previous.update({user_id: t.user_id}, { $push: {prevMeetup: [s.user_id, f.user_id]} }, function(err, response) {
                             if (err) {
-                                console.log(err)
+                                console.log(err);
                             } else {
-                                var prevArr = response[0].prevMeetup;
-                                if (!prevArr.includes(s.user_id)) {
-                                    prevArr.push(s.user_id);
-                                }
-                                if (!prevArr.includes(f.user_id)) {
-                                    prevArr.push(f.user_id);
-                                }
-
-                                Previous.update({user_id: t.user_id}, {prevMeetup: prevArr}, function(err, response) {
-                                    if (err) {
-                                        console.log(err);
-                                    } else {
-                                        console.log(response);
-                                    }
-                                })
+                                console.log("Updated previous for " + s.user_id);
                             }
                         })
+
                     } else {
                         console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName);
                         var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + "! You both said you were able to meet this week. Message " + s.firstName + " to schedule a time to meet.";
