@@ -338,7 +338,7 @@ function processMessage(event) {
                                 if (err) {
                                     console.log(err);
                                 } else {
-                                    console.log("Create prevMeetup for " + response[i].user_id);
+                                    console.log("Create prevMeetup for " + i);
                                 }
                             })
                             // var newPrev = new Previous({
