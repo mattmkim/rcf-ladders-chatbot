@@ -350,6 +350,8 @@ function processMessage(event) {
                 sendPreferenceReminder();
             } else if (text.localeCompare("test prev update") == 0) {
                 testPreviousUpdate();
+            } else if (text.localeCompare("all available") == 0) {
+                allAvailable();
             }
             // admin commands
             else {
@@ -702,10 +704,11 @@ function sendLadders() {
                     var s = response[Math.floor(Math.random() * response.length)];
                     //console.log(s);
 
-                    while ((f.known.includes(s.user_id) && s.known.includes(f.user_id)) || f.user_id.localeCompare(s.user_id) == 0 || f.prevMeetup.includes(s.user_id)) {
+                    var setFPrevMeetup = new Set(f.prevMeetup);
+                    while ((f.known.includes(s.user_id) && s.known.includes(f.user_id)) || f.user_id.localeCompare(s.user_id) == 0 || setFPrevMeetup.has(s.user_id)) {
                         s = response[Math.floor(Math.random() * response.length)];
-                        if (f.prevMeetup.includes(s.user_id)) {
-                            if (f.prevMeetup.length == response.length - 1) {
+                        if (setFPrevMeetup.has(s.user_id)) {
+                            if (setFPrevMeetup.size == response.length - 1) {
                                 break;
                             } else {
                                 if (f.known.length == response.length - 1) {
@@ -770,39 +773,39 @@ function sendLadders() {
                         var messageToT = "Hi " + t.firstName + ", meet " + s.firstName + " and " + f.firstName + "! You all said you were able to meet this week. Message " + f.firstName + " and " + s.firstName + " to schedule a time to meet.";
                         var secondMessageToT = s.firstName + "'s interests: " + s.interests + "\n" + s.firstName + "'s fun fact: " + s.fun_fact + "\n\n"
                         f.firstName + "'s interests: " + f.interests + "\n" + f.firstName + "'s fun fact: " + f.fun_fact;
-                        sendTwoMessages(f.user_id, messageToF, secondMessageToF);
-                        sendTwoMessages(s.user_id, messageToS, secondMessageToS);
-                        sendTwoMessages(t.user_id, messageToT, secondMessageToT);
-                        laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
-                        laddersPB(f.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
-                        laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
-                        laddersPB(s.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
-                        laddersPB(t.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
-                        laddersPB(t.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+                        // sendTwoMessages(f.user_id, messageToF, secondMessageToF);
+                        // sendTwoMessages(s.user_id, messageToS, secondMessageToS);
+                        // sendTwoMessages(t.user_id, messageToT, secondMessageToT);
+                        // laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
+                        // laddersPB(f.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
+                        // laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+                        // laddersPB(s.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
+                        // laddersPB(t.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
+                        // laddersPB(t.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
 
-                        User.update({user_id: f.user_id}, { $push: {prevMeetup: [s.user_id, t.user_id]} }, function(err, response) {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                console.log("Updated previous for " + f.user_id);
-                            }
-                        })
+                        // User.update({user_id: f.user_id}, { $push: {prevMeetup: [s.user_id, t.user_id]} }, function(err, response) {
+                        //     if (err) {
+                        //         console.log(err);
+                        //     } else {
+                        //         console.log("Updated previous for " + f.user_id);
+                        //     }
+                        // })
 
-                        User.update({user_id: s.user_id}, { $push: {prevMeetup: [f.user_id, t.user_id]} }, function(err, response) {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                console.log("Updated previous for " + s.user_id);
-                            }
-                        })
+                        // User.update({user_id: s.user_id}, { $push: {prevMeetup: [f.user_id, t.user_id]} }, function(err, response) {
+                        //     if (err) {
+                        //         console.log(err);
+                        //     } else {
+                        //         console.log("Updated previous for " + s.user_id);
+                        //     }
+                        // })
 
-                        User.update({user_id: t.user_id}, { $push: {prevMeetup: [s.user_id, f.user_id]} }, function(err, response) {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                console.log("Updated previous for " + s.user_id);
-                            }
-                        })
+                        // User.update({user_id: t.user_id}, { $push: {prevMeetup: [s.user_id, f.user_id]} }, function(err, response) {
+                        //     if (err) {
+                        //         console.log(err);
+                        //     } else {
+                        //         console.log("Updated previous for " + s.user_id);
+                        //     }
+                        // })
 
                     } else {
                         console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName);
@@ -810,28 +813,28 @@ function sendLadders() {
                         var secondMessageToF = s.firstName + "'s interests: " + s.interests + "\n" + s.firstName + "'s fun fact: " + s.fun_fact;
                         var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + "! You both said you were able to meet this week. Message " + f.firstName + " to schedule a time to meet.";
                         var secondMessageToS = f.firstName + "'s interests: " + f.interests + "\n" + f.firstName + "'s fun fact: " + f.fun_fact;
-                        sendTwoMessages(f.user_id, messageToF, secondMessageToF);
-                        sendTwoMessages(s.user_id, messageToS, secondMessageToS);
-                        laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
-                        laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+                        // sendTwoMessages(f.user_id, messageToF, secondMessageToF);
+                        // sendTwoMessages(s.user_id, messageToS, secondMessageToS);
+                        // laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
+                        // laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
                         
                         // update previous
 
-                        User.update({user_id: f.user_id}, { $push: {prevMeetup: s.user_id} }, function(err, response) {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                console.log("Updated previous for " + f.user_id);
-                            }
-                        })
+                        // User.update({user_id: f.user_id}, { $push: {prevMeetup: s.user_id} }, function(err, response) {
+                        //     if (err) {
+                        //         console.log(err);
+                        //     } else {
+                        //         console.log("Updated previous for " + f.user_id);
+                        //     }
+                        // })
 
-                        User.update({user_id: s.user_id}, { $push: {prevMeetup: f.user_id} }, function(err, response) {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                console.log("Updated previous for " + s.user_id);
-                            }
-                        })
+                        // User.update({user_id: s.user_id}, { $push: {prevMeetup: f.user_id} }, function(err, response) {
+                        //     if (err) {
+                        //         console.log(err);
+                        //     } else {
+                        //         console.log("Updated previous for " + s.user_id);
+                        //     }
+                        // })
                         
                     }
                 }
@@ -1009,6 +1012,25 @@ function testPreviousUpdate() {
             console.log(err);
         } else {
             console.log("Updated previous for Matt Kim");
+        }
+    })
+}
+
+// function to make everyone available
+function allAvailable() {
+    User.find({}, function(err, response) {
+        if (err) {
+            console.log(err);
+        } else {
+            for (var i = 0; i < response.length; i++) {
+                User.update({user_id: response[i].user_id}, {available: true}, function(err, response2) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log(response2);
+                    }
+                })
+            }
         }
     })
 }
