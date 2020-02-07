@@ -803,7 +803,7 @@ function sendLadders() {
                             if (err) {
                                 console.log(err);
                             } else {
-                                console.log("Updated previous for " + s.user_id);
+                                console.log("Updated previous for " + t.user_id);
                             }
                         })
 
