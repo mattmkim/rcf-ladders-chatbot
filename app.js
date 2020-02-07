@@ -350,9 +350,10 @@ function processMessage(event) {
                 sendPreferenceReminder();
             } else if (text.localeCompare("test prev update") == 0) {
                 testPreviousUpdate();
-            } else if (text.localeCompare("all available") == 0) {
-                allAvailable();
-            }
+            } 
+            // else if (text.localeCompare("all available") == 0) {
+            //     allAvailable();
+            // }
             // admin commands
             else {
                 User.find({user_id: senderId}, function(err, response) {
