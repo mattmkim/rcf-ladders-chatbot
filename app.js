@@ -702,21 +702,26 @@ function sendLadders() {
                     var s = response[Math.floor(Math.random() * response.length)];
                     //console.log(s);
 
-                    while ((f.known.includes(s.user_id) && s.known.includes(f.user_id)) || f.user_id.localeCompare(s.user_id) == 0) {
+                    while ((f.known.includes(s.user_id) && s.known.includes(f.user_id)) || f.user_id.localeCompare(s.user_id) == 0 || f.prevMeetup.includes(s.user_id)) {
                         s = response[Math.floor(Math.random() * response.length)];
-                        if (f.known.length == response.length - 1) {
-                            if (s.known.length == response.length - 1) {
-                                // both f and s know everyone else - but still check if f.user_id == s.user_id
-                                if (f.user_id.localeCompare(s.user_id) == 0) {
-                                    continue;
-                                } else {
-                                    break;
-                                }
+                        if (f.prevMeetup.includes(s.user_id)) {
+                            if (f.prevMeetup.length == response.length - 1) {
+                                break;
                             } else {
-                                // f knows everyone else, find someone who doesn't know f
-                                continue;
+                                if (f.known.length == response.length - 1) {
+                                    if (s.known.length == response.length - 1) {
+                                        if (f.user_id.localeCompare(s.user_id) == 0) {
+                                            continue;
+                                        } else {
+                                            break;
+                                        }
+                                    } else {
+                                        continue;
+                                    }
+                                }
                             }
-                        } 
+                        }
+                        
                     }
 
                     var indF = response.indexOf(f);
