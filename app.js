@@ -334,17 +334,24 @@ function processMessage(event) {
                         console.log(err)
                     } else {
                         for (var i = 0; i < response.length; i++) {
-                            var newPrev = new Previous({
-                                user_id: response[i].user_id,
-                                prevMeetup: []
-                            });
-                            newPrev.save(function (err, response) {
+                            User.update({user_id: response[i].user_id}, {$set: {prevMeetup: []}}, function(err, response) {
                                 if (err) {
                                     console.log(err);
                                 } else {
-                                    console.log(response);
+                                    console.log("Create prevMeetup for " + response[i].user_id);
                                 }
-                            });
+                            })
+                            // var newPrev = new Previous({
+                            //     user_id: response[i].user_id,
+                            //     prevMeetup: []
+                            // });
+                            // newPrev.save(function (err, response) {
+                            //     if (err) {
+                            //         console.log(err);
+                            //     } else {
+                            //         console.log(response);
+                            //     }
+                            // });
                         }
                     }
                 })

@@ -12,7 +12,8 @@ var UserSchema = new Schema({
   profileUrl: {type: String},
   available: {type: Boolean},
   loggedIn: {type: Boolean},
-  known: {type: [String]}
+  known: {type: [String]},
+  prevMeetup: {type: [String]}
 });
 UserSchema.plugin(random);
 
