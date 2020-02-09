@@ -45,6 +45,15 @@ cron.schedule('0 17 * * Sunday', () => {
     timezone: "America/New_York"
 })
 
+// send ladders partners Sunday nights
+// real time string: '0 5 * * Monday'
+// cron.schedule('0 16 * * Sunday', () => {
+//     sendAvailabilityReminder();
+// }, {
+//     scheduled: true,
+//     timezone: "America/New_York"
+// })
+
 
 function sleep(ms){
     return new Promise(resolve=>{
