@@ -47,12 +47,12 @@ cron.schedule('0 16 * * Sunday', () => {
 
 // send ladders partners Sunday nights
 // real time string: '0 5 * * Monday'
-// cron.schedule('0 16 * * Sunday', () => {
-//     sendAvailabilityReminder();
-// }, {
-//     scheduled: true,
-//     timezone: "America/New_York"
-// })
+cron.schedule('15 15 * * Sunday', () => {
+    sendAvailabilityReminder();
+}, {
+    scheduled: true,
+    timezone: "America/New_York"
+})
 
 
 function sleep(ms){
@@ -1019,7 +1019,7 @@ function sendPreferenceReminder() {
 
 // function to remind people to update preferences
 function sendAvailabilityReminder() {
-    var message = "Hi! Just a reminder to update your availability if you haven't already!";
+    var message = "Hi! Just a reminder to update your availability if you haven't already! Meetups are sent out at 4pm.";
     User.find({}, function(err, response) {
         if (err) {
             console.log(err);
