@@ -361,6 +361,8 @@ function processMessage(event) {
                 testPreviousUpdate();
             } else if (text.localeCompare("send available reminder") == 0) {
                 sendAvailabilityReminder();
+            } else if (text.localeCompare("send info") == 0) {
+                sendInfo();
             }
             // else if (text.localeCompare("all available") == 0) {
             //     allAvailable();
@@ -978,6 +980,21 @@ function setPreferences(senderId) {
             } else {
                 console.log(response);
             }
+    })
+}
+
+function sendInfo() {
+    var message = "Hi! If you want to set your preferences, please do so on a computer. Unfortunately, the set preferences functionality on the mobile Facebook messenger app is not working at the moment.";
+    User.find({}, function(err, response) {
+        if (err) {
+            console.log(err);
+        } else {
+            for (var i = 0; i < response.length; i++) {
+                sendMessage(response[i].user_id, {text: message});
+                console.log(response[i].firstName);
+                console.log(response[i].user_id);
+            }
+        }
     })
 }
 
