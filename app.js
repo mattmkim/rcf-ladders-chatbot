@@ -86,14 +86,16 @@ async function sendYearPBs(senderId){
 
 // Serve the options path and set required headers
 app.get('/preferences/:userId', (req, res, next) => {
+    console.log("bruh");
     let referer = req.get('Referer');
+    console.log("here");
     if (referer) {
         if (referer.indexOf('www.messenger.com') >= 0) {
             res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/');
         } else if (referer.indexOf('www.facebook.com') >= 0) {
             res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
         }
-        res.render('webview');
+        
         //res.sendFile('webview.html', {root: __dirname});
         User.find({}).sort('year').exec(function(err, response) {
             if (err) {
