@@ -93,6 +93,7 @@ app.get('/preferences/:userId', (req, res, next) => {
         } else if (referer.indexOf('www.facebook.com') >= 0) {
             res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
         }
+        res.render('webview');
         //res.sendFile('webview.html', {root: __dirname});
         User.find({}).sort('year').exec(function(err, response) {
             if (err) {
