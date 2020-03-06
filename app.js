@@ -441,13 +441,15 @@ function processMessage(event) {
 // sends message to user
 function sendMessage(recipientId, message) {
     request({
-        url: "https://graph.facebook.com/v5.0/me/messages",
+        url: "https://graph.facebook.com/v6.0/me/messages",
         qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
         method: "POST",
         json: {
             recipient: {id: recipientId},
             message: message,
-            tag: "NON_PROMOTIONAL_SUBSCRIPTION"
+            messaging_type: "MESSAGE_TAG",
+            tag: "CONFIRMED_EVENT_UPDATE"
+
         }
     }, function(error, response, body) {
         if (error) {
@@ -461,7 +463,7 @@ function sendMessage(recipientId, message) {
 // sends message to user
 function sendSubscriptionMessage(recipientId, message) {
     request({
-        url: "https://graph.facebook.com/v5.0/me/messages",
+        url: "https://graph.facebook.com/v6.0/me/messages",
         qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
         method: "POST",
         json: {
