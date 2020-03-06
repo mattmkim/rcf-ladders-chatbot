@@ -1,20 +1,20 @@
 var express = require("express");
 var request = require("request");
-var cron = require('node-cron');
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var app = express();
+var cron = require('node-cron');
 const http = require("http");
 
 setInterval(function() {
     http.get("http://rcf-meets.herokuapp.com");
 }, 300000); // 5 Minutes
 
-console.log(process.env.MONGODB_URI);
 var db = mongoose.connect("mongodb://mattmkim:minwoo123@ds351455.mlab.com:51455/heroku_7866frlv");
 var User = require("./models/users");
-var Previous = require("./models/previous");
 
-var app = express();
+var preferencesRoutes = require('./routes/preferencesroutes.js')(User);
+
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
@@ -74,7 +74,6 @@ async function sendThreeMessages(senderId, message1, message2, message3){
     sendMessage(senderId, {text: message2});
     await sleep(400);
     sendMessage(senderId, {text: message3});
-
 }
 
 // for sending the year postbacks
@@ -85,68 +84,72 @@ async function sendYearPBs(senderId){
 }
 
 // Serve the options path and set required headers
-app.get('/preferences/:userId', (req, res, next) => {
-    let referer = req.get('Referer');
+app.get('/preferences/:userID', preferencesRoutes.open_preferences_webview);
 
-    if (referer == undefined) {
-        User.find({}).sort('year').exec(function(err, response) {
-            if (err) {
-                console.log(err);
-            } else {
-                User.find({user_id: req.params.userId}, function(err, response2) {
-                    res.render('webview', {data: response, access: process.env.PAGE_ACCESS_TOKEN, currUser: req.params.userId, known: response2[0].known});
-                })
-            }
-        })
-    } else {
-        if (referer.indexOf('www.messenger.com') >= 0) {
-            res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/');
-        } else if (referer.indexOf('www.facebook.com') >= 0) {
-            res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
-        }
-        
-        User.find({}).sort('year').exec(function(err, response) {
-            if (err) {
-                console.log(err);
-            } else {
-                User.find({user_id: req.params.userId}, function(err, response2) {
-                    res.render('webview', {data: response, access: process.env.PAGE_ACCESS_TOKEN, currUser: req.params.userId, known: response2[0].known});
-                })
-            }
-        })
-        
-    }
-});
+// app.get('/preferences/:userId', (req, res, next) => {
+//     let referer = req.get('Referer');
 
-app.post('/preferencespostback/:userId', (req, res) => {
-    let body = req.body;
-    var newMessage = "Great, thanks for submitting your preferences! Keep on the lookout for weekly messages from us on Saturdays!";
-    var viewMembersMessage = "In the meantime, type " + '"' + "View Commands" + '"' + " to view all valid commands.";
+//     if (referer == undefined) {
+//         User.find({}).sort('year').exec(function(err, response) {
+//             if (err) {
+//                 console.log(err);
+//             } else {
+//                 User.find({user_id: req.params.userId}, function(err, response2) {
+//                     res.render('webview', {data: response, access: process.env.PAGE_ACCESS_TOKEN, currUser: req.params.userId, known: response2[0].known});
+//                 })
+//             }
+//         })
+//     } else {
+//         if (referer.indexOf('www.messenger.com') >= 0) {
+//             res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/');
+//         } else if (referer.indexOf('www.facebook.com') >= 0) {
+//             res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
+//         }
+        
+//         User.find({}).sort('year').exec(function(err, response) {
+//             if (err) {
+//                 console.log(err);
+//             } else {
+//                 User.find({user_id: req.params.userId}, function(err, response2) {
+//                     res.render('webview', {data: response, access: process.env.PAGE_ACCESS_TOKEN, currUser: req.params.userId, known: response2[0].known});
+//                 })
+//             }
+//         })
+        
+//     }
+// });
+
+app.post('/preferencespostback/:userId', preferencesRoutes.submit_preferences);
+
+// app.post('/preferencespostback/:userId', (req, res) => {
+//     let body = req.body;
+//     var newMessage = "Great, thanks for submitting your preferences! Keep on the lookout for weekly messages from us on Saturdays!";
+//     var viewMembersMessage = "In the meantime, type " + '"' + "View Commands" + '"' + " to view all valid commands.";
     
-    //keys is array of all keys (psid, ....., submit)
-    let keys = Object.keys(body);
+//     //keys is array of all keys (psid, ....., submit)
+//     let keys = Object.keys(body);
 
-    if (keys.length != 0) {
-        keys.splice(keys.indexOf('psid'), 1);
-        keys.splice(keys.indexOf('submit'), 1);
-    }
+//     if (keys.length != 0) {
+//         keys.splice(keys.indexOf('psid'), 1);
+//         keys.splice(keys.indexOf('submit'), 1);
+//     }
 
-    console.log(keys);
+//     console.log(keys);
 
-    User.update({user_id: req.params.userId}, {known: keys}, function(err, response) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(response);
-        }
-    })
+//     User.update({user_id: req.params.userId}, {known: keys}, function(err, response) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             console.log(response);
+//         }
+//     })
 
-    // code to update status of user (list of people to not pair up with)
-    // need to somehow send back user id
-    res.status(200).send('Please close this window to return to the conversation thread.');
+//     // code to update status of user (list of people to not pair up with)
+//     // need to somehow send back user id
+//     res.status(200).send('Please close this window to return to the conversation thread.');
 
-    sendTwoMessages(req.params.userId, newMessage, viewMembersMessage);
-});
+//     sendTwoMessages(req.params.userId, newMessage, viewMembersMessage);
+// });
 
 
 // Facebook Webhook
@@ -287,14 +290,6 @@ function processMessage(event) {
                                 viewMembers(senderId, response);
                             }
                         })
-                        // User.find({}).limit(10).exec(function(err, response) {
-                        //     if (err) {
-                        //         console.log(err);
-                        //     } else {
-                        //         console.log(response);
-                        //         viewMembers(senderId, response);
-                        //     }
-                        // })
                     }
                 })
             } else if (text.localeCompare("View Commands") == 0 || text.localeCompare("View commands") == 0 || text.localeCompare("view commands") == 0) {
@@ -456,24 +451,6 @@ function sendMessage(recipientId, message) {
             console.log("Error sending message: " + response.error);
         } else {
             console.log(body);
-        }
-    });
-}
-
-// sends message to user
-function sendSubscriptionMessage(recipientId, message) {
-    request({
-        url: "https://graph.facebook.com/v6.0/me/messages",
-        qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
-        method: "POST",
-        json: {
-            recipient: {id: recipientId},
-            message: message,
-            tag: "NON_PROMOTIONAL_SUBSCRIPTION"
-        }
-    }, function(error, response, body) {
-        if (error) {
-            console.log("Error sending message: " + response.error);
         }
     });
 }
