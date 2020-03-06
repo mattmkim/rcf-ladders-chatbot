@@ -87,6 +87,7 @@ async function sendYearPBs(senderId){
 // Serve the options path and set required headers
 app.get('/preferences/:userId', (req, res, next) => {
     let referer = req.get('Referer');
+    console.log("asdfas");
     if (referer) {
         if (referer.indexOf('www.messenger.com') >= 0) {
             console.log("eerer");
