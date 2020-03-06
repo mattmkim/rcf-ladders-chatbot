@@ -97,7 +97,7 @@ app.get('/preferences/:userId', (req, res, next) => {
         }
         
         //res.sendFile('webview.html', {root: __dirname});
-        
+        console.log("hello");
         User.find({}).sort('year').exec(function(err, response) {
             if (err) {
                 console.log(err);
