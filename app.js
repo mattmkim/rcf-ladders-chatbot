@@ -29,30 +29,30 @@ app.get("/", function (req, res) {
 
 // send availability postback every Saturday night
 // real time string: '0 6 * * Sunday'
-cron.schedule('0 17 * * Saturday', () => {
-    sendAvailabilityPB();
-}, {
-    scheduled: true,
-    timezone: "America/New_York"
-});
+// cron.schedule('0 17 * * Saturday', () => {
+//     sendAvailabilityPB();
+// }, {
+//     scheduled: true,
+//     timezone: "America/New_York"
+// });
 
 // send ladders partners Sunday nights
 // real time string: '0 5 * * Monday'
-cron.schedule('0 16 * * Sunday', () => {
-    sendLadders();
-}, {
-    scheduled: true,
-    timezone: "America/New_York"
-})
+// cron.schedule('0 16 * * Sunday', () => {
+//     sendLadders();
+// }, {
+//     scheduled: true,
+//     timezone: "America/New_York"
+// })
 
 // send ladders partners Sunday nights
 // real time string: '0 5 * * Monday'
-cron.schedule('15 15 * * Sunday', () => {
-    sendAvailabilityReminder();
-}, {
-    scheduled: true,
-    timezone: "America/New_York"
-})
+// cron.schedule('15 15 * * Sunday', () => {
+//     sendAvailabilityReminder();
+// }, {
+//     scheduled: true,
+//     timezone: "America/New_York"
+// })
 
 
 function sleep(ms){
@@ -89,7 +89,6 @@ app.get('/preferences/:userId', (req, res, next) => {
     let referer = req.get('Referer');
 
     if (referer == undefined) {
-        console.log("here");
         User.find({}).sort('year').exec(function(err, response) {
             if (err) {
                 console.log(err);
@@ -995,18 +994,20 @@ function setPreferences(senderId) {
 }
 
 function sendInfo() {
-    var message = "Hi! If you want to set your preferences, please do so on a computer. Unfortunately, the set preferences functionality on the mobile Facebook messenger app is not working at the moment.";
-    User.find({}, function(err, response) {
-        if (err) {
-            console.log(err);
-        } else {
-            for (var i = 0; i < response.length; i++) {
-                sendMessage(response[i].user_id, {text: message});
-                console.log(response[i].firstName);
-                console.log(response[i].user_id);
-            }
-        }
-    })
+    var message = "Hi! Some updates:\n\n1) The set preferences functionality on the mobile Facebook messenger app is now working! Sorry for the inconvenience.\n\n2) Since next week is spring break, no pairings are going to be made this weekend. Have a great spring break!\n\n3) We know there has been some confusion about this so just to make things clear, in order for two people not to be paired up with each other, they BOTH must select each other while setting their preferences - please make sure that you’re setting your preferences!\n\n4) If you would no longer like to receive messages, just send " + '"' + "Unsubscribe" + '"'+ ".";
+    sendMessage("2479283145514220", {text: message});
+    
+    // User.find({}, function(err, response) {
+    //     if (err) {
+    //         console.log(err);
+    //     } else {
+    //         for (var i = 0; i < response.length; i++) {
+    //             sendMessage(response[i].user_id, {text: message});
+    //             console.log(response[i].firstName);
+    //             console.log(response[i].user_id);
+    //         }
+    //     }
+    // })
 }
 
 // function to remind people who have year == null to complete their profile
