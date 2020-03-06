@@ -1001,9 +1001,12 @@ function sendInfo() {
             console.log(err);
         } else {
             for (var i = 0; i < response.length; i++) {
-                sendMessage(response[i].user_id, {text: message});
-                console.log(response[i].firstName);
-                console.log(response[i].user_id);
+                if (!(response[i].user_id.localeCompare("2740862885993089") == 0) && !(response[i].user_id.localeCompare("2713544202105549") == 0)) {
+                    sendMessage(response[i].user_id, {text: message});
+                    console.log(response[i].firstName);
+                    console.log(response[i].user_id);
+                }
+                
             }
         }
     })
