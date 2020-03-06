@@ -89,6 +89,7 @@ app.get('/preferences/:userId', (req, res, next) => {
     let referer = req.get('Referer');
 
     if (referer === 'undefined') {
+        console.log("here");
         User.find({}).sort('year').exec(function(err, response) {
             if (err) {
                 console.log(err);
@@ -101,14 +102,11 @@ app.get('/preferences/:userId', (req, res, next) => {
     }
     else if (referer) {
         if (referer.indexOf('www.messenger.com') >= 0) {
-            console.log("eerer");
             res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/');
         } else if (referer.indexOf('www.facebook.com') >= 0) {
-            console.log("brhu");
             res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
         }
         
-        console.log("hello");
         User.find({}).sort('year').exec(function(err, response) {
             if (err) {
                 console.log(err);
