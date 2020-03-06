@@ -15,9 +15,9 @@ var User = require("./models/users");
 
 var preferencesRoutes = require('./routes/preferencesroutes.js')(User);
 
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/public'));
 app.listen((process.env.PORT || 5000));
 app.set('views', './views');
 app.set('view engine', 'ejs');
