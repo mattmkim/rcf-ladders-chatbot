@@ -447,6 +447,7 @@ function sendMessage(recipientId, message) {
         json: {
             recipient: {id: recipientId},
             message: message,
+            tag: "NON_PROMOTIONAL_SUBSCRIPTION"
         }
     }, function(error, response, body) {
         if (error) {
@@ -995,7 +996,6 @@ function setPreferences(senderId) {
 
 function sendInfo() {
     var message = "Hi! Some updates:\n\n1) The set preferences functionality on the mobile Facebook messenger app is now working! Sorry for the inconvenience.\n\n2) Since next week is spring break, no pairings are going to be made this weekend. Have a great spring break!\n\n3) We know there has been some confusion about this so just to make things clear, in order for two people not to be paired up with each other, they BOTH must select each other while setting their preferences - please make sure that you’re setting your preferences!\n\n4) If you would no longer like to receive messages, just send " + '"' + "Unsubscribe" + '"'+ ".";
-    
     User.find({}, function(err, response) {
         if (err) {
             console.log(err);
