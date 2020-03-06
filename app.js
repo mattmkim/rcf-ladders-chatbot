@@ -88,6 +88,7 @@ async function sendYearPBs(senderId){
 app.get('/preferences/:userId', (req, res, next) => {
     let referer = req.get('Referer');
     console.log("asdfas");
+    console.log(referer);
     if (referer) {
         if (referer.indexOf('www.messenger.com') >= 0) {
             console.log("eerer");
