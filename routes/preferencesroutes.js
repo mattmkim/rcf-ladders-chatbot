@@ -1,10 +1,10 @@
 var msg = require('./messagingroutes.js');
 
 var routes = function(User) {
-    
+
     var openPreferenceWebview = function (req, res, next) {
         let referer = req.get('Referer');
-        console.log(req.params.userId);
+        console.log(req.params);
     
         if (referer == undefined) {
             User.find({}).sort('year').exec(function(err, response) {

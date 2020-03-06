@@ -12,7 +12,6 @@ setInterval(function() {
 
 var db = mongoose.connect("mongodb://mattmkim:minwoo123@ds351455.mlab.com:51455/heroku_7866frlv");
 var User = require("./models/users");
-
 var preferencesRoutes = require('./routes/preferencesroutes.js')(User);
 
 app.use(express.static(__dirname + '/public'));
