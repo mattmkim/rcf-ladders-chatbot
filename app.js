@@ -83,7 +83,7 @@ async function sendYearPBs(senderId){
 }
 
 // Serve the options path and set required headers
-app.get('/preferences/:userID', preferencesRoutes.open_preferences_webview);
+app.get('/preferences/:userId', preferencesRoutes.open_preferences_webview);
 
 // app.get('/preferences/:userId', (req, res, next) => {
 //     let referer = req.get('Referer');
