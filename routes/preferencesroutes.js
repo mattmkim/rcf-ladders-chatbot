@@ -1,5 +1,4 @@
-var msg = require('./messagingroutes.js');
-var request = require("request");
+var msg = require('../messaging/messagefunctions.js');
 
 var routes = function(User) {
 
