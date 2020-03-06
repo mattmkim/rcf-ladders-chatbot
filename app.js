@@ -89,13 +89,15 @@ app.get('/preferences/:userId', (req, res, next) => {
     let referer = req.get('Referer');
     if (referer) {
         if (referer.indexOf('www.messenger.com') >= 0) {
+            console.log("eerer");
             res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/');
         } else if (referer.indexOf('www.facebook.com') >= 0) {
+            console.log("brhu");
             res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
         }
         
         //res.sendFile('webview.html', {root: __dirname});
-        console.log("eerer");
+        
         User.find({}).sort('year').exec(function(err, response) {
             if (err) {
                 console.log(err);
