@@ -17,6 +17,7 @@ body {
 }
 
 #info {
+    font-family: 'Sen', sans-serif; 
     text-align: center;
     margin: 0 auto;
     font-size: 12px;
@@ -53,6 +54,7 @@ input[type=checkbox]:checked + .color-checkbox {
 
 }    
 .two-member-container {
+    font-family: 'Sen', sans-serif; 
     display: flex;
     text-align: center; 
     align-items: center;
