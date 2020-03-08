@@ -1,3 +1,5 @@
+var request = require("request");
+
 module.exports = {
     
     sleep: function(ms){
@@ -90,5 +92,119 @@ module.exports = {
         module.exports.underYearPB(senderId);
         await module.exports.sleep(200);
         module.exports.upperYearPB(senderId)
+    },
+
+    setPreferences: function(senderId) {
+        let messageData = {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": "Please select people you already know!",
+                    "buttons": [{
+                        "type": "web_url",
+                        "url":  "https://rcf-meets.herokuapp.com/preferences/" + senderId,
+                        "title": "Set Preferences",
+                        "webview_height_ratio": "full",
+                        "messenger_extensions": true
+                    }]
+                }
+            }
+        }
+        request({
+            url: 'https://graph.facebook.com/v5.0/me/messages',
+            qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+            method: 'POST',
+            json: {
+                recipient: {id: senderId},
+                message: messageData,
+                messaging_type: "MESSAGE_TAG",
+                tag: "CONFIRMED_EVENT_UPDATE"
+            }
+        }, function(error, response, body){
+                if (error) {
+                    console.log("Error sending message: " + response.error)
+                } else {
+                    console.log(response);
+                }
+        })
+    },
+
+    availabilityPB: function(senderId, name) {
+        let messageData = {
+            "attachment":{
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text": "Hi " + name + ", are you free to meet with someone this week?",
+                    "buttons":[
+                        {
+                            "type":"postback",
+                            "title":"Yes",
+                            "payload":"YES"
+                        },
+                        {
+                            "type":"postback",
+                            "title":"No",
+                            "payload":"NO"
+                        }
+                    ]
+                }
+            }
+        }
+        request({
+            url: 'https://graph.facebook.com/v5.0/me/messages',
+            qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+            method: 'POST',
+            json: {
+                recipient: {id: senderId},
+                message: messageData,
+                messaging_type: "MESSAGE_TAG",
+                tag: "CONFIRMED_EVENT_UPDATE"
+            }
+        }, function(error, response, body){
+                if (error) {
+                    console.log("Error sending message: " + response.error)
+                }
+        })
+    },
+
+    viewMembers: function(senderId, members) {
+        console.log(members);
+        const memberObjs = [];
+        for (let i = 0; i < members.length; i++) { 
+            if (members[i].user_id != senderId) {
+                let obj = {
+                    "title": members[i].firstName + ' ' + members[i].lastName,
+                    "image_url": members[i].profileUrl,
+                    "subtitle": 'Interests: ' + members[i].interests + "\n" + 'Fun Fact: ' + members[i].fun_fact,
+                }
+                memberObjs.push(obj);
+            }
+        }
+        let messageData = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": memberObjs
+                }
+            }
+        }
+        request({
+            url: 'https://graph.facebook.com/v5.0/me/messages',
+            qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+            method: 'POST',
+            json: {
+                recipient: {id: senderId},
+                message: messageData,
+            }
+        }, function(error, response, body){
+                if (error) {
+                    console.log("Error sending message: " + response.error)
+                }
+        })
     }
+
+
 }
