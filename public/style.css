@@ -1,5 +1,5 @@
 body {
-    font-family: 'Sen', sans-serif;    
+    font-family: 'Roboto Slab', serif;
     color: #4A4A4A;
     background-color: #FAFAFA;
 }
@@ -17,7 +17,7 @@ body {
 }
 
 #info {
-    font-family: 'Sen', sans-serif; 
+    font-family: 'Roboto Slab', serif;
     text-align: center;
     margin: 0 auto;
     font-size: 12px;
@@ -54,7 +54,7 @@ input[type=checkbox]:checked + .color-checkbox {
 
 }    
 .two-member-container {
-    font-family: 'Sen', sans-serif; 
+    font-family: 'Roboto Slab', serif;
     display: flex;
     text-align: center; 
     align-items: center;
