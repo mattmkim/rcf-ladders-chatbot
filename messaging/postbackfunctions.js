@@ -236,7 +236,8 @@ module.exports = {
             json: {
                 recipient: {id: senderId},
                 message: messageData,
-                tag: "NON_PROMOTIONAL_SUBSCRIPTION"
+                messaging_type: "MESSAGE_TAG",
+                tag: "CONFIRMED_EVENT_UPDATE"
             }
         }, function(error, response, body){
                 if (error) {
