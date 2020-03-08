@@ -208,6 +208,41 @@ module.exports = {
                     console.log("Error sending message: " + response.error)
                 }
         })
+    },
+
+    laddersPB: function(senderId, firstName, lastName, imageUrl, interests, funfact) {
+        let messageData = {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": [{
+                        "title": firstName + " " + lastName,
+                        "image_url": imageUrl,
+                        "subtitle": 'Interests: ' + interests + "\n" + 'Fun Fact: ' + funfact,
+                        // "buttons": [{
+                        //     "type":"postback",
+                        //     "title":"Yes",
+                        //     "payload":"YES"
+                        // }]
+                    }]
+                }
+            }
+        }
+        request({
+            url: 'https://graph.facebook.com/v5.0/me/messages',
+            qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+            method: 'POST',
+            json: {
+                recipient: {id: senderId},
+                message: messageData,
+                tag: "NON_PROMOTIONAL_SUBSCRIPTION"
+            }
+        }, function(error, response, body){
+                if (error) {
+                    console.log("Error sending message: " + response.error)
+                }
+        })
     }
 
 

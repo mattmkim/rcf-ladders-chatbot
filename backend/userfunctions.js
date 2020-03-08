@@ -114,6 +114,178 @@ module.exports = function(User) {
         msg.sendMessage(senderId, {text: message});
     }
 
+    module.sendAvailabilityPB = function() {
+        User.find({}, function(err, response) {
+            if (err) {
+                console.log(err);
+            } else {
+                for (var i = 0; i < response.length; i++) {
+                    postback.availabilityPB(response[i].user_id, response[i].firstName);
+                }
+            }
+        })
+    }
+
+    module.sendLadders = function() {
+        var message = "";
+        User.find({available: true}, function(err, response) {
+            if (err) {
+                console.log(err);
+            } else {
+                //console.log(response);
+                if (response.length == 0) {
+                    console.log("No one is free :(");
+                } else if (response.length == 1) {
+                    message = "Looks like no one else is free this week :(";
+                    //sendMessage(response[0].user_id, {text: message});
+                } else {
+                    //console.log(response);
+                    while (response.length > 0) {
+                        var f = response[Math.floor(Math.random() * response.length)];
+                        //console.log(f);
+                        var s = response[Math.floor(Math.random() * response.length)];
+                        //console.log(s);
+    
+                        var setFPrevMeetup = new Set(f.prevMeetup);
+                        while ((f.known.includes(s.user_id) && s.known.includes(f.user_id)) || f.user_id.localeCompare(s.user_id) == 0 || setFPrevMeetup.has(s.user_id)) {
+                            s = response[Math.floor(Math.random() * response.length)];
+                            if (setFPrevMeetup.has(s.user_id)) {
+                                if (setFPrevMeetup.size == response.length - 1) {
+                                    break;
+                                } else {
+                                    if (f.known.length == response.length - 1) {
+                                        if (s.known.length == response.length - 1) {
+                                            if (f.user_id.localeCompare(s.user_id) == 0) {
+                                                continue;
+                                            } else {
+                                                break;
+                                            }
+                                        } else {
+                                            continue;
+                                        }
+                                    }
+                                }
+                            }
+                            
+                        }
+    
+                        var indF = response.indexOf(f);
+                        response.splice(indF, 1);
+                        var indS = response.indexOf(s);
+                        response.splice(indS, 1);
+    
+                        //for testing comment out below
+    
+                        User.updateOne({user_id: f.user_id}, {available: false}, function(err, response) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                //console.log(response);
+                            }
+                        })
+                        User.updateOne({user_id: s.user_id}, {available: false}, function(err, response) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                //console.log(response);
+                            }
+                        })
+    
+    
+                        //if odd number of people, need to make a group of three?
+                        if (response.length == 1) {
+                            var t = response[0];
+                            //console.log(t);
+                            var indT = response.indexOf(t);
+                            response.splice(indT, 1);
+                            User.updateOne({user_id: t.user_id}, {available: false}, function(err, response) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    //console.log(response);
+                                }
+                            })
+                            console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName + " and " + t.firstName + t.lastName);
+                            var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + " and " + t.firstName + "! You all said you were able to meet this week. Message " + s.firstName + " and " + t.firstName + " to schedule a time to meet.";
+                            var secondMessageToF = s.firstName + "'s interests: " + s.interests + "\n" + s.firstName + "'s fun fact: " + s.fun_fact + "\n\n"
+                            t.firstName + "'s interests: " + t.interests + "\n" + t.firstName + "'s fun fact: " + t.fun_fact;
+                            var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + " and " + t.firstName + "! You all said you were able to meet this week. Message " + f.firstName + " and " + t.firstName + " to schedule a time to meet.";
+                            var secondMessageToS = f.firstName + "'s interests: " + f.interests + "\n" + f.firstName + "'s fun fact: " + f.fun_fact + "\n\n"
+                            t.firstName + "'s interests: " + t.interests + "\n" + t.firstName + "'s fun fact: " + t.fun_fact;
+                            var messageToT = "Hi " + t.firstName + ", meet " + s.firstName + " and " + f.firstName + "! You all said you were able to meet this week. Message " + f.firstName + " and " + s.firstName + " to schedule a time to meet.";
+                            var secondMessageToT = s.firstName + "'s interests: " + s.interests + "\n" + s.firstName + "'s fun fact: " + s.fun_fact + "\n\n"
+                            f.firstName + "'s interests: " + f.interests + "\n" + f.firstName + "'s fun fact: " + f.fun_fact;
+                            msg.sendTwoMessages(f.user_id, messageToF, secondMessageToF);
+                            msg.sendTwoMessages(s.user_id, messageToS, secondMessageToS);
+                            msg.sendTwoMessages(t.user_id, messageToT, secondMessageToT);
+                            postback.laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
+                            postback.laddersPB(f.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
+                            postback.laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+                            postback.laddersPB(s.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
+                            postback.laddersPB(t.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
+                            postback.laddersPB(t.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+    
+                            User.update({user_id: f.user_id}, { $push: {prevMeetup: [s.user_id, t.user_id]} }, function(err, response) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.log("Updated previous for " + f.user_id);
+                                }
+                            })
+    
+                            User.update({user_id: s.user_id}, { $push: {prevMeetup: [f.user_id, t.user_id]} }, function(err, response) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.log("Updated previous for " + s.user_id);
+                                }
+                            })
+    
+                            User.update({user_id: t.user_id}, { $push: {prevMeetup: [s.user_id, f.user_id]} }, function(err, response) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.log("Updated previous for " + t.user_id);
+                                }
+                            })
+    
+                        } else {
+                            console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName);
+                            var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + "! You both said you were able to meet this week. Message " + s.firstName + " to schedule a time to meet.";
+                            var secondMessageToF = s.firstName + "'s interests: " + s.interests + "\n" + s.firstName + "'s fun fact: " + s.fun_fact;
+                            var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + "! You both said you were able to meet this week. Message " + f.firstName + " to schedule a time to meet.";
+                            var secondMessageToS = f.firstName + "'s interests: " + f.interests + "\n" + f.firstName + "'s fun fact: " + f.fun_fact;
+                            msg.sendTwoMessages(f.user_id, messageToF, secondMessageToF);
+                            msg.sendTwoMessages(s.user_id, messageToS, secondMessageToS);
+                            postback.laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
+                            postback.laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+                            
+                            //update previous
+    
+                            User.update({user_id: f.user_id}, { $push: {prevMeetup: s.user_id} }, function(err, response) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.log("Updated previous for " + f.user_id);
+                                }
+                            })
+    
+                            User.update({user_id: s.user_id}, { $push: {prevMeetup: f.user_id} }, function(err, response) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.log("Updated previous for " + s.user_id);
+                                }
+                            })
+                            
+                        }
+                    }
+                    
+                    console.log('Done iterating through list.');
+                }
+            }
+        })
+    }
 
     return module;
 
