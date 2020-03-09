@@ -65,10 +65,12 @@
 
             <h3 id="FAQ-header"> First-time here?</h3>
             <a href="#" role="button" class="btn popovers" data-toggle="popover" 
-            title="" data-content="test content <a href='' title='test add link'>link on content</a>" data-original-title="test title">test link</a>
+            title="" data-content="test content" data-original-title="test title">test link</a>
         </div>
         <script>
-            $("[data-toggle=popover]").popover({html:true})
+            $(document).ready(function(){
+              $('[data-toggle="popover"]').popover();   
+            });
         </script>
 
 </div>
