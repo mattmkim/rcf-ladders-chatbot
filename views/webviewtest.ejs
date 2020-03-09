@@ -61,18 +61,20 @@
     <form action="/preferencespostback/<%- currUser %>" method="post">
         <input type="hidden" name="psid" id="psid">
         
-        <div class="greeting-FAQ">
+          div class="greeting-FAQ">
             <h3 id="greeting-header"> Meet the RCF Meets Members</h3>
             <p id="greeting-info">
                 Please select people you already know!
             </p>
 
             <h3 id="FAQ-header"> First-time here?</h3>
-            <a href="#" role="button" class="btn popovers" data-toggle="popover" 
-            title="" data-content="test content" data-original-title="test title">test link</a>
+            <a href="#" data-toggle="popover" title="Popover Header" data-content="Some content inside the popover">Toggle popover</a>
         </div>
+
         <script>
-            $("[data-toggle=popover]").popover({html:true})
+        $(document).ready(function(){
+        $('[data-toggle="popover"]').popover();   
+        });
         </script>
 
 </div>
