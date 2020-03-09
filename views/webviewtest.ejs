@@ -74,7 +74,8 @@
 
         <script>
         $(document).ready(function(){
-            $('.popover-dismiss').popover({
+            //$('[data-toggle="popover"]').popover();   
+            $('[data-trigger="focus"]').popover({
                 trigger: 'focus'
             })
         });
