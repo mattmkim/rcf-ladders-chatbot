@@ -72,9 +72,9 @@
             title="" data-content="test content" data-original-title="test title">test link</a>
         </div>
         <script>
-            $(document).ready(function(){
-              $('[data-toggle="popover"]').popover();   
-            });
+            $('.popover-dismiss').popover({
+                trigger: 'focus'
+            })
         </script>
 
 </div>
