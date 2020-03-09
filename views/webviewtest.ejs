@@ -72,9 +72,7 @@
             title="" data-content="test content" data-original-title="test title">test link</a>
         </div>
         <script>
-            $('.popover-dismiss').popover({
-                trigger: 'focus'
-            })
+            $("[data-toggle=popover]").popover({html:true})
         </script>
 
 </div>
