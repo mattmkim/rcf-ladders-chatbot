@@ -59,12 +59,9 @@ app.get("/", function (req, res) {
 
 // Serve the options path and set required headers
 app.get('/preferences/:userId', preferencesRoutes.open_preferences_webview);
-
 app.post('/preferencespostback/:userId', preferencesRoutes.submit_preferences);
 
 // Facebook Webhook
 // Used for verification
 app.get("/webhook", webhookRoutes.getWebhook);
-
-// All callbacks for Messenger will be POST-ed here
 app.post("/webhook", webhookRoutes.postWebhook);

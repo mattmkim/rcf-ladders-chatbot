@@ -1,5 +1,5 @@
 body {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Oxygen', sans-serif;
     color: #4A4A4A;
     background-color: #FAFAFA;
 }
@@ -18,7 +18,7 @@ body {
 }
 
 #info {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Oxygen', sans-serif;
     text-align: center;
     margin: 0 auto;
     font-size: 12px;
@@ -55,7 +55,7 @@ input[type=checkbox]:checked + .color-checkbox {
 
 }    
 .two-member-container {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Oxygen', sans-serif;
     display: flex;
     text-align: center; 
     align-items: center;
