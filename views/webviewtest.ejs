@@ -69,13 +69,16 @@
             </p>
 
             <h3 id="FAQ-header"> First-time here?</h3>
-            <a href="#" data-toggle="popover" title="Popover Header" data-content="Some content inside the popover">Toggle popover</a>
+            <a href="#" data-toggle="popover" data-trigger="focus" title="Popover Header" data-content="Some content inside the popover">Toggle popover</a>
         </div>
 
         <script>
         $(document).ready(function(){
-        $('[data-toggle="popover"]').popover();   
+            $('.popover-dismiss').popover({
+                trigger: 'focus'
+            })
         });
+
         </script>
 
 </div>
