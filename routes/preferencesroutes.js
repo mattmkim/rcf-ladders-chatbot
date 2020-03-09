@@ -10,13 +10,13 @@ var routes = function(User) {
                 if (err) {
                     console.log(err);
                 } else {
-                    // User.find({user_id: req.params.userId}, function(err, response2) {
-                    //     res.render('webview', {data: response, access: process.env.PAGE_ACCESS_TOKEN, currUser: req.params.userId, known: response2[0].known});
-                    // })
-
                     User.find({user_id: req.params.userId}, function(err, response2) {
-                        res.render('webviewtest', {data: response, access: process.env.PAGE_ACCESS_TOKEN, currUser: req.params.userId, known: response2[0].known});
+                        res.render('webview', {data: response, access: process.env.PAGE_ACCESS_TOKEN, currUser: req.params.userId, known: response2[0].known});
                     })
+
+                    // User.find({user_id: req.params.userId}, function(err, response2) {
+                    //     res.render('webviewtest', {data: response, access: process.env.PAGE_ACCESS_TOKEN, currUser: req.params.userId, known: response2[0].known});
+                    // })
                 }
             })
         } else {
@@ -30,14 +30,14 @@ var routes = function(User) {
                 if (err) {
                     console.log(err);
                 } else {
-                    // User.find({user_id: req.params.userId}, function(err, response2) {
-                    //     res.render('webview', {data: response, access: process.env.PAGE_ACCESS_TOKEN, currUser: req.params.userId, known: response2[0].known});
-                    // })
+                    User.find({user_id: req.params.userId}, function(err, response2) {
+                        res.render('webview', {data: response, access: process.env.PAGE_ACCESS_TOKEN, currUser: req.params.userId, known: response2[0].known});
+                    })
 
                     // for new webview
-                    User.find({user_id: req.params.userId}, function(err, response2) {
-                        res.render('webviewtest', {data: response, access: process.env.PAGE_ACCESS_TOKEN, currUser: req.params.userId, known: response2[0].known});
-                    })
+                    // User.find({user_id: req.params.userId}, function(err, response2) {
+                    //     res.render('webviewtest', {data: response, access: process.env.PAGE_ACCESS_TOKEN, currUser: req.params.userId, known: response2[0].known});
+                    // })
                 }
             })
             
