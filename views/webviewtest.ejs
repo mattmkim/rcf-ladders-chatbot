@@ -1,0 +1,76 @@
+<html>
+<head>
+    <title>RCF Meets Members</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+<script>
+    // (function (d, s, id) {
+    //     var js, fjs = d.getElementsByTagName(s)[0];
+    //     if (d.getElementById(id)) {
+    //         return;
+    //     }
+    //     js = d.createElement(s);
+    //     js.id = id;
+    //     js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+    //     fjs.parentNode.insertBefore(js, fjs);
+    // }(document, 'script', 'Messenger'));
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'Messenger'));
+
+    window.extAsyncInit = () => {
+        MessengerExtensions.getSupportedFeatures(function success(result) {
+            let features = result.supported_features;
+            if (features.includes("context")) {
+                MessengerExtensions.getContext('429499001267322',
+                    function success(thread_context) {
+                        document.getElementById("psid").value = thread_context.psid;
+                    },
+                    function error(err) {
+                        console.log(err);
+                    }
+                );
+            }
+        }, function error(err) {
+            console.log(err);
+        });
+        document.getElementById('submitButton').addEventListener('click', () => {
+            MessengerExtensions.requestCloseBrowser(function success() {
+                console.log("Webview closing");
+            }, function error(err) {
+                console.log(err);
+            });
+        });
+    };
+</script>
+
+<div id="form">
+    <form action="/preferencespostback/<%- currUser %>" method="post">
+        <input type="hidden" name="psid" id="psid">
+        
+        <div class="greeting-FAQ">
+            <h3 id="greeting-header"> Meet the RCF Meets Members</h3>
+            <p id="greeting-info">
+                Please select people you already know!
+            </p>
+
+            <h3 id="FAQ-header"> First-time here?</h3>
+            <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" 
+            data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>
+        </div>
+        
+        <button type="submit" name="submit" class="btn btn-primary" id="submitButton"> Submit </button>
+
+        
+</div>
+</body>
+</html>
