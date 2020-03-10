@@ -101,23 +101,22 @@
     <form action="/preferencespostback/<%- currUser %>" method="post">
 
         <nav id="navbar-example2" class="navbar sticky-top navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="../rcfmeets.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+                RCF Meets
+            </a>
             <ul class="nav nav-pills">
-                <li class="nav-item">
-                <a class="nav-link" href="#incomplete">Incomplete</a>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Classes</a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#incomplete">Incomplete</a>
+                    <a class="dropdown-item" href="#freshman">Freshman</a>
+                    <a class="dropdown-item" href="#sophomore">Sophomore</a>
+                    <a class="dropdown-item" href="#sophomore">Junior</a>
+                    <a class="dropdown-item" href="#sophomore">Senior</a>
+                  </div>
                 </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#freshman">Freshman</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#freshman">Sophomore</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#freshman">Junior</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#freshman">Senior</a>
-                </li>
-            </ul>
+              </ul>
         </nav>
         <% var incomplete = false %>
             <% var freshman = false; %>
