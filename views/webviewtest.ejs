@@ -99,6 +99,134 @@
         </div>
 
     <form action="/preferencespostback/<%- currUser %>" method="post">
+
+        <nav id="navbar-example3" class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="#">Classes</a>
+            <nav class="nav nav-pills flex-column">
+              <a class="nav-link" href="#incomplete">Incomplete</a>
+              <a class="nav-link" href="#freshman">Freshman</a>
+              <a class="nav-link" href="#sophomore">Sophomore</a>
+              <a class="nav-link" href="#junior">Junior</a>
+              <a class="nav-link" href="#senior">Senior</a>
+            </nav>
+        </nav>
+
+        <% var incomplete = false %>
+            <% var freshman = false; %>
+            <% var sophomore = false; %>
+            <% var junior = false; %>
+            <% var senior = false; %>
+            <% var count = 0; %>
+            <% for (var i = 0; i < data.length; i++) { %>
+                <% if (data[i].user_id.localeCompare(currUser) != 0) { %>
+                    <% if (data[i].year == null && incomplete === false) { %>
+                        <h4 id="incomplete"> Incomplete Profile </h4>
+                        <% console.log(data[i].firstName); %>
+                        <% incomplete = true; %>
+                        <% count = 0; %>
+                    <% } else if (data[i].year == 1 && freshman === false) { %>
+                        <% if (count % 2 != 0) { %>
+                            </div>
+                        <% } %>
+                        <h4 id="freshman"> Freshman </h4>
+                        <% freshman = true; %>
+                        <% count = 0; %>
+                    <% } else if (data[i].year == 2 && sophomore === false) { %>
+                        <% if (count % 2 != 0) { %>
+                            </div>
+                        <% } %>
+                        <h4 id="sophomore"> Sophomores </h4>
+                        <% sophomore = true; %>
+                        <% count = 0; %>
+                    <% } else if (data[i].year == 3 && junior === false) { %>
+                        <% if (count % 2 != 0) { %>
+                            </div>
+                        <% } %>
+                        <h4 id="junior"> Juniors </h4>
+                        <% junior = true; %>
+                        <% count = 0; %>
+                    <% } else if (data[i].year == 4 && senior === false) { %>
+                        <% if (count % 2 != 0) { %>
+                            </div>
+                        <% } %>
+                        <h4 id="senior"> Seniors </h4>
+                        <% senior = true; %>
+                        <% count = 0; %>
+                    <% } %>
+
+                    <% if (count % 2 == 0) { %>
+                        <% count = count + 1; %>
+
+                        <% if (known.includes(data[i].user_id)) { %>
+                            <div class="two-member-container">
+                                <div class="member-option">
+                                    <div class="custom-control custom-checkbox">
+                                        <label class="member-form-label">
+                                            <input class="member-form-input" type="checkbox" checked="checked" name=<%- data[i].user_id %>  id=<%- i %>>
+                                            <div class="color-checkbox">
+                                                <img class="member-form-image" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
+                                                <div class="member-name">
+                                                    <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
+                                                </div>              
+                                            </div>  
+                                        </label>
+                                    </div>  
+                                </div>
+                        <% } else { %> 
+                            <div class="two-member-container">
+                                <div class="member-option">
+                                    <div class="custom-control custom-checkbox">
+                                        <label class="member-form-label">
+                                            <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>>
+                                            <div class="color-checkbox">
+                                                <img class="member-form-image" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
+                                                <div class="member-name">
+                                                    <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
+                                                </div>              
+                                            </div>  
+                                        </label>
+                                    </div>  
+                                </div>
+                        <% } %> 
+                    <% } else { %>
+                        <% count = count + 1; %>
+                        <% if (known.includes(data[i].user_id)) { %>
+                            <div class="member-option">
+                                <div class="custom-control custom-checkbox">
+                                    <label class="member-form-label">
+                                        <input class="member-form-input" type="checkbox" checked="checked" name=<%- data[i].user_id %>  id=<%- i %>>
+                                        <div class="color-checkbox">
+                                            <img class="member-form-image" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
+                                            <div class="member-name">
+                                                <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>  
+                            </div>
+                        </div>
+                        <% } else { %>
+                            <div class="member-option">
+                                <div class="custom-control custom-checkbox">
+                                    <label class="member-form-label">
+                                        <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>>
+                                        <div class="color-checkbox">
+                                            <img class="member-form-image" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
+                                            <div class="member-name">
+                                                <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>  
+                            </div>
+                        </div>
+                        <% } %>
+                    <% } %>
+               <% } %>
+            <% } %>
+            <% if (count % 2 != 0) { %>
+                </div>
+            <% } %>
         <button type="submit" name="submit" class="btn btn-primary" id="submitButton"> Submit </button>
     </form>
 </div>
