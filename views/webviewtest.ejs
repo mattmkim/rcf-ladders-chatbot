@@ -57,7 +57,6 @@
 </script>
 
 <div id="form">
-    <form action="/preferencespostback/<%- currUser %>" method="post">
         <div class="jumbotron">
             <h3 id="greeting-header"> Meet the RCF Meets Members</h3>
             <p id="greeting-info">
@@ -98,6 +97,8 @@
                 </div>
             </div>
         </div>
+
+    <form action="/preferencespostback/<%- currUser %>" method="post">
         <button type="submit" name="submit" class="btn btn-primary" id="submitButton"> Submit </button>
     </form>
 </div>
