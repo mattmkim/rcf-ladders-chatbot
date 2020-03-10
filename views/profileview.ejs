@@ -53,7 +53,12 @@
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title"><%- data.firstName %> <%-" " %> <%- data.lastName %></h5>
-          <p class="card-text"><i class="fas fa-graduation-cap"></i>data.year</p>
+          <p class="card-text"><i class="fas fa-graduation-cap"></i> <%- data.year %> </p>
+          <% if (data.available) { %> 
+            <p class="card-text"><i class="fas fa-user"></i> Available </p>
+          <% } else { %>
+            <p class="card-text"><i class="fas fa-user-alt-slash"></i> Not Available </p>
+          }
         </div>
       </div>
     </div>
