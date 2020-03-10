@@ -44,6 +44,14 @@ body {
     height: 120px;
 }
 
+.FAQ-header {
+    font-size: 15px;
+}
+
+.meet {
+    color: #001180;
+}
+
 .color-checkbox:hover {
     background-color: rgb(238, 247, 255);
 }
