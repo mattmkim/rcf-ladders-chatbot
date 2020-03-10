@@ -1,11 +1,7 @@
-.card {
-    align-self: center;
-    align-items: center;
-    align-content: center;
+.card-wrapper {
+    display: flex;
     justify-content: center;
-    justify-self: center;
-    
-}
+}   
 
 .card-img {
     height: auto; 
