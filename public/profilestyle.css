@@ -3,3 +3,8 @@
     width: auto; 
     max-width: 150px; 
 }
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+}
