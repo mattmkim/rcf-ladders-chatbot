@@ -125,10 +125,9 @@
                         <% count = 0; %>
                     <% } else if (data[i].year == 1 && freshman === false) { %>
                         <% if (count % 2 != 0) { %>
-                                </div>
                             </div>
-                        </div>
                         <% } %>
+                        </div></div>    
                         <div class="card">
                         <div class="card-body">
                            
@@ -137,10 +136,9 @@
                         <% count = 0; %>
                     <% } else if (data[i].year == 2 && sophomore === false) { %>
                         <% if (count % 2 != 0) { %>
-                                </div>
-                            </div> 
-                        </div>
+                            </div>
                         <% } %>
+                        </div></div>
                         <div class="card">
                             <div class="card-body">
                            
@@ -149,10 +147,9 @@
                         <% count = 0; %>
                     <% } else if (data[i].year == 3 && junior === false) { %>
                         <% if (count % 2 != 0) { %>
-                                </div>
                             </div>
-                        </div>
                         <% } %>
+                        </div></div>
                         <div class="card">
                         <div class="card-body">
                            
@@ -161,10 +158,9 @@
                         <% count = 0; %>
                     <% } else if (data[i].year == 4 && senior === false) { %>
                         <% if (count % 2 != 0) { %>
-                                </div>
                             </div>
-                        </div>
                         <% } %>
+                        </div></div>
                         <div class="card">
                         <div class="card-body">
                            
@@ -244,9 +240,11 @@
                <% } %>
             <% } %>
             <% if (count % 2 != 0) { %>
-                </div></div></div>
+                </div>
             <% } %>
+            </div></div>
         <button type="submit" name="submit" class="btn btn-primary" id="submitButton"> Submit </button>
+
     </form>
 </div>
 </body>
