@@ -3,21 +3,14 @@
     <title>RCF Meets Members</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/style.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Oxygen&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
 <body>
 <script>
-    // (function (d, s, id) {
-    //     var js, fjs = d.getElementsByTagName(s)[0];
-    //     if (d.getElementById(id)) {
-    //         return;
-    //     }
-    //     js = d.createElement(s);
-    //     js.id = id;
-    //     js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
-    //     fjs.parentNode.insertBefore(js, fjs);
-    // }(document, 'script', 'Messenger'));
-
     (function(d, s, id){
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {return;}
@@ -30,7 +23,7 @@
         MessengerExtensions.getSupportedFeatures(function success(result) {
             let features = result.supported_features;
             if (features.includes("context")) {
-                MessengerExtensions.getContext('429499001267322',
+                MessengerExtensions.getContext('<APP-ID>',
                     function success(thread_context) {
                         document.getElementById("psid").value = thread_context.psid;
                     },
@@ -53,16 +46,68 @@
 </script>
 
 <div id="form">
+        <div class="jumbotron">
+            <h3 class="greeting-header"> <span class="meet">Meet</span> the</br> RCF <span class="meet">Meets</span> Members</h3>
+            <p id="greeting-info">
+                Please select people you already know!
+            </p>
+            <h3 class="FAQ-header"> First time here?</h3>
+
+            <div id="accordion">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Who should I pick?
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        Select people you would like to avoid being paired with. This includes people you know super well
+                        and would prefer not to be paired with them so you can meet someone new - however, if there are people you already know but still want to get to know more, don't select them!
+                        If you don't know anyone, just click Submit!                   
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        How do pairings work?
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        Just because you select someone doesn't mean you won't get paired with them - two people both have to select each other in order to not get paired. That being said, make sure you're setting your preferences!
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+
     <form action="/preferencespostback/<%- currUser %>" method="post">
-        <input type="hidden" name="psid" id="psid">
-        <h3 id="members-header"> RCF Meets Members </h3>
-        <div id="info">
-            Please select people you would like to avoid being paired with. 
-            (For example, if you know someone super well and would prefer not to be paired with them so you can meet someone new! 
-            If there are people you already know but still want to get to know more, don't select them!)
-            If you don't know anyone, just click Submit!
-        <div class="members-form">
-            <% var incomplete = false %>
+
+        <nav id="navbar-example2" class="navbar sticky-top navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="/images/rcfmeets.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+                RCF Meets
+            </a>
+            <ul class="nav nav-pills">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Classes</a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#incomplete">Incomplete</a>
+                    <a class="dropdown-item" href="#freshman">Freshman</a>
+                    <a class="dropdown-item" href="#sophomore">Sophomore</a>
+                    <a class="dropdown-item" href="#junior">Junior</a>
+                    <a class="dropdown-item" href="#senior">Senior</a>
+                  </div>
+                </li>
+              </ul>
+        </nav>
+        <% var incomplete = false %>
             <% var freshman = false; %>
             <% var sophomore = false; %>
             <% var junior = false; %>
@@ -71,7 +116,10 @@
             <% for (var i = 0; i < data.length; i++) { %>
                 <% if (data[i].user_id.localeCompare(currUser) != 0) { %>
                     <% if (data[i].year == null && incomplete === false) { %>
-                        <h4 class="class-header"> Incomplete Profile </h4>
+                        <div class="card">
+                        <div class="card-body">
+                       
+                        <h4 class="card-title" id="incomplete"> Incomplete Profile </h4>
                         <% console.log(data[i].firstName); %>
                         <% incomplete = true; %>
                         <% count = 0; %>
@@ -79,28 +127,44 @@
                         <% if (count % 2 != 0) { %>
                             </div>
                         <% } %>
-                        <h4 class="class-header"> Freshman </h4>
+                        </div></div>    
+                        <div class="card">
+                        <div class="card-body">
+                           
+                        <h4 class="card-title" id="freshman"> Freshman </h4>
                         <% freshman = true; %>
                         <% count = 0; %>
                     <% } else if (data[i].year == 2 && sophomore === false) { %>
                         <% if (count % 2 != 0) { %>
                             </div>
                         <% } %>
-                        <h4 class="class-header"> Sophomores </h4>
+                        </div></div>
+                        <div class="card">
+                            <div class="card-body">
+                           
+                            <h4 class="card-title" id="sophomore"> Sophomores </h4>
                         <% sophomore = true; %>
                         <% count = 0; %>
                     <% } else if (data[i].year == 3 && junior === false) { %>
                         <% if (count % 2 != 0) { %>
                             </div>
                         <% } %>
-                        <h4 class="class-header"> Juniors </h4>
+                        </div></div>
+                        <div class="card">
+                        <div class="card-body">
+                           
+                        <h4 class="card-title" id="junior"> Juniors </h4>
                         <% junior = true; %>
                         <% count = 0; %>
                     <% } else if (data[i].year == 4 && senior === false) { %>
                         <% if (count % 2 != 0) { %>
                             </div>
                         <% } %>
-                        <h4 class="class-header"> Seniors </h4>
+                        </div></div>
+                        <div class="card">
+                        <div class="card-body">
+                           
+                        <h4 class="card-title" id="senior"> Seniors <h4>
                         <% senior = true; %>
                         <% count = 0; %>
                     <% } %>
@@ -178,8 +242,9 @@
             <% if (count % 2 != 0) { %>
                 </div>
             <% } %>
-            <button type="submit" name="submit" class="btn btn-primary" id="submitButton"> Submit </button>
-        </div>
+            </div></div>
+        <button type="submit" name="submit" class="btn btn-primary" id="submitButton"> Submit </button>
+
     </form>
 </div>
 </body>
