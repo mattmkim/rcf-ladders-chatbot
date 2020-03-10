@@ -63,8 +63,39 @@
             <p id="greeting-info">
                 Please select people you already know!
             </p>
-
             <h3 id="FAQ-header"> First-time here?</h3>
+            <div id="accordion">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Who should I pick?
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        Select people you would like to avoid being paired with. This includes people you know super well
+                        and would prefer not to be paired with them so you can meet someone new - however, if there are people you already know but still want to get to know more, don't select them!
+                        If you don't know anyone, just click Submit!                   
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        How do pairings work?
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        Just because you select someone doesn't mean you won't get paired with them - two people both have to select each other in order to not get paired. That being said, make sure you're setting you're preferences!
+                    </div>
+                  </div>
+                </div>
+            </div>
         </div>
         <button type="submit" name="submit" class="btn btn-primary" id="submitButton"> Submit </button>
     </form>
