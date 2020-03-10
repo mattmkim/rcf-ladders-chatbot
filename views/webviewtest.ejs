@@ -100,16 +100,26 @@
 
     <form action="/preferencespostback/<%- currUser %>" method="post">
 
-        <nav id="navbar-example3" class="navbar navbar-light bg-light">
-            <a class="navbar-brand" href="#">Classes</a>
-            <nav class="nav nav-pills flex-column">
-              <a class="nav-link" href="#incomplete">Incomplete</a>
-              <a class="nav-link" href="#freshman">Freshman</a>
-              <a class="nav-link" href="#sophomore">Sophomore</a>
-              <a class="nav-link" href="#junior">Junior</a>
-              <a class="nav-link" href="#senior">Senior</a>
-            </nav>
-        </nav>
+        <nav id="navbar-example2" class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <ul class="nav nav-pills">
+              <li class="nav-item">
+                <a class="nav-link" href="#incomplete">Incomplete</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#freshman">Freshman</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#freshman">Sophomore</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#freshman">Junior</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#freshman">Senior</a>
+              </li>
+            </ul>
+          </nav>
 
         <% var incomplete = false %>
             <% var freshman = false; %>
