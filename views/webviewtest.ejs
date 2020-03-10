@@ -34,7 +34,7 @@
         MessengerExtensions.getSupportedFeatures(function success(result) {
             let features = result.supported_features;
             if (features.includes("context")) {
-                MessengerExtensions.getContext('429499001267322',
+                MessengerExtensions.getContext('<APP-ID>',
                     function success(thread_context) {
                         document.getElementById("psid").value = thread_context.psid;
                     },
@@ -69,16 +69,6 @@
             </p>
 
             <h3 id="FAQ-header"> First-time here?</h3>
-            <!-- <ul>
-            <li>
-                <a href="#" data-toggle="popover" data-trigger="focus" title="Don't know who to pick?" data-content="Select people you would like to avoid being paired with. This includes people you know super well
-                and would prefer not to be paired with them so you can meet someone new - however, if there are people you already know but still want to get to know more, don't select them!
-                If you don't know anyone, just click Submit!">Who should I pick?</a>
-            </li>
-            <li>
-                <a href="#" data-toggle="popover" data-trigger="focus" title="Who will I get paired with?" data-content="Just because you select someone doesn't mean you won't get paired with them - two people both have to select each other in order to not get paired. That being said, make sure you're setting you're preferences!">How do pairings work?</a>
-            </li>
-            </ul> -->
             <div id="accordion">
                 <div class="card">
                   <div class="card-header" id="headingOne">
@@ -88,7 +78,6 @@
                       </button>
                     </h5>
                   </div>
-              
                   <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                     <div class="card-body">
                         Select people you would like to avoid being paired with. This includes people you know super well
@@ -113,21 +102,6 @@
                 </div>
             </div>
         </div>
-
-        <script>
-        $(document).ready(function(){
-            //$('[data-toggle="popover"]').popover();   
-            $('[data-trigger="focus"]').popover({
-                trigger: 'focus'
-            })
-        });
-        </script>
-
-
-
-
-
-
 </div>
 </body>
 </html>
