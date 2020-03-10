@@ -8,8 +8,6 @@
 }
 
 .card-img {
-    height: auto; 
-    width: auto; 
     width: 130px; 
     height: 142px;
     align-self: center;
@@ -21,6 +19,7 @@
 
 .card-text {
     font-size: 13px;
+    margin-bottom: 0px;
 }
 
 .card-container {
