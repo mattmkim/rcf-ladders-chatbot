@@ -10,9 +10,17 @@
 .card-img {
     height: auto; 
     width: auto; 
-    max-width: 130px; 
-    max-height: 142px;
+    width: 130px; 
+    height: 142px;
     align-self: center;
+}
+
+.card-title {
+    font-size: 18px;
+}
+
+.card-text {
+    font-size: 13px;
 }
 
 .card-container {
