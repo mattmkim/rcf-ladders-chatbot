@@ -8,7 +8,7 @@
 }
 
 .card-img {
-    width: 130px; 
+    width: auto;
     height: 142px;
     align-self: center;
 }
