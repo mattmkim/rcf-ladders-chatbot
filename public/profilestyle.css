@@ -9,6 +9,7 @@
 
 .card-img {
     width: auto;
+    max-width: 142px;
     height: 142px;
     align-self: center;
 }
