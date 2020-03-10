@@ -1,3 +1,7 @@
+.card {
+    align-self: center;
+}
+
 .card-img {
     height: auto; 
     width: auto; 
