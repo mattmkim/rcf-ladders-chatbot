@@ -2,7 +2,7 @@ var msg = require('../messaging/messagefunctions.js');
 
 var routes = function(User) {
 
-    var openPreferenceWebview = function (req, res, next) {
+    var openPreferenceWebview = function (req, res) {
         let referer = req.get('Referer');
     
         if (referer == undefined) {
@@ -65,9 +65,39 @@ var routes = function(User) {
         msg.sendTwoMessages(req.params.userId, newMessage, viewMembersMessage);
     }
 
+    var openUserProfile = function (req, res) {
+        let referer = req.get('Referer');
+    
+        if (referer == undefined) {
+            User.find({user_id: req.params.userId}, function(err, response) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.render('profileview', {data: response[0], access: process.env.PAGE_ACCESS_TOKEN});
+                }
+            })
+        } else {
+            if (referer.indexOf('www.messenger.com') >= 0) {
+                res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/');
+            } else if (referer.indexOf('www.facebook.com') >= 0) {
+                res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
+            }
+            
+            User.find({user_id: req.params.userId}, function(err, response) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.render('profileview', {data: response[0], access: process.env.PAGE_ACCESS_TOKEN});
+                }
+            })
+            
+        }
+    }
+
     return {
 		open_preferences_webview: openPreferenceWebview,
-		submit_preferences: submitPreferences
+        submit_preferences: submitPreferences,
+        open_user_profile: openUserProfile
 	}
 }
 

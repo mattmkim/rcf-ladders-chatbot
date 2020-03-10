@@ -145,6 +145,8 @@ module.exports = function(User) {
                     userfunction.getStarted(senderId);
                 } else if (text.localeCompare("Set Preferences") == 0 || text.localeCompare("Set preferences") == 0 || text.localeCompare("set preferences") == 0) {
                     postback.setPreferences(senderId);
+                } else if (text.localeCompare("View Profile") == 0 || text.localeCompare("View profile") == 0 || text.localeCompare("view profile") == 0) {
+                    postback.viewProfile(senderId);
                 // for APP APPROVAL ONLY    
                 // } else if (text.localeCompare("Ask Availability") == 0 || text.localeCompare("Ask availability") == 0 || text.localeCompare("ask availability") == 0) {
                 //     sendAvailabilityPB();

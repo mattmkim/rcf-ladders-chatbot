@@ -132,6 +132,42 @@ module.exports = {
         })
     },
 
+    viewProfile: function(senderId) {
+        let messageData = {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": "Click below to view your profile!",
+                    "buttons": [{
+                        "type": "web_url",
+                        "url":  "https://rcf-meets.herokuapp.com/profile/" + senderId,
+                        "title": "View Profile",
+                        "webview_height_ratio": "full",
+                        "messenger_extensions": true
+                    }]
+                }
+            }
+        }
+        request({
+            url: 'https://graph.facebook.com/v5.0/me/messages',
+            qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+            method: 'POST',
+            json: {
+                recipient: {id: senderId},
+                message: messageData,
+                messaging_type: "MESSAGE_TAG",
+                tag: "CONFIRMED_EVENT_UPDATE"
+            }
+        }, function(error, response, body){
+                if (error) {
+                    console.log("Error sending message: " + response.error)
+                } else {
+                    console.log(response);
+                }
+        })
+    }, 
+
     availabilityPB: function(senderId, name) {
         let messageData = {
             "attachment":{

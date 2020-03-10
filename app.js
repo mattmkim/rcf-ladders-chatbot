@@ -61,6 +61,8 @@ app.get("/", function (req, res) {
 app.get('/preferences/:userId', preferencesRoutes.open_preferences_webview);
 app.post('/preferencespostback/:userId', preferencesRoutes.submit_preferences);
 
+app.get('/profile/:userId', preferencesRoutes.open_user_profile);
+
 // Facebook Webhook
 // Used for verification
 app.get("/webhook", webhookRoutes.getWebhook);
