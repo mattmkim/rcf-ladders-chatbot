@@ -7,7 +7,6 @@
 .card {
     width: 350px;
     box-shadow: rgba(0, 0, 0, 0.125) 0px 1px 6px;
-    justify-content: center;
 }
 
 .card-img {
@@ -29,7 +28,8 @@
 .card-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+
 }
 
 .card-container-header {
