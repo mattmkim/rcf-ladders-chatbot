@@ -31,9 +31,8 @@
 }
 
 .header-center {
-    /* align-items: center; */
-    /* justify-content: center; */
     align-self: center;
+    margin-top: 7px;
 }
 
 .card-container-header {
