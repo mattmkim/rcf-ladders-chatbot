@@ -38,5 +38,8 @@
 .card-container-header {
     display: flex;
     flex-direction: row;
-    
+}
+
+.greeting-info {
+    font-size: 14px;
 }
