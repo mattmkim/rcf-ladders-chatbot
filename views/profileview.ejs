@@ -107,8 +107,36 @@
 
             
             <div class="card-container-info">
-                <p class="interests"><i class="far fa-surprise"></i> <%- data.interests %> </p>
-                <p class="fun-fact"><i class="far fa-laugh-squint"></i><%- data.fun_fact %></p>
+                <div id="accordion">
+                    <div class="card">
+                      <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            Interests <i class="far fa-surprise"></i>
+                          </button>
+                        </h5>
+                      </div>
+                      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            <%- data.interests %>                  
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Fun Fact <i class="far fa-laugh-squint"></i>
+                          </button>
+                        </h5>
+                      </div>
+                      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            <%- data.fun_fact %>
+                        </div>
+                      </div>
+                    </div>
+                </div>
             </div>
         </div>   
     </div>
