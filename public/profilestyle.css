@@ -25,6 +25,10 @@
     margin-bottom: 0px;
 }
 
+#avail {
+    margin-left: 2px;
+}
+
 .card-container {
     display: flex;
     flex-direction: column;
