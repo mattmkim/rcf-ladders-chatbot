@@ -49,6 +49,7 @@
 }
 
 .card-container-info .card {
+    height: 50px;
     width: 300px;
 }
 
