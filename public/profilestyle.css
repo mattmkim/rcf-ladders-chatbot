@@ -44,8 +44,12 @@
     flex-direction: row;
 }
 
+.card-container-info {
+    align-self: center;
+}
+
 .card-container-info .card {
-    width: 250px;
+    width: 300px;
 }
 
 .greeting-info {
