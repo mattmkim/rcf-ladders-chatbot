@@ -28,11 +28,10 @@
 .card-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-
 }
 
 .card-container-header {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
