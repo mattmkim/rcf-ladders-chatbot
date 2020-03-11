@@ -49,8 +49,26 @@
     <h3 class="greeting-header"> Your Profile</h3>
     <hr class="my-4">
     <p id="greeting-info">
-        Below is all the information you have given so far, and is what others will see when they are paired up with you! Feel free to make any updates. 
+        Contained in the card below is all the information you have given so far, and is what others will see when they are paired up with you! Feel free to make any updates. 
     </p>
+
+    <div id="accordion">
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                I don't see everyone I've been paired with up with in the past?
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+                This is most likely because you reset your whole profile, which causes the bot to forget who you've met up with in the past. Click here to select people that you've already met up with (don't worry if you can't remember everyone!).
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
 </div>
 
 
