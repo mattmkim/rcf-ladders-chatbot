@@ -33,8 +33,7 @@
 .header-center {
     /* align-items: center; */
     /* justify-content: center; */
-    /* align-self: center; */
-    align-content: center;
+    align-self: center;
 }
 
 .card-container-header {
