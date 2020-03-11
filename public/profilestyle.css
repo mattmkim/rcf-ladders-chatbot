@@ -30,8 +30,12 @@
     flex-direction: column;
 }
 
+.header-center {
+    align-items: center;
+}
+
 .card-container-header {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    
 }
