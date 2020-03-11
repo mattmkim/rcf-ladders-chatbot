@@ -44,6 +44,10 @@
     flex-direction: row;
 }
 
+.card-container-info .card {
+    width: 250px;
+}
+
 .greeting-info {
     font-size: 15px;
 }
