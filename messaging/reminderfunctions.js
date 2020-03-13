@@ -4,7 +4,7 @@ module.exports = function(User) {
     var module = {}
 
     module.sendInfo = function() {
-        var message = "Hi! Some updates:\n\n1) The set preferences functionality on the mobile Facebook messenger app is now working! Sorry for the inconvenience.\n\n2) Since next week is spring break, no pairings are going to be made this weekend. Have a great spring break!\n\n3) We know there has been some confusion about this so just to make things clear, in order for two people not to be paired up with each other, they BOTH must select each other while setting their preferences - please make sure that you’re setting your preferences!\n\n4) If you would no longer like to receive messages, just send " + '"' + "Unsubscribe" + '"'+ ".";
+        var message = "Hi, as you all have probably expected, RCF Meets will no longer run this semester. Hope it has been a good experience for you all! Encourage you all to meditate on these verses - “And let us consider how to stir up one another to love and good works, not neglecting to meet together, as is the habit of some, but encouraging one another, and all the more as you see the Day drawing near.” (Hebrews 10:24-25.) Even though many of us will not be able to physically meet up with each other for the rest of the semester, let’s continue to be invested in each others lives - praying for one another, checking in with one another, and reminding each other that our hope lies in a sovereign and faithful God. Let’s finish the semester strong :)";
         User.find({}, function(err, response) {
             if (err) {
                 console.log(err);
