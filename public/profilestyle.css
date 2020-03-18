@@ -17,11 +17,11 @@
 }
 
 .card-title {
-    font-size: 18px;
+    font-size: 21px;
 }
 
 .card-text {
-    font-size: 13px;
+    font-size: 16px;
     margin-bottom: 0px;
 }
 
@@ -47,8 +47,6 @@
 .card-container-info {
     align-self: center;
     margin-top: 10px;
-    padding: 0px;
-    white-space: nowrap;
 }
 
 .card-container-info .card {
