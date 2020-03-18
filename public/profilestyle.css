@@ -17,12 +17,7 @@
 }
 
 .card-body {
-    align-content: center;
-}
-
-.card-info {
-    align-self: center;
-    align-content: center;
+    text-align: center;
 }
 
 .card-title {
