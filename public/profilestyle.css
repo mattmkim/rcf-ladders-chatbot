@@ -26,13 +26,21 @@
     margin-top: 11px;
 }
 
+.card-verse-text-empty {
+    color: rgb(103, 102, 102);
+    font-size: 11px;
+    font-style: oblique;
+    margin-bottom: 5px !important;
+    text-align: center;
+    line-height: normal;
+}
+
 .card-verse-text {
     color: rgb(103, 102, 102);
     font-size: 13px;
     font-style: oblique;
     margin-bottom: 5px !important;
     text-align: center;
-    line-height: 0.9;
 }
 
 .card-title {
