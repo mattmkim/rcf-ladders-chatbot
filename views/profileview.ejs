@@ -190,7 +190,7 @@
                         <label for="set-availability">Year</label>
                         <select class="form-control" id="set-availability">
 
-                          <% if (data.available { %>
+                          <% if (data.available) { %>
                             <option selected="selected">Available</option>
                             <option>Not Available</option>
                           <% } else { %>
