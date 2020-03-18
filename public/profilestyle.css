@@ -42,6 +42,7 @@
 .card-container-header {
     display: flex;
     flex-direction: row;
+    padding-left: 10px;
 }
 
 .card-container-info {
