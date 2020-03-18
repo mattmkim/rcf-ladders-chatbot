@@ -182,9 +182,9 @@ module.exports = function(User) {
                 } else if (text.localeCompare("send info") == 0) {
                     reminder.sendInfo();
                 }
-                // else if (text.localeCompare("all available") == 0) {
-                //     allAvailable();
-                // }
+                else if (text.localeCompare("update bible") == 0) {
+                    userfunction.updateBible();
+                }
                 // admin commands
                 else {
                     User.find({user_id: senderId}, function(err, response) {

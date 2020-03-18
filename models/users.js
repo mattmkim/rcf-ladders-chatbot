@@ -6,6 +6,7 @@ var UserSchema = new Schema({
   user_id: {type: String},
   interests: {type: String},
   fun_fact: {type: String},
+  bible_verse: {type: String},
   firstName: {type: String},
   lastName: {type: String},
   year: {type: Number},
