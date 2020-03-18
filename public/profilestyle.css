@@ -32,7 +32,12 @@
 }
 
 hr {
-    height: 10px;
+    width: 100%;
+    background-color: black;
+    height: 1px; 
+    border-color:transparent;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .card-title {
