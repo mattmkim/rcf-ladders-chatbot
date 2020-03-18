@@ -20,6 +20,11 @@
     align-content: center;
 }
 
+.card-info {
+    align-self: center;
+    align-content: center;
+}
+
 .card-title {
     font-size: 24px;
     text-align: center;
