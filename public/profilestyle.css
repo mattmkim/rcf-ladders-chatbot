@@ -39,6 +39,8 @@ hr {
     margin-right: auto;
     border-style: inset;
     border-width: 1px;
+    border: none;
+    border-bottom: 3px solid black;
 } 
 
 .card-title {
