@@ -85,8 +85,13 @@
                     <div class="center-title">
                       <h1 class="card-title"><%- data.firstName %> <%-" " %> <%- data.lastName %></h1>
                     </div>
-                    <p class="card-verse-text">Matthew 6:19-21</p>
 
+                    <% if (data.bible_verse == null) { %>
+                      <p class="card-verse-text">put your favorite bible verse(s) here! just click "update info"</p>
+                    <% } else { %>
+                      <p class="card-verse-text">data.bible_verse</p>
+                    <% } %>
+                  
                     <div class="card-info">
                         <% if (data.year == null) { %> 
                          <p class="card-text"><i class="fas fa-graduation-cap"></i>: <span class="badge badge-secondary">Incomplete</span> </p>

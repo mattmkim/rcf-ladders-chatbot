@@ -5,25 +5,7 @@ var postback = require('../messaging/postbackfunctions');
 
 module.exports = function(User) {
     var module = {}
-
-    module.updateBible = function() {
-        User.find({}, function(err, response) {
-            if (err) {
-                console.log(err);
-            } else {
-                for (var i = 0; i < response.length; i++) {
-                    User.update({user_id: response[i].user_id}, {$set: {bible_verse: null}}, function(err, response2) {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            console.log(response2);
-                        }
-                    })
-                }
-            }
-        })
-    }
-
+    
     module.newUser = function(senderId) {
         // Get user's first name from the User Profile API
         // and include it in the greeting
