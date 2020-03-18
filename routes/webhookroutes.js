@@ -155,22 +155,6 @@ module.exports = function(User) {
                 // for APP APPROVAL ONLY
     
                 // admin commands
-                } else if (text.localeCompare("create previous") == 0) {
-                    User.find({}, function(err, response) {
-                        if (err) {
-                            console.log(err)
-                        } else {
-                            for (var i = 0; i < response.length; i++) {
-                                User.update({user_id: response[i].user_id}, {$set: {prevMeetup: []}}, function(err, response2) {
-                                    if (err) {
-                                        console.log(err);
-                                    } else {
-                                        console.log(response2);
-                                    }
-                                })
-                            }
-                        }
-                    })
                 // } else if (text.localeCompare("send reminder profile") == 0) {
                 //     sendProfileReminder();
                 // } else if (text.localeCompare("send preference reminder") == 0) {
