@@ -100,9 +100,12 @@
                 
                 
                         <% if (data.available) { %> 
-                        <p class="card-text" id="avail"><i class="fas fa-user"></i> Available </p>
+                        <!-- <p class="card-text" id="avail"><i class="fas fa-user"></i> Available </p> -->
+                        <a href="#" class="badge badge-primary">Available</a>
                         <% } else { %>
-                        <p class="card-text" id="avail"><i class="fas fa-user-alt-slash"></i> Not Available </p>
+                        <!-- <p class="card-text" id="not-avail"><i class="fas fa-user-alt-slash"></i> Not Available </p> -->
+                        <a href="#" class="badge badge-danger">Not Available</a>
+
                         <% } %>
                     </div>
                       

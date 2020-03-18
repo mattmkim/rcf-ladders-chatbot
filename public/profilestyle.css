@@ -38,6 +38,10 @@
     margin-left: 4px;
 }
 
+#not-avail {
+    margin-left: 1px;
+}
+
 .card-container {
     display: flex;
     flex-direction: column;
