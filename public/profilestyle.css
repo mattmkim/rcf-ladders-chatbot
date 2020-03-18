@@ -28,11 +28,13 @@
     color: rgb(103, 102, 102);
     font-size: 13px;
     font-style: oblique;
+    margin-bottom: 5px !important;
 }
 
 .card-title {
     font-size: 24px;
     text-align: center;
+    margin-bottom: 5px !important;
 }
 
 .card-text {
