@@ -92,28 +92,28 @@
                     <div class="card-info">
                         <% if (data.year == null) { %> 
                         <!-- <p class="card-text"><i class="fas fa-graduation-cap"></i> Incomplete </p> -->
-                        <span class="badge badge-light">Incomplete</span>
+                        <p class="card-text"><i class="fas fa-graduation-cap"></i>: <span class="badge badge-light">Incomplete</span> </p>
                         <% } else if (data.year == 1) { %>
                         <!-- <p class="card-text"><i class="fas fa-graduation-cap"></i> Freshman</p> -->
-                        <span class="badge badge-light">Freshman</span>
+                        <p class="card-text"><i class="fas fa-graduation-cap"></i>: <span class="badge badge-light">Freshman</span> </p>
                         <% } else if (data.year == 2) { %>
                         <!-- <p class="card-text"><i class="fas fa-graduation-cap"></i> Sophomore </p> -->
-                        <span class="badge badge-light">Sophomore</span>
+                        <p class="card-text"><i class="fas fa-graduation-cap"></i>: <span class="badge badge-light">Sophomore</span> </p>
                         <% } else if (data.year == 3) { %>
                         <!-- <p class="card-text"><i class="fas fa-graduation-cap"></i> Junior </p> -->
-                        <span class="badge badge-light">Junior</span>
+                        <p class="card-text"><i class="fas fa-graduation-cap"></i>: <span class="badge badge-light">Junior</span> </p>
                         <% } else if (data.year == 1) { %>
                         <!-- <p class="card-text"><i class="fas fa-graduation-cap"></i> Senior </p> -->
-                        <span class="badge badge-light">Senior</span>
+                        <p class="card-text"><i class="fas fa-graduation-cap"></i>: <span class="badge badge-light">Senior</span> </p>
                         <% } %>
                 
                 
                         <% if (data.available) { %> 
                         <!-- <p class="card-text" id="avail"><i class="fas fa-user"></i> Available </p> -->
-                        <span class="badge badge-primary">Available</span>
+                        <p class="card-text" id="avail"><i class="fas fa-user"></i>: <span class="badge badge-primary">Available</span> </p>
                         <% } else { %>
                         <!-- <p class="card-text" id="not-avail"><i class="fas fa-user-alt-slash"></i> Not Available </p> -->
-                        <span class="badge badge-danger">Not Available</span>
+                        <p class="card-text" id="avail"><i class="fas fa-user"></i>: <span class="badge badge-danger">Not Available</span> </p>
 
                         <% } %>
                     </div>
