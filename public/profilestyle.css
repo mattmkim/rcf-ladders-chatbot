@@ -21,6 +21,10 @@
     text-align: center;
 }
 
+.card-info {
+    align-self: center;
+}
+
 .card-text {
     font-size: 15px;
     margin-bottom: 0px;
