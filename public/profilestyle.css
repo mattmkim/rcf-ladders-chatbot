@@ -47,11 +47,12 @@
 .card-container-info {
     align-self: center;
     margin-top: 10px;
+    padding: 0px;
+    white-space: nowrap;
 }
 
 .card-container-info .card {
     width: 300px;
-    padding: 0px;
 }
 
 .greeting-info {
