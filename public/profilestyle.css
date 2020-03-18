@@ -36,8 +36,8 @@ hr {
     background-color: black;
     height: 1px; 
     border-color:transparent;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
 }
 
 .card-title {
