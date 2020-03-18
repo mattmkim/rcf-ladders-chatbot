@@ -25,8 +25,9 @@
 }
 
 .bible-verse {
-    color: rgb(74, 74, 74);
-    font-size: 14px;
+    color: rgb(103, 102, 102);
+    font-size: 13px;
+    font-style: oblique;
 }
 
 .card-title {
