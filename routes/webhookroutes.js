@@ -159,18 +159,16 @@ module.exports = function(User) {
                 //     sendProfileReminder();
                 // } else if (text.localeCompare("send preference reminder") == 0) {
                 //     sendPreferenceReminder();
-                // } else if (text.localeCompare("test prev update") == 0) {
-                //     testPreviousUpdate();
                 // } else if (text.localeCompare("send available reminder") == 0) {
                 //     sendAvailabilityReminder();
-                } else if (text.localeCompare("send info") == 0) {
-                    reminder.sendInfo();
-                }
-                else if (text.localeCompare("update bible") == 0) {
-                    userfunction.updateBible();
-                }
+                // } else if (text.localeCompare("send info") == 0) {
+                //     reminder.sendInfo();
+                // }
+                // else if (text.localeCompare("update bible") == 0) {
+                //     userfunction.updateBible();
+                // }
                 // admin commands
-                else {
+                } else {
                     User.find({user_id: senderId}, function(err, response) {
                         if (err) {
                             console.log(err);
