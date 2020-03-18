@@ -59,6 +59,11 @@ hr {
     margin-left: 1px;
 }
 
+.card-info {
+    display: flex;
+    flex-direction: row;
+}
+
 .card-container {
     display: flex;
     flex-direction: column;

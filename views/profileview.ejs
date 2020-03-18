@@ -91,15 +91,20 @@
 
                     <div class="card-info">
                         <% if (data.year == null) { %> 
-                        <p class="card-text"><i class="fas fa-graduation-cap"></i> Incomplete </p>
+                        <!-- <p class="card-text"><i class="fas fa-graduation-cap"></i> Incomplete </p> -->
+                        <span class="badge badge-light">Incomplete</span>
                         <% } else if (data.year == 1) { %>
-                        <p class="card-text"><i class="fas fa-graduation-cap"></i> Freshman</p>
+                        <!-- <p class="card-text"><i class="fas fa-graduation-cap"></i> Freshman</p> -->
+                        <span class="badge badge-light">Freshman</span>
                         <% } else if (data.year == 2) { %>
-                        <p class="card-text"><i class="fas fa-graduation-cap"></i> Sophomore </p>
+                        <!-- <p class="card-text"><i class="fas fa-graduation-cap"></i> Sophomore </p> -->
+                        <span class="badge badge-light">Sophomore</span>
                         <% } else if (data.year == 3) { %>
-                        <p class="card-text"><i class="fas fa-graduation-cap"></i> Junior </p>
+                        <!-- <p class="card-text"><i class="fas fa-graduation-cap"></i> Junior </p> -->
+                        <span class="badge badge-light">Junior</span>
                         <% } else if (data.year == 1) { %>
-                        <p class="card-text"><i class="fas fa-graduation-cap"></i> Senior </p>
+                        <!-- <p class="card-text"><i class="fas fa-graduation-cap"></i> Senior </p> -->
+                        <span class="badge badge-light">Senior</span>
                         <% } %>
                 
                 
