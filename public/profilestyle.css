@@ -16,13 +16,13 @@
     align-self: center;
 }
 
+.card-body {
+    align-items: center;
+}
+
 .card-title {
     font-size: 24px;
     text-align: center;
-}
-
-.card-info {
-    align-self: center;
 }
 
 .card-text {
