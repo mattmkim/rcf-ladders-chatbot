@@ -33,15 +33,6 @@
     margin-bottom: 5px !important;
 }
 
-hr {
-    width: 100%;
-    background-color: black;
-    height: 1px; 
-    border-color:transparent;
-    margin-top: 10px !important;
-    margin-bottom: 10px !important;
-}
-
 .card-title {
     font-size: 24px;
     text-align: center;
@@ -54,7 +45,7 @@ hr {
 }
 
 #avail {
-    margin-left: 4px;
+    margin-left: 5px;
 }
 
 #not-avail {
