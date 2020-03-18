@@ -24,6 +24,11 @@
     width: 180px; 
 }
 
+.bible-verse {
+    color: rgb(74, 74, 74);
+    font-size: 14px;
+}
+
 .card-title {
     font-size: 24px;
     text-align: center;
