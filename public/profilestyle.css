@@ -51,14 +51,11 @@
 
 .card-container-info .card {
     width: 300px;
+    padding: 0px;
 }
 
 .greeting-info {
     font-size: 15px;
-}
-
-#accordion {
-    padding: 5px;
 }
 
 #button {
