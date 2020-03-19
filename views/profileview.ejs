@@ -256,9 +256,9 @@ $(document).ready(function () {
     $('#form').on('submit', function(e){
       e.preventDefault();
       var formData = [];
-      var verse = $('input[name=verse]').val();
+      var verse = document.getElementById('set-verse').value;
       formData.push(verse);
-      console.log($(this).attr('verse'));
+      console.log(verse);
 
       $.ajax({
         url: "/profileupdate/<%- data.user_id %>", //this is the submit URL
