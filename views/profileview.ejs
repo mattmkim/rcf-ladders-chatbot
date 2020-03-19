@@ -255,17 +255,12 @@ $(document).ready(function () {
   $(function() {
     $('#form').on('submit', function(e){
       e.preventDefault();
-      var formData = [];
       var verse = document.getElementById('set-verse').value;
       var year = document.getElementById('set-year').value;
       var availability = document.getElementById('set-availability').value;
       var interests = document.getElementById('set-interests').value;
       var fun_fact = document.getElementById('set-fun-fact').value;
-      formData.push(verse);
-      formData.push(year);
-      formData.push(availability);
-      formData.push(interests);
-      formData.push(fun_fact);
+      var formData = {"verse": verse, "year": year, "availability": availability, "interests": interests, "fun_fact": fun_fact};
       console.log(formData)
 
       $.ajax({
