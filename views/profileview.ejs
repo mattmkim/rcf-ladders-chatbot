@@ -36,13 +36,13 @@
         }, function error(err) {
             console.log(err);
         });
-        document.getElementById('submitButton').addEventListener('click', () => {
-            MessengerExtensions.requestCloseBrowser(function success() {
-                console.log("Webview closing");
-            }, function error(err) {
-                console.log(err);
-            });
-        });
+        // document.getElementById('submitButton').addEventListener('click', () => {
+        //     MessengerExtensions.requestCloseBrowser(function success() {
+        //         console.log("Webview closing");
+        //     }, function error(err) {
+        //         console.log(err);
+        //     });
+        // });
     };
 </script>
  <div class="jumbotron">
@@ -239,7 +239,7 @@
                   
               </div>
               <div class="modal-footer">
-                  <button type="button" class="btn btn-primary">Update</button>
+                  <button type="submit" class="btn btn-primary">Update</button>
               </div>
             </form>
               </div>
