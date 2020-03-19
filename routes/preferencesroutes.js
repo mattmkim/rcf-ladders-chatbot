@@ -117,7 +117,7 @@ var routes = function(User) {
     
         // code to update status of user (list of people to not pair up with)
         // need to somehow send back user id
-        // res.status(200).send('Please close this window to return to the conversation thread.');
+        res.status(200).send('Please close this window to return to the conversation thread.');
     }
 
     return {
