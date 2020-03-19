@@ -252,23 +252,29 @@
     </div>
 </div>
 <script>
-$(function() {
-  $('#form').on('submit', function(e){
-    e.preventDefault();
-    var formData = [];
-    var verse = $('#set-verse').val();
-    formData.push(verse);
+$(document).ready(function () {
+  $(function() {
+    $('#form').on('submit', function(e){
+      e.preventDefault();
+      var formData = [];
+      var verse = $('#set-verse').val();
+      formData.push(verse);
 
-    $.ajax({
-      url: "/profileupdate/<%- data.user_id %>", //this is the submit URL
-      type: 'POST', //or POST
-      data: formData,
-      success: function(data){
-          alert('successfully submitted')
-      }
-      });
-});
+      $.ajax({
+        url: "/profileupdate/<%- data.user_id %>", //this is the submit URL
+        type: 'POST', //or POST
+        data: formData,
+        success: function(data){
+            alert('successfully submitted')
+        }
+        });
+  });
+  })
+
 })
+
+
+
 
 </script>
 
