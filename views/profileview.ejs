@@ -212,7 +212,6 @@
                       <div class="form-group">
                           <label for="set-availability">Availability</label>
                           <select class="form-control" id="set-availability">
-  
                             <% if (data.available) { %>
                               <option selected="selected">Available</option>
                               <option>Not Available</option>
@@ -227,7 +226,7 @@
                         <% if (data.interests == null) { %>
                           <textarea class="form-control" id="set-interests" rows="3"></textarea>
                         <% } else { %>
-                          <textarea value="<%- data.interests %>" class="form-control" id="set-interests" rows="3"></textarea>
+                          <textarea class="form-control" id="set-interests" rows="3"> <%- data.interests %> </textarea>
                         <% } %> 
                       </div>
                       <div class="form-group">
@@ -235,7 +234,7 @@
                         <% if (data.fun_fact == null) { %>
                           <textarea class="form-control" id="set-fun-fact" rows="2"></textarea>
                         <% } else { %>
-                          <textarea value="<%- data.fun_fact %>" class="form-control" id="set-fun-fact" rows="2"></textarea>
+                          <textarea class="form-control" id="set-fun-fact" rows="2"> <%- data.fun_fact %></textarea>
                         <% } %> 
                       </div>
                   </form>
