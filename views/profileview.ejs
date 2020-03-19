@@ -43,20 +43,6 @@
         //         console.log(err);
         //     });
         // });
-
-        $(function() {
-          $('#form').on('submit', function(e){
-            e.preventDefault();
-            $.ajax({
-              url: "/profileupdate/<%- data.user_id %>", //this is the submit URL
-              type: 'POST', //or POST
-              data: $('#form').serialize(),
-              success: function(data){
-                 alert('successfully submitted')
-              }
-        });
-    });
-        })
     };
 </script>
  <div class="jumbotron">
@@ -167,8 +153,7 @@
 
         <div class="button-wrapper">
           <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Update Info</button>
-          <!-- <form action="/profileupdate/<%- data.user_id %>" method="post"> -->
-          <form id="form">
+          <form action="/profileupdate/<%- data.user_id %>" method="post">
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -190,7 +175,7 @@
                       </div>
                       <div class="form-group">
                           <label for="set-year">Year</label>
-                          <select class="form-control" id="set-year">
+                          <select class="form-control" id="set-year" name="year">
   
                             <% if (data.year == null) { %>
                               <option selected="selected">Freshman</option>
