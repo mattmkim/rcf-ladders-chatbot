@@ -105,7 +105,7 @@ var routes = function(User) {
         //     keys.splice(keys.indexOf('submit'), 1);
         // }
     
-        console.log(body);
+        console.log(keys);
     
         // User.update({user_id: req.params.userId}, {known: keys}, function(err, response) {
         //     if (err) {
