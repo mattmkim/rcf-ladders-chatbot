@@ -155,7 +155,7 @@
 
         <div class="button-wrapper">
           <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Update Info</button>
-          <form id="form">
+          <form id="form" name="please">
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -169,16 +169,15 @@
                       <div class="form-group">
                         <label for="set-verse">Favorite Bible Verse?</label>
                         <% if (data.bible_verse == null) { %>
-                          <input type="verse" class="form-control" id="set-verse" aria-describedby="verseHelp">
+                          <input type="verse" class="form-control" id="set-verse" name="verse" aria-describedby="verseHelp">
                         <% } else { %>
-                          <input value="<%- data.bible_verse %>" type="verse" class="form-control" id="set-verse" name= "verse" aria-describedby="verseHelp">
+                          <input value="<%- data.bible_verse %>" type="verse" class="form-control" id="set-verse" name="verse" aria-describedby="verseHelp">
                         <% } %> 
                         <small id="verseHelp" class="form-text text-muted">Only write the book, chapter, and verses (John 1:1)!</small>
                       </div>
                       <div class="form-group">
                           <label for="set-year">Year</label>
-                          <select class="form-control" id="set-year">
-  
+                          <select class="form-control" id="set-year" name="year">
                             <% if (data.year == null) { %>
                               <option selected="selected">Freshman</option>
                               <option>Sophomore</option>
@@ -212,7 +211,7 @@
                       </div>
                       <div class="form-group">
                           <label for="set-availability">Availability</label>
-                          <select class="form-control" id="set-availability">
+                          <select class="form-control" id="set-availability" name="availability">
                             <% if (data.available) { %>
                               <option selected="selected">Available</option>
                               <option>Not Available</option>
@@ -225,17 +224,17 @@
                       <div class="form-group">
                         <label for="set-interests">Interests</label>
                         <% if (data.interests == null) { %>
-                          <textarea class="form-control" id="set-interests" rows="3"></textarea>
+                          <textarea class="form-control" id="set-interests" name="interests" rows="3"></textarea>
                         <% } else { %>
-                          <textarea class="form-control" id="set-interests" rows="3"><%- data.interests %> </textarea>
+                          <textarea class="form-control" id="set-interests" name="interests" rows="3"><%- data.interests %> </textarea>
                         <% } %> 
                       </div>
                       <div class="form-group">
                         <label for="set-fun-fact">Fun Fact</label>
                         <% if (data.fun_fact == null) { %>
-                          <textarea class="form-control" id="set-fun-fact" rows="2"></textarea>
+                          <textarea class="form-control" id="set-fun-fact" name="fun-fact" rows="2"></textarea>
                         <% } else { %>
-                          <textarea class="form-control" id="set-fun-fact" rows="2"><%- data.fun_fact %></textarea>
+                          <textarea class="form-control" id="set-fun-fact" name="fun-fact" rows="2"><%- data.fun_fact %></textarea>
                         <% } %> 
                       </div>
                   
