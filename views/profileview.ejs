@@ -54,7 +54,7 @@
             $.ajax({
               url: "/profileupdate/<%- data.user_id %>", //this is the submit URL
               type: 'POST', //or POST
-              data: $('#form').serialize(),
+              data: formData,
               success: function(data){
                  alert('successfully submitted')
               }
