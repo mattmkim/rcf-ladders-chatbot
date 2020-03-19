@@ -171,7 +171,7 @@
                         <% if (data.bible_verse == null) { %>
                           <input type="verse" class="form-control" id="set-verse" aria-describedby="verseHelp">
                         <% } else { %>
-                          <input value="<%- data.bible_verse %>" type="verse" class="form-control" id="set-verse" aria-describedby="verseHelp">
+                          <input value="<%- data.bible_verse %>" type="verse" class="form-control" id="set-verse" name= "verse" aria-describedby="verseHelp">
                         <% } %> 
                         <small id="verseHelp" class="form-text text-muted">Only write the book, chapter, and verses (John 1:1)!</small>
                       </div>
@@ -257,7 +257,7 @@ $(document).ready(function () {
     $('#form').on('submit', function(e){
       e.preventDefault();
       var formData = [];
-      var verse = $('#set-fun-fact').val();
+      var verse = $('input[name=verse]').val();
       formData.push(verse);
 
       $.ajax({
