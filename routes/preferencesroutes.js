@@ -100,16 +100,67 @@ var routes = function(User) {
     
         console.log(values);
         console.log(req.params.userId);
+        var verse = values[0];
+        var school_year = 0;
+        if (values[1].localeCompare("Freshman") == 0) {
+            year = 1;
+        } else if (values[1].localeCompare("Sophomore") == 0) {
+            year = 2;
+        } else if (values[1].localeCompare("Junior") == 0) {
+            year = 3;
+        } else if (values[1].localeCompare("Senior") == 0) {
+            year = 4;
+        }
 
+        var availability = true;
+        if (values[2].localeCompare("Available") == 0) {
+            availability = true;
+        } else {
+            availability = false;
+        }
 
+        var interests = values[3];
+        var fun_fact = values[4];
     
-        // User.update({user_id: req.params.userId}, {known: keys}, function(err, response) {
-        //     if (err) {
-        //         console.log(err);
-        //     } else {
-        //         console.log(response);
-        //     }
-        // })
+        User.update({user_id: req.params.userId}, {bible_verse: verse}, function(err, response) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(response);
+            }
+        })
+
+        User.update({user_id: req.params.userId}, {year: school_year}, function(err, response) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(response);
+            }
+        })
+
+        User.update({user_id: req.params.userId}, {available: availability}, function(err, response) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(response);
+            }
+        })
+
+        User.update({user_id: req.params.userId}, {interests: interests}, function(err, response) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(response);
+            }
+        })
+
+        User.update({user_id: req.params.userId}, {fun_fact: fun_fact}, function(err, response) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(response);
+            }
+        })
     
         // code to update status of user (list of people to not pair up with)
         // need to somehow send back user id
