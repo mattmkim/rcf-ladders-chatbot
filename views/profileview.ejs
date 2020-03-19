@@ -155,7 +155,6 @@
 
         <div class="button-wrapper">
           <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Update Info</button>
-          <form id="form" name="please">
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -166,6 +165,7 @@
                   </button>
               </div>
               <div class="modal-body">
+                <form id="form">
                       <div class="form-group">
                         <label for="set-verse">Favorite Bible Verse?</label>
                         <% if (data.bible_verse == null) { %>
@@ -242,10 +242,10 @@
               <div class="modal-footer">
                   <button type="submit" class="btn btn-primary">Update</button>
               </div>
+             </form>
               </div>
           </div>
           </div>
-          </form>
         </div>
         </div>
     </div>
