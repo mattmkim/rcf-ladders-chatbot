@@ -162,8 +162,8 @@
                   <span aria-hidden="true">&times;</span>
                   </button>
               </div>
+            <form action="/profileupdate/<%- data.user_id %>" method="post">
               <div class="modal-body">
-                  <form action="/profileupdate/<%- data.user_id %>" method="post">
                       <div class="form-group">
                         <label for="set-verse">Favorite Bible Verse?</label>
                         <% if (data.bible_verse == null) { %>
