@@ -266,6 +266,7 @@ $(document).ready(function () {
       formData.push(availability);
       formData.push(interests);
       formData.push(fun_fact);
+      console.log(formData)
 
       $.ajax({
         url: "/profileupdate/<%- data.user_id %>", //this is the submit URL
