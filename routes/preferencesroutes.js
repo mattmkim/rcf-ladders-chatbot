@@ -101,8 +101,8 @@ var routes = function(User) {
         console.log(values);
         console.log(req.params.userId);
         var verse = values[0];
+
         var school_year = 0;
-        console.log(values[1]);
         if (values[1].localeCompare("Freshman") == 0) {
             school_year = 1;
         } else if (values[1].localeCompare("Sophomore") == 0) {
