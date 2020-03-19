@@ -89,7 +89,7 @@
                     <% if (data.bible_verse == null) { %>
                       <p class="card-verse-text-empty">put your favorite bible verse(s) here! just click "update info"</p>
                     <% } else { %>
-                      <p class="card-verse-text">data.bible_verse</p>
+                      <p class="card-verse-text"><%- data.bible_verse %></p>
                     <% } %>
                   
                     <div class="card-info">
@@ -172,8 +172,6 @@
                         <% } else { %>
                           <input value="<%- data.bible_verse %>" type="verse" class="form-control" id="set-verse" aria-describedby="verseHelp">
                         <% } %> 
-
-                        <input type="verse" class="form-control" id="set-verse" aria-describedby="verseHelp">
                         <small id="verseHelp" class="form-text text-muted">Please only write the book, chapter, and verses (John 1:1)!</small>
                       </div>
                       <div class="form-group">
