@@ -102,14 +102,15 @@ var routes = function(User) {
         console.log(req.params.userId);
         var verse = values[0];
         var school_year = 0;
+        console.log(values[1]);
         if (values[1].localeCompare("Freshman") == 0) {
-            year = 1;
+            school_year = 1;
         } else if (values[1].localeCompare("Sophomore") == 0) {
-            year = 2;
+            school_year = 2;
         } else if (values[1].localeCompare("Junior") == 0) {
-            year = 3;
+            school_year = 3;
         } else if (values[1].localeCompare("Senior") == 0) {
-            year = 4;
+            school_year = 4;
         }
 
         var availability = true;
