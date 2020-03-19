@@ -164,7 +164,6 @@
               </div>
               <div class="modal-body">
                   <form action="/profileupdate/<%- data.user_id %>" method="post">
-
                       <div class="form-group">
                         <label for="set-verse">Favorite Bible Verse?</label>
                         <% if (data.bible_verse == null) { %>
@@ -237,11 +236,12 @@
                           <textarea class="form-control" id="set-fun-fact" rows="2"><%- data.fun_fact %></textarea>
                         <% } %> 
                       </div>
-                  </form>
+                  
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-primary">Update</button>
               </div>
+            </form>
               </div>
           </div>
           </div>
