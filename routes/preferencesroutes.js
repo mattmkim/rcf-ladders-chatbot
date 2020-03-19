@@ -94,10 +94,37 @@ var routes = function(User) {
         }
     }
 
+    var submitUpdate = function (req, res) {
+        let body = req.body;
+
+        //keys is array of all keys (psid, ....., submit)
+        let keys = Object.keys(body);
+    
+        // if (keys.length != 0) {
+        //     keys.splice(keys.indexOf('psid'), 1);
+        //     keys.splice(keys.indexOf('submit'), 1);
+        // }
+    
+        console.log(keys);
+    
+        // User.update({user_id: req.params.userId}, {known: keys}, function(err, response) {
+        //     if (err) {
+        //         console.log(err);
+        //     } else {
+        //         console.log(response);
+        //     }
+        // })
+    
+        // code to update status of user (list of people to not pair up with)
+        // need to somehow send back user id
+        // res.status(200).send('Please close this window to return to the conversation thread.');
+    }
+
     return {
 		open_preferences_webview: openPreferenceWebview,
         submit_preferences: submitPreferences,
-        open_user_profile: openUserProfile
+        open_user_profile: openUserProfile,
+        submit_update: submitUpdate
 	}
 }
 
