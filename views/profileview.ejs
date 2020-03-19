@@ -166,7 +166,7 @@
               </div>
               <div class="modal-body">
                 <form id="form">
-                      <div class="form-group">
+                      
                         <label for="set-verse">Favorite Bible Verse?</label>
                         <% if (data.bible_verse == null) { %>
                           <input type="verse" class="form-control" id="set-verse" name="verse" aria-describedby="verseHelp">
@@ -174,7 +174,7 @@
                           <input value="<%- data.bible_verse %>" type="verse" class="form-control" id="set-verse" name="verse" aria-describedby="verseHelp">
                         <% } %> 
                         <small id="verseHelp" class="form-text text-muted">Only write the book, chapter, and verses (John 1:1)!</small>
-                      </div>
+                     
                       <div class="form-group">
                           <label for="set-year">Year</label>
                           <select class="form-control" id="set-year" name="year">
