@@ -257,11 +257,13 @@ $(document).ready(function () {
       e.preventDefault();
       var formData = [];
       var verse = document.getElementById('set-verse').value;
+      console.log(verse);
       var year = document.getElementById('set-year').value;
       var availability = document.getElementById('set-availability').value;
       var interests = document.getElementById('set-interests').value;
       var fun_fact = document.getElementById('set-fun-fact').value;
       formData.push(verse);
+      console.log(formData);
       formData.push(year);
       formData.push(availability);
       formData.push(interests);
