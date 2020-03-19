@@ -96,17 +96,12 @@ var routes = function(User) {
 
     var submitUpdate = function (req, res) {
         let body = req.body;
-
-        //keys is array of all keys (psid, ....., submit)
-        let keys = Object.keys(body);
         let values = Object.values(body);
     
-        // if (keys.length != 0) {
-        //     keys.splice(keys.indexOf('psid'), 1);
-        //     keys.splice(keys.indexOf('submit'), 1);
-        // }
-    
         console.log(values);
+        console.log(req.params.userId);
+
+
     
         // User.update({user_id: req.params.userId}, {known: keys}, function(err, response) {
         //     if (err) {
