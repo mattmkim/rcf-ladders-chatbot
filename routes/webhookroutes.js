@@ -127,7 +127,14 @@ module.exports = function(User) {
                 } else if (text.localeCompare("Set Preferences") == 0 || text.localeCompare("Set preferences") == 0 || text.localeCompare("set preferences") == 0) {
                     postback.setPreferences(senderId);
                 } else if (text.localeCompare("View Profile") == 0 || text.localeCompare("View profile") == 0 || text.localeCompare("view profile") == 0) {
-                    postback.viewProfile(senderId);    
+                    postback.viewProfile(senderId);
+                // for APP APPROVAL ONLY    
+                // } else if (text.localeCompare("Ask Availability") == 0 || text.localeCompare("Ask availability") == 0 || text.localeCompare("ask availability") == 0) {
+                //     sendAvailabilityPB();
+                } else if (text.localeCompare("Show Meetup") == 0 || text.localeCompare("Show meetup") == 0 || text.localeCompare("show meetup") == 0) {
+                    userfunction.sendLadders();
+                // for APP APPROVAL ONLY
+    
                 // admin commands
                 // } else if (text.localeCompare("send reminder profile") == 0) {
                 //     sendProfileReminder();
@@ -137,8 +144,9 @@ module.exports = function(User) {
                 //     sendAvailabilityReminder();
                 // } else if (text.localeCompare("send info") == 0) {
                 //     reminder.sendInfo();
-                } else if (text.localeCompare("make avail") == 0) {
-                    userfunction.makeAvail();
+                // } else if (text.localeCompare("make avail") == 0) {
+                //    userfunction.makeAvail();
+                // }
                 // admin commands
                 } else {
                     User.find({user_id: senderId}, function(err, response) {
