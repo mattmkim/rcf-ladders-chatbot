@@ -154,7 +154,7 @@ module.exports = {
             qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
             method: 'POST',
             json: {
-                recipient: {id: userId},
+                recipient: {id: "2479283145514220"},
                 message: messageData,
                 messaging_type: "MESSAGE_TAG",
                 tag: "CONFIRMED_EVENT_UPDATE"
