@@ -85,7 +85,7 @@ module.exports = function(User) {
             if (message.text) {
                 // preemptively check if message is looking to see all members in the group
                 var text = message.text;
-                if (text.localeCompare("View Members") == 0 || text.localeCompare("view members") == 0 || text.localeCompare("View members") == 0) {
+                if (text.localeCompare("View Commands") == 0 || text.localeCompare("View commands") == 0 || text.localeCompare("view commands") == 0) {
                     var notLoggedInMessage = "Please enter the password before sending commands.";
                     User.find({user_id: senderId}, function(err, response) {
                         if (err) {
@@ -93,28 +93,9 @@ module.exports = function(User) {
                         } else if (response.length == 0 || response[0].loggedIn === false) {
                             msg.sendMessage(senderId, {text: notLoggedInMessage});
                         } else {
-                            User.findRandom({}, {}, {limit: 10}, function(err, response) {
-                                if (err) {
-                                    console.log(err);
-                                } else {
-                                    console.log(response);
-                                    postback.viewMembers(senderId, response);
-                                }
-                            })
-                        }
-                    })
-                } else if (text.localeCompare("View Commands") == 0 || text.localeCompare("View commands") == 0 || text.localeCompare("view commands") == 0) {
-                    var notLoggedInMessage = "Please enter the password before sending commands.";
-                    User.find({user_id: senderId}, function(err, response) {
-                        if (err) {
-                            console.log(err);
-                        } else if (response.length == 0 || response[0].loggedIn === false) {
-                            msg.sendMessage(senderId, {text: notLoggedInMessage});
-                        } else {
-                            var message = "All valid commands: \n\nView Members: Send " + '"' + "View Members" + '"' + " to get a preview of members who are also in RCF Meets! \n\n" 
+                            var message = "All valid commands: \n\nView Profile: Send " + '"' + "View Profile" + '"' + " to see your profile! You can view and update all your information in your profile page. \n\n" 
                             + "Unsubscribe: Send " + '"' + "Unsubscribe" + '"' + " if you want to unsubscribe and no longer want to receive messages. \n\n" + 
                             "Update Availability: Send " + '"' + "Update Availability" + '"' + " if you want to update your availability. Note that while you can update your availability during the middle of the week, you won't get paired till Sunday. \n\n" +
-                            "Get Started: Send " + '"' + "Get Started" + '"' + " if you want to remake your profile, or if you have recently unsubscribed and would like to subscribe again. \n\n" +
                             "Set Preferences: Send " + '"' + "Set Preferences" + '"' + " if you want to update your preferences."; 
                             msg.sendMessage(senderId, {text: message});
                         }

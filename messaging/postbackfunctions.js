@@ -207,45 +207,6 @@ module.exports = {
         })
     },
 
-    viewMembers: function(senderId, members) {
-        console.log(members);
-        const memberObjs = [];
-        for (let i = 0; i < members.length; i++) { 
-            if (members[i].user_id != senderId) {
-                let obj = {
-                    "title": members[i].firstName + ' ' + members[i].lastName,
-                    "image_url": members[i].profileUrl,
-                    "subtitle": 'Interests: ' + members[i].interests + "\n" + 'Fun Fact: ' + members[i].fun_fact,
-                }
-                memberObjs.push(obj);
-            }
-        }
-        let messageData = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": memberObjs
-                }
-            }
-        }
-        request({
-            url: 'https://graph.facebook.com/v5.0/me/messages',
-            qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
-            method: 'POST',
-            json: {
-                recipient: {id: senderId},
-                message: messageData,
-                messaging_type: "MESSAGE_TAG",
-                tag: "CONFIRMED_EVENT_UPDATE"
-            }
-        }, function(error, response, body){
-                if (error) {
-                    console.log("Error sending message: " + response.error)
-                }
-        })
-    },
-
     laddersPB: function(senderId, firstName, lastName, imageUrl, interests, funfact) {
         let messageData = {
             "attachment": {
