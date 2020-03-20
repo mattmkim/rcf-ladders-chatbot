@@ -64,6 +64,8 @@ app.post('/preferencespostback/:userId', preferencesRoutes.submit_preferences);
 app.get('/profile/:userId', preferencesRoutes.open_user_profile);
 app.post('/profileupdate/:userId', preferencesRoutes.submit_update);
 
+app.get('/laddersprofile/:laddersId', preferencesRoutes.open_ladders_profile);
+
 // Facebook Webhook
 // Used for verification
 app.get("/webhook", webhookRoutes.getWebhook);

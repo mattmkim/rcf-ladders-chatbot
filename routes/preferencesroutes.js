@@ -168,11 +168,41 @@ var routes = function(User) {
         res.status(200).send('Please close this window to return to the conversation thread.');
     }
 
+    var openLaddersProfile = function (req, res) {
+        let referer = req.get('Referer');
+    
+        if (referer == undefined) {
+            User.find({user_id: req.params.laddersId}, function(err, response) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.render('laddersprofileview', {data: response[0], access: process.env.PAGE_ACCESS_TOKEN});
+                }
+            })
+        } else {
+            if (referer.indexOf('www.messenger.com') >= 0) {
+                res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/');
+            } else if (referer.indexOf('www.facebook.com') >= 0) {
+                res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
+            }
+            
+            User.find({user_id: req.params.laddersId}, function(err, response) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.render('laddersprofileview', {data: response[0], access: process.env.PAGE_ACCESS_TOKEN});
+                }
+            })
+            
+        }
+    }
+
     return {
 		open_preferences_webview: openPreferenceWebview,
         submit_preferences: submitPreferences,
         open_user_profile: openUserProfile,
-        submit_update: submitUpdate
+        submit_update: submitUpdate,
+        open_ladders_profile: openLaddersProfile
 	}
 }
 

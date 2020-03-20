@@ -36,6 +36,7 @@ module.exports = function(User) {
                     user_id: senderId,
                     interests: null,
                     fun_fact: null,
+                    bible_verse: null,
                     firstName: bodyObj.first_name,
                     lastName: bodyObj.last_name,
                     year: null,
@@ -206,24 +207,12 @@ module.exports = function(User) {
                                 }
                             })
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName + " and " + t.firstName + t.lastName);
-                            var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + " and " + t.firstName + "! You all said you were able to meet this week. Message " + s.firstName + " and " + t.firstName + " to schedule a time to meet.";
-                            var secondMessageToF = s.firstName + "'s interests: " + s.interests + "\n" + s.firstName + "'s fun fact: " + s.fun_fact + "\n\n"
-                            t.firstName + "'s interests: " + t.interests + "\n" + t.firstName + "'s fun fact: " + t.fun_fact;
-                            var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + " and " + t.firstName + "! You all said you were able to meet this week. Message " + f.firstName + " and " + t.firstName + " to schedule a time to meet.";
-                            var secondMessageToS = f.firstName + "'s interests: " + f.interests + "\n" + f.firstName + "'s fun fact: " + f.fun_fact + "\n\n"
-                            t.firstName + "'s interests: " + t.interests + "\n" + t.firstName + "'s fun fact: " + t.fun_fact;
-                            var messageToT = "Hi " + t.firstName + ", meet " + s.firstName + " and " + f.firstName + "! You all said you were able to meet this week. Message " + f.firstName + " and " + s.firstName + " to schedule a time to meet.";
-                            var secondMessageToT = s.firstName + "'s interests: " + s.interests + "\n" + s.firstName + "'s fun fact: " + s.fun_fact + "\n\n"
-                            f.firstName + "'s interests: " + f.interests + "\n" + f.firstName + "'s fun fact: " + f.fun_fact;
-                            msg.sendTwoMessages(f.user_id, messageToF, secondMessageToF);
-                            msg.sendTwoMessages(s.user_id, messageToS, secondMessageToS);
-                            msg.sendTwoMessages(t.user_id, messageToT, secondMessageToT);
-                            postback.laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
-                            postback.laddersPB(f.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
-                            postback.laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
-                            postback.laddersPB(s.user_id, t.firstName, t.lastName, t.profileUrl, t.interests, t.fun_fact);
-                            postback.laddersPB(t.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
-                            postback.laddersPB(t.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+                            postback.laddersProfile(f.user_id, s.user_id, f.firstName, s.firstName);
+                            postback.laddersProfile(f.user_id, t.user_id, f.firstName, t.firstName);
+                            postback.laddersProfile(s.user_id, f.user_id, s.firstName, f.firstName);
+                            postback.laddersProfile(s.user_id, t.user_id, s.firstName, t.firstName);
+                            postback.laddersProfile(t.user_id, s.user_id, t.firstName, s.firstName);
+                            postback.laddersProfile(t.user_id, f.user_id, t.firstName, f.firstName);
     
                             User.update({user_id: f.user_id}, { $push: {prevMeetup: [s.user_id, t.user_id]} }, function(err, response) {
                                 if (err) {
@@ -251,14 +240,8 @@ module.exports = function(User) {
     
                         } else {
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName);
-                            var messageToF = "Hi " + f.firstName + ", meet " + s.firstName + "! You both said you were able to meet this week. Message " + s.firstName + " to schedule a time to meet.";
-                            var secondMessageToF = s.firstName + "'s interests: " + s.interests + "\n" + s.firstName + "'s fun fact: " + s.fun_fact;
-                            var messageToS = "Hi " + s.firstName + ", meet " + f.firstName + "! You both said you were able to meet this week. Message " + f.firstName + " to schedule a time to meet.";
-                            var secondMessageToS = f.firstName + "'s interests: " + f.interests + "\n" + f.firstName + "'s fun fact: " + f.fun_fact;
-                            msg.sendTwoMessages(f.user_id, messageToF, secondMessageToF);
-                            msg.sendTwoMessages(s.user_id, messageToS, secondMessageToS);
-                            postback.laddersPB(f.user_id, s.firstName, s.lastName, s.profileUrl, s.interests, s.fun_fact);
-                            postback.laddersPB(s.user_id, f.firstName, f.lastName, f.profileUrl, f.interests, f.fun_fact);
+                            postback.laddersProfile(f.user_id, s.user_id, f.firstName, s.firstName);
+                            postback.laddersProfile(s.user_id, f.user_id, s.firstName, f.firstName);
                             
                             //update previous
     

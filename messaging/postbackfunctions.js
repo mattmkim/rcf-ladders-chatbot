@@ -132,6 +132,42 @@ module.exports = {
         })
     },
 
+    laddersProfile: function(userId, laddersId, userFirstName, laddersFirstName) {
+        let messageData = {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "button",
+                    "text": "Hi " + userFirstName + ", meet " + laddersFirstName + "! Click the button below to learn more about " + laddersFirstName + "!",
+                    "buttons": [{
+                        "type": "web_url",
+                        "url":  "https://rcf-meets.herokuapp.com/laddersprofile/" + laddersId,
+                        "title": laddersFirstName + "'" + "s Profile",
+                        "webview_height_ratio": "full",
+                        "messenger_extensions": true
+                    }]
+                }
+            }
+        }
+        request({
+            url: 'https://graph.facebook.com/v5.0/me/messages',
+            qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+            method: 'POST',
+            json: {
+                recipient: {id: userId},
+                message: messageData,
+                messaging_type: "MESSAGE_TAG",
+                tag: "CONFIRMED_EVENT_UPDATE"
+            }
+        }, function(error, response, body){
+                if (error) {
+                    console.log("Error sending message: " + response.error)
+                } else {
+                    console.log(response);
+                }
+        })
+    },
+
     viewProfile: function(senderId) {
         let messageData = {
             "attachment": {
@@ -205,43 +241,5 @@ module.exports = {
                     console.log("Error sending message: " + response.error)
                 }
         })
-    },
-
-    laddersPB: function(senderId, firstName, lastName, imageUrl, interests, funfact) {
-        let messageData = {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": [{
-                        "title": firstName + " " + lastName,
-                        "image_url": imageUrl,
-                        "subtitle": 'Interests: ' + interests + "\n" + 'Fun Fact: ' + funfact,
-                        // "buttons": [{
-                        //     "type":"postback",
-                        //     "title":"Yes",
-                        //     "payload":"YES"
-                        // }]
-                    }]
-                }
-            }
-        }
-        request({
-            url: 'https://graph.facebook.com/v5.0/me/messages',
-            qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
-            method: 'POST',
-            json: {
-                recipient: {id: senderId},
-                message: messageData,
-                messaging_type: "MESSAGE_TAG",
-                tag: "CONFIRMED_EVENT_UPDATE"
-            }
-        }, function(error, response, body){
-                if (error) {
-                    console.log("Error sending message: " + response.error)
-                }
-        })
     }
-
-
 }
