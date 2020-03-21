@@ -15,7 +15,7 @@ module.exports = function(User) {
         "2. Your own profile page! Type “View Profile” and click on the button that shows to open your profile page! You can view all the information you’ve given so far AND update your information too! No need to completely remake your whole profile if you want to update your information. \n" + 
         "3. The “View Members” and “Get Started” commands are no longer valid. \n\n" +
         "ALSO, if you haven’t heard, go and like the Penn RCF - Delighting in the Unexpected ’20 page! It’s an awesome resource for all of us to continue to share life virtually. Here’s the link! https://www.facebook.com/delightingintheunexpected/ \n\n" +
-        "Hope that the rest of the semseter goes well :) Looking forward to seeing some of y'all's faces!";
+        "Looking forward to seeing some of y'all's faces!";
 
         // User.find({}, function(err, response) {
         //     if (err) {
