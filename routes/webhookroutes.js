@@ -128,6 +128,9 @@ module.exports = function(User) {
                     postback.setPreferences(senderId);
                 } else if (text.localeCompare("View Profile") == 0 || text.localeCompare("View profile") == 0 || text.localeCompare("view profile") == 0) {
                     postback.viewProfile(senderId);
+                } else if (text.localeCompare("Get Started") == 0 || text.localeCompare("Get started") == 0 || text.localeCompare("get started") == 0) {
+                    var remindermessage = "Trying to update your information? Type " + '"' + "View Profile" + '"' + " and click the button that shows to update your information!";
+                    msg.sendMessage(senderId, {text: remindermessage});
                 // admin commands
                 // } else if (text.localeCompare("Ask Availability") == 0 || text.localeCompare("Ask availability") == 0 || text.localeCompare("ask availability") == 0) {
                 //     sendAvailabilityPB();
