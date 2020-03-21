@@ -141,8 +141,8 @@ module.exports = function(User) {
                 //     sendAvailabilityReminder();
                 // } else if (text.localeCompare("send info") == 0) {
                 //     reminder.sendInfo();
-                // } else if (text.localeCompare("make avail") == 0) {
-                //    userfunction.makeAvail();
+                } else if (text.localeCompare("make avail") == 0) {
+                   userfunction.makeAvail();
                 // }
                 // admin commands
                 } else {
