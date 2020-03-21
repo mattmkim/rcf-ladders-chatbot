@@ -132,7 +132,7 @@ module.exports = {
         })
     },
 
-    laddersProfile: function(userId, laddersId, userFirstName, laddersFirstName, laddersUrl) {
+    laddersProfile: function(userId, laddersId, userFirstName, laddersFirstName) {
         let messageData = {
             "attachment": {
                 "type": "template",
@@ -141,7 +141,7 @@ module.exports = {
                     "elements": [
                         {
                         "title": "Profile",
-                        "image_url": laddersUrl,
+                        "image_url": "https://graph.facebook.com/" + laddersID + "/picture?type=large&access_token=EAAGGoIdm5HoBABBvCjuZADP90chUfr7L41uoaRQSk0P3N7JDXYLW6mHRGMefZBvDBZC4r9kOndzBWMbUcSFcaS8g3ZBKOqDBTlXNKs1AK1LbzbaDhUBNsdeeLEYSZCfG8voktlPyZA3zXZCxq0q9k6DdoKROPbFtLo6YDEo88xjM0GAQKXkXAVF",
                         "subtitle": "Hi " + userFirstName + ", meet " + laddersFirstName + "! Click the button below to learn more about " + laddersFirstName + "!",
                         "buttons": [
                             {
