@@ -121,7 +121,7 @@ module.exports = function(User) {
     }
 
     module.deleteProfile = function(senderId) {
-        var message = "You are now unsubscribed. If you want resubscribe, type Get Started!";
+        var message = "You are now unsubscribed. If you want resubscribe, type " + '"' + "New Profile" + '"' + "!";
         User.deleteOne({user_id: senderId}, function(err, response) {
             if (err) {
                 console.log(err);

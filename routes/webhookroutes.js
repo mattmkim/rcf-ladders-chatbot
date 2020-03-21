@@ -122,7 +122,7 @@ module.exports = function(User) {
                             postback.availabilityPB(senderId, response[0].firstName);
                         }
                     })
-                } else if (text.localeCompare("Get Started") == 0 || text.localeCompare("Get started") == 0 || text.localeCompare("get started") == 0) {
+                } else if (text.localeCompare("New Profile") == 0 || text.localeCompare("New profile") == 0 || text.localeCompare("new profile") == 0) {
                     userfunction.getStarted(senderId);
                 } else if (text.localeCompare("Set Preferences") == 0 || text.localeCompare("Set preferences") == 0 || text.localeCompare("set preferences") == 0) {
                     postback.setPreferences(senderId);
@@ -139,8 +139,8 @@ module.exports = function(User) {
                 //     sendPreferenceReminder();
                 // } else if (text.localeCompare("send available reminder") == 0) {
                 //     sendAvailabilityReminder();
-                // } else if (text.localeCompare("send info") == 0) {
-                //     reminder.sendInfo();
+                } else if (text.localeCompare("send info") == 0) {
+                    reminder.sendInfo();
                 // } else if (text.localeCompare("make avail") == 0) {
                 //    userfunction.makeAvail();
                 // }
