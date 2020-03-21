@@ -132,7 +132,7 @@ module.exports = {
         })
     },
 
-    laddersProfile: function(userId, laddersId, userFirstName, laddersFirstName) {
+    laddersProfile: function(userId, laddersId, userFirstName, laddersFirstName, laddersUrl) {
         let messageData = {
             "attachment": {
                 "type": "template",
@@ -141,7 +141,8 @@ module.exports = {
                     "elements": [
                         {
                         "title": "Meet " + laddersFirstName + "!",
-                        "image_url": "https://graph.facebook.com/" + laddersId + "/picture?type=small&access_token=EAAGGoIdm5HoBABBvCjuZADP90chUfr7L41uoaRQSk0P3N7JDXYLW6mHRGMefZBvDBZC4r9kOndzBWMbUcSFcaS8g3ZBKOqDBTlXNKs1AK1LbzbaDhUBNsdeeLEYSZCfG8voktlPyZA3zXZCxq0q9k6DdoKROPbFtLo6YDEo88xjM0GAQKXkXAVF",
+                        // "image_url": "https://graph.facebook.com/" + laddersId + "/picture?type=small&access_token=EAAGGoIdm5HoBABBvCjuZADP90chUfr7L41uoaRQSk0P3N7JDXYLW6mHRGMefZBvDBZC4r9kOndzBWMbUcSFcaS8g3ZBKOqDBTlXNKs1AK1LbzbaDhUBNsdeeLEYSZCfG8voktlPyZA3zXZCxq0q9k6DdoKROPbFtLo6YDEo88xjM0GAQKXkXAVF",
+                        "image_url": laddersUrl,
                         "subtitle": "Hi " + userFirstName + ", meet " + laddersFirstName + "! Click the button below to learn more about " + laddersFirstName + "!",
                         "buttons": [
                             {
