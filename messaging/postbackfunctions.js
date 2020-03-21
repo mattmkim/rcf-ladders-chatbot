@@ -132,20 +132,36 @@ module.exports = {
         })
     },
 
-    laddersProfile: function(userId, laddersId, userFirstName, laddersFirstName) {
+    laddersProfile: function(userId, laddersId, userFirstName, laddersFirstName, laddersUrl) {
         let messageData = {
             "attachment": {
                 "type": "template",
                 "payload": {
-                    "template_type": "button",
-                    "text": "Hi " + userFirstName + ", meet " + laddersFirstName + "! Click the button below to learn more about " + laddersFirstName + "!",
-                    "buttons": [{
-                        "type": "web_url",
-                        "url":  "https://rcf-meets.herokuapp.com/laddersprofile/" + laddersId,
-                        "title": laddersFirstName + "'" + "s Profile",
-                        "webview_height_ratio": "full",
-                        "messenger_extensions": true
-                    }]
+                    "template_type": "generic",
+                    "elements": [
+                        {
+                        "title": "Profile",
+                        "image_url": laddersUrl,
+                        "subtitle": "Hi " + userFirstName + ", meet " + laddersFirstName + "! Click the button below to learn more about " + laddersFirstName + "!",
+                        "buttons": [
+                            {
+                                "type": "web_url",
+                                "url":  "https://rcf-meets.herokuapp.com/laddersprofile/" + laddersId,
+                                "title": laddersFirstName + "'" + "s Profile",
+                                "webview_height_ratio": "full",
+                                "messenger_extensions": true
+                            }
+                        ]
+                        }]
+                    // "template_type": "button",
+                    // "text": "Hi " + userFirstName + ", meet " + laddersFirstName + "! Click the button below to learn more about " + laddersFirstName + "!",
+                    // "buttons": [{
+                    //     "type": "web_url",
+                    //     "url":  "https://rcf-meets.herokuapp.com/laddersprofile/" + laddersId,
+                    //     "title": laddersFirstName + "'" + "s Profile",
+                    //     "webview_height_ratio": "full",
+                    //     "messenger_extensions": true
+                    // }]
                 }
             }
         }
@@ -154,7 +170,7 @@ module.exports = {
             qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
             method: 'POST',
             json: {
-                recipient: {id: userId},
+                recipient: {id: "2479283145514220"},
                 message: messageData,
                 messaging_type: "MESSAGE_TAG",
                 tag: "CONFIRMED_EVENT_UPDATE"
