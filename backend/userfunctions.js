@@ -225,12 +225,12 @@ module.exports = function(User) {
                                 }
                             })
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName + " and " + t.firstName + t.lastName);
-                            postback.laddersProfile(f.user_id, s.user_id, f.firstName, s.firstName, s.profileUrl);
-                            postback.laddersProfile(f.user_id, t.user_id, f.firstName, t.firstName, t.profileUrl);
-                            postback.laddersProfile(s.user_id, f.user_id, s.firstName, f.firstName, f.profileUrl);
-                            postback.laddersProfile(s.user_id, t.user_id, s.firstName, t.firstName, t.profileUrl);
-                            postback.laddersProfile(t.user_id, s.user_id, t.firstName, s.firstName, s.profileUrl);
-                            postback.laddersProfile(t.user_id, f.user_id, t.firstName, f.firstName, f.profileUrl);
+                            postback.laddersProfile(f.user_id, s.user_id, f.firstName, s.firstName);
+                            postback.laddersProfile(f.user_id, t.user_id, f.firstName, t.firstName);
+                            postback.laddersProfile(s.user_id, f.user_id, s.firstName, f.firstName);
+                            postback.laddersProfile(s.user_id, t.user_id, s.firstName, t.firstName);
+                            postback.laddersProfile(t.user_id, s.user_id, t.firstName, s.firstName);
+                            postback.laddersProfile(t.user_id, f.user_id, t.firstName, f.firstName);
     
                             // User.update({user_id: f.user_id}, { $push: {prevMeetup: [s.user_id, t.user_id]} }, function(err, response) {
                             //     if (err) {
@@ -258,8 +258,8 @@ module.exports = function(User) {
     
                         } else {
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName);
-                            postback.laddersProfile(f.user_id, s.user_id, f.firstName, s.firstName, s.profileUrl);
-                            postback.laddersProfile(s.user_id, f.user_id, s.firstName, f.firstName, f.profileUrl);
+                            postback.laddersProfile(f.user_id, s.user_id, f.firstName, s.firstName);
+                            postback.laddersProfile(s.user_id, f.user_id, s.firstName, f.firstName);
                             
                             //update previous
     

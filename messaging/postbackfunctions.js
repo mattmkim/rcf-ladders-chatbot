@@ -132,7 +132,7 @@ module.exports = {
         })
     },
 
-    laddersProfile: function(userId, laddersId, userFirstName, laddersFirstName, laddersUrl) {
+    laddersProfile: function(userId, laddersId, userFirstName, laddersFirstName) {
         let messageData = {
             "attachment": {
                 "type": "template",
@@ -170,7 +170,7 @@ module.exports = {
             qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
             method: 'POST',
             json: {
-                recipient: {id: "2628960987224593"},
+                recipient: {id: "2479283145514220"},
                 message: messageData,
                 messaging_type: "MESSAGE_TAG",
                 tag: "CONFIRMED_EVENT_UPDATE"
@@ -179,7 +179,7 @@ module.exports = {
                 if (error) {
                     console.log("Error sending message: " + response.error)
                 } else {
-                    console.log(response);
+                    //console.log(response);
                 }
         })
     },
