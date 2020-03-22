@@ -31,22 +31,22 @@ app.get("/", function (req, res) {
 });
 
 // send availability postback every Saturday night
-// // real time string: '0 6 * * Sunday'
-// cron.schedule('0 17 * * Saturday', () => {
-//     userFunctions.sendAvailabilityPB();
-// }, {
-//     scheduled: true,
-//     timezone: "America/New_York"
-// });
+// real time string: '0 6 * * Sunday'
+cron.schedule('0 15 * * Sunday', () => {
+    userFunctions.sendAvailabilityPB();
+}, {
+    scheduled: true,
+    timezone: "America/New_York"
+});
 
 // // send ladders partners Sunday nights
 // // real time string: '0 5 * * Monday'
-// cron.schedule('0 16 * * Sunday', () => {
-//     userFunctions.sendLadders();
-// }, {
-//     scheduled: true,
-//     timezone: "America/New_York"
-// })
+cron.schedule('0 16 * * Monday', () => {
+    userFunctions.sendLadders();
+}, {
+    scheduled: true,
+    timezone: "America/New_York"
+})
 
 // // send ladders partners Sunday nights
 // // real time string: '0 5 * * Monday'
