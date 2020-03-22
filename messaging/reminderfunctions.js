@@ -35,4 +35,4 @@ module.exports = function(User) {
     }
 
     return module;
-}76
+}
