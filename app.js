@@ -41,7 +41,7 @@ cron.schedule('13 14 * * Sunday', () => {
 
 // // send ladders partners Sunday nights
 // // real time string: '0 5 * * Monday'
-cron.schedule('0 16 * * Monday', () => {
+cron.schedule('0 9 * * Monday', () => {
     userFunctions.sendLadders();
 }, {
     scheduled: true,
@@ -50,12 +50,12 @@ cron.schedule('0 16 * * Monday', () => {
 
 // // send ladders partners Sunday nights
 // // real time string: '0 5 * * Monday'
-// cron.schedule('15 15 * * Sunday', () => {
-//     reminderFunctions.sendAvailabilityReminder();
-// }, {
-//     scheduled: true,
-//     timezone: "America/New_York"
-// })
+cron.schedule('0 20 * * Sunday', () => {
+    reminderFunctions.sendAvailabilityReminder();
+}, {
+    scheduled: true,
+    timezone: "America/New_York"
+})
 
 // Serve the options path and set required headers
 app.get('/preferences/:userId', preferencesRoutes.open_preferences_webview);
