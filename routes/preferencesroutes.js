@@ -43,6 +43,7 @@ var routes = function(User) {
         //keys is array of all keys (psid, ....., submit)
         let keys = Object.keys(body);
 
+        console.log(body);
         console.log(keys);
     
         if (keys.length != 0) {
