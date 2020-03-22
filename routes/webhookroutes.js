@@ -22,7 +22,7 @@ module.exports = function(User) {
                     console.log("Updated " + senderId + " to true.");
                 }
             })
-            var message = "Got it. I'll get back to you Sunday night!"
+            var message = "Got it. I'll get back to you Monday morning!"
             msg.sendMessage(senderId, {text: message});
         } else if (payload == "NO") {
             User.update({user_id: senderId}, {available: false}, function(err, response) {
