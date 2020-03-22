@@ -50,7 +50,7 @@ cron.schedule('0 9 * * Monday', () => {
 
 // // send ladders partners Sunday nights
 // // real time string: '0 5 * * Monday'
-cron.schedule('0 20 * * Sunday', () => {
+cron.schedule('0 19 * * Sunday', () => {
     reminderFunctions.sendAvailabilityReminder();
 }, {
     scheduled: true,
