@@ -32,7 +32,7 @@ app.get("/", function (req, res) {
 
 // send availability postback every Saturday night
 // real time string: '0 6 * * Sunday'
-cron.schedule('5 15 * * Sunday', () => {
+cron.schedule('13 14 * * Sunday', () => {
     userFunctions.sendAvailabilityPB();
 }, {
     scheduled: true,
