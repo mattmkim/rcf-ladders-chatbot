@@ -257,5 +257,44 @@ module.exports = {
                     console.log("Error sending message: " + response.error)
                 }
         })
+    }, 
+
+    availabilityPBSingle: function(senderId, name) {
+        let messageData = {
+            "attachment":{
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text": "Hi " + name + ", thanks for joining RCF Meets! Just to give a brief overview of whats happening - if you would like meet with someone this week, please select Yes! Tomorrow at 10 am EST you will receive a message about who your meetup partner is going to be. If you would not like to meetup with someone this week, please select No.",
+                    "buttons":[
+                        {
+                            "type":"postback",
+                            "title":"Yes",
+                            "payload":"YES"
+                        },
+                        {
+                            "type":"postback",
+                            "title":"No",
+                            "payload":"NO"
+                        }
+                    ]
+                }
+            }
+        }
+        request({
+            url: 'https://graph.facebook.com/v5.0/me/messages',
+            qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+            method: 'POST',
+            json: {
+                recipient: {id: senderId},
+                message: messageData,
+                messaging_type: "MESSAGE_TAG",
+                tag: "CONFIRMED_EVENT_UPDATE"
+            }
+        }, function(error, response, body){
+                if (error) {
+                    console.log("Error sending message: " + response.error)
+                }
+        })
     }
 }
