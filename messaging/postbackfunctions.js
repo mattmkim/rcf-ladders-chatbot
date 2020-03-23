@@ -265,7 +265,7 @@ module.exports = {
                 "type":"template",
                 "payload":{
                     "template_type":"button",
-                    "text": "Hi " + name + ", thanks for joining RCF Meets! Just to give a brief overview of whats happening - if you would like meet with someone this week, please select Yes! Tomorrow at 10 am EST you will receive a message about who your meetup partner is going to be. If you would not like to meetup with someone this week, please select No.",
+                    "text": "Hi " + name + ", thanks for joining RCF Meets! Just to give a brief overview of what's happening - if you would like meet with someone this week, please select Yes! Tomorrow at 10 am EST you will receive a message about who your meetup partner is going to be. If you would not like to meetup with someone this week, please select No.",
                     "buttons":[
                         {
                             "type":"postback",
