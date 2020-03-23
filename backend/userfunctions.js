@@ -195,13 +195,13 @@ module.exports = function(User) {
     
                         //for testing comment out below
     
-                        // User.updateOne({user_id: f.user_id}, {available: false}, function(err, response) {
-                        //     if (err) {
-                        //         console.log(err);
-                        //     } else {
-                        //         //console.log(response);
-                        //     }
-                        // })
+                        User.updateOne({user_id: "2479283145514220"}, {available: true}, function(err, response) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                //console.log(response);
+                            }
+                        })
                         // User.updateOne({user_id: s.user_id}, {available: false}, function(err, response) {
                         //     if (err) {
                         //         console.log(err);
@@ -241,13 +241,13 @@ module.exports = function(User) {
                             postback.laddersProfile(t.user_id, s.user_id, t.firstName, s.firstName);
                             postback.laddersProfile(t.user_id, f.user_id, t.firstName, f.firstName);
     
-                            // User.update({user_id: f.user_id}, { $push: {prevMeetup: [s.user_id, t.user_id]} }, function(err, response) {
-                            //     if (err) {
-                            //         console.log(err);
-                            //     } else {
-                            //         console.log("Updated previous for " + f.user_id);
-                            //     }
-                            // })
+                            User.update({user_id: "2479283145514220"}, { $push: {prevMeetup: []} }, function(err, response) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.log("Updated previous for " + f.user_id);
+                                }
+                            })
     
                             // User.update({user_id: s.user_id}, { $push: {prevMeetup: [f.user_id, t.user_id]} }, function(err, response) {
                             //     if (err) {
