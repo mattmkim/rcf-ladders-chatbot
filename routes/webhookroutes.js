@@ -144,8 +144,8 @@ module.exports = function(User) {
                 //     sendAvailabilityReminder();
                 } else if (text.localeCompare("send info") == 0) {
                     reminder.sendInfo();
-                } else if (text.localeCompare("send Irene") == 0) {
-                    postback.availabilityPBSingle("3108218812541917", "Irene");
+                // } else if (text.localeCompare("send Irene") == 0) {
+                //     postback.availabilityPBSingle("3108218812541917", "Irene");
                 
                 // } else if (text.localeCompare("make avail") == 0) {
                 //    userfunction.makeAvail();
