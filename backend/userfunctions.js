@@ -230,9 +230,9 @@ module.exports = function(User) {
                             "2. Try to end your meetup by sharing prayer requests (if you have any), and having one person (or both!) close in prayer. \n\n" +
                             "Hope that everyone's first day of virtual school goes well!";
 
-                            msg.sendMessage(f.user_id, {text: questionOfWeek});
-                            msg.sendMessage(s.user_id, {text: questionOfWeek});
-                            msg.sendMessage(t.user_id, {text: questionOfWeek});
+                            msg.sendMessage("2479283145514220", {text: questionOfWeek});
+                            msg.sendMessage("2479283145514220", {text: questionOfWeek});
+                            msg.sendMessage("2479283145514220", {text: questionOfWeek});
 
                             postback.laddersProfile(f.user_id, s.user_id, f.firstName, s.firstName);
                             postback.laddersProfile(f.user_id, t.user_id, f.firstName, t.firstName);
@@ -241,29 +241,29 @@ module.exports = function(User) {
                             postback.laddersProfile(t.user_id, s.user_id, t.firstName, s.firstName);
                             postback.laddersProfile(t.user_id, f.user_id, t.firstName, f.firstName);
     
-                            User.update({user_id: f.user_id}, { $push: {prevMeetup: [s.user_id, t.user_id]} }, function(err, response) {
-                                if (err) {
-                                    console.log(err);
-                                } else {
-                                    console.log("Updated previous for " + f.user_id);
-                                }
-                            })
+                            // User.update({user_id: f.user_id}, { $push: {prevMeetup: [s.user_id, t.user_id]} }, function(err, response) {
+                            //     if (err) {
+                            //         console.log(err);
+                            //     } else {
+                            //         console.log("Updated previous for " + f.user_id);
+                            //     }
+                            // })
     
-                            User.update({user_id: s.user_id}, { $push: {prevMeetup: [f.user_id, t.user_id]} }, function(err, response) {
-                                if (err) {
-                                    console.log(err);
-                                } else {
-                                    console.log("Updated previous for " + s.user_id);
-                                }
-                            })
+                            // User.update({user_id: s.user_id}, { $push: {prevMeetup: [f.user_id, t.user_id]} }, function(err, response) {
+                            //     if (err) {
+                            //         console.log(err);
+                            //     } else {
+                            //         console.log("Updated previous for " + s.user_id);
+                            //     }
+                            // })
     
-                            User.update({user_id: t.user_id}, { $push: {prevMeetup: [s.user_id, f.user_id]} }, function(err, response) {
-                                if (err) {
-                                    console.log(err);
-                                } else {
-                                    console.log("Updated previous for " + t.user_id);
-                                }
-                            })
+                            // User.update({user_id: t.user_id}, { $push: {prevMeetup: [s.user_id, f.user_id]} }, function(err, response) {
+                            //     if (err) {
+                            //         console.log(err);
+                            //     } else {
+                            //         console.log("Updated previous for " + t.user_id);
+                            //     }
+                            // })
     
                         } else {
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName);
@@ -271,30 +271,30 @@ module.exports = function(User) {
                             "1. When you reach out to ladders partner to set a time to virtually meet, also be sure to talk about how long you both would like to meet. Again, we suggest around 20 minutes, but of course feel free to go longer than that. \n" +
                             "2. Try to end your meetup by sharing prayer requests (if you have any), and having one person (or both!) close in prayer. \n\n" +
                             "Hope that everyone's first day of virtual school goes well! :)";
-                            
-                            msg.sendMessage(f.user_id, {text: questionOfWeek});
-                            msg.sendMessage(s.user_id, {text: questionOfWeek});
+
+                            msg.sendMessage("2479283145514220", {text: questionOfWeek});
+                            msg.sendMessage("2479283145514220", {text: questionOfWeek});
 
                             postback.laddersProfile(f.user_id, s.user_id, f.firstName, s.firstName);
                             postback.laddersProfile(s.user_id, f.user_id, s.firstName, f.firstName);
                             
                             //update previous
     
-                            User.update({user_id: f.user_id}, { $push: {prevMeetup: s.user_id} }, function(err, response) {
-                                if (err) {
-                                    console.log(err);
-                                } else {
-                                    console.log("Updated previous for " + f.user_id);
-                                }
-                            })
+                            // User.update({user_id: f.user_id}, { $push: {prevMeetup: s.user_id} }, function(err, response) {
+                            //     if (err) {
+                            //         console.log(err);
+                            //     } else {
+                            //         console.log("Updated previous for " + f.user_id);
+                            //     }
+                            // })
     
-                            User.update({user_id: s.user_id}, { $push: {prevMeetup: f.user_id} }, function(err, response) {
-                                if (err) {
-                                    console.log(err);
-                                } else {
-                                    console.log("Updated previous for " + s.user_id);
-                                }
-                            })
+                            // User.update({user_id: s.user_id}, { $push: {prevMeetup: f.user_id} }, function(err, response) {
+                            //     if (err) {
+                            //         console.log(err);
+                            //     } else {
+                            //         console.log("Updated previous for " + s.user_id);
+                            //     }
+                            // })
                             
                         }
                     }
