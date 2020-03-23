@@ -225,6 +225,14 @@ module.exports = function(User) {
                                 }
                             })
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName + " and " + t.firstName + t.lastName);
+                            var questionOfWeek = "This week's Question of the Week... is not a question at all! Give a tour of your room to your ladders partner! Here are some reminders/guidelines about what virtual ladders can look like! \n" +
+                            "1. When you reach out to ladders partner to set a time to virtually meet, also be sure to talk about how long you both would like to meet. Again, we suggest around 20 minutes, but of course feel free to go longer than that. \n" +
+                            "2. Try to end your meetup by sharing prayer requests (if you have any), and having one person (or both!) close in prayer."
+
+                            msg.sendMessage(f.user_id, questionOfWeek);
+                            msg.sendMessage(s.user_id, questionOfWeek);
+                            msg.sendMessage(t.user_id, questionOfWeek);
+
                             postback.laddersProfile(f.user_id, s.user_id, f.firstName, s.firstName);
                             postback.laddersProfile(f.user_id, t.user_id, f.firstName, t.firstName);
                             postback.laddersProfile(s.user_id, f.user_id, s.firstName, f.firstName);
@@ -258,6 +266,8 @@ module.exports = function(User) {
     
                         } else {
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName);
+                            msg.sendMessage(f.user_id, questionOfWeek);
+                            msg.sendMessage(s.user_id, questionOfWeek);
                             postback.laddersProfile(f.user_id, s.user_id, f.firstName, s.firstName);
                             postback.laddersProfile(s.user_id, f.user_id, s.firstName, f.firstName);
                             
