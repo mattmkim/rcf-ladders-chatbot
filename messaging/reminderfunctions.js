@@ -20,7 +20,7 @@ module.exports = function(User) {
     }
 
     module.sendAvailabilityReminder = function() {
-        var message = "Hi! Just a reminder to update your availability if you haven't already! Meetups will be sent out at 10 am EST on Monday. Also, a friendly reminder to set your preferences as well - remember, two people BOTH have to select each other in order to not get paired :)";
+        var message = "Hi! Just a reminder to update your availability if you haven't already! Meetups will be sent out at 10 am EST on Sunday.";
         User.find({}, function(err, response) {
             if (err) {
                 console.log(err);

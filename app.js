@@ -32,7 +32,7 @@ app.get("/", function (req, res) {
 
 // send availability postback every Saturday night
 // real time string: '0 6 * * Sunday'
-cron.schedule('0 9 * * Sunday', () => {
+cron.schedule('0 9 * * Saturday', () => {
     userFunctions.sendAvailabilityPB();
 }, {
     scheduled: true,
@@ -41,7 +41,7 @@ cron.schedule('0 9 * * Sunday', () => {
 
 // // send ladders partners Sunday nights
 // // real time string: '0 5 * * Monday'
-cron.schedule('0 9 * * Monday', () => {
+cron.schedule('0 9 * * Sunday', () => {
     userFunctions.sendLadders();
 }, {
     scheduled: true,
@@ -50,7 +50,7 @@ cron.schedule('0 9 * * Monday', () => {
 
 // // send ladders partners Sunday nights
 // // real time string: '0 5 * * Monday'
-cron.schedule('0 19 * * Sunday', () => {
+cron.schedule('0 19 * * Saturday', () => {
     reminderFunctions.sendAvailabilityReminder();
 }, {
     scheduled: true,
