@@ -4,7 +4,7 @@ module.exports = function(User) {
     var module = {}
 
     module.sendInfo = function() {
-        var message = "Oops, if you said that you are available, I'll get back to you Monday morning, NOT Sunday night.";
+        var message = "Sorry, we meant 10 am EDT!";
         User.find({}, function(err, response) {
             if (err) {
                 console.log(err);
