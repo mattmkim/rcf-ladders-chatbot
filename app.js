@@ -19,8 +19,8 @@ var userFunctions = require('./backend/userfunctions')(User);
 var reminderFunctions = require('./messaging/reminderfunctions')(User);
 
 
-app.use(__dirname + "/public", express.static(__dirname + '/public'));
-app.use(__dirname + "/public", express.static(__dirname + '/client/build'));
+app.use("/public", express.static(__dirname + '/public'));
+app.use("/public", express.static(__dirname + '/client/build'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.listen((process.env.PORT || 5000));
