@@ -28,7 +28,9 @@ app.set('view engine', 'ejs');
 
 // Server index page
 app.get("/", function (req, res) {
+    app.use(express.static(__dirname + '/client/build/static'))
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+    
     //res.send("Deployed!");
 });
 
