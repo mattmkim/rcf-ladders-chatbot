@@ -20,6 +20,7 @@ var reminderFunctions = require('./messaging/reminderfunctions')(User);
 
 
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/client/build/static'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.listen((process.env.PORT || 5000));
@@ -28,7 +29,7 @@ app.set('view engine', 'ejs');
 
 // Server index page
 app.get("/", function (req, res) {
-    app.use(express.static(__dirname + 'client/build/static'));
+
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
     
     //res.send("Deployed!");
