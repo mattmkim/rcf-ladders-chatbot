@@ -29,7 +29,7 @@ app.set('view engine', 'ejs');
 
 // Server index page
 app.get("/", function (req, res) {
-    res.send("Deployed!");
+    res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 // send availability postback every Saturday night
