@@ -2,6 +2,7 @@ var express = require("express");
 var request = require("request");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+const path = require('path');
 var app = express();
 var cron = require('node-cron');
 const http = require("http");
@@ -27,7 +28,8 @@ app.set('view engine', 'ejs');
 
 // Server index page
 app.get("/", function (req, res) {
-    res.send("Deployed!");
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+    //res.send("Deployed!");
 });
 
 // send availability postback every Saturday night
