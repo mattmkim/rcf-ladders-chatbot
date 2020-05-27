@@ -20,7 +20,7 @@ var reminderFunctions = require('./messaging/reminderfunctions')(User);
 
 
 app.use(express.static(__dirname + '/public'));
-app.use("/webpublic", express.static(__dirname + '/client/public'));
+app.use("/static", express.static(__dirname + '/client/public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.listen((process.env.PORT || 5000));
