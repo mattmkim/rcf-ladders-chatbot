@@ -28,12 +28,12 @@ app.set('views', './views');
 app.set('view engine', 'ejs');
 
 // Server index page
-app.get("/", function (req, res) {
+// app.get("/", function (req, res) {
 
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+//     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
     
-    //res.send("Deployed!");
-});
+//     res.send("Deployed!");
+// });
 
 // send availability postback every Saturday night
 // real time string: '0 6 * * Sunday'
