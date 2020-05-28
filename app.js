@@ -19,7 +19,7 @@ var userFunctions = require('./backend/userfunctions')(User);
 var reminderFunctions = require('./messaging/reminderfunctions')(User);
 
 app.use("/public", express.static(path.join(__dirname, "public")))
-app.use("/", express.static(path.join(__dirname, "public", "build")))
+app.use("/", express.static(path.join(__dirname, "client", "build")))
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.listen((process.env.PORT || 5000));
@@ -29,7 +29,7 @@ app.set('view engine', 'ejs');
 // Server index page
 app.get("/", function (req, res) {
     //res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-    res.sendFile(path.join(__dirname, "public", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
 // send availability postback every Saturday night
