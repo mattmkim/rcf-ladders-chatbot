@@ -205,6 +205,8 @@ module.exports = function(User) {
                     });
                 }
             } else if (message.attachments) {
+                console.log(event);
+                console.log(message);
                 msg.sendMessage(senderId, {text: "Sorry, we don't understand your request."});
             }
         }
