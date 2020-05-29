@@ -206,7 +206,8 @@ module.exports = function(User) {
                     });
                 }
             } else if (message.attachments) {
-                console.log(message.attachments);
+                console.log(message.attachments[0]);
+                console.log(message.attachments[0].payload);
 
                 // var newPost = new Post({
                 //     user_id: senderId,
