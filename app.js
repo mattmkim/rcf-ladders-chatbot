@@ -2,6 +2,7 @@ var express = require("express");
 var request = require("request");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+const path = require('path');
 var app = express();
 var cron = require('node-cron');
 const http = require("http");
@@ -17,8 +18,8 @@ var webhookRoutes = require('./routes/webhookroutes.js')(User);
 var userFunctions = require('./backend/userfunctions')(User);
 var reminderFunctions = require('./messaging/reminderfunctions')(User);
 
-
-app.use(express.static(__dirname + '/public'));
+app.use("/public", express.static(path.join(__dirname, "public")))
+app.use("/", express.static(path.join(__dirname, "client", "build")))
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.listen((process.env.PORT || 5000));
@@ -27,7 +28,8 @@ app.set('view engine', 'ejs');
 
 // Server index page
 app.get("/", function (req, res) {
-    res.send("Deployed!");
+    //res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
 // send availability postback every Saturday night
