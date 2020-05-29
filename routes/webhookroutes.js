@@ -1,4 +1,5 @@
 var User = require("../models/users");
+var Post = require("../models/posts");
 var msg = require('../messaging/messagefunctions.js');
 var postback = require('../messaging/postbackfunctions');
 var reminder = require('../messaging/reminderfunctions')(User);
@@ -205,9 +206,19 @@ module.exports = function(User) {
                     });
                 }
             } else if (message.attachments) {
-                console.log(event);
-                console.log(message);
-                msg.sendMessage(senderId, {text: "Sorry, we don't understand your request."});
+                var newPost = new Post({
+                    user_id: senderId,
+                    imageUrl: message.attachments[0].payload[0].url,
+                    caption: "this is a cat"
+                })
+                newPost.save(function (err, response) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log(response);
+                    }
+                })
+                msg.sendMessage(senderId, {text: "Cute cat."});
             }
         }
     }
