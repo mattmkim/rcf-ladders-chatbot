@@ -206,13 +206,13 @@ module.exports = function(User) {
                     });
                 }
             } else if (message.attachments) {
-                console.log(message.attachments.payload);
+                console.log(message.attachments);
 
-                var newPost = new Post({
-                    user_id: senderId,
-                    imageUrl: message.attachments[0].payload[0].url,
-                    caption: "this is a cat"
-                })
+                // var newPost = new Post({
+                //     user_id: senderId,
+                //     imageUrl: message.attachments[0].payload[0].url,
+                //     caption: "this is a cat"
+                // })
                 // newPost.save(function (err, response) {
                 //     if (err) {
                 //         console.log(err);
