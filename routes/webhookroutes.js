@@ -74,6 +74,21 @@ module.exports = function(User) {
                 }
             })
             postback.setPreferences(senderId);     
+        } else if (payload.includes("YES PHOTO")) {
+            User.update({user_id: senderId}, {sendingPhoto: true}, function(err, response) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(response);
+                }
+            })
+            var data = payload.split(',');
+            var image_url = data[1];
+
+
+        } else if (payload == "NO PHOTO") {
+            var message = "Ok, got it.";
+            msg.sendMessage(senderId, {text: message});
         }
     };
 
@@ -210,7 +225,6 @@ module.exports = function(User) {
 
                 if (typeof message.attachments[0].sticker_id !== undefined) {
                     var sticker = message.attachments[0].payload.url;
-                    sticker = sticker + "&_width=50&_length=50";
                     request({
                         url: "https://graph.facebook.com/v6.0/me/messages",
                         qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
@@ -249,7 +263,32 @@ module.exports = function(User) {
                     //         console.log(response);
                     //     }
                     // })
-
+                    
+                    request({
+                        url: "https://graph.facebook.com/v6.0/me/messages",
+                        qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
+                        method: "POST",
+                        json: {
+                            recipient: {id: senderId},
+                            message: {
+                                "attachment":{
+                                  "type":"image", 
+                                  "payload":{
+                                    "url":message.attachments[0].payload.url, 
+                                    "is_reusable":true
+                                  }
+                                }
+                            },
+                            messaging_type: "MESSAGE_TAG",
+                            tag: "CONFIRMED_EVENT_UPDATE"
+                        }
+                    }, function(error, response, body) {
+                        if (error) {
+                            console.log("Error sending message: " + response.error);
+                        } else {
+                            console.log(body);
+                        }
+                    });
 
                 }                
             }

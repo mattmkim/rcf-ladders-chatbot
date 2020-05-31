@@ -8,7 +8,47 @@ module.exports = {
         })
     },
 
-    // postPB: function(senderId, )
+    postPB: function(senderId, image_url) {
+        let messageData = {
+            "attachment":{
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text": "Are you sure you want to submit this photo?",
+                    "buttons":[
+                        {
+                            "type":"postback",
+                            "title":"Yes",
+                            "payload":"YES PHOTO," + image_url 
+                        },
+                        {
+                            "type":"postback",
+                            "title":"No",
+                            "payload":"NO PHOTO"
+                        }
+                    ]
+                }
+            }
+        }
+
+        request({
+            url: 'https://graph.facebook.com/v6.0/me/messages',
+            qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+            method: 'POST',
+            json: {
+                recipient: {id: senderId},
+                message: messageData,
+                messaging_type: "MESSAGE_TAG",
+                tag: "CONFIRMED_EVENT_UPDATE"
+            }
+        }, function(error, response, body){
+                if (error) {
+                    console.log("Error sending message: " + response.error)
+                } else {
+                    console.log(response);
+                }
+        })
+    },
     
     underYearPB: function(senderId) {
         let messageData = {
@@ -33,7 +73,7 @@ module.exports = {
             }
         }
         request({
-            url: 'https://graph.facebook.com/v5.0/me/messages',
+            url: 'https://graph.facebook.com/v6.0/me/messages',
             qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
             method: 'POST',
             json: {
@@ -74,7 +114,7 @@ module.exports = {
             }
         }
         request({
-            url: 'https://graph.facebook.com/v5.0/me/messages',
+            url: 'https://graph.facebook.com/v6.0/me/messages',
             qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
             method: 'POST',
             json: {
@@ -116,7 +156,7 @@ module.exports = {
             }
         }
         request({
-            url: 'https://graph.facebook.com/v5.0/me/messages',
+            url: 'https://graph.facebook.com/v6.0/me/messages',
             qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
             method: 'POST',
             json: {
@@ -168,7 +208,7 @@ module.exports = {
             }
         }
         request({
-            url: 'https://graph.facebook.com/v5.0/me/messages',
+            url: 'https://graph.facebook.com/v6.0/me/messages',
             qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
             method: 'POST',
             json: {
@@ -204,7 +244,7 @@ module.exports = {
             }
         }
         request({
-            url: 'https://graph.facebook.com/v5.0/me/messages',
+            url: 'https://graph.facebook.com/v6.0/me/messages',
             qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
             method: 'POST',
             json: {
@@ -245,7 +285,7 @@ module.exports = {
             }
         }
         request({
-            url: 'https://graph.facebook.com/v5.0/me/messages',
+            url: 'https://graph.facebook.com/v6.0/me/messages',
             qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
             method: 'POST',
             json: {
@@ -284,7 +324,7 @@ module.exports = {
             }
         }
         request({
-            url: 'https://graph.facebook.com/v5.0/me/messages',
+            url: 'https://graph.facebook.com/v6.0/me/messages',
             qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
             method: 'POST',
             json: {
