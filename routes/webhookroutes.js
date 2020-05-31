@@ -207,18 +207,20 @@ module.exports = function(User) {
                 }
             } else if (message.attachments) {
 
+                console.log(message.attachments);
+
                 var newPost = new Post({
                     user_id: senderId,
                     imageUrl: message.attachments[0].payload.url,
-                    caption: "this is a cat"
+                    caption: ""
                 })
-                newPost.save(function (err, response) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log(response);
-                    }
-                })
+                // newPost.save(function (err, response) {
+                //     if (err) {
+                //         console.log(err);
+                //     } else {
+                //         console.log(response);
+                //     }
+                // })
                 msg.sendMessage(senderId, {text: "Cute cat."});
             }
         }
