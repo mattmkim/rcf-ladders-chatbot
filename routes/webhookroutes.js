@@ -208,6 +208,10 @@ module.exports = function(User) {
             } else if (message.attachments) {
 
                 console.log(message.attachments);
+                console.log(message.attachments[0].sticker_id);
+                if (message.attachments[0].sticker_id != undefined) {
+                    console.log("hello");
+                }
 
                 var newPost = new Post({
                     user_id: senderId,
