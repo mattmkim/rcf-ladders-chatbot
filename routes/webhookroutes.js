@@ -4,6 +4,7 @@ var msg = require('../messaging/messagefunctions.js');
 var postback = require('../messaging/postbackfunctions');
 var reminder = require('../messaging/reminderfunctions')(User);
 var userfunction = require('../backend/userfunctions')(User);
+var request = require("request");
 
 module.exports = function(User) {
     var module = {}
