@@ -8,7 +8,7 @@ module.exports = {
         })
     },
 
-    postPB: function(senderId, image_url) {
+    sentPhotoPB: function(senderId, image_url) {
         let messageData = {
             "attachment":{
                 "type":"template",

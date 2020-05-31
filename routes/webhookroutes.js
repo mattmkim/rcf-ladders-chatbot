@@ -75,16 +75,20 @@ module.exports = function(User) {
             })
             postback.setPreferences(senderId);     
         } else if (payload.includes("YES PHOTO")) {
-            User.update({user_id: senderId}, {sendingPhoto: true}, function(err, response) {
+            
+            var data = payload.split(',');
+            var image_url = data[1];
+
+            User.update({user_id: senderId}, {sendingPhoto: true, photoUrl: image_url}, function(err, response) {
                 if (err) {
                     console.log(err);
                 } else {
                     console.log(response);
                 }
             })
-            var data = payload.split(',');
-            var image_url = data[1];
 
+            var message = "Please send a caption for your picture!";
+            msg.sendMessage(senderId, {text: message});
 
         } else if (payload == "NO PHOTO") {
             var message = "Ok, got it.";
@@ -173,19 +177,45 @@ module.exports = function(User) {
                         if (err) {
                             console.log(err);
                         } else {
-                            if (response[0].loggedIn === false) {
+                            // if (response[0].loggedIn === false) {
+                               if (response.length == 0) { 
                                 if (text.localeCompare("rcfmeets2020") == 0) {
-                                    var correctPasswordMessage = "To begin, let's build your profile! What's something you like to do in your free time?" + 
-                                    " Feel free to write as much as you want!";
-                                    msg.sendMessage(senderId, {text: correctPasswordMessage});
-                                    // update profile
-                                    User.update({user_id: senderId}, {loggedIn: true}, function (err, response) {
+                                    var newUser = new User({
+                                        user_id: senderId,
+                                        interests: null,
+                                        fun_fact: null,
+                                        bible_verse: null,
+                                        firstName: bodyObj.first_name,
+                                        lastName: bodyObj.last_name,
+                                        year: null,
+                                        profileUrl: bodyObj.profile_pic,
+                                        available: false,
+                                        loggedIn: true,
+                                        known: [],
+                                        prevMeetup: [],
+                                        sendingPhoto: false,
+                                        photoUrl: null
+                                    });
+
+                                    newUser.save(function (err, response) {
                                         if (err) {
                                             console.log(err);
                                         } else {
                                             console.log(response);
                                         }
-                                    })
+                                    });
+
+                                    var correctPasswordMessage = "To begin, let's build your profile! What's something you like to do in your free time?" + 
+                                    " Feel free to write as much as you want!";
+                                    msg.sendMessage(senderId, {text: correctPasswordMessage});
+                                    // update profile
+                                    // User.update({user_id: senderId}, {loggedIn: true}, function (err, response) {
+                                    //     if (err) {
+                                    //         console.log(err);
+                                    //     } else {
+                                    //         console.log(response);
+                                    //     }
+                                    // })
                                 } else {
                                     var wrongPasswordMessage = "Sorry, that is the incorrect password. Please try again.";
                                     msg.sendMessage(senderId, {text: wrongPasswordMessage});
@@ -213,7 +243,38 @@ module.exports = function(User) {
                                     }
                                 });  
                                 postback.sendYearPBs(senderId);
-                            } else {
+                            } else if (response[0].sendingPhoto) {
+                                console.log("Adding photo for " + senderId);
+                                User.find({user_id: senderId}, function (err, response) {
+                                    if (err) {
+                                        console.log(err);
+                                    } else {
+                                        var image_url = response[0].photoUrl;
+                                        var newPost = new Post({
+                                            user_id: senderId,
+                                            imageUrl: image_url,
+                                            caption: message.text
+                                        })
+                                        newPost.save(function (err, response) {
+                                            if (err) {
+                                                console.log(err);
+                                            } else {
+                                                console.log(response);
+                                            }
+                                        })
+                                    }
+                                })
+
+                                User.update({user_id: senderId}, {sendingPhoto: false}, function (err, response) {
+                                    if (err) {
+                                        console.log(err);
+                                    } else {
+                                        console.log(response);
+                                    }
+                                });  
+                            }
+                            
+                            else {
                                 // user filled out interests and fun fact - send message stating unknown request
                                 var newMessage = "Sorry, we did not understand your request. Type " + '"' + "View Commands" + '"' + " to see all possible commands.";
                                 msg.sendMessage(senderId, {text: newMessage});
@@ -251,45 +312,9 @@ module.exports = function(User) {
                         }
                     });
                 } else {
-                    var newPost = new Post({
-                        user_id: senderId,
-                        imageUrl: message.attachments[0].payload.url,
-                        caption: ""
-                    })
-                    // newPost.save(function (err, response) {
-                    //     if (err) {
-                    //         console.log(err);
-                    //     } else {
-                    //         console.log(response);
-                    //     }
-                    // })
                     
-                    request({
-                        url: "https://graph.facebook.com/v6.0/me/messages",
-                        qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
-                        method: "POST",
-                        json: {
-                            recipient: {id: senderId},
-                            message: {
-                                "attachment":{
-                                  "type":"image", 
-                                  "payload":{
-                                    "url":message.attachments[0].payload.url, 
-                                    "is_reusable":true
-                                  }
-                                }
-                            },
-                            messaging_type: "MESSAGE_TAG",
-                            tag: "CONFIRMED_EVENT_UPDATE"
-                        }
-                    }, function(error, response, body) {
-                        if (error) {
-                            console.log("Error sending message: " + response.error);
-                        } else {
-                            console.log(body);
-                        }
-                    });
-
+                    postback.sentPhotoPB(senderId, message.attachments[0].payload.url);
+        
                 }                
             }
         }

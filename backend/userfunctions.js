@@ -32,20 +32,20 @@ module.exports = function(User) {
                 " No need to write an essay - a couple interests should do.";
                 var passwordMessage = "Please enter the password to continue.";
                 //sendAttachment(senderId, url);
-                var newUser = new User({
-                    user_id: senderId,
-                    interests: null,
-                    fun_fact: null,
-                    bible_verse: null,
-                    firstName: bodyObj.first_name,
-                    lastName: bodyObj.last_name,
-                    year: null,
-                    profileUrl: bodyObj.profile_pic,
-                    available: false,
-                    loggedIn: false,
-                    known: [],
-                    prevMeetup: []
-                });
+                // var newUser = new User({
+                //     user_id: senderId,
+                //     interests: null,
+                //     fun_fact: null,
+                //     bible_verse: null,
+                //     firstName: bodyObj.first_name,
+                //     lastName: bodyObj.last_name,
+                //     year: null,
+                //     profileUrl: bodyObj.profile_pic,
+                //     available: false,
+                //     loggedIn: false,
+                //     known: [],
+                //     prevMeetup: []
+                // });
                 User.find({user_id: senderId}, function(err, response) {
                     if (err) {
                         console.log(err);
@@ -54,13 +54,13 @@ module.exports = function(User) {
                         if (response.length === 0) {
                             msg.sendTwoMessages(senderId, firstMessage, passwordMessage);
                             console.log(senderId + " does not exist.");
-                            newUser.save(function (err, response) {
-                                if (err) {
-                                    console.log(err);
-                                } else {
-                                    console.log(response);
-                                }
-                            });
+                            // newUser.save(function (err, response) {
+                            //     if (err) {
+                            //         console.log(err);
+                            //     } else {
+                            //         console.log(response);
+                            //     }
+                            // });
                         } else if (response[0].loggedIn === false) {
                             msg.sendMessage(senderId, {text: passwordMessage});
                         } else if (response[0].interests == null) {
