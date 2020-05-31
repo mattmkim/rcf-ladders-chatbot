@@ -275,7 +275,7 @@ module.exports = function(User) {
                                     }
                                 })
 
-                                User.update({user_id: senderId}, {sendingPhoto: false}, function (err, response) {
+                                User.update({user_id: senderId}, {sendingPhoto: false, photoUrl: null}, function (err, response) {
                                     if (err) {
                                         console.log(err);
                                     } else {
