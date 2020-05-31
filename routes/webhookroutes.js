@@ -180,42 +180,52 @@ module.exports = function(User) {
                             // if (response[0].loggedIn === false) {
                                if (response.length == 0) { 
                                 if (text.localeCompare("rcfmeets2020") == 0) {
-                                    var newUser = new User({
-                                        user_id: senderId,
-                                        interests: null,
-                                        fun_fact: null,
-                                        bible_verse: null,
-                                        firstName: bodyObj.first_name,
-                                        lastName: bodyObj.last_name,
-                                        year: null,
-                                        profileUrl: bodyObj.profile_pic,
-                                        available: false,
-                                        loggedIn: true,
-                                        known: [],
-                                        prevMeetup: [],
-                                        sendingPhoto: false,
-                                        photoUrl: null
-                                    });
-
-                                    newUser.save(function (err, response) {
-                                        if (err) {
-                                            console.log(err);
-                                        } else {
-                                            console.log(response);
-                                        }
-                                    });
-
-                                    var correctPasswordMessage = "To begin, let's build your profile! What's something you like to do in your free time?" + 
-                                    " Feel free to write as much as you want!";
-                                    msg.sendMessage(senderId, {text: correctPasswordMessage});
-                                    // update profile
-                                    // User.update({user_id: senderId}, {loggedIn: true}, function (err, response) {
-                                    //     if (err) {
-                                    //         console.log(err);
-                                    //     } else {
-                                    //         console.log(response);
-                                    //     }
-                                    // })
+                                    request({
+                                        url: "https://graph.facebook.com/v6.0/" + senderId,
+                                        qs: {
+                                            access_token: process.env.PAGE_ACCESS_TOKEN,
+                                            fields: "first_name,last_name,profile_pic"
+                                        },
+                                        method: "GET"
+                                        }, function(error, response, body) {
+                                            var bodyObj = JSON.parse(body);
+                                            var newUser = new User({
+                                                user_id: senderId,
+                                                interests: null,
+                                                fun_fact: null,
+                                                bible_verse: null,
+                                                firstName: bodyObj.first_name,
+                                                lastName: bodyObj.last_name,
+                                                year: null,
+                                                profileUrl: bodyObj.profile_pic,
+                                                available: false,
+                                                loggedIn: true,
+                                                known: [],
+                                                prevMeetup: [],
+                                                sendingPhoto: false,
+                                                photoUrl: null
+                                            });
+        
+                                            newUser.save(function (err, response) {
+                                                if (err) {
+                                                    console.log(err);
+                                                } else {
+                                                    console.log(response);
+                                                }
+                                            });
+        
+                                            var correctPasswordMessage = "To begin, let's build your profile! What's something you like to do in your free time?" + 
+                                            " Feel free to write as much as you want!";
+                                            msg.sendMessage(senderId, {text: correctPasswordMessage});
+                                            // update profile
+                                            // User.update({user_id: senderId}, {loggedIn: true}, function (err, response) {
+                                            //     if (err) {
+                                            //         console.log(err);
+                                            //     } else {
+                                            //         console.log(response);
+                                            //     }
+                                            // })
+                                        })
                                 } else {
                                     var wrongPasswordMessage = "Sorry, that is the incorrect password. Please try again.";
                                     msg.sendMessage(senderId, {text: wrongPasswordMessage});
