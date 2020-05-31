@@ -208,7 +208,7 @@ module.exports = function(User) {
             } else if (message.attachments) {
                 console.log(message.attachments[0].sticker_id);
                 if (message.attachments[0].sticker_id === undefined) {
-                    console.log(hello);
+                    console.log("hello");
                 }
 
                 if (typeof message.attachments[0].sticker_id !== undefined) {
