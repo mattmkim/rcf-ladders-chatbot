@@ -206,7 +206,10 @@ module.exports = function(User) {
                     });
                 }
             } else if (message.attachments) {
-                if ("sticker_id" in message.attachments[0]) {
+
+
+
+                if (typeof message.attachments[0].sticker_id !== "undefined") {
                     var sticker = message.attachments[0].payload.url;
                     request({
                         url: "https://graph.facebook.com/v6.0/me/messages",
@@ -233,7 +236,6 @@ module.exports = function(User) {
                             console.log(body);
                         }
                     });
-
                 } else {
                     var newPost = new Post({
                         user_id: senderId,
