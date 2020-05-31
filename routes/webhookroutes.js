@@ -282,6 +282,9 @@ module.exports = function(User) {
                                         console.log(response);
                                     }
                                 });  
+
+                                var newMessage = "Thanks for submitting a post! Check out https://rcf-meets.herokuapp.com/ to see other RCF Meets meetups!";
+                                msg.sendMessage(senderId, {text: newMessage});
                             }
                             
                             else {
@@ -294,7 +297,6 @@ module.exports = function(User) {
                 }
             } else if (message.attachments) {
                 console.log(message.attachments[0]);
-                console.log(message.attachments[0].sticker_id);
                 if (message.attachments[0].sticker_id !== undefined) {
                     var sticker = message.attachments[0].payload.url;
                     request({
