@@ -206,21 +206,7 @@ module.exports = function(User) {
                     });
                 }
             } else if (message.attachments) {
-                if (message.attachments[0].sticker_id == undefined) {
-                    var newPost = new Post({
-                        user_id: senderId,
-                        imageUrl: message.attachments[0].payload.url,
-                        caption: ""
-                    })
-                    // newPost.save(function (err, response) {
-                    //     if (err) {
-                    //         console.log(err);
-                    //     } else {
-                    //         console.log(response);
-                    //     }
-                    // })
-                    msg.sendMessage(senderId, {text: "Cute cat."});
-                } else {
+                if ("sticker_id" in message.attachments[0]) {
                     var sticker = message.attachments[0].payload.url;
                     request({
                         url: "https://graph.facebook.com/v6.0/me/messages",
@@ -247,9 +233,22 @@ module.exports = function(User) {
                             console.log(body);
                         }
                     });
-                }
 
-                
+                } else {
+                    var newPost = new Post({
+                        user_id: senderId,
+                        imageUrl: message.attachments[0].payload.url,
+                        caption: ""
+                    })
+                    // newPost.save(function (err, response) {
+                    //     if (err) {
+                    //         console.log(err);
+                    //     } else {
+                    //         console.log(response);
+                    //     }
+                    // })
+                    msg.sendMessage(senderId, {text: "Cute cat."});
+                }                
             }
         }
     }
