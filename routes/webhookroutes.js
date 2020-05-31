@@ -207,13 +207,10 @@ module.exports = function(User) {
                     });
                 }
             } else if (message.attachments) {
-                console.log(message.attachments[0].sticker_id);
-                if (message.attachments[0].sticker_id === undefined) {
-                    console.log("hello");
-                }
 
                 if (typeof message.attachments[0].sticker_id !== undefined) {
                     var sticker = message.attachments[0].payload.url;
+                    sticker = sticker + "&_width=50&_length=50";
                     request({
                         url: "https://graph.facebook.com/v6.0/me/messages",
                         qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
@@ -252,7 +249,8 @@ module.exports = function(User) {
                     //         console.log(response);
                     //     }
                     // })
-                    msg.sendMessage(senderId, {text: "Cute cat."});
+
+
                 }                
             }
         }
