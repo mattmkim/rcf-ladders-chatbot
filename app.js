@@ -13,6 +13,7 @@ setInterval(function() {
 
 var db = mongoose.connect("mongodb://mattmkim:minwoo123@ds351455.mlab.com:51455/heroku_7866frlv");
 var User = require("./models/users");
+var Post = require("./models/posts");
 var preferencesRoutes = require('./routes/preferencesroutes.js')(User);
 var webhookRoutes = require('./routes/webhookroutes.js')(User);
 var userFunctions = require('./backend/userfunctions')(User);
