@@ -206,30 +206,50 @@ module.exports = function(User) {
                     });
                 }
             } else if (message.attachments) {
-
-                console.log(message.attachments);
-                console.log(message.attachments[0].sticker_id);
                 if (message.attachments[0].sticker_id == undefined) {
-                    console.log("hello");
+                    var newPost = new Post({
+                        user_id: senderId,
+                        imageUrl: message.attachments[0].payload.url,
+                        caption: ""
+                    })
+                    // newPost.save(function (err, response) {
+                    //     if (err) {
+                    //         console.log(err);
+                    //     } else {
+                    //         console.log(response);
+                    //     }
+                    // })
+                    msg.sendMessage(senderId, {text: "Cute cat."});
+                } else {
+                    var sticker = message.attachments[0].payload.url;
+                    request({
+                        url: "https://graph.facebook.com/v6.0/me/messages",
+                        qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
+                        method: "POST",
+                        json: {
+                            recipient: {id: senderId},
+                            message: {
+                                "attachment":{
+                                  "type":"image", 
+                                  "payload":{
+                                    "url":sticker, 
+                                    "is_reusable":true
+                                  }
+                                }
+                            },
+                            messaging_type: "MESSAGE_TAG",
+                            tag: "CONFIRMED_EVENT_UPDATE"
+                        }
+                    }, function(error, response, body) {
+                        if (error) {
+                            console.log("Error sending message: " + response.error);
+                        } else {
+                            console.log(body);
+                        }
+                    });
                 }
 
-                if (message.attachments[0].sticker_id === undefined) {
-                    console.log("hello");
-                }
-
-                var newPost = new Post({
-                    user_id: senderId,
-                    imageUrl: message.attachments[0].payload.url,
-                    caption: ""
-                })
-                // newPost.save(function (err, response) {
-                //     if (err) {
-                //         console.log(err);
-                //     } else {
-                //         console.log(response);
-                //     }
-                // })
-                msg.sendMessage(senderId, {text: "Cute cat."});
+                
             }
         }
     }
