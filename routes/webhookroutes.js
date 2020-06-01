@@ -297,7 +297,7 @@ module.exports = function(User) {
                 }
             } else if (message.attachments) {
                 console.log(message.attachments[0]);
-                if (message.attachments[0].sticker_id) {
+                if (message.attachments[0].payload.sticker_id) {
                     var sticker = message.attachments[0].payload.url;
                     request({
                         url: "https://graph.facebook.com/v6.0/me/messages",
