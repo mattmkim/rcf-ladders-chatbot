@@ -297,7 +297,7 @@ module.exports = function(User) {
                 }
             } else if (message.attachments) {
                 console.log(message.attachments[0]);
-                if (message.attachments[0].sticker_id !== undefined) {
+                if (typeof message.attachments[0].sticker_id != "undefined") {
                     var sticker = message.attachments[0].payload.url;
                     request({
                         url: "https://graph.facebook.com/v6.0/me/messages",
@@ -325,6 +325,7 @@ module.exports = function(User) {
                         }
                     });
                 } else {
+
                     postback.sentPhotoPB(senderId, message.attachments[0].payload.url);
                 }                
             }
