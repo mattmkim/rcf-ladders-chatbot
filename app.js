@@ -53,8 +53,8 @@ function(accessToken, refreshToken, profile, done) {
 ));
 
 passport.serializeUser(function(user, cb) {
-    console.log("serializing " + user.id)
-    cb(null, user.id);
+    console.log("serializing " + user)
+    cb(null, user);
 });
   
 passport.deserializeUser(function(id, cb) {
