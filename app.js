@@ -36,16 +36,12 @@ passport.use(new FacebookStrategy({
 },
 function(accessToken, refreshToken, profile, done) {
     User.find({user_id: profile.id}, function(err, response) {
-        console.log("here")
         if (err) {
-            console.log("hello")
             return done(err)
         } else {
-            console.log("bye")
             return done(null, response)
         }
     })
-
 }
 ));
 
@@ -61,10 +57,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Server index page
-app.get("/", function (req, res) {
-    //res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
+
 
 // send availability postback every Saturday night
 // real time string: '0 6 * * Sunday'
@@ -113,3 +106,8 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { successRedirect: '/feed',
                                       failureRedirect: '/' }));
+
+app.get("*", function (req, res) {
+    //res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
