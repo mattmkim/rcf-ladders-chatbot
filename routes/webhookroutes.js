@@ -191,7 +191,7 @@ module.exports = function(User) {
                                         url: "https://graph.facebook.com/v6.0/" + senderId,
                                         qs: {
                                             access_token: process.env.PAGE_ACCESS_TOKEN,
-                                            fields: "email,first_name,last_name,profile_pic"
+                                            fields: "first_name,last_name,profile_pic"
                                         },
                                         method: "GET"
                                         }, function(error, response, body) {
