@@ -16,8 +16,7 @@ var UserSchema = new Schema({
   known: {type: [String]},
   prevMeetup: {type: [String]},
   sendingPhoto: {type: Boolean},
-  photoUrl: {type: String},
-  email: {type: String}
+  photoUrl: {type: String}
 });
 UserSchema.plugin(random);
 

@@ -191,7 +191,7 @@ module.exports = function(User) {
                                         url: "https://graph.facebook.com/v6.0/" + senderId,
                                         qs: {
                                             access_token: process.env.PAGE_ACCESS_TOKEN,
-                                            fields: "first_name,last_name,profile_pic,email"
+                                            fields: "email,first_name,last_name,profile_pic"
                                         },
                                         method: "GET"
                                         }, function(error, response, body) {
@@ -211,8 +211,7 @@ module.exports = function(User) {
                                                 known: [],
                                                 prevMeetup: [],
                                                 sendingPhoto: false,
-                                                photoUrl: null,
-                                                email: bodyObj.email
+                                                photoUrl: null
                                             });
         
                                             newUser.save(function (err, response) {
