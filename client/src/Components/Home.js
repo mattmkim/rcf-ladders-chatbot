@@ -4,7 +4,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <h1>welcome to rcf meets ahahahahah</h1>
+                <a href="https://rcf-meets.herokuapp.com/auth/facebook">Login with Facebook</a>
             </div>
         )
     }

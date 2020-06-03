@@ -91,6 +91,13 @@ module.exports = function(User) {
             msg.sendMessage(senderId, {text: message});
 
         } else if (payload == "NO PHOTO") {
+            User.update({user_id: senderId}, {sendingPhoto: false, photoUrl: null}, function(err, response) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(response);
+                }
+            })
             var message = "Ok, got it.";
             msg.sendMessage(senderId, {text: message});
         }
@@ -179,7 +186,7 @@ module.exports = function(User) {
                         } else {
                             // if (response[0].loggedIn === false) {
                                if (response.length == 0) { 
-                                if (text.localeCompare("rcfmeets2020") == 0) {
+                                if (text.localeCompare("renewal2021") == 0) {
                                     request({
                                         url: "https://graph.facebook.com/v6.0/" + senderId,
                                         qs: {
@@ -297,7 +304,7 @@ module.exports = function(User) {
                 }
             } else if (message.attachments) {
                 console.log(message.attachments[0]);
-                if (message.attachments[0].sticker_id !== undefined) {
+                if (message.attachments[0].payload.sticker_id) {
                     var sticker = message.attachments[0].payload.url;
                     request({
                         url: "https://graph.facebook.com/v6.0/me/messages",
@@ -325,6 +332,7 @@ module.exports = function(User) {
                         }
                     });
                 } else {
+
                     postback.sentPhotoPB(senderId, message.attachments[0].payload.url);
                 }                
             }

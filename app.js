@@ -2,6 +2,8 @@ var express = require("express");
 var request = require("request");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var passport = require('passport')
+  , FacebookStrategy = require('passport-facebook').Strategy;
 const path = require('path');
 var app = express();
 var cron = require('node-cron');
@@ -21,17 +23,41 @@ var reminderFunctions = require('./messaging/reminderfunctions')(User);
 
 app.use("/public", express.static(path.join(__dirname, "public")))
 app.use("/", express.static(path.join(__dirname, "client", "build")))
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.listen((process.env.PORT || 5000));
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
-// Server index page
-app.get("/", function (req, res) {
-    //res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+passport.use(new FacebookStrategy({
+    clientID: "429499001267322",
+    clientSecret: "bffab64e1317a9e89619a5532d78f9ab",
+    callbackURL: "https://rcf-meets.herokuapp.com/auth/facebook/callback"
+},
+function(accessToken, refreshToken, profile, done) {
+    User.find({user_id: profile.id}, function(err, response) {
+        if (err) {
+            return done(err)
+        } else {
+            return done(null, response)
+        }
+    })
+}
+));
+
+passport.serializeUser(function(user, cb) {
+    cb(null, user);
 });
+  
+passport.deserializeUser(function(obj, cb) {
+    cb(null, obj);
+});
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Server index page
+
 
 // send availability postback every Saturday night
 // real time string: '0 6 * * Sunday'
@@ -73,3 +99,15 @@ app.get('/laddersprofile/:laddersId', preferencesRoutes.open_ladders_profile);
 // Used for verification
 app.get("/webhook", webhookRoutes.getWebhook);
 app.post("/webhook", webhookRoutes.postWebhook);
+
+// Passport paths
+app.get('/auth/facebook', passport.authenticate('facebook'));
+
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { successRedirect: '/feed',
+                                      failureRedirect: '/' }));
+
+app.get("*", function (req, res) {
+    //res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
