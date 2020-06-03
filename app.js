@@ -42,6 +42,7 @@ passport.use(new FacebookStrategy({
     callbackURL: "https://rcf-meets.herokuapp.com/auth/facebook/callback"
 },
 function(accessToken, refreshToken, profile, done) {
+    console.log(profile);
     User.find({user_id: profile.id}, function(err, response) {
         if (err) {
             return done(err)
@@ -51,9 +52,6 @@ function(accessToken, refreshToken, profile, done) {
     })
 }
 ));
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 passport.serializeUser(function(user, cb) {
     console.log(user);
@@ -67,6 +65,9 @@ passport.deserializeUser(function(id, cb) {
         cb(err, response);
     })
 });
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 function loggedIn(req, res, next) {
     if (req.user) {
