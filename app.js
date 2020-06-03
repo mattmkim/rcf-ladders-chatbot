@@ -31,7 +31,7 @@ app.set('view engine', 'ejs');
 
 passport.use(new FacebookStrategy({
     clientID: "429499001267322",
-    clientSecret: "bffab64e1317a9e89619a5532d78f9ab",
+    clientSecret: "",
     callbackURL: "https://rcf-meets.herokuapp.com/auth/facebook/callback"
 },
 function(accessToken, refreshToken, profile, done) {
