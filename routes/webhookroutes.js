@@ -196,6 +196,7 @@ module.exports = function(User) {
                                         method: "GET"
                                         }, function(error, response, body) {
                                             var bodyObj = JSON.parse(body);
+                                            console.log(bodyObj)
                                             var newUser = new User({
                                                 user_id: senderId,
                                                 interests: null,
