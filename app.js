@@ -32,7 +32,7 @@ app.set('view engine', 'ejs');
 passport.use(new FacebookStrategy({
     clientID: "429499001267322",
     clientSecret: "bffab64e1317a9e89619a5532d78f9ab",
-    callbackURL: "http://rcf-meets.herokuapp.com/auth/facebook/callback"
+    callbackURL: "https://rcf-meets.herokuapp.com/auth/facebook/callback"
 },
 function(accessToken, refreshToken, profile, done) {
     User.find({user_id: profile.id}, function(err, response) {
