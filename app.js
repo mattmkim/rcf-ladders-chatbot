@@ -52,9 +52,12 @@ function(accessToken, refreshToken, profile, done) {
 }
 ));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 passport.serializeUser(function(user, cb) {
-    console.log("serializing " + user)
-    cb(null, user._id);
+    console.log("serializing " + user.id)
+    cb(null, user.id);
 });
   
 passport.deserializeUser(function(id, cb) {
@@ -63,9 +66,6 @@ passport.deserializeUser(function(id, cb) {
         cb(err, response);
     })
 });
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 function loggedIn(req, res, next) {
     if (req.user) {
