@@ -2,7 +2,7 @@ var express = require("express");
 var request = require("request");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
-var session = require("express-session")
+var session = require("cookie-session")
 var passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy;
 const path = require('path');
@@ -54,13 +54,13 @@ function(accessToken, refreshToken, profile, done) {
 
 passport.serializeUser(function(user, cb) {
     console.log("serializing " + user)
-    cb(null, user);
+    cb(null, user._id);
 });
   
 passport.deserializeUser(function(id, cb) {
     console.log("deserializing " + id)
     User.findById(id, function(err, response) {
-        cb(err, user);
+        cb(err, response);
     })
 });
 
