@@ -2,6 +2,7 @@ var express = require("express");
 var request = require("request");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var session = require("express-session")
 var passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy;
 const path = require('path');
@@ -25,13 +26,19 @@ app.use("/public", express.static(path.join(__dirname, "public")))
 app.use("/", express.static(path.join(__dirname, "client", "build")))
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(session({
+    secret: 'Site visit',
+     resave: true,
+     saveUninitialized: true,
+     cookie: { secure: false, maxAge : 6000000 }
+ }));
 app.listen((process.env.PORT || 5000));
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
 passport.use(new FacebookStrategy({
     clientID: "429499001267322",
-    clientSecret: "",
+    clientSecret: "bffab64e1317a9e89619a5532d78f9ab",
     callbackURL: "https://rcf-meets.herokuapp.com/auth/facebook/callback"
 },
 function(accessToken, refreshToken, profile, done) {
@@ -46,15 +53,27 @@ function(accessToken, refreshToken, profile, done) {
 ));
 
 passport.serializeUser(function(user, cb) {
-    cb(null, user);
+    console.log("serializing " + user.id)
+    cb(null, user.id);
 });
   
-passport.deserializeUser(function(obj, cb) {
-    cb(null, obj);
+passport.deserializeUser(function(id, cb) {
+    console.log("deserializing " + id)
+    User.findById(id, function(err, response) {
+        cb(err, user);
+    })
 });
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+function loggedIn(req, res, next) {
+    if (req.user) {
+        next();
+    } else {
+        res.redirect('/');
+    }
+}
 
 // Server index page
 
@@ -106,6 +125,10 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { successRedirect: '/feed',
                                       failureRedirect: '/' }));
+
+app.get("/feed", loggedIn, function(req, res) {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+})
 
 app.get("*", function (req, res) {
     //res.sendFile(path.join(__dirname, "client", "build", "index.html"));
