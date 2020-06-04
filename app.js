@@ -40,7 +40,7 @@ passport.use(new FacebookStrategy({
     clientID: "429499001267322",
     clientSecret: "bffab64e1317a9e89619a5532d78f9ab",
     callbackURL: "https://rcf-meets.herokuapp.com/auth/facebook/callback",
-    profileFields: ['id', 'profileUrl', 'link']
+    profileFields: ['id', 'profileUrl', 'link', 'name', 'displayName']
 },
 function(accessToken, refreshToken, profile, done) {
     console.log(profile);
@@ -123,7 +123,7 @@ app.get("/webhook", webhookRoutes.getWebhook);
 app.post("/webhook", webhookRoutes.postWebhook);
 
 // Passport paths
-app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['profile_pic']}));
+app.get('/auth/facebook', passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { successRedirect: '/feed',
