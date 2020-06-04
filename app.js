@@ -123,7 +123,7 @@ app.get("/webhook", webhookRoutes.getWebhook);
 app.post("/webhook", webhookRoutes.postWebhook);
 
 // Passport paths
-app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'profileUrl'}));
 
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { successRedirect: '/feed',
