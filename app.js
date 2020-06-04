@@ -40,7 +40,7 @@ passport.use(new FacebookStrategy({
     clientID: "429499001267322",
     clientSecret: "bffab64e1317a9e89619a5532d78f9ab",
     callbackURL: "https://rcf-meets.herokuapp.com/auth/facebook/callback",
-    profileFields: ['id', 'displayName', 'link', 'about_me']
+    profileFields: ['id', 'link']
 },
 function(accessToken, refreshToken, profile, done) {
     console.log(profile);
