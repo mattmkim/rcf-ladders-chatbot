@@ -63,7 +63,7 @@ class Home extends Component {
                                     </Button>
                                 </Form>
                             </div>
-                            <div class="redirect-text">
+                            <div class="redirect-text-mobile">
                                 <div class="redirect-one">
                                     Don't know the password? Ask <a href="https://m.me/matthew24kim" target="_blank">here!</a>
                                 </div>
