@@ -268,8 +268,14 @@ module.exports = function(User) {
                                         console.log(err);
                                     } else {
                                         var image_url = response[0].photoUrl;
+                                        var profileUrl = response[0].profileUrl;
+                                        var firstname = response[0].firstName;
+                                        var lastname = response[0].lastName;
                                         var newPost = new Post({
                                             user_id: senderId,
+                                            profileUrl: profileUrl,
+                                            firstName: firstname,
+                                            lastName: lastname,
                                             imageUrl: image_url,
                                             caption: message.text
                                         })
@@ -291,7 +297,7 @@ module.exports = function(User) {
                                     }
                                 });  
 
-                                var newMessage = "Thanks for submitting a post! Check out https://rcf-meets.herokuapp.com/ to see other RCF Meets meetups!";
+                                var newMessage = "Thanks for submitting a post! Check out https://rcf-meets.herokuapp.com/ to see other ladders meetups!";
                                 msg.sendMessage(senderId, {text: newMessage});
                             }
                             
@@ -305,37 +311,45 @@ module.exports = function(User) {
                 }
             } else if (message.attachments) {
                 console.log(message.attachments[0]);
-                if (message.attachments[0].payload.sticker_id) {
-                    var sticker = message.attachments[0].payload.url;
-                    request({
-                        url: "https://graph.facebook.com/v6.0/me/messages",
-                        qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
-                        method: "POST",
-                        json: {
-                            recipient: {id: senderId},
-                            message: {
-                                "attachment":{
-                                  "type":"image", 
-                                  "payload":{
-                                    "url":sticker, 
-                                    "is_reusable":true
-                                  }
+                var notLoggedInMessage = "Please enter the password before sending photos.";
+                User.find({user_id: senderId}, function(err, response) {
+                    if (err) {
+                        console.log(err);
+                    } else if (response.length == 0 || response[0].loggedIn === false) {
+                        msg.sendMessage(senderId, {text: notLoggedInMessage});
+                    } else {
+                        if (message.attachments[0].payload.sticker_id) {
+                            var sticker = message.attachments[0].payload.url;
+                            request({
+                                url: "https://graph.facebook.com/v6.0/me/messages",
+                                qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
+                                method: "POST",
+                                json: {
+                                    recipient: {id: senderId},
+                                    message: {
+                                        "attachment":{
+                                          "type":"image", 
+                                          "payload":{
+                                            "url":sticker, 
+                                            "is_reusable":true
+                                          }
+                                        }
+                                    },
+                                    messaging_type: "MESSAGE_TAG",
+                                    tag: "CONFIRMED_EVENT_UPDATE"
                                 }
-                            },
-                            messaging_type: "MESSAGE_TAG",
-                            tag: "CONFIRMED_EVENT_UPDATE"
-                        }
-                    }, function(error, response, body) {
-                        if (error) {
-                            console.log("Error sending message: " + response.error);
+                            }, function(error, response, body) {
+                                if (error) {
+                                    console.log("Error sending message: " + response.error);
+                                } else {
+                                    console.log(body);
+                                }
+                            });
                         } else {
-                            console.log(body);
-                        }
-                    });
-                } else {
-
-                    postback.sentPhotoPB(senderId, message.attachments[0].payload.url);
-                }                
+                            postback.sentPhotoPB(senderId, message.attachments[0].payload.url);
+                        }             
+                    }   
+                })                   
             }
         }
     }

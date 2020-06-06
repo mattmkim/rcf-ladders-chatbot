@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Card, Navbar} from 'react-bootstrap'
+import {Card, Navbar, Container} from 'react-bootstrap'
 import '../public/style/Feed.css'
 
 class Feed extends Component {
@@ -23,7 +23,10 @@ class Feed extends Component {
                         RCFgram
                     </div>
                 </Navbar>
-                
+                <Container className="post-container">
+                    
+                </Container>
+
             </div>
         )
     }
