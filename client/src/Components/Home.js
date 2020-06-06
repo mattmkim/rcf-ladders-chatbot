@@ -51,6 +51,7 @@ class Home extends Component {
                         <div class="card-wrapper">
                             <div className="card-content">
                                 <h1 class="title">RCFgram</h1>
+                                <h5 class="info">Log in to see ladders meetups <br></br>from other RCFers!</h5>
                                 <Form className="login-form" onSubmit={this.handleSubmit}>
                                     <Form.Group controlId="formBasicPassword">
                                         <Form.Control type="password" placeholder="Password" onChange = {this.handlePassword}/>
@@ -83,6 +84,7 @@ class Home extends Component {
                             <Card className="login-card">
                                 <div className="card-content">
                                     <h1 class="title">RCFgram</h1>
+                                    <h5 class="info">Log in to see ladders meetups <br></br>from other RCFers!</h5>
                                     <Form className="login-form" onSubmit={this.handleSubmit}>
                                         <Form.Group controlId="formBasicPassword">
                                             <Form.Control type="password" placeholder="Password" onChange = {this.handlePassword}/>
@@ -104,7 +106,7 @@ class Home extends Component {
                                 </div>
                             </Card>
                         </div>
-                    
+                                        
                     </Container>
     
                         

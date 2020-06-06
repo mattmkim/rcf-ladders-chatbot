@@ -4,7 +4,6 @@
     justify-content: center;
     align-items: center;
 }
-
 .content-container-mobile {
     width: 300px;
     margin-top: 100px;
@@ -83,6 +82,11 @@
     align-items: center;
 }
 
+.info {
+    text-align: center;
+    margin-bottom: 13px;
+}
+
 .login-form {
     display: flex;
     flex-direction: column;
@@ -92,9 +96,14 @@
 
 .title {
     font-weight: 500;
-    font-size: 50px;
+    font-size: 60px;
     font-family: 'Grand Hotel', cursive;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+}
+
+.info {
+    font-size: 13px;
+    color: gray;
 }
 
 
