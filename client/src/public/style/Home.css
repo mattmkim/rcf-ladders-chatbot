@@ -1,0 +1,66 @@
+.content-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    height: 700px;
+}
+
+.card-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    margin-top: 100px;
+    width: 350px;
+    height: 300px;
+    box-shadow: rgba(0, 0, 0, 0.125) 0px 1px 6px;
+    margin-bottom: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.redirect-card {
+    width: 350px;
+    height: 50px;
+    box-shadow: rgba(0, 0, 0, 0.125) 0px 1px 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 50px;
+    font-family: 'Grand Hotel', cursive;
+    margin-bottom: 30px;
+}
+
+
+.image-wrapper {
+    width: 550px;
+}

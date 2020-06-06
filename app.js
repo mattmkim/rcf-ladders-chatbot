@@ -3,8 +3,6 @@ var request = require("request");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var session = require("cookie-session")
-var passport = require('passport')
-  , FacebookStrategy = require('passport-facebook').Strategy;
 const path = require('path');
 var app = express();
 var cron = require('node-cron');
@@ -26,57 +24,9 @@ app.use("/public", express.static(path.join(__dirname, "public")))
 app.use("/", express.static(path.join(__dirname, "client", "build")))
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(session({
-    secret: 'Site visit',
-     resave: true,
-     saveUninitialized: true,
-     cookie: { secure: false, maxAge : 6000000 }
- }));
 app.listen((process.env.PORT || 5000));
 app.set('views', './views');
 app.set('view engine', 'ejs');
-
-passport.use(new FacebookStrategy({
-    clientID: "429499001267322",
-    clientSecret: "bffab64e1317a9e89619a5532d78f9ab",
-    callbackURL: "https://rcf-meets.herokuapp.com/auth/facebook/callback",
-    profileFields: ['id', 'picture.type(large)', 'profileUrl', 'displayName']
-},
-function(accessToken, refreshToken, profile, done) {
-    console.log(profile);
-    User.find({user_id: profile.id}, function(err, response) {
-        if (err) {
-            return done(err)
-        } else {
-            return done(null, response)
-        }
-    })
-}
-));
-
-passport.serializeUser(function(user, cb) {
-    console.log(user);
-    console.log("serializing " + user.user_id)
-    cb(null, user.user_id);
-});
-  
-passport.deserializeUser(function(id, cb) {
-    console.log("deserializing " + id)
-    User.findById(id, function(err, response) {
-        cb(err, response);
-    })
-});
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-function loggedIn(req, res, next) {
-    if (req.user) {
-        next();
-    } else {
-        res.redirect('/');
-    }
-}
 
 // Server index page
 
@@ -121,17 +71,6 @@ app.get('/laddersprofile/:laddersId', preferencesRoutes.open_ladders_profile);
 // Used for verification
 app.get("/webhook", webhookRoutes.getWebhook);
 app.post("/webhook", webhookRoutes.postWebhook);
-
-// Passport paths
-app.get('/auth/facebook', passport.authenticate('facebook'));
-
-app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { successRedirect: '/feed',
-                                      failureRedirect: '/' }));
-
-app.get("/feed", loggedIn, function(req, res) {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-})
 
 app.get("*", function (req, res) {
     //res.sendFile(path.join(__dirname, "client", "build", "index.html"));
