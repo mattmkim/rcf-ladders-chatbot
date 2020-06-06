@@ -47,7 +47,33 @@ class Home extends Component {
         if (this.props.isMobileSized) {
             return (
                 <div>
-                    hello
+                    <Container className="content-container">
+                        <div class="card-wrapper">
+                            <Card className="login-card-mobile">
+                                <div className="card-content">
+                                    <h1 class="title">RCFgram</h1>
+                                    <Form className="login-form" onSubmit={this.handleSubmit}>
+                                        <Form.Group controlId="formBasicPassword">
+                                            <Form.Control type="password" placeholder="Password" onChange = {this.handlePassword}/>
+                                            <Form.Text className="red-text">
+                                                {this.state.errorPassword}
+                                            </Form.Text> 
+                                        </Form.Group>
+                                        <Button className="login-button" variant="primary" type="submit">
+                                            Log In
+                                        </Button>
+                                    </Form>
+                                </div>
+                            </Card>
+                            <Card className="redirect-card">
+                                <div class="redirect-text">
+                                    <div class="redirect-one">
+                                        Don't know the password? Ask <a href="https://m.me/matthew24kim" target="_blank">here!</a>
+                                    </div>
+                                </div>
+                            </Card>
+                        </div>
+                    </Container>
                 </div>
             )
         } else {
@@ -76,7 +102,9 @@ class Home extends Component {
                             </Card>
                             <Card className="redirect-card">
                                 <div class="redirect-text">
-                                    Don't know the password? Click <a href="https://m.me/rcfmeets" target="_blank">here!</a>
+                                    <div class="redirect-one">
+                                        Don't know the password? Ask <a href="https://m.me/matthew24kim" target="_blank">here!</a>
+                                    </div>
                                 </div>
                             </Card>
                         </div>

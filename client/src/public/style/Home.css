@@ -5,6 +5,13 @@
     align-items: center;
 }
 
+.content-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 .image {
     height: 700px;
 }
@@ -31,12 +38,28 @@
 
 .redirect-card {
     width: 350px;
-    height: 50px;
+    height: 60px;
     box-shadow: rgba(0, 0, 0, 0.125) 0px 1px 6px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.redirect-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.redirect-one {
+    font-size: 15px;
+}
+
+.redirect-two {
+    margin-top: 2px;
+    font-size: 12px;
 }
 
 .card-content {
