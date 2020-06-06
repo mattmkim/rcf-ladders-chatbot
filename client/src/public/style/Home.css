@@ -5,6 +5,14 @@
     align-items: center;
 }
 
+.content-container-mobile {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .content-container {
     display: flex;
     flex-direction: row;
@@ -35,6 +43,7 @@
     justify-content: center;
     align-items: center;
 }
+
 
 .redirect-card {
     width: 350px;
