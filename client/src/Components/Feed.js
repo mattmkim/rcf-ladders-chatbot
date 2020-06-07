@@ -67,7 +67,7 @@ class Feed extends Component {
                             RCFgram
                         </div>
                     </Navbar>
-                    <div class="feed-container">
+                    <div class="feed-container-mobile">
                         <InfiniteScroll 
                             className="infinite"
                             dataLength={this.state.currData.length} 
