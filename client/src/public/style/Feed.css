@@ -1,0 +1,58 @@
+.title-feed {
+    font-weight: 500;
+    font-size: 30px;
+    font-family: 'Grand Hotel', cursive;
+    color: black;
+}
+
+.no-posts {
+    margin-top: 30px;
+    font-size: 30px;
+}
+
+.mobile {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.navbar-feed {
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.navbar-feed-mobile {
+    width: 100%;
+    max-width: 100%;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.feed-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 100% !important;
+}
+
+.feed-container-mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+}

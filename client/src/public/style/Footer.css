@@ -1,0 +1,30 @@
+.fixed-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: flex-start;
+}
+
+.icon-bar {
+    backdrop-filter: blur(4px);
+}
+
+.icons {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+i {
+    color: gray;
+    -webkit-transition: color 0.2s ease-out;
+	-moz-transition: color 0.2s ease-out;
+	-o-transition: color 0.2s ease-out;
+	-ms-transition: color 0.2s ease-out;
+	transition: color 0.2s ease-out;
+}
+
+
+
+i:hover {
+    color: rgb(0, 16, 94);
+}

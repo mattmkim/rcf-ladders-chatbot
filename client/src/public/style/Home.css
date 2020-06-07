@@ -1,0 +1,112 @@
+.content-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.content-container-mobile {
+    width: 300px;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    height: 700px;
+}
+
+.card-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    margin-top: 100px;
+    width: 350px;
+    height: 300px;
+    box-shadow: rgba(0, 0, 0, 0.125) 0px 1px 6px;
+    margin-bottom: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.redirect-card {
+    width: 350px;
+    height: 60px;
+    box-shadow: rgba(0, 0, 0, 0.125) 0px 1px 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.redirect-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.redirect-text-mobile {
+    margin-top: 20px;
+}
+
+.redirect-one {
+    font-size: 15px;
+}
+
+.redirect-two {
+    margin-top: 2px;
+    font-size: 12px;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info {
+    text-align: center;
+    margin-bottom: 13px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 60px;
+    font-family: 'Grand Hotel', cursive;
+    margin-bottom: 10px;
+}
+
+.info {
+    font-size: 13px;
+    color: gray;
+}
+
+
+.image-wrapper {
+    width: 550px;
+}
