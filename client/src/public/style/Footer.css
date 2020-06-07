@@ -5,6 +5,13 @@
     align-items: flex-start;
 }
 
+.fixed-bottom-mobile {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 .icon-bar {
     backdrop-filter: blur(4px);
 }
