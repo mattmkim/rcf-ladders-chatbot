@@ -26,6 +26,11 @@
     margin-left: 10px;
 }
 
+.post-mobile {
+    max-width: 100%;
+    width: auto;
+}
+
 .header-mobile {
     max-width: 100%;
     display: flex;
@@ -58,6 +63,8 @@
 
 .post-image-wrapper-mobile {
     max-width: 100%;
+    width: auto;
+    height: auto;
 
 }
 
