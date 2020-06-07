@@ -19,6 +19,7 @@ class Post extends Component {
     render() {
         
         if (this.props.isMobileSized) {
+            var date = new Date(this.state.date);
             return (
                 <div class="post-mobile">
                     <div class="header-mobile">
