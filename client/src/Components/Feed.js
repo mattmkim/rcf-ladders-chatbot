@@ -61,8 +61,8 @@ class Feed extends Component {
     render() {
         if (this.props.isMobileSized) {
             return (
-                <div>
-                    <Navbar className="navbar-feed" bg="white">
+                <div class="mobile">
+                    <Navbar className="navbar-feed-mobile" bg="white">
                         <div class="title-feed">
                             RCFgram
                         </div>

@@ -10,6 +10,11 @@
     font-size: 30px;
 }
 
+.mobile {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 .navbar-feed {
     border-color: black;
     border-style: solid;
