@@ -23,9 +23,8 @@ class Post extends Component {
             return (
                 <div class="post-mobile">
                     <div class="header-mobile">
-                        <div class="profile-image-wrapper">
-                            <Image className="profile-image" src={this.state.profileUrl}></Image> 
-                        </div>  
+                        <div class="profile-image-wrapper" style={{backgroundImage: "url(" + this.state.profileUrl + ")"}}>
+                        </div>
                         <div class="name">
                             <b>{this.state.firstName} {this.state.lastName}</b>
                         </div>
