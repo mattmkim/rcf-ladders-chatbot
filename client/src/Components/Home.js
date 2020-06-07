@@ -47,39 +47,41 @@ class Home extends Component {
         if (this.props.isMobileSized) {
             return (
                 <div>
-                    <Container className="content-container-mobile">
-                        <div class="card-wrapper">
-                            <div className="card-content">
-                                <h1 class="title">RCFgram</h1>
-                                <h5 class="info">Log in to see ladders meetups <br></br>from other RCFers!</h5>
-                                <Form className="login-form" onSubmit={this.handleSubmit}>
-                                    <Form.Group controlId="formBasicPassword">
-                                        <Form.Control type="password" placeholder="Password" onChange = {this.handlePassword}/>
-                                        <Form.Text className="red-text">
-                                            {this.state.errorPassword}
-                                        </Form.Text> 
-                                    </Form.Group>
-                                    <Button className="login-button" variant="primary" type="submit">
-                                        Log In
-                                    </Button>
-                                </Form>
-                            </div>
-                            <div class="redirect-text-mobile">
-                                <div class="redirect-one">
-                                    Don't know the password? Ask <a href="https://m.me/matthew24kim" target="_blank">here!</a>
+                    <div class="everything-mobile">
+                        <Container className="content-container-mobile">
+                            <div class="card-wrapper">
+                                <div className="card-content">
+                                    <h1 class="title">RCFgram</h1>
+                                    <h5 class="info">Log in to see ladders meetups <br></br>from other RCFers!</h5>
+                                    <Form className="login-form" onSubmit={this.handleSubmit}>
+                                        <Form.Group controlId="formBasicPassword">
+                                            <Form.Control type="password" placeholder="Password" onChange = {this.handlePassword}/>
+                                            <Form.Text className="red-text">
+                                                {this.state.errorPassword}
+                                            </Form.Text> 
+                                        </Form.Group>
+                                        <Button className="login-button" variant="primary" type="submit">
+                                            Log In
+                                        </Button>
+                                    </Form>
+                                </div>
+                                <div class="redirect-text-mobile">
+                                    <div class="redirect-one">
+                                        Don't know the password? Ask <a href="https://m.me/matthew24kim" target="_blank">here!</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </Container>
-                    <Container className="verse-container-mobile">
-                        <div class="verse">
-                            And let us consider how to stir up one another to love and good works, not neglecting to meet together, as is the habit of some, but encouraging one another, 
-                            and all the more as you see the Day drawing near. 
-                        </div>
-                        <div class="verse-2">
-                            <b>Hebrews 10:24-25</b>
-                        </div>
-                    </Container>
+                        </Container>
+                        <Container className="verse-container-mobile">
+                            <div class="verse">
+                                And let us consider how to stir up one another to love and good works, not neglecting to meet together, as is the habit of some, but encouraging one another, 
+                                and all the more as you see the Day drawing near. 
+                            </div>
+                            <div class="verse-2">
+                                <b>Hebrews 10:24-25</b>
+                            </div>
+                        </Container>
+                    </div>
                 </div>
             )
         } else {

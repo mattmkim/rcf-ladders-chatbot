@@ -87,7 +87,7 @@ module.exports = function(User) {
                 }
             })
 
-            var message = "Please send a caption for your picture!";
+            var message = "Please send a caption for your photo!";
             msg.sendMessage(senderId, {text: message});
 
         } else if (payload == "NO PHOTO") {

@@ -120,6 +120,14 @@
     align-items: center;
 }
 
+.everything-mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+}
+
 .verse-container {
     margin-top: -30px;
     width: 700px;
@@ -128,7 +136,7 @@
 
 .verse-container-mobile {
     margin-top: -30px;
-    width: 400px;
+    width: 350px;
     text-align: center;
 }
 
