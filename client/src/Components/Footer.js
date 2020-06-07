@@ -16,17 +16,17 @@ class Footer extends Component {
                         <Container className="icon-container">
                             <div class="icons">
                                 <a href="https://www.instagram.com/pennrcf/" target="_blank">
-                                    <i class="fab fa-instagram fa-2x"></i>
+                                    <i class="fab fa-instagram fa-2x mobile-icon"></i>
                                 </a>
                             </div>
                             <div class="icons">
                                 <a href="https://www.facebook.com/pennrcf/" target="_blank">
-                                    <i class="fab fa-facebook-square fa-2x"></i>
+                                    <i class="fab fa-facebook-square fa-2x mobile-icon"></i>
                                 </a>
                             </div>
                             <div class="icons">
                                 <a href="https://m.me/rcfmeets" target="_blank">
-                                    <i class="fab fa-facebook-messenger fa-2x"></i>
+                                    <i class="fab fa-facebook-messenger fa-2x mobile-icon"></i>
                                 </a>
                             </div>
                         </Container>
@@ -40,17 +40,17 @@ class Footer extends Component {
                         <Container className="icon-container">
                             <div class="icons">
                                 <a href="https://www.instagram.com/pennrcf/" target="_blank">
-                                    <i class="fab fa-instagram fa-2x"></i>
+                                    <i class="fab fa-instagram fa-2x icon"></i>
                                 </a>
                             </div>
                             <div class="icons">
                                 <a href="https://www.facebook.com/pennrcf/" target="_blank">
-                                    <i class="fab fa-facebook-square fa-2x"></i>
+                                    <i class="fab fa-facebook-square fa-2x icon"></i>
                                 </a>
                             </div>
                             <div class="icons">
                                 <a href="https://m.me/rcfmeets" target="_blank">
-                                    <i class="fab fa-facebook-messenger fa-2x"></i>
+                                    <i class="fab fa-facebook-messenger fa-2x icon"></i>
                                 </a>
                             </div>
                         </Container>

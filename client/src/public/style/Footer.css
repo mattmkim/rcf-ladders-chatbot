@@ -19,7 +19,6 @@
 .icons {
     margin-left: 10px;
     margin-right: 10px;
-   
 }
 
 i {
@@ -30,6 +29,8 @@ i {
 	-ms-transition: color 0.2s ease-out;
 	transition: color 0.2s ease-out;
 }
+
+
 
 i:hover {
     color: rgb(0, 16, 94);

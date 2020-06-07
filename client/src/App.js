@@ -20,7 +20,6 @@ class App extends Component {
           <BrowserRouter> 
             <Route exact path = "/" component = {Home} />
             <ProtectedRoute exact path = "/feed" component = {Feed} />
-            <Footer />
           </BrowserRouter>
         </div>
       )
