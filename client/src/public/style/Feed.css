@@ -22,6 +22,20 @@
     justify-content: center;
 }
 
+.navbar-feed-mobile {
+    width: 100%;
+    max-width: 100%;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 .feed-container {
     display: flex;
     flex-direction: column;
@@ -35,5 +49,5 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    max-width: 100%;
 }
