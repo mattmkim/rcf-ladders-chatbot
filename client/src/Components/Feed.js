@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Card, Navbar, Container} from 'react-bootstrap'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import withWindowDimensions from './withWindowDimensions.jsx';
 import PostMiddleware from '../Middleware/PostMiddleware'
 import Post from '../Components/Post'
 import '../public/style/Feed.css'
@@ -58,26 +59,47 @@ class Feed extends Component {
     }
 
     render() {
-        return (
-            <div>
-                <Navbar className="navbar-feed" bg="white">
-                    <div class="title-feed">
-                        RCFgram
-                    </div>
-                </Navbar>
-                <div class="feed-container">
-                    <InfiniteScroll 
-                        className="infinite"
-                        dataLength={this.state.currData.length} 
-                        next={this.fetchData.bind(this)} 
-                        hasMore={this.state.hasMore}>
-                            {this.renderFeed(this.state.currData)}
-                    </InfiniteScroll>                   
+        if (this.props.isMobileSized) {
+            return (
+                <div>
+                    <Navbar className="navbar-feed" bg="white">
+                        <div class="title-feed">
+                            RCFgram
+                        </div>
+                    </Navbar>
+                    <div class="feed-container">
+                        <InfiniteScroll 
+                            className="infinite"
+                            dataLength={this.state.currData.length} 
+                            next={this.fetchData.bind(this)} 
+                            hasMore={this.state.hasMore}>
+                                {this.renderFeed(this.state.currData)}
+                        </InfiniteScroll>                   
+                    </div>  
                 </div>
-                
-            </div>
-        )
+            )
+        } else {
+            return (
+                <div>
+                    <Navbar className="navbar-feed" bg="white">
+                        <div class="title-feed">
+                            RCFgram
+                        </div>
+                    </Navbar>
+                    <div class="feed-container">
+                        <InfiniteScroll 
+                            className="infinite"
+                            dataLength={this.state.currData.length} 
+                            next={this.fetchData.bind(this)} 
+                            hasMore={this.state.hasMore}>
+                                {this.renderFeed(this.state.currData)}
+                        </InfiniteScroll>                   
+                    </div>
+                </div>
+            )
+        }
+        
     }
 }
 
-export default Feed;
+export default withWindowDimensions(Feed);
