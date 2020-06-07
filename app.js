@@ -17,8 +17,10 @@ var User = require("./models/users");
 var Post = require("./models/posts");
 var preferencesRoutes = require('./routes/preferencesroutes.js')(User);
 var webhookRoutes = require('./routes/webhookroutes.js')(User);
+var postRoutes = require('./client/src/routes/postroutes.js')(Post);
 var userFunctions = require('./backend/userfunctions')(User);
 var reminderFunctions = require('./messaging/reminderfunctions')(User);
+
 
 app.use("/public", express.static(path.join(__dirname, "public")))
 app.use("/", express.static(path.join(__dirname, "client", "build")))
@@ -71,6 +73,9 @@ app.get('/laddersprofile/:laddersId', preferencesRoutes.open_ladders_profile);
 // Used for verification
 app.get("/webhook", webhookRoutes.getWebhook);
 app.post("/webhook", webhookRoutes.postWebhook);
+
+// api
+app.get("/api/fetchposts", postRoutes.fetch_all_posts);
 
 app.get("*", function (req, res) {
     //res.sendFile(path.join(__dirname, "client", "build", "index.html"));

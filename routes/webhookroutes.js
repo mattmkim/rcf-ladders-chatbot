@@ -277,7 +277,8 @@ module.exports = function(User) {
                                             firstName: firstname,
                                             lastName: lastname,
                                             imageUrl: image_url,
-                                            caption: message.text
+                                            caption: message.text,
+                                            date: Date.now()
                                         })
                                         newPost.save(function (err, response) {
                                             if (err) {

@@ -7,7 +7,8 @@ var PostSchema = new Schema({
     firstName: {type: String},
     lastName: {type: String},
     imageUrl: {type: String},
-    caption: {type: String}
+    caption: {type: String},
+    date: {type: Number}
 });
 
 module.exports = mongoose.model("Post", PostSchema);
