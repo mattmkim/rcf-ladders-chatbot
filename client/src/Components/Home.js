@@ -72,7 +72,7 @@ class Home extends Component {
                         </div>
                     </Container>
                     <Container className="verse-container-mobile">
-                        <div class="verse">
+                        <div class="verse-mobile">
                             And let us consider how to stir up one another to love and good works, not neglecting to meet together, as is the habit of some, but encouraging one another, 
                             and all the more as you see the Day drawing near. 
                         </div>
