@@ -11,13 +11,14 @@ class Feed extends Component {
         super(props);
         this.state = {
             data:[],
-            currData:[]
+            currData:[],
+            hasMore: true
         }
     }
 
     renderFeed = (currData) => {
         if (currData.length == 0) {
-            return <div> No Posts :( </div>
+            return <div class="no-posts">  </div>
         } else {
             return currData.map((postData) => {
                 var uniqueId = postData.date;
@@ -27,12 +28,19 @@ class Feed extends Component {
     }
 
     fetchData() {
-        var slice = this.state.data.slice(0, 8);
-        this.state.data.splice(0, 8);
-        var newData = this.state.currData.concat(slice);
-        this.setState({
-            currData: newData
-        });
+        console.log(this.state)
+        if (this.state.data.length == 0) {
+            this.setState({
+                hasMore: false
+            })
+        } else {
+            var slice = this.state.data.slice(0, 8);
+            this.state.data.splice(0, 8);
+            var newData = this.state.currData.concat(slice);
+            this.setState({
+                currData: newData
+            });
+        }
     }
 
     async componentDidMount() {
@@ -57,13 +65,16 @@ class Feed extends Component {
                         RCFgram
                     </div>
                 </Navbar>
-                <InfiniteScroll 
-                    dataLength={this.state.currData.length} 
-                    next={this.fetchData} 
-                    hasMore={true}
-                    loader={<h4>Loading...</h4>}>
-                        {this.renderFeed(this.state.currData)}
-                </InfiniteScroll>
+                <div class="feed-container">
+                    <InfiniteScroll 
+                        className="infinite"
+                        dataLength={this.state.currData.length} 
+                        next={this.fetchData.bind(this)} 
+                        hasMore={this.state.hasMore}>
+                            {this.renderFeed(this.state.currData)}
+                    </InfiniteScroll>                   
+                </div>
+                
             </div>
         )
     }

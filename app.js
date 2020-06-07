@@ -21,7 +21,6 @@ var postRoutes = require('./client/src/routes/postroutes.js')(Post);
 var userFunctions = require('./backend/userfunctions')(User);
 var reminderFunctions = require('./messaging/reminderfunctions')(User);
 
-
 app.use("/public", express.static(path.join(__dirname, "public")))
 app.use("/", express.static(path.join(__dirname, "client", "build")))
 app.use(bodyParser.urlencoded({extended: true}));
@@ -75,7 +74,7 @@ app.get("/webhook", webhookRoutes.getWebhook);
 app.post("/webhook", webhookRoutes.postWebhook);
 
 // api
-app.get("/api/fetchposts", postRoutes.fetch_all_posts);
+app.post("/api/fetchposts", postRoutes.fetch_all_posts);
 
 app.get("*", function (req, res) {
     //res.sendFile(path.join(__dirname, "client", "build", "index.html"));

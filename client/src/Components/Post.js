@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import {Card, Image} from 'react-bootstrap'
+import '../public/style/Post.css'
 
 class Post extends Component {
     constructor(props) {
@@ -16,7 +18,25 @@ class Post extends Component {
     render() {
         return (
             <div>
-                {this.state.firstName}
+                <Card className="post-card">
+                    <Card.Body className="card-body">
+                        <div class="header">
+                            <div class="profile-image-wrapper">
+                                <Image className="profile-image" src={this.state.profileUrl} roundedCircle></Image> 
+                            </div>  
+                            <div class="name">
+                                <b>{this.state.firstName} {this.state.lastName}</b>
+                            </div>
+                        </div>  
+                        <div class="post-image-wrapper">
+                            <Image className="post-image" src={this.state.imageUrl} ></Image>
+                        </div>
+                        <div class="post-caption">
+                            <b>{this.state.firstName} {this.state.lastName}</b> {this.state.caption}
+                        </div>
+                    </Card.Body>
+                    
+                </Card>
             </div>
         )
     }

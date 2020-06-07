@@ -5,6 +5,11 @@
     color: black;
 }
 
+.no-posts {
+    margin-top: 30px;
+    font-size: 30px;
+}
+
 .navbar-feed {
     border-color: black;
     border-style: solid;
@@ -16,3 +21,12 @@
     flex-direction: row;
     justify-content: center;
 }
+
+.feed-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 100% !important;
+}
+
