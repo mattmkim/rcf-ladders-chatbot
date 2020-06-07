@@ -20,7 +20,7 @@ class Post extends Component {
         if (this.props.isMobileSized) {
             return (
                 <div>
-                    <div class="header">
+                    <div class="header-mobile">
                         <div class="profile-image-wrapper">
                             <Image className="profile-image" src={this.state.profileUrl} roundedCircle></Image> 
                         </div>  
@@ -31,7 +31,7 @@ class Post extends Component {
                     <div class="post-image-wrapper">
                         <Image className="post-image" src={this.state.imageUrl} ></Image>
                     </div>
-                    <div class="post-caption">
+                    <div class="post-caption-mobile">
                         <b>{this.state.firstName} {this.state.lastName}</b> {this.state.caption}
                     </div>
                         
