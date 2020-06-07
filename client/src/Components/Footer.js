@@ -12,7 +12,7 @@ class Footer extends Component {
         if (this.props.isMobileSized) {
             return(
                 <div className="fixed-bottom-mobile">  
-                    <Navbar color="light" className="icon-bar">
+                    <Navbar fixed="bottom" color="light" className="icon-bar">
                         <Container className="icon-container">
                             <div class="icons">
                                 <a href="https://www.instagram.com/pennrcf/" target="_blank">
