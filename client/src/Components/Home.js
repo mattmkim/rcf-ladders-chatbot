@@ -71,45 +71,62 @@ class Home extends Component {
                             </div>
                         </div>
                     </Container>
+                    <Container className="verse-container-mobile">
+                        <div class="verse">
+                            And let us consider how to stir up one another to love and good works, not neglecting to meet together, as is the habit of some, but encouraging one another, 
+                            and all the more as you see the Day drawing near. 
+                        </div>
+                        <div class="verse-2">
+                            <b>Hebrews 10:24-25</b>
+                        </div>
+                    </Container>
                 </div>
             )
         } else {
             return (
                 <div>
-                    <Container className="content-container">
-                        <div class="image-wrapper">
-                            <Image className="image" src={rcfmeets} />
-                        </div>
-                        <div class="card-wrapper">
-                            <Card className="login-card">
-                                <div className="card-content">
-                                    <h1 class="title">RCFgram</h1>
-                                    <h5 class="info">Log in to see ladders meetups <br></br>from other RCFers!</h5>
-                                    <Form className="login-form" onSubmit={this.handleSubmit}>
-                                        <Form.Group controlId="formBasicPassword">
-                                            <Form.Control type="password" placeholder="Password" onChange = {this.handlePassword}/>
-                                            <Form.Text className="red-text">
-                                                {this.state.errorPassword}
-                                            </Form.Text> 
-                                        </Form.Group>
-                                        <Button className="login-button" variant="primary" type="submit">
-                                            Log In
-                                        </Button>
-                                    </Form>
+                    <div class="everything">
+                            <Container className="content-container">
+                                <div class="image-wrapper">
+                                    <Image className="image" src={rcfmeets} />
                                 </div>
-                            </Card>
-                            <Card className="redirect-card">
-                                <div class="redirect-text">
-                                    <div class="redirect-one">
-                                        Don't know the password? Ask <a href="https://m.me/matthew24kim" target="_blank">here!</a>
-                                    </div>
+                                <div class="card-wrapper">
+                                    <Card className="login-card">
+                                        <div className="card-content">
+                                            <h1 class="title">RCFgram</h1>
+                                            <h5 class="info">Log in to see ladders meetups <br></br>from other RCFers!</h5>
+                                            <Form className="login-form" onSubmit={this.handleSubmit}>
+                                                <Form.Group controlId="formBasicPassword">
+                                                    <Form.Control type="password" placeholder="Password" onChange = {this.handlePassword}/>
+                                                    <Form.Text className="red-text">
+                                                        {this.state.errorPassword}
+                                                    </Form.Text> 
+                                                </Form.Group>
+                                                <Button className="login-button" variant="primary" type="submit">
+                                                    Log In
+                                                </Button>
+                                            </Form>
+                                        </div>
+                                    </Card>
+                                    <Card className="redirect-card">
+                                        <div class="redirect-text">
+                                            <div class="redirect-one">
+                                                Don't know the password? Ask <a href="https://m.me/matthew24kim" target="_blank">here!</a>
+                                            </div>
+                                        </div>
+                                    </Card>
+                                </div>       
+                            </Container>
+                            <Container className="verse-container">
+                                <div class="verse">
+                                    And let us consider how to stir up one another to love and good works, not neglecting to meet together, as is the habit of some, but encouraging one another, 
+                                    and all the more as you see the Day drawing near. 
                                 </div>
-                            </Card>
-                        </div>
-                                        
-                    </Container>
-    
-                        
+                                <div class="verse-2">
+                                    <b>Hebrews 10:24-25</b>
+                                </div>
+                            </Container>
+                    </div>
                 </div>
             )
         }

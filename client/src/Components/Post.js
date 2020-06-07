@@ -12,17 +12,18 @@ class Post extends Component {
             lastName: this.props.data.lastName,
             profileUrl: this.props.data.profileUrl,
             imageUrl: this.props.data.imageUrl,
-            caption: this.props.data.caption
+            caption: this.props.data.caption,
         }
-      }
+    }
 
     render() {
+        
         if (this.props.isMobileSized) {
             return (
                 <div class="post-mobile">
                     <div class="header-mobile">
                         <div class="profile-image-wrapper">
-                            <Image className="profile-image" src={this.state.profileUrl} roundedCircle></Image> 
+                            <Image className="profile-image" src={this.state.profileUrl}></Image> 
                         </div>  
                         <div class="name">
                             <b>{this.state.firstName} {this.state.lastName}</b>
@@ -33,18 +34,20 @@ class Post extends Component {
                     </div>
                     <div class="post-caption-mobile">
                         <b>{this.state.firstName} {this.state.lastName}</b> {this.state.caption}
+                    </div>    
+                    <div class="post-date">
+                        {date.toString().substring(0, 15).toUpperCase()}
                     </div>
-                        
                 </div>
             )
         } else {
+            var date = new Date(this.state.date);
             return (
                 <div>
                     <Card className="post-card">
                         <Card.Body className="card-body">
                             <div class="header">
-                                <div class="profile-image-wrapper">
-                                    <Image className="profile-image" src={this.state.profileUrl} roundedCircle></Image> 
+                                <div class="profile-image-wrapper" style={{backgroundImage: "url(" + this.state.profileUrl + ")"}}>
                                 </div>  
                                 <div class="name">
                                     <b>{this.state.firstName} {this.state.lastName}</b>
@@ -55,6 +58,9 @@ class Post extends Component {
                             </div>
                             <div class="post-caption">
                                 <b>{this.state.firstName} {this.state.lastName}</b> {this.state.caption}
+                            </div>
+                            <div class="post-date">
+                                {date.toString().substring(0, 15).toUpperCase()}
                             </div>
                         </Card.Body>
                         
