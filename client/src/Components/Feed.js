@@ -54,7 +54,7 @@ class Feed extends Component {
         this.setState({
             currData: slice
         })
-        
+        console.log(this.state.currData.length)
     }
 
     render() {
@@ -68,11 +68,10 @@ class Feed extends Component {
                     </Navbar>
                     <div id="target" class="feed-container-mobile">
                         <InfiniteScroll 
-                            className="infinite"
+                            className="infinite-mobile"
                             dataLength={this.state.currData.length} 
                             next={this.fetchData.bind(this)} 
-                            hasMore={this.state.hasMore}
-                            height={500}>
+                            hasMore={this.state.hasMore}>
                                 {this.renderFeed(this.state.currData)}
                         </InfiniteScroll>                   
                     </div>  
@@ -91,8 +90,7 @@ class Feed extends Component {
                             className="infinite"
                             dataLength={this.state.currData.length} 
                             next={this.fetchData.bind(this)} 
-                            hasMore={this.state.hasMore}
-                            height={1200}>
+                            hasMore={this.state.hasMore}>
                                 {this.renderFeed(this.state.currData)}
                         </InfiniteScroll>                   
                     </div>
