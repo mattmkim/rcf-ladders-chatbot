@@ -1,6 +1,13 @@
 .title-feed {
     font-weight: 500;
-    font-size: 30px;
+    font-size: 25px;
+    font-family: 'Grand Hotel', cursive;
+    color: black;
+}
+
+.title-feed-mobile {
+    font-weight: 500;
+    font-size: 20px;
     font-family: 'Grand Hotel', cursive;
     color: black;
 }
@@ -15,6 +22,7 @@
 }
 
 .navbar-feed {
+    height: 50px;
     border-color: black;
     border-style: solid;
     border-width: 2px;
@@ -27,6 +35,7 @@
 }
 
 .navbar-feed-mobile {
+    height: 40px;
     width: 100%;
     max-width: 100%;
     border-color: black;
@@ -45,6 +54,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 50px;
     max-width: 100% !important;
 }
 

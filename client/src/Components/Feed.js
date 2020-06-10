@@ -61,12 +61,12 @@ class Feed extends Component {
         if (this.props.isMobileSized) {
             return (
                 <div class="mobile">
-                    <Navbar className="navbar-feed-mobile" bg="white">
-                        <div class="title-feed">
+                    <Navbar className="navbar-feed-mobile" bg="white" fixed="top">
+                        <div class="title-feed-mobile">
                             RCFgram
                         </div>
                     </Navbar>
-                    <div id="target" class="feed-container-mobile">
+                    <div class="feed-container-mobile">
                         <InfiniteScroll 
                             className="infinite-mobile"
                             dataLength={this.state.currData.length} 
@@ -80,7 +80,7 @@ class Feed extends Component {
         } else {
             return (
                 <div>
-                    <Navbar className="navbar-feed" bg="white">
+                    <Navbar className="navbar-feed" bg="white" fixed="top">
                         <div class="title-feed">
                             RCFgram
                         </div>
