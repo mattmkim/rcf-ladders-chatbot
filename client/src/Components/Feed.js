@@ -29,7 +29,7 @@ class Feed extends Component {
     }
 
     fetchData() {
-        console.log(this.state.hasMore)
+        console.log("fetching more data")
         if (this.state.data.length == 0) {
             this.setState({
                 hasMore: false
@@ -46,7 +46,6 @@ class Feed extends Component {
 
     async componentDidMount() {
         var response = await PostMiddleware.fetchAllPosts();
-        console.log(response);
         this.setState({
             data: response
         });
