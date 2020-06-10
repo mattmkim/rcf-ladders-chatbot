@@ -71,7 +71,8 @@ class Feed extends Component {
                             className="infinite"
                             dataLength={this.state.currData.length} 
                             next={this.fetchData.bind(this)} 
-                            hasMore={this.state.hasMore}>
+                            hasMore={this.state.hasMore}
+                            height={500}>
                                 {this.renderFeed(this.state.currData)}
                         </InfiniteScroll>                   
                     </div>  
