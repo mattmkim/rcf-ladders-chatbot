@@ -29,7 +29,7 @@ class Feed extends Component {
     }
 
     fetchData() {
-        console.log(this.state)
+        console.log(this.state.hasMore)
         if (this.state.data.length == 0) {
             this.setState({
                 hasMore: false
@@ -72,8 +72,7 @@ class Feed extends Component {
                             className="infinite"
                             dataLength={this.state.currData.length} 
                             next={this.fetchData.bind(this)} 
-                            hasMore={this.state.hasMore}
-                            scrollableTarget="target">
+                            hasMore={this.state.hasMore}>
                                 {this.renderFeed(this.state.currData)}
                         </InfiniteScroll>                   
                     </div>  
