@@ -31,7 +31,7 @@ class Post extends Component {
                             </div>
                         </div>  
                         <div id="post-video-wrapper" class="post-image-wrapper-mobile">
-                            <ReactPlayer className="post-mobile" playsinline={true} wrapper={"post-video-wrapper"} url={this.state.imageUrl} loop={true} controls={false} ></ReactPlayer>
+                            <ReactPlayer className="post-mobile" playsinline={true} wrapper={"post-video-wrapper"} url={this.state.imageUrl} loop={true} controls={true} playIcon={"post-video-wrapper"} ></ReactPlayer>
                         </div>
                         <div class="post-caption-mobile">
                             <b>{this.state.firstName} {this.state.lastName}</b> {this.state.caption}
