@@ -102,6 +102,8 @@ class Feed extends Component {
                                 CONTENT
                                 <br></br>
                                 CONTENT
+                                <br></br>
+                                SOME MORE CONTENT
 
                             </div>
                         </Col>
