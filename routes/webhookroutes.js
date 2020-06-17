@@ -211,7 +211,8 @@ module.exports = function(User) {
                                                 known: [],
                                                 prevMeetup: [],
                                                 sendingPhoto: false,
-                                                photoUrl: null
+                                                photoUrl: null,
+                                                servant: false
                                             });
         
                                             newUser.save(function (err, response) {
