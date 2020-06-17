@@ -76,7 +76,7 @@ class Home extends Component {
                             And let us consider how to stir up one another to love and good works, not neglecting to meet together, as is the habit of some, but encouraging one another, 
                             and all the more as you see the Day drawing near. 
                         </div>
-                        <div class="verse-2">
+                        <div class="verse-2-mobile">
                             <b>Hebrews 10:24-25</b>
                         </div>
                     </Container>

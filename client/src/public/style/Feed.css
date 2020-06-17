@@ -1,6 +1,17 @@
+.background {
+    background-color:rgb(249, 249, 249);
+}
+
 .title-feed {
     font-weight: 500;
-    font-size: 30px;
+    font-size: 25px;
+    font-family: 'Grand Hotel', cursive;
+    color: black;
+}
+
+.title-feed-mobile {
+    font-weight: 500;
+    font-size: 20px;
     font-family: 'Grand Hotel', cursive;
     color: black;
 }
@@ -12,13 +23,13 @@
 
 .mobile {
     max-width: 100%;
-    overflow-x: hidden;
 }
 
 .navbar-feed {
+    height: 50px;
     border-color: black;
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
     border-top: 0px;
     border-right: 0px;
     border-left: 0px;
@@ -28,6 +39,7 @@
 }
 
 .navbar-feed-mobile {
+    height: 40px;
     width: 100%;
     max-width: 100%;
     border-color: black;
@@ -46,6 +58,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 50px;
     max-width: 100% !important;
 }
 
@@ -54,5 +67,26 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 100%;
+    margin-top: 40px;
+    max-width: 100% !important;
+}
+
+.feed-info-container {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.scroll-col {
+    padding: 0px;
+    width: 600px !important;
+}
+
+.info-card {
+    margin-top: 50px;
+    margin-left: 10px;
+    width: 300px;
+    height: 400px;
+    position: fixed;
 }

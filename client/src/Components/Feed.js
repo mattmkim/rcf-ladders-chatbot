@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Card, Navbar, Container} from 'react-bootstrap'
+import {Card, Navbar, Container, Col} from 'react-bootstrap'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import withWindowDimensions from './withWindowDimensions.jsx';
 import PostMiddleware from '../Middleware/PostMiddleware'
@@ -29,7 +29,7 @@ class Feed extends Component {
     }
 
     fetchData() {
-        console.log(this.state)
+        console.log("fetching more data")
         if (this.state.data.length == 0) {
             this.setState({
                 hasMore: false
@@ -46,7 +46,6 @@ class Feed extends Component {
 
     async componentDidMount() {
         var response = await PostMiddleware.fetchAllPosts();
-        console.log(response);
         this.setState({
             data: response
         });
@@ -55,21 +54,21 @@ class Feed extends Component {
         this.setState({
             currData: slice
         })
-        
+        console.log(this.state.currData.length)
     }
 
     render() {
         if (this.props.isMobileSized) {
             return (
                 <div class="mobile">
-                    <Navbar className="navbar-feed-mobile" bg="white">
-                        <div class="title-feed">
+                    <Navbar className="navbar-feed-mobile" bg="white" fixed="top">
+                        <div class="title-feed-mobile">
                             RCFgram
                         </div>
                     </Navbar>
                     <div class="feed-container-mobile">
                         <InfiniteScroll 
-                            className="infinite"
+                            className="infinite-mobile"
                             dataLength={this.state.currData.length} 
                             next={this.fetchData.bind(this)} 
                             hasMore={this.state.hasMore}>
@@ -80,21 +79,37 @@ class Feed extends Component {
             )
         } else {
             return (
-                <div>
-                    <Navbar className="navbar-feed" bg="white">
+                <div class="background">
+                    <Navbar className="navbar-feed" bg="white" fixed="top">
                         <div class="title-feed">
                             RCFgram
                         </div>
                     </Navbar>
-                    <div class="feed-container">
-                        <InfiniteScroll 
-                            className="infinite"
-                            dataLength={this.state.currData.length} 
-                            next={this.fetchData.bind(this)} 
-                            hasMore={this.state.hasMore}>
-                                {this.renderFeed(this.state.currData)}
-                        </InfiniteScroll>                   
-                    </div>
+                    <Container className="feed-info-container">
+                        <Col md={{ span: 6.8, offset: 3 }}>
+                            <InfiniteScroll 
+                                className="infinite"
+                                dataLength={this.state.currData.length} 
+                                next={this.fetchData.bind(this)} 
+                                hasMore={this.state.hasMore}>
+                                    {this.renderFeed(this.state.currData)}
+                            </InfiniteScroll>                   
+                        </Col>
+                        <Col xs={6}>
+                            <div class="info-card">
+                                // TODO: ADD CONTENT
+                                <br></br>
+                                CONTENT
+                                <br></br>
+                                CONTENT
+                                <br></br>
+                                SOME MORE CONTENT
+
+                            </div>
+                        </Col>
+                        
+                    </Container>
+                    
                 </div>
             )
         }

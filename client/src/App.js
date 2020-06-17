@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import ProtectedRoute from './Components/ProtectedRoute'
+import RedirectRoute from './Components/RedirectRoute'
 import withWindowDimensions from './Components/withWindowDimensions.jsx';
 import Home from './Components/Home'
 import Feed from './Components/Feed'
@@ -18,7 +19,7 @@ class App extends Component {
       return (
         <div>
           <BrowserRouter> 
-            <Route exact path = "/" component = {Home} />
+            <RedirectRoute exact path = "/" component = {Home} />
             <ProtectedRoute exact path = "/feed" component = {Feed} />
           </BrowserRouter>
         </div>
@@ -27,7 +28,7 @@ class App extends Component {
       return (
         <div>
           <BrowserRouter> 
-            <Route exact path = "/" component = {Home} />
+            <RedirectRoute exact path = "/" component = {Home} />
             <ProtectedRoute exact path = "/feed" component = {Feed} />
           </BrowserRouter>
           <Footer />
