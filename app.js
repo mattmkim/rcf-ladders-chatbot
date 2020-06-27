@@ -42,7 +42,6 @@ cron.schedule('0 9 * * Saturday', () => {
 });
 
 // send ladders partners Sunday nights
-// real time string: '0 5 * * Monday'
 cron.schedule('0 9 * * Sunday', () => {
     userFunctions.sendLadders();
 }, {
@@ -50,8 +49,7 @@ cron.schedule('0 9 * * Sunday', () => {
     timezone: "America/New_York"
 })
 
-// send ladders partners Sunday nights
-// real time string: '0 5 * * Monday'
+// send ladders reminder Saturday night
 cron.schedule('0 19 * * Saturday', () => {
     reminderFunctions.sendAvailabilityReminder();
 }, {
