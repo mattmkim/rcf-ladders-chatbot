@@ -225,10 +225,8 @@ module.exports = function(User) {
                                 }
                             })
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName + " and " + t.firstName + t.lastName);
-                            var questionOfWeek = "This week's Question of the Week: What's a prayer request that you have? Also, here are some reminders/guidelines about what virtual ladders can look like! \n" +
-                            "1. When you reach out to ladders partner to set a time to virtually meet, also be sure to talk about how long you both would like to meet. Again, we suggest around 20 minutes, but of course feel free to go longer than that. \n" +
-                            "2. Try to end your meetup by sharing prayer requests (if you have any), and having one person (or both!) close in prayer. \n\n" +
-                            "Hope that this week of virtual school goes well! Keep fighting the good fight :)";
+                            var questionOfWeek = "First RCF Meets of the summer! Woohoo! This week’s Question of the Week: What have you been up to these past couple months? \n\n" +
+                            "As a reminder, try and end your meetup by sharing prayer requests (if you have any) and having one person (or both!) close in prayer. Keep fighting the good fight :)";
 
                             msg.sendMessage(f.user_id, {text: questionOfWeek});
                             msg.sendMessage(s.user_id, {text: questionOfWeek});
@@ -267,10 +265,8 @@ module.exports = function(User) {
     
                         } else {
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName);
-                            var questionOfWeek = "This week's Question of the Week: What's a prayer request that you have? Also, here are some reminders/guidelines about what virtual ladders can look like! \n" +
-                            "1. When you reach out to ladders partner to set a time to virtually meet, also be sure to talk about how long you both would like to meet. Again, we suggest around 20 minutes, but of course feel free to go longer than that. \n" +
-                            "2. Try to end your meetup by sharing prayer requests (if you have any), and having one person (or both!) close in prayer. \n\n" +
-                            "Hope that this week of virtual school goes well! Keep fighting the good fight :)";
+                            var questionOfWeek = "First RCF Meets of the summer! Woohoo! This week’s Question of the Week: What have you been up to these past couple months? \n\n" +
+                            "As a reminder, try and end your meetup by sharing prayer requests (if you have any) and having one person (or both!) close in prayer. Keep fighting the good fight :)";
 
                             msg.sendMessage(f.user_id, {text: questionOfWeek});
                             msg.sendMessage(s.user_id, {text: questionOfWeek});
