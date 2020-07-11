@@ -225,7 +225,7 @@ module.exports = function(User) {
                                 }
                             })
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName + " and " + t.firstName + t.lastName);
-                            var questionOfWeek = "First RCF Meets of the summer! Woohoo! This week’s Question of the Week: What have you been up to these past couple months? \n\n" +
+                            var questionOfWeek = "This week’s Question of the Week: What is your favorite smell and why? \n\n" +
                             "As a reminder, try and end your meetup by sharing prayer requests (if you have any) and having one person (or both!) close in prayer. Also, if you would like, send a pic of your meetup to me to have it posted on https://rcf-meets.herokuapp.com/ (RCFgram)!" + 
                             " It's a site where we can share and see pics of our RCF Meets meetups like we do with CG ladders. The password is the same: renewal2021. Hope your summer has been going well - keep fighting the good fight :)";
 
@@ -266,7 +266,7 @@ module.exports = function(User) {
     
                         } else {
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName);
-                            var questionOfWeek = "First RCF Meets of the summer! Woohoo! This week’s Question of the Week: What have you been up to these past couple months? \n\n" +
+                            var questionOfWeek = "This week’s Question of the Week: What is your favorite smell and why? \n\n" +
                             "As a reminder, try and end your meetup by sharing prayer requests (if you have any) and having one person (or both!) close in prayer. Also, if you would like, send a pic of your meetup to me to have it posted on https://rcf-meets.herokuapp.com/ (RCFgram)!" + 
                             " It's a site where we can share and see pics of our RCF Meets meetups like we do with CG ladders. The password is the same: renewal2021. Hope your summer has been going well - keep fighting the good fight :)";
 
