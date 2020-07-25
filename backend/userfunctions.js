@@ -225,7 +225,7 @@ module.exports = function(User) {
                                 }
                             })
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName + " and " + t.firstName + t.lastName);
-                            var questionOfWeek = "This week’s Question of the Week: If you had to delete all but 3 apps from your smartphone, which ones would you keep? \n";
+                            var questionOfWeek = "This week’s Question of the Week: If you could eliminate one food so no one could eat it ever again, what would you destroy? \n";
 
                             msg.sendMessage(f.user_id, {text: questionOfWeek});
                             msg.sendMessage(s.user_id, {text: questionOfWeek});
@@ -264,7 +264,7 @@ module.exports = function(User) {
     
                         } else {
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName);
-                            var questionOfWeek = "This week’s Question of the Week: If you had to delete all but 3 apps from your smartphone, which ones would you keep? \n";
+                            var questionOfWeek = "This week’s Question of the Week: If you could eliminate one food so no one could eat it ever again, what would you destroy? \n";
 
                             msg.sendMessage(f.user_id, {text: questionOfWeek});
                             msg.sendMessage(s.user_id, {text: questionOfWeek});
