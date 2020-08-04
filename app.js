@@ -34,28 +34,28 @@ app.set('view engine', 'ejs');
 
 // send availability postback every Saturday night
 // real time string: '0 6 * * Sunday'
-cron.schedule('0 9 * * Saturday', () => {
-    userFunctions.sendAvailabilityPB();
-}, {
-    scheduled: true,
-    timezone: "America/New_York"
-});
+// cron.schedule('0 9 * * Saturday', () => {
+//     userFunctions.sendAvailabilityPB();
+// }, {
+//     scheduled: true,
+//     timezone: "America/New_York"
+// });
 
-// send ladders partners Sunday nights
-cron.schedule('0 9 * * Sunday', () => {
-    userFunctions.sendLadders();
-}, {
-    scheduled: true,
-    timezone: "America/New_York"
-})
+// // send ladders partners Sunday nights
+// cron.schedule('0 9 * * Sunday', () => {
+//     userFunctions.sendLadders();
+// }, {
+//     scheduled: true,
+//     timezone: "America/New_York"
+// })
 
-// send ladders reminder Saturday night
-cron.schedule('0 19 * * Saturday', () => {
-    reminderFunctions.sendAvailabilityReminder();
-}, {
-    scheduled: true,
-    timezone: "America/New_York"
-})
+// // send ladders reminder Saturday night
+// cron.schedule('0 19 * * Saturday', () => {
+//     reminderFunctions.sendAvailabilityReminder();
+// }, {
+//     scheduled: true,
+//     timezone: "America/New_York"
+// })
 
 // Serve the options path and set required headers
 app.get('/preferences/:userId', preferencesRoutes.open_preferences_webview);
