@@ -313,45 +313,45 @@ module.exports = function(User) {
                 }
             } else if (message.attachments) {
                 console.log(message.attachments[0]);
-                var notLoggedInMessage = "Please enter the password before sending photos.";
-                User.find({user_id: senderId}, function(err, response) {
-                    if (err) {
-                        console.log(err);
-                    } else if (response.length == 0 || response[0].loggedIn === false) {
-                        msg.sendMessage(senderId, {text: notLoggedInMessage});
-                    } else {
-                        if (message.attachments[0].payload.sticker_id) {
-                            var sticker = message.attachments[0].payload.url;
-                            request({
-                                url: "https://graph.facebook.com/v6.0/me/messages",
-                                qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
-                                method: "POST",
-                                json: {
-                                    recipient: {id: senderId},
-                                    message: {
-                                        "attachment":{
-                                          "type":"image", 
-                                          "payload":{
-                                            "url":sticker, 
-                                            "is_reusable":true
-                                          }
-                                        }
-                                    },
-                                    messaging_type: "MESSAGE_TAG",
-                                    tag: "CONFIRMED_EVENT_UPDATE"
-                                }
-                            }, function(error, response, body) {
-                                if (error) {
-                                    console.log("Error sending message: " + response.error);
-                                } else {
-                                    console.log(body);
-                                }
-                            });
-                        } else {
-                            postback.sentPhotoPB(senderId, message.attachments[0].payload.url);
-                        }             
-                    }   
-                })                   
+                // var notLoggedInMessage = "Please enter the password before sending photos.";
+                // User.find({user_id: senderId}, function(err, response) {
+                //     if (err) {
+                //         console.log(err);
+                //     } else if (response.length == 0 || response[0].loggedIn === false) {
+                //         msg.sendMessage(senderId, {text: notLoggedInMessage});
+                //     } else {
+                //         if (message.attachments[0].payload.sticker_id) {
+                //             var sticker = message.attachments[0].payload.url;
+                //             request({
+                //                 url: "https://graph.facebook.com/v6.0/me/messages",
+                //                 qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
+                //                 method: "POST",
+                //                 json: {
+                //                     recipient: {id: senderId},
+                //                     message: {
+                //                         "attachment":{
+                //                           "type":"image", 
+                //                           "payload":{
+                //                             "url":sticker, 
+                //                             "is_reusable":true
+                //                           }
+                //                         }
+                //                     },
+                //                     messaging_type: "MESSAGE_TAG",
+                //                     tag: "CONFIRMED_EVENT_UPDATE"
+                //                 }
+                //             }, function(error, response, body) {
+                //                 if (error) {
+                //                     console.log("Error sending message: " + response.error);
+                //                 } else {
+                //                     console.log(body);
+                //                 }
+                //             });
+                //         } else {
+                //             postback.sentPhotoPB(senderId, message.attachments[0].payload.url);
+                //         }             
+                //     }   
+                // })                   
             }
         }
     }
