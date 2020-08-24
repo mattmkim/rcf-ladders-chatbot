@@ -168,7 +168,6 @@ module.exports = function(User) {
                         var setFPrevMeetup = new Set(f.prevMeetup);
                         var count = 0;
                         while ((f.known.includes(s.user_id) && s.known.includes(f.user_id)) || f.user_id.localeCompare(s.user_id) == 0 || setFPrevMeetup.has(s.user_id)) {
-                            console.log("infinite?")
                             if (!(f.user_id.localeCompare(s.user_id) == 0)) {
                                 if (response.length <= 3 || count > 10) {
                                     break
@@ -177,7 +176,6 @@ module.exports = function(User) {
 
                             s = response[Math.floor(Math.random() * response.length)]
                             count++
-                            
                         }
 
 
