@@ -160,34 +160,52 @@ module.exports = function(User) {
                 } else {
                     //console.log(response);
                     while (response.length > 0) {
-                        var f = response[Math.floor(Math.random() * response.length)];
+                        var f = response[Math.floor(Math.random() * response.length)]
                         //console.log(f);
-                        var s = response[Math.floor(Math.random() * response.length)];
+                        var s = response[Math.floor(Math.random() * response.length)]
                         //console.log(s);
     
                         var setFPrevMeetup = new Set(f.prevMeetup);
+                        var count = 0;
                         while ((f.known.includes(s.user_id) && s.known.includes(f.user_id)) || f.user_id.localeCompare(s.user_id) == 0 || setFPrevMeetup.has(s.user_id)) {
                             console.log("infinite?")
-                            s = response[Math.floor(Math.random() * response.length)];
-                            if (setFPrevMeetup.has(s.user_id)) {
-                                if (setFPrevMeetup.size == response.length - 1) {
-                                    break;
-                                } else {
-                                    if (f.known.length == response.length - 1) {
-                                        if (s.known.length == response.length - 1) {
-                                            if (f.user_id.localeCompare(s.user_id) == 0) {
-                                                continue;
-                                            } else {
-                                                break;
-                                            }
-                                        } else {
-                                            continue;
-                                        }
-                                    }
+                            if (!(f.user_id.localeCompare(s.user_id) == 0)) {
+                                if (response.length <= 3 || count > 10) {
+                                    break
                                 }
-                            }
+                            } 
+
+                            s = response[Math.floor(Math.random() * response.length)]
+                            count++
                             
                         }
+
+
+
+                        // while ((f.known.includes(s.user_id) && s.known.includes(f.user_id)) || f.user_id.localeCompare(s.user_id) == 0 || setFPrevMeetup.has(s.user_id)) {
+                        //     console.log("infinite?")
+                        //     s = response[Math.floor(Math.random() * response.length)];
+
+
+                        //     if (setFPrevMeetup.has(s.user_id)) {
+                        //         if (setFPrevMeetup.size == response.length - 1) {
+                        //             break;
+                        //         } else {
+                        //             if (f.known.length == response.length - 1) {
+                        //                 if (s.known.length == response.length - 1) {
+                        //                     if (f.user_id.localeCompare(s.user_id) == 0) {
+                        //                         continue;
+                        //                     } else {
+                        //                         break;
+                        //                     }
+                        //                 } else {
+                        //                     continue;
+                        //                 }
+                        //             }
+                        //         }
+                        //     }
+                            
+                        // }
     
                         var indF = response.indexOf(f);
                         response.splice(indF, 1);
