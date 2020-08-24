@@ -118,10 +118,10 @@
             <% for (var i = 0; i < data.length; i++) { %>
                 <% if (data[i].user_id.localeCompare(currUser) != 0) { %>
                     <% if (data[i].year == null && incomplete === false) { %>
-                        <div class="card">
-                        <div class="card-body">
+
+                        <div class="class-container">
                        
-                        <h4 class="card-title" id="incomplete"> Incomplete Profile </h4>
+                        <h4 class="class-title" id="incomplete"> Incomplete Profile </h4>
                         <% console.log(data[i].firstName); %>
                         <% incomplete = true; %>
                         <% count = 0; %>
@@ -129,44 +129,40 @@
                         <% if (count % 2 != 0) { %>
                             </div>
                         <% } %>
-                        </div></div>    
-                        <div class="card">
-                        <div class="card-body">
+                        </div>   
+                        <div class="class-container">
                            
-                        <h4 class="card-title" id="freshman"> Freshman </h4>
+                        <h4 class="class-title" id="freshman"> Freshman </h4>
                         <% freshman = true; %>
                         <% count = 0; %>
                     <% } else if (data[i].year == 2 && sophomore === false) { %>
                         <% if (count % 2 != 0) { %>
                             </div>
                         <% } %>
-                        </div></div>
-                        <div class="card">
-                            <div class="card-body">
+                        </div>
+                        <div class="class-container">
                            
-                            <h4 class="card-title" id="sophomore"> Sophomores </h4>
+                        <h4 class="class-title" id="sophomore"> Sophomores </h4>
                         <% sophomore = true; %>
                         <% count = 0; %>
                     <% } else if (data[i].year == 3 && junior === false) { %>
                         <% if (count % 2 != 0) { %>
                             </div>
                         <% } %>
-                        </div></div>
-                        <div class="card">
-                        <div class="card-body">
+                        </div>
+                        <div class="class-container">
                            
-                        <h4 class="card-title" id="junior"> Juniors </h4>
+                        <h4 class="class-title" id="junior"> Juniors </h4>
                         <% junior = true; %>
                         <% count = 0; %>
                     <% } else if (data[i].year == 4 && senior === false) { %>
                         <% if (count % 2 != 0) { %>
                             </div>
                         <% } %>
-                        </div></div>
-                        <div class="card">
-                        <div class="card-body">
+                        </div>
+                        <div class="class-container">
                            
-                        <h4 class="card-title" id="senior"> Seniors <h4>
+                        <h4 class="class-title" id="senior"> Seniors <h4>
                         <% senior = true; %>
                         <% count = 0; %>
                     <% } %>
