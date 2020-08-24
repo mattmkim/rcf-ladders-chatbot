@@ -167,6 +167,7 @@ module.exports = function(User) {
     
                         var setFPrevMeetup = new Set(f.prevMeetup);
                         while ((f.known.includes(s.user_id) && s.known.includes(f.user_id)) || f.user_id.localeCompare(s.user_id) == 0 || setFPrevMeetup.has(s.user_id)) {
+                            console.log("infinite?")
                             s = response[Math.floor(Math.random() * response.length)];
                             if (setFPrevMeetup.has(s.user_id)) {
                                 if (setFPrevMeetup.size == response.length - 1) {
@@ -199,14 +200,14 @@ module.exports = function(User) {
                             if (err) {
                                 console.log(err);
                             } else {
-                                //console.log(response);
+                                console.log(response);
                             }
                         })
                         User.updateOne({user_id: s.user_id}, {available: false}, function(err, response) {
                             if (err) {
                                 console.log(err);
                             } else {
-                                //console.log(response);
+                                console.log(response);
                             }
                         })
     
