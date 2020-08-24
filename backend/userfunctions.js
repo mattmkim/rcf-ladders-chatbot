@@ -200,14 +200,14 @@ module.exports = function(User) {
                             if (err) {
                                 console.log(err);
                             } else {
-                                console.log(response);
+                                //console.log(response);
                             }
                         })
                         User.updateOne({user_id: s.user_id}, {available: false}, function(err, response) {
                             if (err) {
                                 console.log(err);
                             } else {
-                                console.log(response);
+                                //console.log(response);
                             }
                         })
     
