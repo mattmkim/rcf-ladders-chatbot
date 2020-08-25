@@ -44,15 +44,17 @@
         });
     };
 
+
+
     window.onload = () => {
         var checkboxes = document.getElementsByClassName("member-form-input")
         console.log(checkboxes)
         for (var i = 0; i < checkboxes.length; i++) {
             checkboxes[i].addEventListener('change', () => {
                 if(checkboxes[i].checked) {
-                    checkboxes[i].value = "Know"
+                    $('#all span').text('Know');
                 } else {
-                    checkboxes[i].value = "Don't Know"
+                    $('#all span').text("Dont' Know");
                 } 
             })
         }
@@ -207,7 +209,7 @@
                                     </div>
                                     <div class="btn-group-toggle" data-toggle="buttons">
                                         <label class="btn btn-secondary active">
-                                            <input class="member-form-input" type="checkbox" checked="checked" name=<%- data[i].user_id %>  id=<%- i %>> Know
+                                            <input class="member-form-input" type="checkbox" checked="checked" name=<%- data[i].user_id %>  id=<%- i %>> <span>Don't Know</span>
                                         </label>
                                     </div>
                                 </div>
@@ -235,7 +237,7 @@
                                     </div>
                                     <div class="btn-group-toggle" data-toggle="buttons">
                                         <label class="btn btn-secondary active">
-                                            <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>> Don't Know
+                                            <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>> <span>Don't Know</span>
                                         </label>
                                     </div>
                                 </div>
@@ -265,7 +267,7 @@
                                 </div>
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                     <label class="btn btn-secondary active">
-                                        <input class="member-form-input" type="checkbox" checked="checked" name=<%- data[i].user_id %>  id=<%- i %>> Know
+                                        <input class="member-form-input" type="checkbox" checked="checked" name=<%- data[i].user_id %>  id=<%- i %>> <span>Know</span>
                                     </label>
                                 </div>
                             </div>
@@ -292,7 +294,7 @@
                                 </div>
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                     <label class="btn btn-secondary active">
-                                        <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>> Don't Know
+                                        <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>> <span>Don't Know</span>
                                     </label>
                                 </div>
                             </div>
