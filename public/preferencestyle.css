@@ -38,6 +38,11 @@ body {
     height: 120px;
 }
 
+.people-card {
+    width: 150px;
+    height: 200px;
+}
+
 .rounded-circle {
     width: 100px;
     height: 100px;
@@ -55,9 +60,9 @@ input[type=checkbox]:checked + .color-checkbox {
 .two-member-container {
     font-family: 'Oxygen', sans-serif;
     display: flex;
-    text-align: center; 
+    flex-direction: row;
     align-items: center;
-    justify-content: center; 
+    justify-content: space-between; 
 }
 
 .member-option {
