@@ -41,8 +41,14 @@ body {
 .people-card {
     width: 170px;
     height: 230px;
-    display: flex;
-    flex-direction: column;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-evenly;
+}
+
+.card-wrapper {
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .rounded-circle {
@@ -64,7 +70,9 @@ input[type=checkbox]:checked + .color-checkbox {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: space-around; 
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .member-option {

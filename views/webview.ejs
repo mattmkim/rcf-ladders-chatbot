@@ -188,15 +188,18 @@
                                 </div> -->
 
                                 <div class="card people-card">
-                                    <img class="rounded-circle" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
-                                    <div class="member-name">
-                                        <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
+                                    <div class="card-wrapper">
+                                        <img class="rounded-circle" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
+                                        <div class="member-name">
+                                            <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
+                                        </div>
+                                        <div class="btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-outline-primary active">
+                                                <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %> checked> <span>Know</span>
+                                            </label>
+                                        </div>
                                     </div>
-                                    <div class="btn-group-toggle" data-toggle="buttons">
-                                        <label class="btn btn-outline-primary active">
-                                            <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %> checked> <span>Know</span>
-                                        </label>
-                                    </div>
+                                    
                                 </div>
                         <% } else { %> 
                             <div class="two-member-container">
@@ -216,15 +219,19 @@
 
 
                                 <div class="card people-card">
-                                    <img class="rounded-circle" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
-                                    <div class="member-name">
-                                        <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
+                                    <div class="card-wrapper">
+                                        <img class="rounded-circle" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
+                                        <div class="member-name">
+                                            <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
+                                        </div>
+                                        <div class="btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-outline-primary">
+                                                <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>> <span>Don't Know</span>
+                                            </label>
+                                        </div>
                                     </div>
-                                    <div class="btn-group-toggle" data-toggle="buttons">
-                                        <label class="btn btn-outline-primary">
-                                            <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>> <span>Don't Know</span>
-                                        </label>
-                                    </div>
+
+                                    
                                 </div>
                         <% } %> 
                     <% } else { %>
@@ -246,15 +253,18 @@
 
 
                             <div class="card people-card">
-                                <img class="rounded-circle" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
-                                <div class="member-name">
-                                    <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
+                                <div class="card-wrapper">
+                                    <img class="rounded-circle" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
+                                    <div class="member-name">
+                                        <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
+                                    </div>
+                                    <div class="btn-group-toggle" data-toggle="buttons">
+                                        <label class="btn btn-outline-primary active">
+                                            <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %> checked> <span>Know</span>
+                                        </label>
+                                    </div>
                                 </div>
-                                <div class="btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-outline-primary active">
-                                        <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %> checked> <span>Know</span>
-                                    </label>
-                                </div>
+                                
                             </div>
                         </div>
                         <% } else { %>
@@ -273,15 +283,18 @@
                             </div> -->
 
                             <div class="card people-card">
-                                <img class="rounded-circle" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
-                                <div class="member-name">
-                                    <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
+                                <div class="card-wrapper">
+                                    <img class="rounded-circle" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
+                                    <div class="member-name">
+                                        <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
+                                    </div>
+                                    <div class="btn-group-toggle" data-toggle="buttons">
+                                        <label class="btn btn-outline-primary">
+                                            <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>> <span>Don't Know</span>
+                                        </label>
+                                    </div>
                                 </div>
-                                <div class="btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-outline-primary">
-                                        <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>> <span>Don't Know</span>
-                                    </label>
-                                </div>
+                                
                             </div>
                         </div>
                         <% } %>
