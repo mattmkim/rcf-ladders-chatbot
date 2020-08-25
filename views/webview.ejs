@@ -44,19 +44,31 @@
         });
     };
 
-    window.onload = () => {
-        var checkboxes = document.getElementsByClassName("member-form-input")
-        console.log(checkboxes)
-        for (var i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].addEventListener('change', () => {
-                if(checkboxes[i].checked) {
-                    checkboxes[i].innerHTML = "Know"
+    $(document).ready(function(){
+        $(".member-form-input").each(function() {
+            $(this).on('ifChanged', function (event) {
+                if ($(this).prop('checked')) {
+                    $(this).value = "Know"
                 } else {
-                    checkboxes[i].innerHTML = "Don't Know"
-                } 
+                    $(this).value = "Don't Know"
+                }
             })
-        }
-    }
+        });
+    });
+
+    // window.onload = () => {
+    //     var checkboxes = document.getElementsByClassName("member-form-input")
+    //     console.log(checkboxes)
+    //     for (var i = 0; i < checkboxes.length; i++) {
+    //         checkboxes[i].addEventListener('change', () => {
+    //             if(checkboxes[i].checked) {
+    //                 checkboxes[i].innerHTML = "Know"
+    //             } else {
+    //                 checkboxes[i].innerHTML = "Don't Know"
+    //             } 
+    //         })
+    //     }
+    // }
 </script>
 
 <div id="form">
