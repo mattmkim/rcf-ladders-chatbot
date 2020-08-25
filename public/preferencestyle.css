@@ -38,6 +38,11 @@ body {
     height: 120px;
 }
 
+.rounded-circle {
+    width: 100px;
+    height: 100px;
+}
+
 .color-checkbox:hover {
     background-color: rgb(238, 247, 255);
 }
@@ -45,9 +50,8 @@ body {
 
 input[type=checkbox]:checked + .color-checkbox {
     background-color:rgb(164, 216, 255);
-
-
 }    
+
 .two-member-container {
     font-family: 'Oxygen', sans-serif;
     display: flex;

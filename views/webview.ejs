@@ -43,6 +43,20 @@
             });
         });
     };
+
+    window.onload = () => {
+        var checkboxes = document.getElementsByClassName("member-form-input")
+        console.log(checkboxes)
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].addEventListener('change', function() {
+                if(this.checked) {
+                    this.innerHTML = "Know"
+                } else {
+                    this.innerHTML = "Don't Know"
+                } 
+            })
+        }
+    }
 </script>
 
 <div id="form">
@@ -172,7 +186,7 @@
 
                         <% if (known.includes(data[i].user_id)) { %>
                             <div class="two-member-container">
-                                <div class="member-option">
+                                <!-- <div class="member-option">
                                     <div class="custom-control custom-checkbox">
                                         <label class="member-form-label">
                                             <input class="member-form-input" type="checkbox" checked="checked" name=<%- data[i].user_id %>  id=<%- i %>>
@@ -184,10 +198,22 @@
                                             </div>  
                                         </label>
                                     </div>  
+                                </div> -->
+
+                                <div class="card">
+                                    <img class="rounded-circle" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
+                                    <div class="member-name">
+                                        <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
+                                    </div>
+                                    <div class="btn-group-toggle" data-toggle="buttons">
+                                        <label class="btn btn-secondary active">
+                                            <input class="member-form-input" type="checkbox" checked="checked" name=<%- data[i].user_id %>  id=<%- i %>> Don't Know
+                                        </label>
+                                    </div>
                                 </div>
                         <% } else { %> 
                             <div class="two-member-container">
-                                <div class="member-option">
+                                <!-- <div class="member-option">
                                     <div class="custom-control custom-checkbox">
                                         <label class="member-form-label">
                                             <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>>
@@ -199,12 +225,25 @@
                                             </div>  
                                         </label>
                                     </div>  
+                                </div> -->
+
+
+                                <div class="card">
+                                    <img class="rounded-circle" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
+                                    <div class="member-name">
+                                        <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
+                                    </div>
+                                    <div class="btn-group-toggle" data-toggle="buttons">
+                                        <label class="btn btn-secondary active">
+                                            <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>> Don't Know
+                                        </label>
+                                    </div>
                                 </div>
                         <% } %> 
                     <% } else { %>
                         <% count = count + 1; %>
                         <% if (known.includes(data[i].user_id)) { %>
-                            <div class="member-option">
+                            <!-- <div class="member-option">
                                 <div class="custom-control custom-checkbox">
                                     <label class="member-form-label">
                                         <input class="member-form-input" type="checkbox" checked="checked" name=<%- data[i].user_id %>  id=<%- i %>>
@@ -216,10 +255,23 @@
                                         </div>
                                     </label>
                                 </div>  
+                            </div> -->
+
+
+                            <div class="card">
+                                <img class="rounded-circle" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
+                                <div class="member-name">
+                                    <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
+                                </div>
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-secondary active">
+                                        <input class="member-form-input" type="checkbox" checked="checked" name=<%- data[i].user_id %>  id=<%- i %>> Don't Know
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <% } else { %>
-                            <div class="member-option">
+                            <!-- <div class="member-option">
                                 <div class="custom-control custom-checkbox">
                                     <label class="member-form-label">
                                         <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>>
@@ -231,7 +283,23 @@
                                         </div>
                                     </label>
                                 </div>  
+                            </div> -->
+
+                            <div class="card">
+                                <img class="rounded-circle" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
+                                <div class="member-name">
+                                    <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
+                                </div>
+                                <div class="btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-secondary active">
+                                        <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>> Don't Know
+                                    </label>
+                                </div>
                             </div>
+
+
+
+
                         </div>
                         <% } %>
                     <% } %>
