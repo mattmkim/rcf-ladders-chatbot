@@ -43,22 +43,6 @@
             });
         });
     };
-
-
-
-    window.onload = () => {
-        var checkboxes = document.getElementsByClassName("member-form-input")
-        console.log(checkboxes)
-        for (var i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].addEventListener('change', () => {
-                if(checkboxes[i].checked) {
-                    $('#all span').text('Know');
-                } else {
-                    $('#all span').text("Dont' Know");
-                } 
-            })
-        }
-    }
 </script>
 
 <div id="form">
@@ -314,6 +298,13 @@
         <button type="submit" name="submit" class="btn btn-primary" id="submitButton"> Submit </button>
 
     </form>
+
+    <script>
+        $('label').click(function () {
+            var checked = $('input', this).is(':checked');
+            $('span', this).text(checked ? "Know"  : "Don't Know");
+        });
+    </script>
 </div>
 </body>
 </html>
