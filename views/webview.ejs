@@ -90,7 +90,7 @@
             </div>
         </div>
 
-    <form action="/preferencespostback/<%- currUser %>" method="post">
+    <form action="/preferencespostback/<%- currUser %>" method="post"  data-spy="scroll" data-target="#navbar-example2">
 
         <nav id="navbar-example2" class="navbar sticky-top navbar-light bg-light">
             <a class="navbar-brand" href="#">
@@ -111,7 +111,6 @@
                 </li>
             </ul>
         </nav>
-        <div class="people-container" data-spy="scroll" data-target="#navbar-example2">
 
         <% var incomplete = false %>
             <% var freshman = false; %>
@@ -124,9 +123,9 @@
                 <% if (data[i].user_id.localeCompare(currUser) != 0) { %>
                     <% if (data[i].year == null && incomplete === false) { %>
 
-                        <div class="class-container" data-spy="scroll" data-target="#navbar-example2">
+                        <div class="class-container" id="incomplete">
                        
-                        <h4 class="class-title" id="incomplete"> Incomplete Profile </h4>
+                        <h4 class="class-title"> Incomplete Profile </h4>
                         <% console.log(data[i].firstName); %>
                         <% incomplete = true; %>
                         <% count = 0; %>
@@ -135,9 +134,9 @@
                             </div>
                         <% } %>
                         </div>   
-                        <div class="class-container">
+                        <div class="class-container" id="freshman">
                            
-                        <h4 class="class-title" id="freshman"> Freshman </h4>
+                        <h4 class="class-title"> Freshman </h4>
                         <% freshman = true; %>
                         <% count = 0; %>
                     <% } else if (data[i].year == 2 && sophomore === false) { %>
@@ -145,9 +144,9 @@
                             </div>
                         <% } %>
                         </div>
-                        <div class="class-container">
+                        <div class="class-container" id="sophomore">
                            
-                        <h4 class="class-title" id="sophomore"> Sophomores </h4>
+                        <h4 class="class-title"> Sophomores </h4>
                         <% sophomore = true; %>
                         <% count = 0; %>
                     <% } else if (data[i].year == 3 && junior === false) { %>
@@ -155,9 +154,9 @@
                             </div>
                         <% } %>
                         </div>
-                        <div class="class-container">
+                        <div class="class-container" id="junior">
                            
-                        <h4 class="class-title" id="junior"> Juniors </h4>
+                        <h4 class="class-title" > Juniors </h4>
                         <% junior = true; %>
                         <% count = 0; %>
                     <% } else if (data[i].year == 4 && senior === false) { %>
@@ -165,9 +164,9 @@
                             </div>
                         <% } %>
                         </div>
-                        <div class="class-container">
+                        <div class="class-container" id="senior">
                            
-                        <h4 class="class-title" id="senior"> Seniors <h4>
+                        <h4 class="class-title" > Seniors <h4>
                         <% senior = true; %>
                         <% count = 0; %>
                     <% } %>
@@ -314,7 +313,7 @@
             <% if (count % 2 != 0) { %>
                 </div>
             <% } %>
-            </div></div></div>
+            </div></div>
         <button type="submit" name="submit" class="btn btn-primary" id="submitButton"> Submit </button>
 
     </form>

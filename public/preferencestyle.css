@@ -20,6 +20,13 @@ a.nav-link {
     font-size: 15px;
 }
 
+a.nav-link.active {
+    padding-left: 7px;
+    padding-right: 7px;
+    font-size: 15px;
+    text-decoration: underline !important;
+}
+
 nav#navbar-example2 {
     margin-bottom: -20px;
 }
