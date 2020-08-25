@@ -1,12 +1,20 @@
 body {
-    font-family: 'Oxygen', sans-serif;
+    font-family: 'Noto Sans JP', sans-serif;
     color: #4A4A4A;
     background-color: #FAFAFA;
+}
+
+.jumbotron {
+    margin-bottom: 0px !important;
 }
 
 #members-header {
     font-family: 'Lato', sans-serif;
     text-align: center;
+}
+
+nav#navbar-example2 {
+    margin-bottom: -20px;
 }
 
 .custom-control {
@@ -44,16 +52,50 @@ body {
     display: flex !important;
     flex-direction: column !important;
     justify-content: space-evenly;
+    box-shadow: 0 1px 6px rgba(0,0,0,.125);
+}
+
+.class-title {
+    margin-left: 13px;
+    margin-top: 10px;
 }
 
 .card-wrapper {
     margin-right: auto;
     margin-left: auto;
+    display: flex;
+
+    height: 100%;
+    margin-top: 10%;
+}
+
+label.btn.btn-outline-primary {
+    width: 110px;
+}
+
+.member-name {
+    font-size: 22px;
 }
 
 .rounded-circle {
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
+}
+
+.image-wrapper {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-group-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
 }
 
 .color-checkbox:hover {
