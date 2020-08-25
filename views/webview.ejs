@@ -192,9 +192,9 @@
                                     <div class="member-name">
                                         <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
                                     </div>
-                                    <div class="btn-group-toggle" data-toggle="buttons">
+                                    <div class="btn-group" data-toggle="buttons">
                                         <label class="btn btn-secondary active">
-                                            <input class="member-form-input" type="checkbox" checked="checked" name=<%- data[i].user_id %>  id=<%- i %>> <span>Don't Know</span>
+                                            <input class="member-form-input" type="checkbox" checked="checked" name=<%- data[i].user_id %>  id=<%- i %>> <span>Know</span>
                                         </label>
                                     </div>
                                 </div>
@@ -220,7 +220,7 @@
                                     <div class="member-name">
                                         <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
                                     </div>
-                                    <div class="btn-group-toggle" data-toggle="buttons">
+                                    <div class="btn-group" data-toggle="buttons">
                                         <label class="btn btn-secondary active">
                                             <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>> <span>Don't Know</span>
                                         </label>
@@ -250,7 +250,7 @@
                                 <div class="member-name">
                                     <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
                                 </div>
-                                <div class="btn-group-toggle" data-toggle="buttons">
+                                <div class="btn-group" data-toggle="buttons">
                                     <label class="btn btn-secondary active">
                                         <input class="member-form-input" type="checkbox" checked="checked" name=<%- data[i].user_id %>  id=<%- i %>> <span>Know</span>
                                     </label>
@@ -277,16 +277,12 @@
                                 <div class="member-name">
                                     <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
                                 </div>
-                                <div class="btn-group-toggle" data-toggle="buttons">
+                                <div class="btn-group" data-toggle="buttons">
                                     <label class="btn btn-secondary active">
                                         <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>> <span>Don't Know</span>
                                     </label>
                                 </div>
                             </div>
-
-
-
-
                         </div>
                         <% } %>
                     <% } %>
@@ -309,3 +305,6 @@
 </div>
 </body>
 </html>
+
+// two clicks for dont know
+// one click for know
