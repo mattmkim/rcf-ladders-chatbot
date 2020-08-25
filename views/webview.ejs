@@ -46,7 +46,7 @@
     };
 </script>
 
-<div id="form">
+<div id="form" data-spy="scroll" data-target="#navbar-example2">
         <div class="jumbotron">
             <h3 class="greeting-header"> Meet the Members</h3>
             <p id="greeting-info">
@@ -90,7 +90,7 @@
             </div>
         </div>
 
-    <form action="/preferencespostback/<%- currUser %>" method="post"  data-spy="scroll" data-target="#navbar-example2">
+    <form action="/preferencespostback/<%- currUser %>" method="post">
 
         <nav id="navbar-example2" class="navbar sticky-top navbar-light bg-light">
             <a class="navbar-brand" href="#">
