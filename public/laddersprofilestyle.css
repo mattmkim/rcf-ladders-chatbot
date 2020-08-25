@@ -161,12 +161,7 @@ i.fas.fa-graduation-cap {
     width: auto;
     margin-left: auto;
     margin-right: auto;
-}
-
-i.fas.fa-user-alt-slash {
-    width: auto;
-    margin-left: auto;
-    margin-right: auto;
+   
 }
 
 i.far.fa-surprise {
@@ -175,17 +170,10 @@ i.far.fa-surprise {
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
+    color: #9CB0E0;
 }
 
 i.far.fa-laugh-squint {
-    width: auto;
-    display: flex;
-    justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-i.fas.fa-user {
     width: auto;
     display: flex;
     justify-content: center;
