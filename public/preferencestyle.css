@@ -39,8 +39,10 @@ body {
 }
 
 .people-card {
-    width: 150px;
-    height: 200px;
+    width: 170px;
+    height: 230px;
+    display: flex;
+    flex-direction: column;
 }
 
 .rounded-circle {
