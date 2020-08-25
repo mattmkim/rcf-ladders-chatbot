@@ -68,7 +68,7 @@
                   <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                     <div class="card-body">
                         Select people you would like to avoid being paired with. This includes people you know super well
-                        and would prefer not to be paired with them so you can meet someone new - however, <b>if there are people you already know but still want to get to know more, don't select them!</b>
+                        and would prefer not to be paired with them so you can meet someone new - however, <span class="pick">if there are people you already know but still want to get to know more, don't select them!</span>
                         If you don't know anyone, just click Submit!                   
                     </div>
                   </div>
@@ -83,7 +83,7 @@
                   </div>
                   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                     <div class="card-body">
-                        Just because you select someone doesn't mean you won't get paired with them - <b>two people both have to select each other in order to not get paired.</b> That being said, make sure you're setting your preferences!
+                        Just because you select someone doesn't mean you won't get paired with them - <span class="pick">two people both have to select each other in order to not get paired.</span> That being said, make sure you're setting your preferences!
                     </div>
                   </div>
                 </div>
@@ -95,20 +95,21 @@
         <nav id="navbar-example2" class="navbar sticky-top navbar-light bg-light">
             <a class="navbar-brand" href="#">
                 <img src="/public/images/rcfmeets.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
-                RCF Meets
             </a>
             <ul class="nav nav-pills">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Classes</a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#incomplete">Incomplete</a>
-                    <a class="dropdown-item" href="#freshman">Freshman</a>
-                    <a class="dropdown-item" href="#sophomore">Sophomore</a>
-                    <a class="dropdown-item" href="#junior">Junior</a>
-                    <a class="dropdown-item" href="#senior">Senior</a>
-                  </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="#freshman">Freshmen</a>
                 </li>
-              </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="#sophomore">Sophomores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#junior">Juniors</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#senior">Seniors</a>
+                </li>
+            </ul>
         </nav>
         <% var incomplete = false %>
             <% var freshman = false; %>
