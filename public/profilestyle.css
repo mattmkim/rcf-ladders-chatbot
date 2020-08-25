@@ -92,6 +92,15 @@
     width: 300px;
 }
 
+.jumbotron {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.greeting-header {
+    font-weight: 700;
+    font-size: 35px;
+}
+
 .greeting-info {
     font-size: 15px;
 }
