@@ -6,6 +6,7 @@ body {
 
 .jumbotron {
     margin-bottom: 0px !important;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
 #members-header {
@@ -75,6 +76,7 @@ label.btn.btn-outline-primary {
 
 .member-name {
     font-size: 22px;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
 .rounded-circle {
