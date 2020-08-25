@@ -58,14 +58,16 @@ nav#navbar-example2 {
 
 .class-title {
     margin-left: 13px;
-    margin-top: 10px;
+    margin-top: 30px;
+    font-size: 27px;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
 .card-wrapper {
     margin-right: auto;
     margin-left: auto;
     display: flex;
-
+    flex-direction: column;
     height: 100%;
     margin-top: 10%;
 }
@@ -75,8 +77,10 @@ label.btn.btn-outline-primary {
 }
 
 .member-name {
-    font-size: 22px;
+    font-size: 20px;
     font-family: 'Noto Sans JP', sans-serif;
+    text-align: center;
+    margin-top: 5px;
 }
 
 .rounded-circle {
@@ -98,6 +102,7 @@ label.btn.btn-outline-primary {
     margin-right: auto;
     margin-left: auto;
     margin-top: 20px;
+    margin-bottom: 8px;
 }
 
 .color-checkbox:hover {
