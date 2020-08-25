@@ -68,35 +68,8 @@ app.post('/profileupdate/:userId', preferencesRoutes.submit_update);
 app.get('/laddersprofile/:laddersId', preferencesRoutes.open_ladders_profile);
 
 // Facebook Webhook
-app.get("/webhook", function (req, res) {
-    if (req.query["hub.verify_token"] === process.env.VERIFICATION_TOKEN) {
-        console.log("Verified webhook");
-        res.status(200).send(req.query["hub.challenge"]);
-    } else {
-        console.error("Verification failed. The tokens do not match.");
-        res.sendStatus(403);
-    }
-});
-
-app.post("/webhook", function (req, res) {
-    // Make sure this is a page subscription
-    if (req.body.object == "page") {
-        // Iterate over each entry
-        // There may be multiple entries if batched
-        req.body.entry.forEach(function(entry) {
-            // Iterate over each messaging event
-            entry.messaging.forEach(function(event) {
-                if (event.postback) {
-                    processPostback(event);
-                } else if (event.message) {
-                    processMessage(event);
-                }
-            });
-        });
-
-        res.sendStatus(200);
-    }
-});
+app.get("/webhook", webhookRoutes.getWebhook);
+app.post("/webhook", webhookRoutes.postWebhook);
 
 // api
 app.post("/api/fetchposts", postRoutes.fetch_all_posts);
