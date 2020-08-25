@@ -28,11 +28,13 @@
 
 .card-verse-text-empty {
     color: rgb(103, 102, 102);
-    font-size: 11px;
+    font-size: 13px;
     font-style: oblique;
     margin-bottom: 5px !important;
     text-align: center;
     line-height: normal;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .card-verse-text {
@@ -80,7 +82,7 @@
 
 .card-container-header {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .card-container-info {
@@ -114,4 +116,76 @@
     margin-bottom: 10px;
     align-self: center;
     max-width: 150px;
+}
+
+img.rounded-circle {
+    height: 180px;
+    width: 180px;
+}
+
+.image-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.member-name {
+    text-align: center;
+    font-size: 33px;
+    font-weight: 700;
+}
+
+.info-wrapper {
+    width: 100%;
+    display: flex;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.125);
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+i.fas.fa-graduation-cap {
+    width: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+i.fas.fa-user-alt-slash {
+    width: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+i.far.fa-surprise {
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+i.far.fa-laugh-squint {
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-wrapper {
+    padding-left: 10px;
+}
+
+.title {
+    color: gray;
+    font-size: 13px;
 }
