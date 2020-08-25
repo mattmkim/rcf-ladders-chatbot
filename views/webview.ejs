@@ -48,11 +48,11 @@
         var checkboxes = document.getElementsByClassName("member-form-input")
         console.log(checkboxes)
         for (var i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].addEventListener('change', function() {
-                if(this.checked) {
-                    this.innerHTML = "Know"
+            checkboxes[i].addEventListener('change', () => {
+                if(checkboxes[i].checked) {
+                    checkboxes[i].innerHTML = "Know"
                 } else {
-                    this.innerHTML = "Don't Know"
+                    checkboxes[i].innerHTML = "Don't Know"
                 } 
             })
         }
@@ -207,7 +207,7 @@
                                     </div>
                                     <div class="btn-group-toggle" data-toggle="buttons">
                                         <label class="btn btn-secondary active">
-                                            <input class="member-form-input" type="checkbox" checked="checked" name=<%- data[i].user_id %>  id=<%- i %>> Don't Know
+                                            <input class="member-form-input" type="checkbox" checked="checked" name=<%- data[i].user_id %>  id=<%- i %>> Know
                                         </label>
                                     </div>
                                 </div>
@@ -265,7 +265,7 @@
                                 </div>
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                     <label class="btn btn-secondary active">
-                                        <input class="member-form-input" type="checkbox" checked="checked" name=<%- data[i].user_id %>  id=<%- i %>> Don't Know
+                                        <input class="member-form-input" type="checkbox" checked="checked" name=<%- data[i].user_id %>  id=<%- i %>> Know
                                     </label>
                                 </div>
                             </div>
@@ -292,7 +292,7 @@
                                 </div>
                                 <div class="btn-group-toggle" data-toggle="buttons">
                                     <label class="btn btn-secondary active">
-                                        <input class="member-form-input" type="checkbox" checked="checked" name=<%- data[i].user_id %>  id=<%- i %>> Don't Know
+                                        <input class="member-form-input" type="checkbox" name=<%- data[i].user_id %>  id=<%- i %>> Don't Know
                                     </label>
                                 </div>
                             </div>
