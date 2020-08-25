@@ -111,6 +111,8 @@
                 </li>
             </ul>
         </nav>
+        <div class="people-container" data-spy="scroll" data-target="#navbar-example2">
+
         <% var incomplete = false %>
             <% var freshman = false; %>
             <% var sophomore = false; %>
@@ -122,7 +124,7 @@
                 <% if (data[i].user_id.localeCompare(currUser) != 0) { %>
                     <% if (data[i].year == null && incomplete === false) { %>
 
-                        <div class="class-container">
+                        <div class="class-container" data-spy="scroll" data-target="#navbar-example2">
                        
                         <h4 class="class-title" id="incomplete"> Incomplete Profile </h4>
                         <% console.log(data[i].firstName); %>
@@ -312,7 +314,7 @@
             <% if (count % 2 != 0) { %>
                 </div>
             <% } %>
-            </div></div>
+            </div></div></div>
         <button type="submit" name="submit" class="btn btn-primary" id="submitButton"> Submit </button>
 
     </form>
