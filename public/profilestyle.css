@@ -121,11 +121,13 @@
 img.rounded-circle {
     height: 180px;
     width: 180px;
+    border: 5px solid #9CB0E0;
 }
 
 .image-wrapper {
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 }
 
 .member-name {
@@ -140,6 +142,7 @@ img.rounded-circle {
     height: auto;
     margin-top: 10px;
     margin-bottom: 10px;
+    padding-left: 60px;
 }
 
 .icon-wrapper {
@@ -190,9 +193,8 @@ i.far.fa-laugh-squint {
     color: gray;
     font-size: 13px;
 }
-
+a
 .text {
     font-size: 15px;
-    overflow-wrap: break-word;
-    width: 160px;
+    width: 180px;
 }
