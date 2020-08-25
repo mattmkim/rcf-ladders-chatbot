@@ -60,81 +60,93 @@
 <div class="card-wrapper">
     <div class="card">
         <div class="card-container">
-            <div class="header-center">
-                <div class="card-container-header">
-                    <div class="image">
-                    <img class="card-img" src="https://graph.facebook.com/<%-data.user_id %>/picture?type=large&access_token=<%- access %>"/>
-                    </div>
-                    <div class="card-body-profile">
-
-                    <div class="center-title">
-                      <h1 class="card-title"><%- data.firstName %> <%-" " %> <%- data.lastName %></h1>
-                    </div>
-
-                    <% if (data.bible_verse == null || data.bible_verse.length == 0) { %>
-                      <p class="card-verse-text-empty">put your favorite bible verse(s) here! just click "update info"</p>
-                    <% } else { %>
-                      <p class="card-verse-text"><%- data.bible_verse %></p>
-                    <% } %>
-                  
-                    <div class="card-info">
-                        <% if (data.year == null) { %> 
-                         <p class="card-text"><i class="fas fa-graduation-cap"></i>: <span class="badge badge-secondary">Incomplete</span> </p>
-                        <% } else if (data.year == 1) { %>
-                        <p class="card-text"><i class="fas fa-graduation-cap"></i>: <span class="badge badge-secondary">Freshman</span> </p>
-                        <% } else if (data.year == 2) { %>
-                        <p class="card-text"><i class="fas fa-graduation-cap"></i>: <span class="badge badge-secondary">Sophomore</span> </p>
-                        <% } else if (data.year == 3) { %>
-                        <p class="card-text"><i class="fas fa-graduation-cap"></i>: <span class="badge badge-secondary">Junior</span> </p>
-                        <% } else if (data.year == 4) { %>
-                        <p class="card-text"><i class="fas fa-graduation-cap"></i>: <span class="badge badge-secondary">Senior</span> </p>
-                        <% } %>
-                
-                
-                        <% if (data.available) { %> 
-                        <p class="card-text" id="avail"><i class="fas fa-user"></i> : <span class="badge badge-primary">Available</span> </p>
-                        <% } else { %>
-                        <p class="card-text" id="not-avail"><i class="fas fa-user-alt-slash"></i>: <span class="badge badge-danger">Not Available</span> </p>
-                        <% } %>
-                    </div>
-                      
-                    </div>
+            <div class="card-container-header">
+                <div class="image-wrapper">
+                    <img class="rounded-circle" src="https://graph.facebook.com/<%-data.user_id %>/picture?type=large&access_token=<%- access %>"/>
                 </div>
-            </div>
+                <div class="member-name">
+                    <%- data.firstName %> <%-" " %> <%- data.lastName %>
+                </div>
+                <% if (data.bible_verse == null || data.bible_verse.length == 0) { %>
+                    <p class="card-verse-text-empty">put your favorite bible verse(s) here! just click "update info"</p>
+                <% } else { %>
+                    <p class="card-verse-text"><%- data.bible_verse %></p>
+                <% } %>
 
-            
+            </div>
             <div class="card-container-info">
-                <div id="accordion">
-                    <div class="card">
-                      <div class="card-header" id="headingOne">
-                        <h5 class="mb-0">
-                          <button class="btn btn-link" id="button" data-toggle="collapse" data-target="#interestsOne" aria-expanded="false" aria-controls="interestsOne">
-                            Interests <i class="far fa-surprise"></i>
-                          </button>
-                        </h5>
-                      </div>
-                      <div id="interestsOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                        <div class="card-body">
-                            <%- data.interests %>                  
-                        </div>
-                      </div>
+                <div class="info-wrapper">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <div class="card">
-                      <div class="card-header" id="headingTwo">
-                        <h5 class="mb-0">
-                          <button class="btn btn-link collapsed" id="button" data-toggle="collapse" data-target="#funTwo" aria-expanded="false" aria-controls="funTwo">
-                            Fun Fact <i class="far fa-laugh-squint"></i>
-                          </button>
-                        </h5>
-                      </div>
-                      <div id="funTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                        <div class="card-body">
-                            <%- data.fun_fact %>
+                    <div class="text-wrapper">
+                        <div class="title">
+                            Year
                         </div>
-                      </div>
+                        <div class="text">
+                            <% if (data.year == null) { %> 
+                                Incomplete
+                            <% } else if (data.year == 1) { %>
+                                Freshman
+                            <% } else if (data.year == 2) { %>
+                                Sophomore
+                            <% } else if (data.year == 3) { %>
+                                Junior
+                            <% } else if (data.year == 4) { %>
+                                Senior
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-wrapper">
+                    <div class="icon-wrapper">
+                        <% if (data.available) { %> 
+                        <i class="fas fa-user"></i>
+                        <% } else { %>
+                        <i class="fas fa-user-alt-slash"></i>
+                        <% } %>
+                    </div>
+                    <div class="text-wrapper">
+                        <div class="title">
+                            Availability
+                        </div>
+                        <div class="text">
+                            <% if (data.available) { %> 
+                                Available
+                            <% } else { %>
+                                Not Available
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-wrapper">
+                    <div class="icon-wrapper">
+                        <i class="far fa-surprise"></i>
+                    </div>
+                    <div class="text-wrapper">
+                        <div class="title">
+                            Interests
+                        </div>
+                        <div class="text">
+                            <%- data.interests %>       
+                        </div>
+                    </div>
+                </div>
+                <div class="info-wrapper">
+                    <div class="icon-wrapper">
+                        <i class="far fa-laugh-squint"></i>
+                    </div>
+                    <div class="text-wrapper">
+                        <div class="title">
+                            Fun Fact
+                        </div>
+                        <div class="text">
+                            <%- data.fun_fact %>     
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
         <div class="button-wrapper">
           <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Update Info</button>
@@ -229,7 +241,6 @@
               </div>
           </div>
           </div>
-        </div>
         </div>
     </div>
 </div>
