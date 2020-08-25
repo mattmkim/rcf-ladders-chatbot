@@ -55,7 +55,7 @@
 </div>
 </div>
 
-<div class="card-wrapper">
+<!-- <div class="card-wrapper">
     <div class="card">
         <div class="card-container">
             <div class="header-center">
@@ -128,6 +128,80 @@
             </div>
         </div>
     </div>
+</div> -->
+<div class="card-wrapper">
+  <div class="card">
+      <div class="card-container">
+          <div class="card-container-header">
+              <div class="image-wrapper">
+                  <img class="rounded-circle" src="https://graph.facebook.com/<%-data.user_id %>/picture?type=large&access_token=<%- access %>"/>
+              </div>
+              <div class="member-name">
+                  <%- data.firstName %> <%-" " %> <%- data.lastName %>
+              </div>
+              <% if (data.bible_verse == null || data.bible_verse.length == 0) { %>
+                  <p class="card-verse-text-empty"></p>
+              <% } else { %>
+                  <p class="card-verse-text"><%- data.bible_verse %></p>
+              <% } %>
+
+          </div>
+          <div class="card-container-info">
+              <div class="info-wrapper">
+                  <div class="icon-wrapper">
+                      <i class="fas fa-graduation-cap fa-2x"></i>
+                  </div>
+                  <div class="text-wrapper">
+                      <div class="title">
+                          Year
+                      </div>
+                      <div class="text">
+                          <% if (data.year == null) { %> 
+                              Incomplete
+                          <% } else if (data.year == 1) { %>
+                              Freshman
+                          <% } else if (data.year == 2) { %>
+                              Sophomore
+                          <% } else if (data.year == 3) { %>
+                              Junior
+                          <% } else if (data.year == 4) { %>
+                              Senior
+                          <% } %>
+                      </div>
+                  </div>
+              </div>
+              <div class="info-wrapper">
+                  <div class="icon-wrapper">
+                      <i class="far fa-surprise fa-2x"></i>
+                  </div>
+                  <div class="text-wrapper">
+                      <div class="title">
+                          Interests
+                      </div>
+                      <div class="text">
+                          <%- data.interests %>       
+                      </div>
+                  </div>
+              </div>
+
+              <div class="info-wrapper">
+                  <div class="icon-wrapper">
+                      <i class="far fa-laugh-squint fa-2x"></i>
+                  </div>
+                  <div class="text-wrapper">
+                      <div class="title">
+                          Fun Fact
+                      </div>
+                      <div class="text">
+                          <%- data.fun_fact %>     
+                      </div>
+                  </div>
+              </div>
+
+              
+          </div>
+      </div>
+  </div>
 </div>
 </body>
 </html>
