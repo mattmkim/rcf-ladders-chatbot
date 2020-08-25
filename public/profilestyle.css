@@ -143,6 +143,7 @@ img.rounded-circle {
     margin-top: 10px;
     margin-bottom: 10px;
     padding-left: 60px;
+    position: relative;
 }
 
 .icon-wrapper {
@@ -150,11 +151,10 @@ img.rounded-circle {
     flex-direction: column;
     justify-content: center;
     width: 60px;
-    height: 60px;
+    height: auto;
     box-shadow: 0 1px 6px rgba(0,0,0,.125);
-    margin-top: auto;
-    margin-bottom: auto;
     border-radius: 10px;
+    min-height: 60px;
 }
 
 i.fas.fa-graduation-cap {
@@ -178,6 +178,14 @@ i.far.fa-surprise {
 }
 
 i.far.fa-laugh-squint {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+i.fas.fa-user {
     width: auto;
     display: flex;
     justify-content: center;
