@@ -67,6 +67,19 @@
                   </div>
                   <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                     <div class="card-body">
+                        <ul class="picking">
+                            <li> 
+                                Select people you would like to avoid being paired with. This includes people you know super well
+                                and would prefer not to be paired with them so you can meet someone new.
+                            </li>
+                            <li>
+                                If there are people you already know but still want to get to know more, don't select them!
+                            </li>
+                            <li>
+                                If you don't know anyone, just scroll down and click submit!
+                            </li>   
+                        </ul>
+
                         Select people you would like to avoid being paired with. This includes people you know super well
                         and would prefer not to be paired with them so you can meet someone new - however, if there are people you already know but still want to get to know more, don't select them!
                         If you don't know anyone, just click Submit!                   
@@ -83,7 +96,12 @@
                   </div>
                   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                     <div class="card-body">
-                        Just because you select someone doesn't mean you won't get paired with them - two people both have to select each other in order to not get paired. That being said, make sure you're setting your preferences!
+                        <ul class="pairings">
+                            <li>
+                                Just because you select someone doesn't mean you won't get paired with them - two people both have to select each other in order to not get paired. That being said, make sure you're setting your preferences!
+                            </li>
+                        </ul>
+                        
                     </div>
                   </div>
                 </div>
@@ -192,7 +210,8 @@
                                     <div class="card-wrapper">
                                         <div class="image-wrapper"> 
                                             <img class="rounded-circle" id=<%- i %> src="https://graph.facebook.com/<%-data[i].user_id %>/picture?type=large&access_token=<%- access %>"/>
-                                        </div>                                        <div class="member-name">
+                                        </div>                                        
+                                        <div class="member-name">
                                             <%- data[i].firstName %> <%-" " %> <%- data[i].lastName %>
                                         </div>
                                         <div class="btn-group-toggle" data-toggle="buttons">

@@ -34,6 +34,10 @@ nav#navbar-example2 {
     color: #001d65;
 }
 
+.picking {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
 .color-checkbox {
     display: inline-block;
     padding-top: 2px;
@@ -73,7 +77,12 @@ nav#navbar-example2 {
 }
 
 label.btn.btn-outline-primary {
-    width: 110px;
+    width: 120px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 14px;
 }
 
 .member-name {
@@ -145,8 +154,7 @@ input[type=checkbox]:checked + .color-checkbox {
     display: block;
     margin: 0 auto;
     margin-top: 20px;
-}
-
-#submitButton:hover {
-    background: #49AAFE;
+    margin-bottom: 20px;
+    font-family: 'Noto Sans JP', sans-serif;
+    width: 100px;
 }
