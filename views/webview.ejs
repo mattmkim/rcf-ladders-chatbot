@@ -115,6 +115,7 @@
             <% var junior = false; %>
             <% var senior = false; %>
             <% var count = 0; %>
+            <% console.log(known) %>
             <% for (var i = 0; i < data.length; i++) { %>
                 <% if (data[i].user_id.localeCompare(currUser) != 0) { %>
                     <% if (data[i].year == null && incomplete === false) { %>
