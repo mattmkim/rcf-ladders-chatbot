@@ -141,9 +141,9 @@ img.rounded-circle {
     width: 100%;
     display: flex;
     height: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding-left: 60px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding-left: 45px;
     position: relative;
 }
 
