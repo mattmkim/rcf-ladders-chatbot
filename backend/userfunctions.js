@@ -107,7 +107,7 @@ module.exports = function(User) {
             if (err) {
                 console.log(err);
             } else {
-                for (var i = 0; i < 20; i++) {
+                for (var i = 0; i < 21; i++) {
                     User.updateOne({user_id: response[i].user_id}, {available: true}, function(err, response2) {
                         if (err) {
                             console.log(err);
