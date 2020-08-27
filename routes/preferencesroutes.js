@@ -38,7 +38,7 @@ var routes = function(User) {
     var submitPreferences = function (req, res) {
         let body = req.body;
         var newMessage = "Great, thanks for submitting your preferences! Keep on the lookout for weekly messages from us on Saturdays!";
-        var viewMembersMessage = "In the meantime, type " + '"' + "View Profile" + '"' + " if you want see the information you've given, as well as if you want to make any updates! Type " + '"' + "View Commands" + '"' + " if you want to see a list of all valid commands.";
+        var viewMembersMessage = "In the meantime, type " + '"' + "View Profile" + '"' + " if you want to see the information you've given, as well as if you want to make any updates! Type " + '"' + "View Commands" + '"' + " if you want to see a list of all valid commands.";
         
         //keys is array of all keys (psid, ....., submit)
         let keys = Object.keys(body);
