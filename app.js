@@ -12,7 +12,6 @@ setInterval(function() {
     http.get("http://rcf-meets.herokuapp.com");
 }, 300000); // 5 Minutes
 
-//var db = mongoose.connect("mongodb://mattmkim:minwoo123@ds351455.mlab.com:51455/heroku_7866frlv");
 var db = mongoose.connect(process.env.DB_URI);
 var User = require("./models/users");
 var Post = require("./models/posts");

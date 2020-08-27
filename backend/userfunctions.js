@@ -155,8 +155,8 @@ module.exports = function(User) {
                 if (response.length == 0) {
                     console.log("No one is free :(");
                 } else if (response.length == 1) {
-                    message = "Looks like no one else is free this week :(";
-                    //sendMessage(response[0].user_id, {text: message});
+                    message = "Wow, did not expect this to happen. Looks like no one else is free this week :(";
+                    sendMessage(response[0].user_id, {text: message});
                 } else {
                     //console.log(response);
                     while (response.length > 0) {
