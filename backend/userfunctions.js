@@ -242,7 +242,7 @@ module.exports = function(User) {
                                 }
                             })
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName + " and " + t.firstName + t.lastName);
-                            var questionOfWeek = "The first RCF Meets of the year! Woohoo! If this is your first time, welcome! Reach out to the person(s) you were paired with, and setup a time to meet! This can " + 
+                            var questionOfWeek = "The first RCF Meets of the year! Woohoo! If this is your first time, welcome! Reach out to the person(s) you were paired with, and set up a time to meet! This can " + 
                                 "be over phone call, video call, meeting outside in person, or whatever you feel comfortable with. Also, each week comes with a Question of the Week - feel free to end your meetup with this question " +
                                 "to avoid any awkward silences (haha). \n\n" + "This week's Question of the Week: What are you looking forward to this semester?";
 
@@ -283,7 +283,7 @@ module.exports = function(User) {
     
                         } else {
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName);
-                            var questionOfWeek = "The first RCF Meets of the year! Woohoo! If this is your first time, welcome! Reach out to the person(s) you were paired with, and setup a time to meet! This can " + 
+                            var questionOfWeek = "The first RCF Meets of the year! Woohoo! If this is your first time, welcome! Reach out to the person(s) you were paired with, and set up a time to meet! This can " + 
                             "be over phone call, video call, meeting outside in person, or whatever you feel comfortable with. Also, each week comes with a Question of the Week - feel free to end your meetup with this question " +
                             "to avoid any awkward silences (haha). \n\n" + "This week's Question of the Week: What are you looking forward to this semester?";
 
