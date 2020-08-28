@@ -242,70 +242,74 @@ module.exports = function(User) {
                                 }
                             })
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName + " and " + t.firstName + t.lastName);
-                            var questionOfWeek = "This week’s Question of the Week: If you could eliminate one food so no one could eat it ever again, what would you destroy? \n";
+                            var questionOfWeek = "The first RCF Meets of the year! Woohoo! If this is your first time, welcome! Reach out to the person(s) you were paired with, and setup a time to meet! This can " + 
+                                "be over phone call, video call, meeting outside in person, or whatever you feel comfortable with. Also, each week comes with a Question of the Week - feel free to end your meetup with this question " +
+                                "to avoid any awkward silences (haha). \n\n" + "This week's Question of the Week: What are you looking forward to this semester?";
 
-                            // msg.sendMessage(f.user_id, {text: questionOfWeek});
-                            // msg.sendMessage(s.user_id, {text: questionOfWeek});
-                            // msg.sendMessage(t.user_id, {text: questionOfWeek});
+                            msg.sendMessage(f.user_id, {text: questionOfWeek});
+                            msg.sendMessage(s.user_id, {text: questionOfWeek});
+                            msg.sendMessage(t.user_id, {text: questionOfWeek});
 
-                            // postback.laddersProfile(f.user_id, s.user_id, f.firstName, s.firstName);
-                            // postback.laddersProfile(f.user_id, t.user_id, f.firstName, t.firstName);
-                            // postback.laddersProfile(s.user_id, f.user_id, s.firstName, f.firstName);
-                            // postback.laddersProfile(s.user_id, t.user_id, s.firstName, t.firstName);
-                            // postback.laddersProfile(t.user_id, s.user_id, t.firstName, s.firstName);
-                            // postback.laddersProfile(t.user_id, f.user_id, t.firstName, f.firstName);
+                            postback.laddersProfile(f.user_id, s.user_id, f.firstName, s.firstName);
+                            postback.laddersProfile(f.user_id, t.user_id, f.firstName, t.firstName);
+                            postback.laddersProfile(s.user_id, f.user_id, s.firstName, f.firstName);
+                            postback.laddersProfile(s.user_id, t.user_id, s.firstName, t.firstName);
+                            postback.laddersProfile(t.user_id, s.user_id, t.firstName, s.firstName);
+                            postback.laddersProfile(t.user_id, f.user_id, t.firstName, f.firstName);
     
-                            // User.update({user_id: f.user_id}, { $push: {prevMeetup: [s.user_id, t.user_id]} }, function(err, response) {
-                            //     if (err) {
-                            //         console.log(err);
-                            //     } else {
-                            //         console.log("Updated previous for " + f.user_id);
-                            //     }
-                            // })
+                            User.update({user_id: f.user_id}, { $push: {prevMeetup: [s.user_id, t.user_id]} }, function(err, response) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.log("Updated previous for " + f.user_id);
+                                }
+                            })
     
-                            // User.update({user_id: s.user_id}, { $push: {prevMeetup: [f.user_id, t.user_id]} }, function(err, response) {
-                            //     if (err) {
-                            //         console.log(err);
-                            //     } else {
-                            //         console.log("Updated previous for " + s.user_id);
-                            //     }
-                            // })
+                            User.update({user_id: s.user_id}, { $push: {prevMeetup: [f.user_id, t.user_id]} }, function(err, response) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.log("Updated previous for " + s.user_id);
+                                }
+                            })
     
-                            // User.update({user_id: t.user_id}, { $push: {prevMeetup: [s.user_id, f.user_id]} }, function(err, response) {
-                            //     if (err) {
-                            //         console.log(err);
-                            //     } else {
-                            //         console.log("Updated previous for " + t.user_id);
-                            //     }
-                            // })
+                            User.update({user_id: t.user_id}, { $push: {prevMeetup: [s.user_id, f.user_id]} }, function(err, response) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.log("Updated previous for " + t.user_id);
+                                }
+                            })
     
                         } else {
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName);
-                            var questionOfWeek = "This week’s Question of the Week: If you could eliminate one food so no one could eat it ever again, what would you destroy? \n";
+                            var questionOfWeek = "The first RCF Meets of the year! Woohoo! If this is your first time, welcome! Reach out to the person(s) you were paired with, and setup a time to meet! This can " + 
+                            "be over phone call, video call, meeting outside in person, or whatever you feel comfortable with. Also, each week comes with a Question of the Week - feel free to end your meetup with this question " +
+                            "to avoid any awkward silences (haha). \n\n" + "This week's Question of the Week: What are you looking forward to this semester?";
 
-                            // msg.sendMessage(f.user_id, {text: questionOfWeek});
-                            // msg.sendMessage(s.user_id, {text: questionOfWeek});
+                            msg.sendMessage(f.user_id, {text: questionOfWeek});
+                            msg.sendMessage(s.user_id, {text: questionOfWeek});
 
-                            // postback.laddersProfile(f.user_id, s.user_id, f.firstName, s.firstName);
-                            // postback.laddersProfile(s.user_id, f.user_id, s.firstName, f.firstName);
+                            postback.laddersProfile(f.user_id, s.user_id, f.firstName, s.firstName);
+                            postback.laddersProfile(s.user_id, f.user_id, s.firstName, f.firstName);
                             
-                            // //update previous
+                            //update previous
     
-                            // User.update({user_id: f.user_id}, { $push: {prevMeetup: s.user_id} }, function(err, response) {
-                            //     if (err) {
-                            //         console.log(err);
-                            //     } else {
-                            //         console.log("Updated previous for " + f.user_id);
-                            //     }
-                            // })
+                            User.update({user_id: f.user_id}, { $push: {prevMeetup: s.user_id} }, function(err, response) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.log("Updated previous for " + f.user_id);
+                                }
+                            })
     
-                            // User.update({user_id: s.user_id}, { $push: {prevMeetup: f.user_id} }, function(err, response) {
-                            //     if (err) {
-                            //         console.log(err);
-                            //     } else {
-                            //         console.log("Updated previous for " + s.user_id);
-                            //     }
-                            // })
+                            User.update({user_id: s.user_id}, { $push: {prevMeetup: f.user_id} }, function(err, response) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.log("Updated previous for " + s.user_id);
+                                }
+                            })
                             
                         }
                     }
