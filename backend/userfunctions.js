@@ -159,6 +159,12 @@ module.exports = function(User) {
                     sendMessage(response[0].user_id, {text: message});
                 } else {
                     //console.log(response);
+                    if (response.length % 2 !== 0) {
+                        // remove me LOL
+                        var indMe = response.indexOf("2479283145514220");
+                        response.splice(indMe, 1);
+                    }
+
                     while (response.length > 0) {
                         var f = response[Math.floor(Math.random() * response.length)]
                         //console.log(f);
