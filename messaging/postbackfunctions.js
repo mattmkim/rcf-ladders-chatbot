@@ -268,7 +268,7 @@ module.exports = {
                 "type":"template",
                 "payload":{
                     "template_type":"button",
-                    "text": "Hi " + name + ", are you free to meet with someone (virtually) this week?",
+                    "text": "Hi " + name + ", are you free to meet with someone this week?",
                     "buttons":[
                         {
                             "type":"postback",
