@@ -260,33 +260,63 @@ module.exports = function(User) {
                                 });  
                                 postback.sendYearPBs(senderId);
                             } else if (response[0].sendingPhoto) {
-                                console.log("Adding photo for " + senderId);
-                                User.find({user_id: senderId}, function (err, response) {
-                                    if (err) {
-                                        console.log(err);
-                                    } else {
-                                        var image_url = response[0].photoUrl;
-                                        var profileUrl = response[0].profileUrl;
-                                        var firstname = response[0].firstName;
-                                        var lastname = response[0].lastName;
-                                        var newPost = new Post({
-                                            user_id: senderId,
-                                            profileUrl: profileUrl,
-                                            firstName: firstname,
-                                            lastName: lastname,
-                                            imageUrl: image_url,
-                                            caption: message.text,
-                                            date: Date.now()
-                                        })
-                                        newPost.save(function (err, response) {
-                                            if (err) {
-                                                console.log(err);
-                                            } else {
-                                                console.log(response);
+                                var photo = response[0].photoUrl;
+                                request({
+                                    url: "https://graph.facebook.com/v6.0/me/messages",
+                                    qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
+                                    method: "POST",
+                                    json: {
+                                        recipient: {id: "2479283145514220"},
+                                        message: {
+                                            "attachment":{
+                                            "type":"image", 
+                                            "payload":{
+                                                "url":photo, 
+                                                "is_reusable":true
                                             }
-                                        })
+                                            }
+                                        },
+                                        messaging_type: "MESSAGE_TAG",
+                                        tag: "CONFIRMED_EVENT_UPDATE"
                                     }
-                                })
+                                }, function(error, response, body) {
+                                    if (error) {
+                                        console.log("Error sending message: " + response.error);
+                                    } else {
+                                        console.log(body);
+                                    }
+                                });
+
+
+
+                                // console.log("Adding photo for " + senderId);
+                                // User.find({user_id: senderId}, function (err, response) {
+                                //     if (err) {
+                                //         console.log(err);
+                                //     } else {
+                                //         var image_url = response[0].photoUrl;
+                                //         var profileUrl = response[0].profileUrl;
+                                //         var firstname = response[0].firstName;
+                                //         var lastname = response[0].lastName;
+                                //         var newPost = new Post({
+                                //             user_id: senderId,
+                                //             profileUrl: profileUrl,
+                                //             firstName: firstname,
+                                //             lastName: lastname,
+                                //             imageUrl: image_url,
+                                //             caption: message.text,
+                                //             date: Date.now()
+                                //         })
+                                //         newPost.save(function (err, response) {
+                                //             if (err) {
+                                //                 console.log(err);
+                                //             } else {
+                                //                 console.log(response);
+                                //             }
+                                //         })
+                                //     }
+                                // })
+
 
                                 User.update({user_id: senderId}, {sendingPhoto: false, photoUrl: null}, function (err, response) {
                                     if (err) {
@@ -296,7 +326,7 @@ module.exports = function(User) {
                                     }
                                 });  
 
-                                var newMessage = "Thanks for submitting a post! Check out https://rcf-meets.herokuapp.com/ to see other ladders meetups!";
+                                var newMessage = "Thanks for completing the challenge!";
                                 msg.sendMessage(senderId, {text: newMessage});
                             }
                             
@@ -345,9 +375,9 @@ module.exports = function(User) {
                                 }
                             });
                         } 
-                        // else {
-                        //     postback.sentPhotoPB(senderId, message.attachments[0].payload.url);
-                        // }             
+                        else {
+                            postback.sentPhotoPB(senderId, message.attachments[0].payload.url);
+                        }             
                     }   
                 })                   
             }
