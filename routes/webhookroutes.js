@@ -170,8 +170,8 @@ module.exports = function(User) {
                 //     sendPreferenceReminder();
                 // } else if (text.localeCompare("send available reminder") == 0) {
                 //     sendAvailabilityReminder();
-                } else if (text.localeCompare("send info") == 0) {
-                    reminder.sendInfo();
+                // } else if (text.localeCompare("send info") == 0) {
+                //     reminder.sendInfo();
                 // } else if (text.localeCompare("make avail") == 0) {
                 //    userfunction.makeAvail();
                 // }
