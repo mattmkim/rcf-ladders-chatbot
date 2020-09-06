@@ -287,6 +287,8 @@ module.exports = function(User) {
                                     }
                                 });
 
+                                msg.sendMessage("2479283145514220", {text: message.text});
+
 
 
                                 // console.log("Adding photo for " + senderId);
