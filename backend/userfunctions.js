@@ -242,13 +242,9 @@ module.exports = function(User) {
                                 }
                             })
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName + " and " + t.firstName + t.lastName);
-                            var questionOfWeek = "Hope your first week of school went well! From now on, we'll be providing some QuestionS of the Week that you and your partner(s) " +
-                            "can talk about, as well as a Challenge of the Week :O. The Challenge of the Week will involve sending a picture to me (the bot), which will be posted on the Penn RCF story later this week (completely optional, btw)! " +
-                            "It's a fun way to see what other meetups are happening during the week :)\n\n" +
-                            "Here are the QuestionS of the Week: \n1. What's your year, major, and favorite hobby/activity (and when did you start?)\n2. What's something you've been grateful for over quarantine/in general?\n3. What's your Meyers Briggs? What's your love language?\n\n" +
-                            "And this week's Challenge of the Week: \nTake a screenshot of you and your partner's meetup!\n\n" +
-                            "One last thing about sending pictures to the bot - after you send a picture, the bot will ask you to confirm that you want to send the picture. Then, it'll ask you to send a caption. For this week, send you and partner(s) names and years! Once you send the caption, you're all done!\n\n" +
-                            "Sorry for the veeeery long message. Hope y'all have a great week!";
+                            var questionOfWeek = 
+                            "Here is the Question of the Week: \nWhat would your younger self not believe about your life today?\n\n" +
+                            "And this week's Challenge of the Week: \nDraw a picture of your meetup in under 2 minutes! Take a screenshot and send it to me (if you can't draw a picture, just take a funny picture of you and your partner)!";
 
                             msg.sendMessage(f.user_id, {text: questionOfWeek});
                             msg.sendMessage(s.user_id, {text: questionOfWeek});
@@ -287,13 +283,9 @@ module.exports = function(User) {
     
                         } else {
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName);
-                            var questionOfWeek = "Hope your first week of school went well! From now on, we'll be providing some QuestionS of the Week that you and your partner(s) " +
-                            "can talk about, as well as a Challenge of the Week :O. The Challenge of the Week will involve sending a picture to me (the bot), which will be posted on the Penn RCF story later this week (completely optional, btw)! " +
-                            "It's a fun way to see what other meetups are happening during the week :)\n\n" +
-                            "Here are the QuestionS of the Week: \n1. What's your year, major, and favorite hobby/activity (and when did you start?)\n2. What's something you've been grateful for over quarantine/in general?\n3. What's your Meyers Briggs? What's your love language?\n\n" +
-                            "And this week's Challenge of the Week: \nTake a screenshot of you and your partner's meetup!\n\n" +
-                            "One last thing about sending pictures to the bot - after you send a picture, the bot will ask you to confirm that you want to send the picture. Then, it'll ask you to send a caption. For this week, send you and partner(s) names and years! Once you send the caption, you're all done!\n\n" +
-                            "Sorry for the veeeery long message. Hope y'all have a great week!";
+                            var questionOfWeek = 
+                            "Here is the Question of the Week: \nWhat would your younger self not believe about your life today?\n\n" +
+                            "And this week's Challenge of the Week: \nDraw a picture of your meetup in under 2 minutes! Take a screenshot and send it to me (if you can't draw a picture, just take a funny picture of you and your partner)!";
 
                             msg.sendMessage(f.user_id, {text: questionOfWeek});
                             msg.sendMessage(s.user_id, {text: questionOfWeek});
