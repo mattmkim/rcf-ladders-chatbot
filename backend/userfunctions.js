@@ -243,8 +243,8 @@ module.exports = function(User) {
                             })
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName + " and " + t.firstName + t.lastName);
                             var questionOfWeek = 
-                            "Here is the Question of the Week: \nWhat would your younger self not believe about your life today?\n\n" +
-                            "And this week's Challenge of the Week: \nDraw a picture of your meetup in under 2 minutes! Take a screenshot and send it to me (if you can't draw a picture, just take a funny picture of you and your partner)!";
+                            "Here is the Question of the Week: \nWhat would you consider some of your greatest strengths and weaknesses?\n\n" +
+                            "And this week's Challenge of the Week: \nTake a funny picture with your partner!";
 
                             msg.sendMessage(f.user_id, {text: questionOfWeek});
                             msg.sendMessage(s.user_id, {text: questionOfWeek});
@@ -284,8 +284,8 @@ module.exports = function(User) {
                         } else {
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName);
                             var questionOfWeek = 
-                            "Here is the Question of the Week: \nWhat would your younger self not believe about your life today?\n\n" +
-                            "And this week's Challenge of the Week: \nDraw a picture of your meetup in under 2 minutes! Take a screenshot and send it to me (if you can't draw a picture, just take a funny picture of you and your partner)!";
+                            "Here is the Question of the Week: \nWhat would you consider some of your greatest strengths and weaknesses?\n\n" +
+                            "And this week's Challenge of the Week: \nTake a funny picture with your partner!";
 
                             msg.sendMessage(f.user_id, {text: questionOfWeek});
                             msg.sendMessage(s.user_id, {text: questionOfWeek});
