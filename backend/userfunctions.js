@@ -243,7 +243,7 @@ module.exports = function(User) {
                             })
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName + " and " + t.firstName + t.lastName);
                             var questionOfWeek = 
-                            "Here is the Question of the Week:\nWhat is your spirit kitchen utensil?\n\n" +
+                            "Here is the Question of the Week:\nIf you could create a new toothpaste flavor, what would it be?\n\n" +
                             "And this week's Challenge of the Week:\nTake a picture with your partner!";
 
                             msg.sendMessage(f.user_id, {text: questionOfWeek});
@@ -284,7 +284,7 @@ module.exports = function(User) {
                         } else {
                             console.log(f.firstName + f.lastName + " matched with " + s.firstName + s.lastName);
                             var questionOfWeek = 
-                            "Here is the Question of the Week:\nWhat is your spirit kitchen utensil?\n\n" +
+                            "Here is the Question of the Week:\nIf you could create a new toothpaste flavor, what would it be?\n\n" +
                             "And this week's Challenge of the Week:\nTake a picture with your partner!";
 
                             msg.sendMessage(f.user_id, {text: questionOfWeek});
