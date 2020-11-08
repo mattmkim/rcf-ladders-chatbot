@@ -34,7 +34,7 @@ app.set('view engine', 'ejs');
 
 // send availability postback every Saturday night
 // real time string: '0 6 * * Sunday'
-cron.schedule('0 9 * * Saturday', () => {
+cron.schedule('0 10 * * Saturday', () => {
     userFunctions.sendAvailabilityPB();
 }, {
     scheduled: true,
@@ -42,7 +42,7 @@ cron.schedule('0 9 * * Saturday', () => {
 });
 
 // send ladders partners Sunday nights
-cron.schedule('0 9 * * Sunday', () => {
+cron.schedule('0 10 * * Sunday', () => {
     userFunctions.sendLadders();
 }, {
     scheduled: true,
@@ -50,7 +50,7 @@ cron.schedule('0 9 * * Sunday', () => {
 })
 
 // send ladders reminder Saturday night
-cron.schedule('0 19 * * Saturday', () => {
+cron.schedule('0 20 * * Saturday', () => {
     reminderFunctions.sendAvailabilityReminder();
 }, {
     scheduled: true,
